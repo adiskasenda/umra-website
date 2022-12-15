@@ -1,7 +1,7 @@
 @extends('layouts.authentication')
 
 @section('content')
-    <div class="d-flex flex-column flex-root" id="kt_app_root">
+<div class="d-flex flex-column flex-root" id="kt_app_root">
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
             <div class="d-flex flex-lg-row-fluid">
                 <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
@@ -14,7 +14,7 @@
                         <form class="form w-100" method="POST" action="{{ url('/') }}">
                             @csrf
                             <div class="text-center mb-11">
-                                <h1 class="text-dark fw-bolder mb-3">Masuk</h1>
+                                <h1 class="text-dark fw-bolder mb-3">Buat Akun</h1>
                             </div>
                             
                             <div class="fv-row mb-8">
