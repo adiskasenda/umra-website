@@ -13,23 +13,21 @@
                     <div class="w-md-400px">
                         <form class="form w-100" method="POST" action="{{ url('/') }}">
                             @csrf
+                            
                             <div class="text-center mb-11">
-                                <h1 class="text-dark fw-bolder mb-3">Masuk</h1>
+                                <h1 class="fw-bolder mb-3 text-green">Masukan Kode OTP</h1>
+                                <div class="text-gray-500 fw-semibold fs-6">Kami telah mengirimkan kode OTP ke nomor WhatsApp 08138401939, Jangan berikan kode verifikasi ke siapa pun.</div>
                             </div>
                             
                             <div class="fv-row mb-8">
-                                <input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+                                <input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
                             </div>
-                            <div class="fv-row mb-3">
-                                <input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />
-                            </div>
+
                             <div class="d-grid mb-10">
                                 <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
-                                    <span class="indicator-label">Masuk</span>
+                                    <span class="indicator-label">Verifikasi</span>
                                 </button>
                             </div>
-                            <div class="text-gray-500 text-center fw-semibold fs-6">Tidak Memiliki Akun?</div>
-                            <div class="text-gray-500 text-center fw-semibold fs-6">Silahkan hubungi Administrator.</div>
                         </form>
                     </div>
                 </div>

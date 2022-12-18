@@ -12,8 +12,9 @@
 		<meta property="og:url" content="https://keenthemes.com/metronic" />
 		<meta property="og:site_name" content="Keenthemes | Metronic" />
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" /> -->
+
         <link rel="shortcut icon" href="{{ asset('assets-web/img/logo/logo_umra_icon.png') }}" />
-		<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" /> -->
+		
 		<link href="{{ asset('assets-web/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 		
         <!-- Customized Bootstrap Stylesheet -->
@@ -21,7 +22,7 @@
 
         <!-- Template Stylesheet -->
         <link href="{{ asset('assets-web/css/style.css') }}" rel="stylesheet">
-
+		@stack('page_css')
         <style>
 			body { 
 				background-image: url('{{ asset("assets-web/img/background/bg10.jpeg") }}'); 
@@ -35,5 +36,6 @@
     <script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+		@stack('page_js')
     </script>
 </html>

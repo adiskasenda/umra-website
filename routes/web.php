@@ -25,11 +25,21 @@ use App\Http\Controllers\{
 
 // Login
 Route::get('/login', [ LoginController::class, 'index' ]);
-Route::post('/login', [ LoginController::class, 'login' ]);
+Route::group([ 'prefix' =>'/login-email' ], function() {
+    Route::post('/', [ LoginController::class, 'loginEmail' ]);
+    Route::get('/validate-otp', [ LoginController::class, 'viewEmailOtp' ]);
+    Route::post('/validate-otp', [ LoginController::class, 'loginEmailOtp' ]);
+});
+Route::group([ 'prefix' =>'/login-phone' ], function() {
+    Route::post('/', [ LoginController::class, 'loginPhone' ]);
+    Route::get('/validate-otp', [ LoginController::class, 'viewPhoneOtp' ]);
+    Route::post('/validate-otp', [ LoginController::class, 'loginPhoneOtp' ]);
+});
 
 // Register
 Route::get('/register', [ RegisterController::class, 'index' ]);
-Route::post('/register', [ RegisterController::class, 'store' ]);
+Route::post('/register-email', [ RegisterController::class, 'registerEmail' ]);
+Route::post('/register-phone', [ RegisterController::class, 'registerPhone' ]);
 
 // Logout 
 Route::get('/logout', [ LogoutController::class, 'logout' ]);
