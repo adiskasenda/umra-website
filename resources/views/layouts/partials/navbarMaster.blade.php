@@ -25,8 +25,19 @@
 
                 </div>
                 <div class="form-inline ms-auto">
-                    <a href="{{ url('/login') }}" class="my-2 my-sm-0 nav-link-href" type="submit">Masuk</a>
-                    <a href="{{ url('/register') }}" class="btn btn-outline-success my-2 my-sm-0" type="submit">Daftar</a>
+                    @if ( true ) 
+                        <a href="{{ url('/login') }}" class="my-2 my-sm-0 nav-link-href" type="submit">Masuk</a>
+                        <a href="{{ url('/register') }}" class="btn btn-outline-success my-2 my-sm-0" type="submit">Daftar</a>
+                    @else
+                        <div class="navbar-nav p-4 p-lg-0">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hello</a>
+                                <div class="dropdown-menu border-light m-0">
+                                    <a href="{{ url('/logout') }}" class="dropdown-item">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </nav>

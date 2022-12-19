@@ -11,4 +11,9 @@ class ProfileController extends Controller
     {
         return view('pages.landingPage.landingPage');
     }
+
+    public function update()
+    {
+        return ;
+    }
 }

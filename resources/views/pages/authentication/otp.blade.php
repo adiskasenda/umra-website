@@ -20,11 +20,17 @@
                             </div>
                             
                             <div class="fv-row mb-8">
-                                <input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+                                <input type="otp" placeholder="Masukan Kode OTP" name="otp" class="form-control bg-transparent"/>
+                            </div>
+
+                            <div class="text-center text-gray-500 mb-4">
+                                <span id="timer">
+                                    Kirim ulang dalam <span id="time">30</span>      
+                                </span>
                             </div>
 
                             <div class="d-grid mb-10">
-                                <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+                                <button type="submit" id="kt_sign_in_submit" class="btn btn-success">
                                     <span class="indicator-label">Verifikasi</span>
                                 </button>
                             </div>
@@ -35,3 +41,20 @@
         </div>
     </div>
 @endsection
+
+@push('page_js')
+    <script>
+        var counter = 30;
+        var interval = setInterval(function() {
+            counter--;
+            // Display 'counter' wherever you want to display it.
+            if (counter <= 0) {
+                    clearInterval(interval);
+                    $('#timer').html("<a href='{{ url('/login-phone/check-otp') }}'>Kirim ulang</a>");  
+                return;
+            }else{
+                $('#time').text(counter);
+            }
+        }, 1000);
+    </script>
+@endpush

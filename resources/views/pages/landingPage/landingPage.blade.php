@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Banner Form Start -->
-    <div class="container-xxl callback p-0 mb-5">
+    <div class="container-xxl callback p-0">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach( $banners as $key => $banner )
@@ -12,7 +12,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="container" style="position: relative;top: -60px;;">
+        <div class="container" style="position: relative;top: -60px;">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="bg-white border rounded p-3 p-sm-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
@@ -64,50 +64,29 @@
 
     <!-- Banner Start -->
     <div class="container-xxl py-5">
-        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
-            <div class="testimonial-item">
-                <div class="bg-white testimonial-text border rounded p-4 pt-5 mb-5">
-                    <div class="btn-square bg-white border rounded-circle">
-                        <i class="fa fa-quote-right fa-2x text-primary"></i>
+        <div class="row">
+            <div class="col-md-7">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <img src="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" class="d-block w-100" alt="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" width="100%">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" class="d-block w-100" alt="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" width="100%">
+                        </div>
+                        <div class="carousel-item">
+                        <img src="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" class="d-block w-100" alt="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" width="100%">
+                        </div>
+                    </div>
                 </div>
-                <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-1.jpg')}}" alt="">
-                <h4 class="text-white">Client Name</h4>
-                <span class="text-light">Profession</span>
             </div>
-            <div class="testimonial-item">
-                <div class="bg-white testimonial-text border rounded p-4 pt-5 mb-5">
-                    <div class="btn-square bg-white border rounded-circle">
-                        <i class="fa fa-quote-right fa-2x text-primary"></i>
-                    </div>
-                    Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID
-                </div>
-                <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-2.jpg')}}" alt="">
-                <h4 class="text-white">Client Name</h4>
-                <span class="text-light">Profession</span>
-            </div>
-            <div class="testimonial-item">
-                <div class="bg-white testimonial-text border rounded p-4 pt-5 mb-5">
-                    <div class="btn-square bg-white border rounded-circle">
-                        <i class="fa fa-quote-right fa-2x text-primary"></i>
-                    </div>
-                    Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID
-                </div>
-                <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-3.jpg')}}" alt="">
-                <h4 class="text-white">Client Name</h4>
-                <span class="text-light">Profession</span>
-            </div>
-            <div class="testimonial-item">
-                <div class="bg-white testimonial-text border rounded p-4 pt-5 mb-5">
-                    <div class="btn-square bg-white border rounded-circle">
-                        <i class="fa fa-quote-right fa-2x text-primary"></i>
-                    </div>
-                    Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID
-                </div>
-                <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-4.jpg')}}" alt="">
-                <h4 class="text-white">Client Name</h4>
-                <span class="text-light">Profession</span>
+            <div class="col-md-5">
+                <img src="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" alt="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" width="100%">
             </div>
         </div>
     </div>
@@ -117,17 +96,38 @@
     <!-- Package Umroh Start -->
     <div class="container-xxl py-5">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <h3 class="mb-4">Paket Ibadah Umrah</h3>
                 <p class="mb-4">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
-                <a href="" class="btn btn-primary py-3 px-5 mt-3">Read More</a>
+                <div class="row mb-5">
+                    <div class="col-6">
+                        <img src="{{ asset('assets-web/img/icon/hotel.png')}}" alt="{{ asset('assets-web/img/icon/hotel.png')}}">
+                        Hotel
+                    </div>
+                    <div class="col-6">
+                        <img src="{{ asset('assets-web/img/icon/plane.png')}}" alt="{{ asset('assets-web/img/icon/plane.png')}}">
+                        Pesawat
+                    </div>
+                </div>
+                <a href="#" class="btn btn-success">Lihat Semua Paket</a>
             </div>
             <div class="col-md-3">
                 <div class="card" style="width: 100$;">
                     <div class="card-body">
                         <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                        <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
-                        <p>28 May 2022 00:21</p>
+                        <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
+                        <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                        <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div>Mulai dari</div>
+                                <div>Rp. 30.000.000</div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                            </div>
+                        </div>
+                        <div>Rp. 28.500.000 / Orang</div>
                     </div>
                 </div>
             </div>
@@ -135,8 +135,39 @@
                 <div class="card" style="width: 100$;">
                     <div class="card-body">
                         <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                        <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
-                        <p>28 May 2022 00:21</p>
+                        <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
+                        <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                        <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div>Mulai dari</div>
+                                <div>Rp. 30.000.000</div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                            </div>
+                        </div>
+                        <div>Rp. 28.500.000 / Orang</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card" style="width: 100$;">
+                    <div class="card-body">
+                        <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
+                        <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
+                        <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                        <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div>Mulai dari</div>
+                                <div>Rp. 30.000.000</div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                            </div>
+                        </div>
+                        <div>Rp. 28.500.000 / Orang</div>
                     </div>
                 </div>
             </div>
@@ -148,7 +179,7 @@
     <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-2.png') }}');">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <h3 class="text-white mb-4">Paket Ibadah Umrah</h3>
                     <p class="text-white mb-4">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                     <a href="" class="btn btn-primary py-3 px-5 mt-3">Read More</a>
@@ -157,8 +188,19 @@
                     <div class="card" style="width: 100$;">
                         <div class="card-body">
                             <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                            <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
-                            <p>28 May 2022 00:21</p>
+                            <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
+                            <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                            <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div>Mulai dari</div>
+                                    <div>Rp. 30.000.000</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                                </div>
+                            </div>
+                            <div>Rp. 28.500.000 / Orang</div>
                         </div>
                     </div>
                 </div>
@@ -166,8 +208,39 @@
                     <div class="card" style="width: 100$;">
                         <div class="card-body">
                             <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                            <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
-                            <p>28 May 2022 00:21</p>
+                            <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
+                            <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                            <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div>Mulai dari</div>
+                                    <div>Rp. 30.000.000</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                                </div>
+                            </div>
+                            <div>Rp. 28.500.000 / Orang</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card" style="width: 100$;">
+                        <div class="card-body">
+                            <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
+                            <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
+                            <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                            <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div>Mulai dari</div>
+                                    <div>Rp. 30.000.000</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                                </div>
+                            </div>
+                            <div>Rp. 28.500.000 / Orang</div>
                         </div>
                     </div>
                 </div>
@@ -214,23 +287,81 @@
     <!-- Banner Start -->
     <div class="container-fluid bg-green-light py-5">
         <div class="container">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="display-5 mb-5">INI IMAGE BANNER</h1>
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <img src="{{ asset('assets-web/img/banner/banner-fasilitas.png')}}" alt="{{ asset('assets-web/img/banner/banner-fasilitas.png')}}" width="100%" height="100%">
             </div>
-
         </div>
     </div>
     <!-- Banner End -->
 
 
     <!-- Explore& wisata Start -->
-    <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-2.png') }}');">
+    <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-2.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container">
             <div class="text-white text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="display-5 text-white mb-5">INI IMAGE BANNER</h1>
+                <h1 class="display-5 text-white mb-5">Explore & Berwisata Keliling Jazirah Arab</h1>
                 <p>Berangkat beribadah tidak pernah semenyenangkan ini dengan bebas atur fasilitas hotel, pesawat, asuransi, visa & destinasi wisata halal impian anda.</p>
             </div>
-
+        </div>
+        <div class="container" style="background-image:url('{{ asset('assets-web/img/background/background-3.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
+            <div class="row p-5">
+                <div class="col-md-4 text-white">
+                    <h3 class="mb-4 text-white">Paket Ibadah Umrah</h3>
+                    <p class="mb-4">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
+                    <div class="row mb-5">
+                        <div class="col-6">
+                            <img src="{{ asset('assets-web/img/icon/hotel.png')}}" alt="{{ asset('assets-web/img/icon/hotel.png')}}">
+                            Hotel
+                        </div>
+                        <div class="col-6">
+                            <img src="{{ asset('assets-web/img/icon/plane.png')}}" alt="{{ asset('assets-web/img/icon/plane.png')}}">
+                            Pesawat
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-success">Lihat Semua Paket</a>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width: 100$;">
+                        <div class="card-body">
+                            <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
+                            <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
+                            <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                            <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div>Mulai dari</div>
+                                    <div>Rp. 30.000.000</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                                </div>
+                            </div>
+                            <div>Rp. 28.500.000 / Orang</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width: 100$;">
+                        <div class="card-body">
+                            <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
+                            <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
+                            <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                            <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div>Mulai dari</div>
+                                    <div>Rp. 30.000.000</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                                </div>
+                            </div>
+                            <div>Rp. 28.500.000 / Orang</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
         </div>
     </div>
     <!-- Explore& wisata End -->

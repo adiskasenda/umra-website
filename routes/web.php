@@ -27,13 +27,17 @@ use App\Http\Controllers\{
 Route::get('/login', [ LoginController::class, 'index' ]);
 Route::group([ 'prefix' =>'/login-email' ], function() {
     Route::post('/', [ LoginController::class, 'loginEmail' ]);
-    Route::get('/validate-otp', [ LoginController::class, 'viewEmailOtp' ]);
-    Route::post('/validate-otp', [ LoginController::class, 'loginEmailOtp' ]);
 });
 Route::group([ 'prefix' =>'/login-phone' ], function() {
     Route::post('/', [ LoginController::class, 'loginPhone' ]);
-    Route::get('/validate-otp', [ LoginController::class, 'viewPhoneOtp' ]);
-    Route::post('/validate-otp', [ LoginController::class, 'loginPhoneOtp' ]);
+    Route::get('/validate-otp', [ LoginController::class, 'viewOtp' ]);
+    Route::get('/check-otp', [ LoginController::class, 'checkOtp' ]);
+    Route::post('/validate-otp', [ LoginController::class, 'loginOtp' ]);
+});
+
+Route::group([ 'prefix' =>'/login-gmail' ], function() {
+    Route::get('/', [ LoginController::class, 'google']);
+    Route::get('/callback', [ LoginController::class, 'googleCallback']);
 });
 
 // Register
