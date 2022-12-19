@@ -22,11 +22,24 @@
 
         <!-- Template Stylesheet -->
         <link href="{{ asset('assets-web/css/style.css') }}" rel="stylesheet">
+
 		@stack('page_css')
         <style>
 			body { 
 				background-image: url('{{ asset("assets-web/img/background/bg10.jpeg") }}'); 
 			} 
+
+			/* Chrome, Safari, Edge, Opera */
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+
+			/* Firefox */
+			input[type=number] {
+				-moz-appearance: textfield;
+			}
 		</style>
 	</head>
 	<body id="kt_body" class="app-blank app-blank bgi-size-cover bgi-position-center bgi-no-repeat">

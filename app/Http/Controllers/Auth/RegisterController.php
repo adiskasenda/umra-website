@@ -31,11 +31,11 @@ class RegisterController extends Controller
         return view('pages.authentication.register');
     }
 
-    public function registerEmail()
+    public function registerEmail(Request $request)
     {
         $body = [
             "email" => "hanifalbaaits@dataku.id",
-            "device" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
+            "device" => $_SERVER['HTTP_USER_AGENT'],
             "ip_address" => "139.192.213.113",
             "token_fcm" => NULL,
             "password" => "12345",
@@ -47,7 +47,7 @@ class RegisterController extends Controller
             "birthday" => "2025-11-08"
         ];
 
-        $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/employee/auth', $body);
+        $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/customer/register', $body);
         $register = json_decode($response->getBody(), true);
 
         if ( $register['status'] == '2' ) {
@@ -64,29 +64,28 @@ class RegisterController extends Controller
         return redirect(url('/'));
     }
 
-    public function registerPhone()
+    public function registerPhone(Request $request)
     {
         $body = [
-            "email" => "hanifalbaaits@dataku.id",
-            "device" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
+            "device" => $_SERVER['HTTP_USER_AGENT'],
             "ip_address" => "139.192.213.113",
             "token_fcm" => NULL,
-            "password" => "12345",
-            "referer_uuid" => "",
-            "gateway_registered" => "1",
-            "title" => "Bapak",
-            "firstname" => "Hanif",
-            "lastname" => "Al Baaits",
-            "birthday" => "2025-11-08"
+            "firstname" => $request->firstname,
+            "lastname" => $request->lastname,
+            "birthday" => date('Y-m-d', strtotime($request->birthday)),
+            "phone" => $request->phone
         ];
 
-        $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/employee/auth', $body);
+        $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/customer/register-phone', $body);
         $register = json_decode($response->getBody(), true);
 
         if ( $register['status'] == '2' ) {
+            $input = $request->input();
+            $input['type'] = 'phone';
+
             return redirect()->back()
-                            ->withInput($request->input())
-                            ->with('error', $register['message']);
+                        ->withInput($input)
+                        ->with('error', $register['message']);
         }
 
         Session::put([

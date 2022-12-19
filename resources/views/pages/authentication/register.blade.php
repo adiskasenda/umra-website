@@ -41,14 +41,21 @@
 
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="kt_tab_login_with_phone" role="tabpanel">
-                                <form class="form w-100" method="POST" action="{{ url('/') }}">
+                                <form class="form w-100" method="POST" action="{{ url('/register-phone') }}">
                                     @csrf
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+                                        <input type="number" placeholder="Nomer Ponsel" name="phone" class="form-control bg-transparent" />
                                     </div>
-                                    <div class="fv-row mb-3">
-                                        <input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />
+                                    <div class="fv-row mb-8">
+                                        <input type="text" placeholder="Nama Depan" name="firstname" class="form-control bg-transparent" />
                                     </div>
+                                    <div class="fv-row mb-8">
+                                        <input type="text" placeholder="Nama Belakang" name="lastname" class="form-control bg-transparent" />
+                                    </div>
+                                    <div class="fv-row mb-8">
+                                        <input type="text" placeholder="Tanggal Lahir" name="birthday" class="form-control bg-transparent" />
+                                    </div>
+
                                     <div class="d-grid mb-10">
                                         <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
                                             <span class="indicator-label">Daftar</span>
@@ -60,10 +67,22 @@
                                 <form class="form w-100" method="POST" action="{{ url('/') }}">
                                     @csrf
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+                                        <input type="text" placeholder="Email" name="email" class="form-control bg-transparent" />
+                                    </div>
+                                    <div class="fv-row mb-8">
+                                        <input type="text" placeholder="Nama Depan" name="firstname" class="form-control bg-transparent" />
+                                    </div>
+                                    <div class="fv-row mb-8">
+                                        <input type="text" placeholder="Nama Belakang" name="lastname" class="form-control bg-transparent" />
+                                    </div>
+                                    <div class="fv-row mb-8">
+                                        <input type="text" placeholder="Tanggal Lahir" name="birthday" class="form-control bg-transparent" />
                                     </div>
                                     <div class="fv-row mb-3">
-                                        <input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />
+                                        <input type="password" placeholder="Kata Sandi" name="password" class="form-control bg-transparent" />
+                                    </div>
+                                    <div class="fv-row mb-3">
+                                        <input type="password" placeholder="Ulang Kata Sandi" name="password_confirmed" class="form-control bg-transparent" />
                                     </div>
                                     <div class="d-grid mb-10">
                                         <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
