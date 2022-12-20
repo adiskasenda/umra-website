@@ -88,15 +88,17 @@ class LoginController extends Controller
     }
 
     public function viewOtp(Request $request)
-    {
-        return view('pages.authentication.otp');
+    {   
+        return view('pages.authentication.otp',[
+            'phone' => $request->phone,
+        ]);
     }
 
     public function checkOtp(Request $request)
     {
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/customer/check_otp/'.$request->phone);
-        $banners = json_decode($response->getBody(), true);
-
+        $otp = json_decode($response->getBody(), true);
+        
         return redirect()->back();
     }
 
@@ -109,7 +111,7 @@ class LoginController extends Controller
 
         $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/customer/validate_otp_phone', $body);
         $login = json_decode($response->getBody(), true);
-
+        
         Session::put([
             'token' => $login['data']['token'] ,
             'user' => $login['data']['user']

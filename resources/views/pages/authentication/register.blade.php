@@ -41,51 +41,58 @@
 
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="kt_tab_login_with_phone" role="tabpanel">
+                                @if ( old('type') == 'phone' ) 
+                                    @include('layouts.partials.message')
+                                @endif
                                 <form class="form w-100" method="POST" action="{{ url('/register-phone') }}">
                                     @csrf
                                     <div class="fv-row mb-8">
-                                        <input type="number" placeholder="Nomer Ponsel" name="phone" class="form-control bg-transparent" />
+                                        <input type="number" placeholder="Nomer Ponsel" name="phone" class="form-control bg-transparent" required/>
                                     </div>
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Nama Depan" name="firstname" class="form-control bg-transparent" />
+                                        <input type="text" placeholder="Nama Depan" name="firstname" class="form-control bg-transparent" required/>
                                     </div>
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Nama Belakang" name="lastname" class="form-control bg-transparent" />
+                                        <input type="text" placeholder="Nama Belakang" name="lastname" class="form-control bg-transparent" required/>
                                     </div>
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Tanggal Lahir" name="birthday" class="form-control bg-transparent" />
+                                        <input type="text" placeholder="Tanggal Lahir" name="birthday" class="form-control bg-transparent" required/>
                                     </div>
 
                                     <div class="d-grid mb-10">
-                                        <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+                                        <button type="submit" id="kt_sign_in_submit" class="btn btn-success">
                                             <span class="indicator-label">Daftar</span>
                                         </button>
                                     </div>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="kt_tab_login_with_email" role="tabpanel">
+                                @if ( old('type') == 'email' ) 
+                                    @include('layouts.partials.message')
+                                @endif
+
                                 <form class="form w-100" method="POST" action="{{ url('/') }}">
                                     @csrf
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Email" name="email" class="form-control bg-transparent" />
+                                        <input type="text" placeholder="Email" name="email" class="form-control bg-transparent" required/>
                                     </div>
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Nama Depan" name="firstname" class="form-control bg-transparent" />
+                                        <input type="text" placeholder="Nama Depan" name="firstname" class="form-control bg-transparent" required/>
                                     </div>
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Nama Belakang" name="lastname" class="form-control bg-transparent" />
+                                        <input type="text" placeholder="Nama Belakang" name="lastname" class="form-control bg-transparent" required/>
                                     </div>
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Tanggal Lahir" name="birthday" class="form-control bg-transparent" />
+                                        <input type="text" id="birthday" placeholder="Tanggal Lahir" name="birthday" class="form-control bg-transparent" required/>
                                     </div>
-                                    <div class="fv-row mb-3">
-                                        <input type="password" placeholder="Kata Sandi" name="password" class="form-control bg-transparent" />
+                                    <div class="fv-row mb-8">
+                                        <input type="password" placeholder="Kata Sandi" name="password" class="form-control bg-transparent" required/>
                                     </div>
-                                    <div class="fv-row mb-3">
-                                        <input type="password" placeholder="Ulang Kata Sandi" name="password_confirmed" class="form-control bg-transparent" />
+                                    <div class="fv-row mb-8">
+                                        <input type="password" placeholder="Ulang Kata Sandi" name="password_confirmed" class="form-control bg-transparent" required/>
                                     </div>
                                     <div class="d-grid mb-10">
-                                        <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+                                        <button type="submit" id="kt_sign_in_submit" class="btn btn-success">
                                             <span class="indicator-label">Daftar</span>
                                         </button>
                                     </div>
@@ -102,3 +109,28 @@
         </div>
     </div>
 @endsection
+
+@push('page_js')
+    <script>
+        $( document ).ready(function() {
+            $("input[name='birthday']").flatpickr({
+                dateFormat: "d-m-Y",
+            });
+
+            // Check condition Validation
+            if ( '{{ old('type') }}' == 'email' ) {
+                $('#kt_tab_login_with_phone').removeClass('active')
+                $('a[href="#kt_tab_login_with_phone"]').removeClass('show active')
+
+                $('a[href="#kt_tab_login_with_email"]').addClass('active')
+                $('#kt_tab_login_with_email').addClass('show active')
+            } else {
+                $('a[href="#kt_tab_login_with_email"]').removeClass('active')
+                $('#kt_tab_login_with_email').removeClass('show active')
+
+                $('a[href="#kt_tab_login_with_phone"]').addClass('active');
+                $('#kt_tab_login_with_phone').addClass('show active');
+            }
+        });
+    </script>
+@endpush

@@ -25,7 +25,7 @@
 
                 </div>
                 <div class="form-inline ms-auto">
-                    @if ( true ) 
+                    @if ( empty(Session::get('user')) ) 
                         <a href="{{ url('/login') }}" class="my-2 my-sm-0 nav-link-href" type="submit">Masuk</a>
                         <a href="{{ url('/register') }}" class="btn btn-outline-success my-2 my-sm-0" type="submit">Daftar</a>
                     @else

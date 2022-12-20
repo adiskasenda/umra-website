@@ -20,7 +20,8 @@ class RegisterController extends Controller
         $this->header = [
             'ax-request-id' => Uuid::uuid4()->toString(),
             'ax-request-at' => Carbon::now()->toIso8601String(),
-            'ax-channel-in' => 'UMRA-WEB'
+            'ax-channel-in' => 'UMRA-WEB',
+            'ax-request-by' => ''
         ];
 
         $this->url = env('APP_URL_API');
@@ -34,17 +35,17 @@ class RegisterController extends Controller
     public function registerEmail(Request $request)
     {
         $body = [
-            "email" => "hanifalbaaits@dataku.id",
+            "email" => $request->email,
             "device" => $_SERVER['HTTP_USER_AGENT'],
             "ip_address" => "139.192.213.113",
             "token_fcm" => NULL,
-            "password" => "12345",
+            "password" => $request->password,
             "referer_uuid" => "",
             "gateway_registered" => "1",
-            "title" => "Bapak",
-            "firstname" => "Hanif",
-            "lastname" => "Al Baaits",
-            "birthday" => "2025-11-08"
+            "title" => NULL,
+            "firstname" => $request->firstname,
+            "lastname" => $request->lastname,
+            "birthday" => date('Y-m-d', strtotime($request->birthday))
         ];
 
         $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/customer/register', $body);
@@ -61,11 +62,12 @@ class RegisterController extends Controller
             'user' => $register['data']['user']
         ]);
 
-        return redirect(url('/'));
+        return redirect(url('/login'))->withSuccess('Pendaftaran Berhasil, Silahkan Login Terlebih dahulu');
     }
 
     public function registerPhone(Request $request)
     {
+
         $body = [
             "device" => $_SERVER['HTTP_USER_AGENT'],
             "ip_address" => "139.192.213.113",
@@ -88,12 +90,7 @@ class RegisterController extends Controller
                         ->with('error', $register['message']);
         }
 
-        Session::put([
-            'token' => $register['data']['token'] ,
-            'user' => $register['data']['user']
-        ]);
-
-        return redirect(url('/'));
+        return redirect(url('/login'))->withSuccess('Pendaftaran Berhasil, Silahkan Login Terlebih dahulu');
     }
     
 }

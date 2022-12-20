@@ -11,7 +11,7 @@
             <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-12">
                 <div class="bg-body d-flex flex-center rounded-4 w-md-600px p-10">
                     <div class="w-md-400px">
-                        <form class="form w-100" method="POST" action="{{ url('/') }}">
+                        <form class="form w-100" method="POST" action="{{ url('/login-phone/validate-otp') }}">
                             @csrf
                             
                             <div class="text-center mb-11">
@@ -20,7 +20,8 @@
                             </div>
                             
                             <div class="fv-row mb-8">
-                                <input type="otp" placeholder="Masukan Kode OTP" name="otp" class="form-control bg-transparent"/>
+                                <input type="text" name="phone" value="{{ $phone }}" class="form-control bg-transparent" style="display:none;"/>
+                                <input type="text" placeholder="Masukan Kode OTP" name="otp" class="form-control bg-transparent"/>
                             </div>
 
                             <div class="text-center text-gray-500 mb-4">
@@ -50,7 +51,7 @@
             // Display 'counter' wherever you want to display it.
             if (counter <= 0) {
                     clearInterval(interval);
-                    $('#timer').html("<a href='{{ url('/login-phone/check-otp') }}'>Kirim ulang</a>");  
+                    $('#timer').html("<a href='{{ url('/login-phone/check-otp?phone=').$phone }}'>Kirim ulang</a>");  
                 return;
             }else{
                 $('#time').text(counter);

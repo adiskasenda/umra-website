@@ -15,14 +15,9 @@
 
         <link rel="shortcut icon" href="{{ asset('assets-web/img/logo/logo_umra_icon.png') }}" />
 		
+		<link href="{{ asset('assets-web/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets-web/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 		
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="{{ asset('assets-web/css/bootstrap.min.css') }}" rel="stylesheet">
-
-        <!-- Template Stylesheet -->
-        <link href="{{ asset('assets-web/css/style.css') }}" rel="stylesheet">
-
 		@stack('page_css')
         <style>
 			body { 
@@ -46,7 +41,7 @@
 		@yield('content')
 	</body>
 
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="{{ asset('assets-web/plugins/global/plugins.bundle.js') }}"></script>
+	<script src="{{ asset('assets-web/js/scripts.bundle.js') }}"></script>
 	@stack('page_js')
 </html>
