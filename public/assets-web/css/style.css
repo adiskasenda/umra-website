@@ -9,6 +9,12 @@
     --green-light: #E6F1F0;
 }
 
+.separator {
+    display: block;
+    height: 0;
+    border-bottom: 1px solid var(--kt-border-color);
+}
+
 .text-green {
     color: var(--green);
 }

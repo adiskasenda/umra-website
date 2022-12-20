@@ -24,7 +24,15 @@ class NewsController extends Controller
 
     public function index()
     {
-        $news = '';
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/10/id_blog/desc');
+        $news = json_decode($response->getBody(), true);
 
         $banners = [
             [
@@ -39,19 +47,23 @@ class NewsController extends Controller
         ];
 
         return view('pages.news.news', [
-            'news' => $news,
+            'news' => $news['data']['content'],
             'banners' => $banners
         ]);
     }
 
     public function show($id)
     {
-        $this->header['ax-request-by'] = Session::get('user')['email'];
-        $this->header['Authorization'] = 'Bearer '.Session::get('token');
-
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
+        
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/'.$id);
         $new = json_decode($response->getBody(), true);
-
+        
         return view('pages.news.detailNews', [
             'new' => $new['data']
         ]);

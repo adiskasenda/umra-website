@@ -49,12 +49,15 @@ class PackageProductController extends Controller
 
     public function umroh()
     {
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
 
-        // $this->header['ax-request-by'] = Session::get('user')['email'];
-        // $this->header['Authorization'] = 'Bearer '.Session::get('token');
-        
-        // $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umroh/');
-        $package_products = '';
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umroh/pagination/0/3/date_start/asc');
+        $package_products = json_decode($response->getBody(), true);
 
         // remove array otherMenus
         unset($this->otherMenus[1]);
@@ -67,31 +70,73 @@ class PackageProductController extends Controller
 
     public function umrohPlus()
     {
-        return view('pages.packageProducts.umrohPlush',[
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
 
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umroh/pagination/0/3/date_start/asc');
+        $package_products = json_decode($response->getBody(), true);
+
+        // remove array otherMenus
+        unset($this->otherMenus[1]);
+
+        return view('pages.packageProducts.umrohPlush',[
+            'package_products' => $package_products,
+            'otherMenus' => $this->otherMenus
         ]);
     }
 
     public function wisataHalal()
     {
-        return view('pages.packageProducts.wisataHalal', [
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
 
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umroh/pagination/0/3/date_start/asc');
+        $package_products = json_decode($response->getBody(), true);
+
+        // remove array otherMenus
+        unset($this->otherMenus[1]);
+
+        return view('pages.packageProducts.wisataHalal', [
+            'package_products' => $package_products,
+            'otherMenus' => $this->otherMenus
         ]);
     }
 
     public function diy()
     {
+        // if ( !empty(Session::get('user')) ) {
+        //     $this->header['ax-request-by'] = Session::get('user')['email'];
+        //     $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        // } else {
+        //     $this->header['ax-request-by'] = '';
+        // }
+
         return view('pages.packageProducts.diy');
     }
 
     public function show($id)
     {
-
-        if ( false ) {
-            return redirect()->back();
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
         }
+        
+        $response = Http::withHeaders($this->header)->get($this->url.'core-umra/package_product/'.$id);
+        $package_product = json_decode($response->getBody(), true);
 
-        return view('pages.packageProducts.detailUmroh');
+        return view('pages.packageProducts.detailUmroh', [
+            'package_product' => $package_product
+        ]);
     }
 
 }

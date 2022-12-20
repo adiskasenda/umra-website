@@ -40,8 +40,18 @@ class LandingPageController extends Controller
             ],
         ];
 
+        $partner = [
+            [
+                "url" => asset('assets-web/img/partner/partner-1.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-2.png')
+            ]
+        ];
+
         return view('pages.landingPage.landingPage', [
-            'banners' => $banners
+            'banners' => $banners,
+            'partner' => $partner
         ]);
     }
 }

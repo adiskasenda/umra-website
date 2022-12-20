@@ -67,7 +67,13 @@ Route::group([ 'prefix' =>'/news' ], function() {
 });
 
 // Profile
-Route::get('/profile', [ ProfileController::class, 'index' ]);
+Route::group([ 'prefix' =>'/profile' ], function() {
+    Route::get('/', [ ProfileController::class, 'index' ]);
+    Route::patch('/', [ ProfileController::class, 'update' ]);
+});
+
+// Faq
+Route::get('/faq', [ ProfileController::class, 'index' ]);
 
 
 

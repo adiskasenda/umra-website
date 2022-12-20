@@ -4,7 +4,7 @@
     <div class="container-xxl pt-5 mt-5">
         <div class="row">
             <div class="col-md-3">
-                @include('pages.profile.partials.sidebar')
+                @include('pages.transaction.partials.sidebar')
             </div>
             <div class="col-md-9">
                 <div> Profile </div>
