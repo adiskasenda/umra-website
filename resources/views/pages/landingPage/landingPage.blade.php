@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Banner Form Start -->
-    <div class="container-xxl callback p-0">
+    <div class="container-xxl callback p-0" style="margin-bottom: -60px;">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach( $banners as $key => $banner )
@@ -16,42 +16,25 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="bg-white border rounded p-3 p-sm-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                        <form class="row" action="">
+                        <form class="row" method="GET" action="{{ url('/package/umroh') }}">
                             <div class="col-md-10">
                                 <div class="row">
-                                    <div class="col-sm-3 justify-content-md-center">
+                                    <div class="col-sm-4 justify-content-md-center">
                                         <label for="specificSizeInputGroupUsername">Layanan</label>
-                                        
-                                        <div class="input-group">
-                                            <div class="input-group-text">@</div>
-                                            <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Username">
-                                        </div>
+                                        <input type="text" id="tanggal" placeholder="Layanan" name="tanggal" class="form-control mt-2" required/>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label for="specificSizeInputGroupUsername">Tanggal Keberangkatan</label>
-                                        <div class="input-group">
-                                            <div class="input-group-text">@</div>
-                                            <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Username">
-                                        </div>
+                                        <input type="text" id="tanggal" placeholder="Tanggal Keberangkatan" name="tanggal" class="form-control mt-2" required/>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <label for="specificSizeInputGroupUsername">Tanggal Kepulangan</label>
-                                        <div class="input-group">
-                                            <div class="input-group-text">@</div>
-                                            <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Username">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label for="specificSizeInputGroupUsername">Total Jamaah</label>
-                                        <div class="input-group">
-                                            <div class="input-group-text">@</div>
-                                            <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Username">
-                                        </div>
+                                        <input type="text" id="tanggal" placeholder="Tanggal Lahir" name="tanggal" class="form-control mt-2" required/>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2 justify-content-md-center">
-                                <button type="submit" class="btn btn-success my-2 my-sm-0" type="submit">Cari</button>
+                                <button type="submit" class="btn btn-success  mt-3" style="width: 100%;">Cari</button>
                             </div>
                         </form>
                     </div>
@@ -68,25 +51,21 @@
             <div class="col-md-7">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        @foreach( $banners2 as $key => $banner2 )
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}" @if( $key == 0) class="active" @endif aria-current="true" aria-label="Slide {{ $key }}"></button>
+                        @endforeach
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                        <img src="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" class="d-block w-100" alt="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" width="100%">
-                        </div>
-                        <div class="carousel-item">
-                        <img src="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" class="d-block w-100" alt="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" width="100%">
-                        </div>
-                        <div class="carousel-item">
-                        <img src="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" class="d-block w-100" alt="{{ asset('assets-web/img/banner/banner-tanah-suci.png') }}" width="100%">
-                        </div>
+                        @foreach( $banners2 as $key => $banner2 )
+                            <div @if( $key == 0) class="carousel-item active"  @else class="carousel-item" @endif>
+                                <img src="{{ $banner2['url_banner_web'] }}" class="d-block w-100" alt="{{ $banner2['url_banner_web'] }}" width="100%" height="200px;">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="col-md-5">
-                <img src="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" alt="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" width="100%">
+                <img src="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" alt="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" width="100%" height="200px;">
             </div>
         </div>
     </div>
@@ -96,7 +75,7 @@
     <!-- Package Umroh Start -->
     <div class="container-xxl py-5">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <h3 class="mb-4">Paket Ibadah Umrah</h3>
                 <p class="mb-4">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                 <div class="row mb-5">
@@ -111,66 +90,28 @@
                 </div>
                 <a href="#" class="btn btn-success">Lihat Semua Paket</a>
             </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 100$;">
-                    <div class="card-body">
-                        <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                        <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
-                        <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
-                        <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div>Mulai dari</div>
-                                <div>Rp. 30.000.000</div>
+            @foreach( $package_product_umrah as $umrah )
+                <div class="col-md-3">
+                    <div class="card" style="width: 100$;">
+                        <div class="card-body">
+                            <img src="{{ $umrah['url_banner'] }}" width="100%" alt="{{ $umrah['url_banner'] }}">
+                            <h5 class="card-titl mt-4">{{ $umrah['name'] }}</h5>
+                            <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                            <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div>Mulai dari</div>
+                                    <div>Rp. 30.000.000</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
-                            </div>
+                            <div>Rp. 28.500.000 / Orang</div>
                         </div>
-                        <div>Rp. 28.500.000 / Orang</div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 100$;">
-                    <div class="card-body">
-                        <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                        <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
-                        <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
-                        <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div>Mulai dari</div>
-                                <div>Rp. 30.000.000</div>
-                            </div>
-                            <div class="col-md-6">
-                                <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
-                            </div>
-                        </div>
-                        <div>Rp. 28.500.000 / Orang</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 100$;">
-                    <div class="card-body">
-                        <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                        <h5 class="card-titl mt-4">Umroh Hemat Bonus Tour Thoif</h5>
-                        <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
-                        <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div>Mulai dari</div>
-                                <div>Rp. 30.000.000</div>
-                            </div>
-                            <div class="col-md-6">
-                                <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
-                            </div>
-                        </div>
-                        <div>Rp. 28.500.000 / Orang</div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!-- Package Umroh End -->
@@ -288,7 +229,7 @@
     <div class="container-fluid bg-green-light py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <img src="{{ asset('assets-web/img/banner/banner-fasilitas.png')}}" alt="{{ asset('assets-web/img/banner/banner-fasilitas.png')}}" width="100%" height="100%">
+                <img src="{{ $banner3 }}" alt="{{ $banner3 }}" width="100%" height="100%">
             </div>
         </div>
     </div>
@@ -425,10 +366,10 @@
 
 
     <!-- Testimonial Start -->
-    <div class="container-fluid bg-green py-5">
+    <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-5.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="text-white display-5 mb-5">Apa kata mereka tentang UMRA.ID?</h1>
+                <h1 class="text-drak display-5 mb-5">Apa kata mereka tentang UMRA.ID?</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
                 <div class="testimonial-item">
@@ -439,7 +380,7 @@
                         Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-1.jpg')}}" alt="">
-                    <h4 class="text-white">Client Name</h4>
+                    <h4 class="text-drak">Client Name</h4>
                     <span class="text-light">Profession</span>
                 </div>
                 <div class="testimonial-item">
@@ -450,7 +391,7 @@
                         Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-2.jpg')}}" alt="">
-                    <h4 class="text-white">Client Name</h4>
+                    <h4 class="text-drak">Client Name</h4>
                     <span class="text-light">Profession</span>
                 </div>
                 <div class="testimonial-item">
@@ -461,7 +402,7 @@
                         Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-3.jpg')}}" alt="">
-                    <h4 class="text-white">Client Name</h4>
+                    <h4 class="text-drak">Client Name</h4>
                     <span class="text-light">Profession</span>
                 </div>
                 <div class="testimonial-item">
@@ -472,13 +413,25 @@
                         Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-4.jpg')}}" alt="">
-                    <h4 class="text-white">Client Name</h4>
+                    <h4 class="text-drak">Client Name</h4>
                     <span class="text-light">Profession</span>
                 </div>
             </div>
         </div>
     </div>
     <!-- Testimonial End -->
+
+
+    <!-- Mitra Start -->
+    <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-4.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
+        <div class="container">
+            <div class="text-white text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h1 class="display-5 text-white mb-5">Explore & Berwisata Keliling Jazirah Arab</h1>
+                <p>Berangkat beribadah tidak pernah semenyenangkan ini dengan bebas atur fasilitas hotel, pesawat, asuransi, visa & destinasi wisata halal impian anda.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Mitra End -->
 
 
     <!-- Partner Start -->
@@ -489,6 +442,13 @@
                 <p>Kami memiliki partner yang terpercaya di bidangnya, dan kami selalu berusaha memberikan pengalaman terbaik untuk ibadah Anda</p>
             </div>
 
+            <div class="row justify-content-md-center">
+                @foreach($partners as $partner)
+                    <div class="col-md-3">
+                        <img src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}">
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
     <!-- Partner End -->
@@ -557,3 +517,14 @@
     </div>
     <!-- Testimonial End -->
 @endsection
+
+
+@push('page_js')
+    <script>
+        $( document ).ready(function() {
+            $("input[name='tanggal']").flatpickr({
+                dateFormat: "d-m-Y",
+            });
+        });
+    </script>
+@endpush

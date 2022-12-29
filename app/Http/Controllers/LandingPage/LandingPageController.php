@@ -27,20 +27,80 @@ class LandingPageController extends Controller
 
     public function index(Request $request)
     {
+        $layanan = ['Paket Umroh', 'Paket Umroh Plus', 'Wisata Halal', 'DIY'];
+        
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
 
+        // Banner
         $banners = [
             [
-                "url" => "https://ihram.s3.amazonaws.com/ihram/upload/banner/ihram_asia_banner_promosi_9daf763a4fb38ae88595979c5f7d987a.jpg"
-            ],
-            [
-                "url" => "https://ihram.s3.amazonaws.com/ihram/upload/banner/ihram_asia_banner_promosi_0e41943a87b47d33081cca56c69bf180.jpg"
-            ],
-            [
-                "url" => "https://ihram.s3.amazonaws.com/ihram/upload/banner/ihram_asia_banner_promosi_c610ae0834348a63912c2bbfeb9ea5ce.jpg"
+                "url" => asset('assets-web/img/banner/banner-landing.png')
             ],
         ];
 
-        $partner = [
+        // Banner 2
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_HEADER_1');
+        $banners2 = json_decode($response->getBody(), true);
+
+        // Package Umrah
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/umroh');
+        $package_product_umrah = json_decode($response->getBody(), true);
+
+        // Package Umrah Plus
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/umrohplus');
+        $package_product_umrah_plus = json_decode($response->getBody(), true);
+
+        // Package Wisata Halal
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/wisatahalal');
+        $package_product_wisata_halal = json_decode($response->getBody(), true);
+
+        // Banner 3
+        $banner3 = asset('assets-web/img/banner/banner-fasilitas.png');
+
+        // Experience
+        $experience = [
+            [
+                'image' => '',
+                'title' => 'Keluarga Bapak Dr. Ramadhan',
+                'description' => 'Cibubur, Jakarta Barat',
+            ],
+            [
+                'image' => '',
+                'title' => 'Keluarga Bapak Dr. Ramadhan',
+                'description' => 'Cibubur, Jakarta Barat',
+            ],
+            [
+                'image' => '',
+                'title' => 'Keluarga Bapak Dr. Ramadhan',
+                'description' => 'Cibubur, Jakarta Barat',
+            ]
+        ];
+
+        $experience2 = [
+            [
+                'image' => '',
+                'title' => '',
+                'description' => '',
+            ],
+            [
+                'image' => '',
+                'title' => '',
+                'description' => '',
+            ],
+            [
+                'image' => '',
+                'title' => '',
+                'description' => '',
+            ]
+        ];
+
+        // Partner
+        $partners = [
             [
                 "url" => asset('assets-web/img/partner/partner-1.png')
             ],
@@ -49,9 +109,20 @@ class LandingPageController extends Controller
             ]
         ];
 
+        // Artikel
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/wisatahalal');
+        $news = json_decode($response->getBody(), true);
+
         return view('pages.landingPage.landingPage', [
             'banners' => $banners,
-            'partner' => $partner
+            'banners2' => $banners2['data'],
+            'package_product_umrah' => array_slice($package_product_umrah['data'], 0, 2),
+            'package_product_umrah_plus' => array_slice($package_product_umrah_plus['data'], 0, 2),
+            'package_product_wisata_halal' => array_slice($package_product_wisata_halal['data'], 0, 2),
+            'banner3' => $banner3,
+            'experience' => $experience,
+            'partners' => $partners,
+            'news' => $news,
         ]);
     }
 }

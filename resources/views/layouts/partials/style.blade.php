@@ -15,6 +15,7 @@
 <link href="{{ asset('assets-web/css/bootstrap.min.css') }}" rel="stylesheet">
 
 <!-- Template Stylesheet -->
+<link href="{{ asset('assets-web/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets-web/css/style.css') }}" rel="stylesheet">
 
 <style>

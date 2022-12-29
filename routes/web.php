@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Route;
 // Route Controller
 use App\Http\Controllers\{
     Auth\LoginController,
+    
+    Auth\LoginEmailController,
+    Auth\LoginGoogleController,
+    Auth\LoginPhoneController,
+
     Auth\RegisterController,
     LandingPage\LandingPageController,
     NewsPage\NewsController,
@@ -23,30 +28,39 @@ use App\Http\Controllers\{
 |
 */
 
-// Login
-Route::get('/login', [ LoginController::class, 'index' ]);
-Route::group([ 'prefix' =>'/login-email' ], function() {
-    Route::post('/', [ LoginController::class, 'loginEmail' ]);
-});
-Route::group([ 'prefix' =>'/login-phone' ], function() {
-    Route::post('/', [ LoginController::class, 'loginPhone' ]);
-    Route::get('/validate-otp', [ LoginController::class, 'viewOtp' ]);
-    Route::get('/check-otp', [ LoginController::class, 'checkOtp' ]);
-    Route::post('/validate-otp', [ LoginController::class, 'loginOtp' ]);
+// Login & Register
+Route::group([ 'middleware' =>'tokenNotFound'], function(){
+
+    // Login 
+    Route::get('/login', [ LoginController::class, 'index' ]);
+
+    Route::group([ 'prefix' =>'/login-email' ], function() {
+        Route::post('/', [ LoginEmailController::class, 'loginEmail' ]);
+        Route::get('/validate-otp', [ LoginEmailController::class, 'viewOtp' ]);
+        Route::get('/check-otp', [ LoginEmailController::class, 'checkOtp' ]);
+        Route::post('/validate-otp', [ LoginEmailController::class, 'loginOtp' ]);
+    });
+    Route::group([ 'prefix' =>'/login-phone' ], function() {
+        Route::post('/', [ LoginPhoneController::class, 'loginPhone' ]);
+        Route::get('/validate-otp', [ LoginPhoneController::class, 'viewOtp' ]);
+        Route::get('/check-otp', [ LoginPhoneController::class, 'checkOtp' ]);
+        Route::post('/validate-otp', [ LoginPhoneController::class, 'loginOtp' ]);
+    });
+
+    Route::group([ 'prefix' =>'/login-gmail' ], function() {
+        Route::get('/', [ LoginGoogleController::class, 'google']);
+        Route::get('/callback', [ LoginGoogleController::class, 'googleCallback']);
+    });
+
+    // Register
+    Route::get('/register', [ RegisterController::class, 'index' ]);
+    Route::post('/register-email', [ RegisterController::class, 'registerEmail' ]);
+    Route::post('/register-phone', [ RegisterController::class, 'registerPhone' ]);
 });
 
-Route::group([ 'prefix' =>'/login-gmail' ], function() {
-    Route::get('/', [ LoginController::class, 'google']);
-    Route::get('/callback', [ LoginController::class, 'googleCallback']);
-});
-
-// Register
-Route::get('/register', [ RegisterController::class, 'index' ]);
-Route::post('/register-email', [ RegisterController::class, 'registerEmail' ]);
-Route::post('/register-phone', [ RegisterController::class, 'registerPhone' ]);
 
 // Logout 
-Route::get('/logout', [ LogoutController::class, 'logout' ]);
+Route::get('/logout', [ LoginController::class, 'logout' ]);
 
 // Landing Page
 Route::get('/', [ LandingPageController::class, 'index' ]);

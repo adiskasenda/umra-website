@@ -16,6 +16,9 @@
                             <h1 class="text-green fw-bolder mb-3">Buat Akun</h1>
                         </div>
 
+                        @if ( old('type') == 'gmail' ) 
+                            @include('layouts.partials.message')
+                        @endif
                         <div class="d-grid mb-10">
                             <a href="{{ url('/login-gmail') }}" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
                                 <span class="indicator-label">
@@ -31,23 +34,23 @@
 
                         <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
                             <li class="nav-item" style="width: 50%; text-align: center;">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_login_with_phone">Nomor Telephone</a>
+                                <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_register_with_phone">Nomor Telephone</a>
                             </li>
                             <li class="nav-item" style="width: 50%; text-align: center;">
-                                <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_login_with_email">Email</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_register_with_email">Email</a>
                             </li>
                         </ul>
 
 
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="kt_tab_login_with_phone" role="tabpanel">
+                            <div class="tab-pane fade show active" id="kt_tab_register_with_phone" role="tabpanel">
                                 @if ( old('type') == 'phone' ) 
                                     @include('layouts.partials.message')
                                 @endif
                                 <form class="form w-100" method="POST" action="{{ url('/register-phone') }}">
                                     @csrf
                                     <div class="fv-row mb-8">
-                                        <input type="number" placeholder="Nomer Ponsel" name="phone" class="form-control bg-transparent" required/>
+                                        <input type="number" placeholder="Nomer Ponsel" value="{{ old('phone') }}" name="phone" class="form-control bg-transparent" required/>
                                     </div>
                                     <div class="fv-row mb-8">
                                         <input type="text" placeholder="Nama Depan" name="firstname" class="form-control bg-transparent" required/>
@@ -66,15 +69,15 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="kt_tab_login_with_email" role="tabpanel">
+                            <div class="tab-pane fade" id="kt_tab_register_with_email" role="tabpanel">
                                 @if ( old('type') == 'email' ) 
                                     @include('layouts.partials.message')
                                 @endif
 
-                                <form class="form w-100" method="POST" action="{{ url('/') }}">
+                                <form class="form w-100" method="POST" action="{{ url('/register-email') }}">
                                     @csrf
                                     <div class="fv-row mb-8">
-                                        <input type="text" placeholder="Email" name="email" class="form-control bg-transparent" required/>
+                                        <input type="text" placeholder="Email" value="{{ old('email') }}" name="email" class="form-control bg-transparent" required/>
                                     </div>
                                     <div class="fv-row mb-8">
                                         <input type="text" placeholder="Nama Depan" name="firstname" class="form-control bg-transparent" required/>
@@ -119,17 +122,17 @@
 
             // Check condition Validation
             if ( '{{ old('type') }}' == 'email' ) {
-                $('#kt_tab_login_with_phone').removeClass('active')
-                $('a[href="#kt_tab_login_with_phone"]').removeClass('show active')
+                $('#kt_tab_register_with_phone').removeClass('active')
+                $('a[href="#kt_tab_register_with_phone"]').removeClass('show active')
 
-                $('a[href="#kt_tab_login_with_email"]').addClass('active')
-                $('#kt_tab_login_with_email').addClass('show active')
+                $('a[href="#kt_tab_register_with_email"]').addClass('active')
+                $('#kt_tab_register_with_email').addClass('show active')
             } else {
-                $('a[href="#kt_tab_login_with_email"]').removeClass('active')
-                $('#kt_tab_login_with_email').removeClass('show active')
+                $('a[href="#kt_tab_register_with_email"]').removeClass('active')
+                $('#kt_tab_register_with_email').removeClass('show active')
 
-                $('a[href="#kt_tab_login_with_phone"]').addClass('active');
-                $('#kt_tab_login_with_phone').addClass('show active');
+                $('a[href="#kt_tab_register_with_phone"]').addClass('active');
+                $('#kt_tab_register_with_phone').addClass('show active');
             }
         });
     </script>

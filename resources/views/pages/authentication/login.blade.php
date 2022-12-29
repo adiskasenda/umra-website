@@ -16,6 +16,9 @@
                             <h1 class="fw-bolder mb-3 text-green">Masuk ke UMRA</h1>
                         </div>
 
+                        @if ( old('type') == 'gmail' ) 
+                            @include('layouts.partials.message')
+                        @endif
                         <div class="d-grid mb-10">
                             <a href="{{ url('/login-gmail') }}" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
                                 <span class="indicator-label">

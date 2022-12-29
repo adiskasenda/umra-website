@@ -52,17 +52,16 @@ class RegisterController extends Controller
         $register = json_decode($response->getBody(), true);
 
         if ( $register['status'] == '2' ) {
+            $input = $request->input();
+            $input['type'] = 'email';
+
             return redirect()->back()
-                            ->withInput($request->input())
+                            ->withInput($input)
                             ->with('error', $register['message']);
         }
 
-        Session::put([
-            'token' => $register['data']['token'] ,
-            'user' => $register['data']['user']
-        ]);
-
-        return redirect(url('/login'))->withSuccess('Pendaftaran Berhasil, Silahkan Login Terlebih dahulu');
+        return redirect(url('/login'))
+                        ->withSuccess('Pendaftaran Berhasil, Silahkan Login Terlebih dahulu');
     }
 
     public function registerPhone(Request $request)
@@ -90,7 +89,8 @@ class RegisterController extends Controller
                         ->with('error', $register['message']);
         }
 
-        return redirect(url('/login'))->withSuccess('Pendaftaran Berhasil, Silahkan Login Terlebih dahulu');
+        return redirect(url('/login'))
+                        ->withSuccess('Pendaftaran Berhasil, Silahkan Login Terlebih dahulu');
     }
     
 }

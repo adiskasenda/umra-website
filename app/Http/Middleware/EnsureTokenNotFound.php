@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Session;
 
-class EnsureTokenIsValid
+class EnsureTokenNotFound
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class EnsureTokenIsValid
      */
     public function handle(Request $request, Closure $next)
     {
-        if ( empty(Session::get('token')) ) {
-            return redirect(url('/login'));
+        if ( !empty(Session::get('token')) ) {
+            return redirect(url('/'));
         }
 
         return $next($request);

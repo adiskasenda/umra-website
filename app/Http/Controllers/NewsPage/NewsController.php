@@ -33,16 +33,10 @@ class NewsController extends Controller
 
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/10/id_blog/desc');
         $news = json_decode($response->getBody(), true);
-
+        
         $banners = [
             [
-                "url" => "https://ihram.s3.amazonaws.com/ihram/upload/banner/ihram_asia_banner_promosi_9daf763a4fb38ae88595979c5f7d987a.jpg"
-            ],
-            [
-                "url" => "https://ihram.s3.amazonaws.com/ihram/upload/banner/ihram_asia_banner_promosi_0e41943a87b47d33081cca56c69bf180.jpg"
-            ],
-            [
-                "url" => "https://ihram.s3.amazonaws.com/ihram/upload/banner/ihram_asia_banner_promosi_c610ae0834348a63912c2bbfeb9ea5ce.jpg"
+                "url" => asset('assets-web/img/banner/banner-news.png')
             ],
         ];
 
