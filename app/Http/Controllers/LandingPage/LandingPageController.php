@@ -1,0 +1,128 @@
+<?php
+
+namespace App\Http\Controllers\LandingPage;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Session;
+use Illuminate\Support\Facades\Http;
+use Ramsey\Uuid\Uuid;
+
+class LandingPageController extends Controller
+{
+    private $header;
+    private $url;
+
+    public function __construct()
+    {
+        $this->header = [
+            'ax-request-id' => Uuid::uuid4()->toString(),
+            'ax-request-at' => Carbon::now()->toIso8601String(),
+            'ax-channel-in' => 'UMRA-WEB'
+        ];
+
+        $this->url = env('APP_URL_API');
+    }
+
+    public function index(Request $request)
+    {
+        $layanan = ['Paket Umroh', 'Paket Umroh Plus', 'Wisata Halal', 'DIY'];
+        
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
+
+        // Banner
+        $banners = [
+            [
+                "url" => asset('assets-web/img/banner/banner-landing.png')
+            ],
+        ];
+
+        // Banner 2
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_HEADER_1');
+        $banners2 = json_decode($response->getBody(), true);
+
+        // Package Umrah
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/umroh');
+        $package_product_umrah = json_decode($response->getBody(), true);
+
+        // Package Umrah Plus
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/umrohplus');
+        $package_product_umrah_plus = json_decode($response->getBody(), true);
+
+        // Package Wisata Halal
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/wisatahalal');
+        $package_product_wisata_halal = json_decode($response->getBody(), true);
+
+        // Banner 3
+        $banner3 = asset('assets-web/img/banner/banner-fasilitas.png');
+
+        // Experience
+        $experience = [
+            [
+                'image' => '',
+                'title' => 'Keluarga Bapak Dr. Ramadhan',
+                'description' => 'Cibubur, Jakarta Barat',
+            ],
+            [
+                'image' => '',
+                'title' => 'Keluarga Bapak Dr. Ramadhan',
+                'description' => 'Cibubur, Jakarta Barat',
+            ],
+            [
+                'image' => '',
+                'title' => 'Keluarga Bapak Dr. Ramadhan',
+                'description' => 'Cibubur, Jakarta Barat',
+            ]
+        ];
+
+        $experience2 = [
+            [
+                'image' => '',
+                'title' => '',
+                'description' => '',
+            ],
+            [
+                'image' => '',
+                'title' => '',
+                'description' => '',
+            ],
+            [
+                'image' => '',
+                'title' => '',
+                'description' => '',
+            ]
+        ];
+
+        // Partner
+        $partners = [
+            [
+                "url" => asset('assets-web/img/partner/partner-1.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-2.png')
+            ]
+        ];
+
+        // Artikel
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/wisatahalal');
+        $news = json_decode($response->getBody(), true);
+
+        return view('pages.landingPage.landingPage', [
+            'banners' => $banners,
+            'banners2' => $banners2['data'],
+            'package_product_umrah' => array_slice($package_product_umrah['data'], 0, 2),
+            'package_product_umrah_plus' => array_slice($package_product_umrah_plus['data'], 0, 2),
+            'package_product_wisata_halal' => array_slice($package_product_wisata_halal['data'], 0, 2),
+            'banner3' => $banner3,
+            'experience' => $experience,
+            'partners' => $partners,
+            'news' => $news,
+        ]);
+    }
+}
