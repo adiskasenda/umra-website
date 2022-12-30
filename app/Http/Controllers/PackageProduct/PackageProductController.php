@@ -117,12 +117,12 @@ class PackageProductController extends Controller
 
     public function diy()
     {
-        // if ( !empty(Session::get('user')) ) {
-        //     $this->header['ax-request-by'] = Session::get('user')['email'];
-        //     $this->header['Authorization'] = 'Bearer '.Session::get('token');
-        // } else {
-        //     $this->header['ax-request-by'] = '';
-        // }
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
 
         return view('pages.packageProducts.diy');
     }

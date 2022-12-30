@@ -3,7 +3,9 @@
     <head>
 		@include('layouts.partials.meta')
 
-        @include('layouts.partials.style')
+        @include('layouts.partials.style') 
+        {{-- <!-- @include('layouts.partials.style1') --> --}}
+        @stack('page_css')
     </head>
 
     <body>
@@ -19,6 +21,8 @@
         @include('layouts.partials.footer')
 
         @include('layouts.partials.script')
+        {{-- <!-- @include('layouts.partials.script1') --> --}}
+        @stack('page_js')
     </body>
 
 </html>
