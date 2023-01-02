@@ -71,7 +71,6 @@
                     <a href="#" class="nav-item nav-link" style="font-size: 16px;">Tentang Kami</a>
                     <a href="{{ url('/news') }}" class="nav-item nav-link" style="font-size: 16px;">Artikel</a>
                     <a href="#" class="nav-item nav-link" style="font-size: 16px;">Hubungi Kami</a>
-
                 </div>
                 <!-- <div class="form-inline ms-auto">
                     @if ( empty(Session::get('user')) ) 
