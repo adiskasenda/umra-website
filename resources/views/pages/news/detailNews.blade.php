@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
+    @include('pages.news.partials.breadcrumb')
+
     <!-- Banner Form Start -->
     <div class="container-xxl pt-5 mt-5">
         <div>Dengan teknologi umroh bisa sendiri dan cuma 3 hari</div>
@@ -16,40 +18,13 @@
                 <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
                     <a href="{{ url('/news/1') }}">
                         <div class="card" style="width: 100$;">
-                            <div class="card-body">
+                            <div class="card-body" style="padding: 1rem !important;">
                                 <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
                                 <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
                                 <p>28 May 2022 00:21</p>
                             </div>
                         </div>
                     </a>
-                </div>
-                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="card" style="width: 100$;">
-                        <div class="card-body">
-                            <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                            <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
-                            <p>28 May 2022 00:21</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="card" style="width: 100$;">
-                        <div class="card-body">
-                            <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                            <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
-                            <p>28 May 2022 00:21</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="card" style="width: 100$;">
-                        <div class="card-body">
-                            <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                            <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
-                            <p>28 May 2022 00:21</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
