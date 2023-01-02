@@ -42,7 +42,7 @@
 <!-- Footer End -->
 
 <!-- Copyright Start -->
-<div class="container-fluid copyright py-4">
+<div class="container-fluid copyright py-4 bg-white">
     <div class="container">
         <hr/>
         <div class="text-center">

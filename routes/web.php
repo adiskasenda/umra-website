@@ -71,7 +71,7 @@ Route::group([ 'prefix' =>'/package' ], function() {
     Route::get('/umroh-plus', [ PackageProductController::class, 'umrohPlus' ]);
     Route::get('/wisata-halal', [ PackageProductController::class, 'wisataHalal' ]);
     Route::get('/diy', [ PackageProductController::class, 'diy' ]);
-    Route::get('/umroh/{id}', [ PackageProductController::class, 'show' ]);
+    Route::get('/{id}', [ PackageProductController::class, 'show' ]);
 });
 
 // news
@@ -88,10 +88,6 @@ Route::group([ 'prefix' =>'/profile' ], function() {
 
 // Faq
 Route::get('/faq', [ ProfileController::class, 'index' ]);
-
-
-
-
 
 Route::group([ 'prefix' =>'/template' ], function() {
     Route::get('/landing', function() {

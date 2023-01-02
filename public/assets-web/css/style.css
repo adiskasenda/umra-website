@@ -15,32 +15,6 @@
     border-bottom: 1px solid var(--kt-border-color);
 }
 
-.text-green {
-    color: var(--green);
-}
-
-.bg-green {
-    background-color: var(--green);
-}
-
-.bg-green-light {
-    background-color: var(--green-light);
-}
-
-.nav-link-href {
-    padding: 25px 15px;
-    color: var(--tertiary);
-    font-weight: 500;
-    outline: none;
-}
-
-.nav-link-href:hover {
-    padding: 25px 15px;
-    color: var(--primary);
-    font-weight: 500;
-    outline: none;
-}
-
 .back-to-top {
     position: fixed;
     display: none;
@@ -49,33 +23,22 @@
     z-index: 99;
 }
 
-h1,
-.h1,
-h2,
-.h2,
-.fw-bold {
-    font-weight: 700 !important;
+
+/*** Master Background ***/
+.bg-green {
+    background-color: var(--green);
 }
 
-h3,
-.h3,
-h4,
-.h4,
-.fw-medium {
-    font-weight: 600 !important;
+.bg-green-light {
+    background-color: var(--green-light);
 }
 
-h5,
-.h5,
-h6,
-.h6,
-.fw-semi-bold {
-    font-weight: 500 !important;
+/*** Master Title ***/
+.text-green {
+    color: var(--green);
 }
 
-.content {
-    min-height: 60vh;
-}
+
 
 /*** Spinner ***/
 #spinner {
@@ -128,8 +91,21 @@ h6,
     font-weight: normal;
 }
 
-
 /*** Navbar ***/
+.nav-link-href {
+    padding: 25px 15px;
+    color: var(--tertiary);
+    font-weight: 500;
+    outline: none;
+}
+
+.nav-link-href:hover {
+    padding: 25px 15px;
+    color: var(--primary);
+    font-weight: 500;
+    outline: none;
+}
+
 .fixed-top {
     transition: .5s;
 }

@@ -59,17 +59,17 @@ class PackageProductController extends Controller
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umroh/pagination/0/3/date_start/asc');
         $package_products = json_decode($response->getBody(), true);
 
+        // remove array otherMenus
+        unset($this->otherMenus[0]);
+
         // Banner
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_HEADER_1');
         $banners = json_decode($response->getBody(), true);
 
-        // remove array otherMenus
-        unset($this->otherMenus[0]);
-
         return view('pages.packageProducts.umroh', [
-            'package_products' => $package_products['data'],
+            'package_products' => $package_products['data']['content'],
+            'otherMenus' => $this->otherMenus,
             'banners' => $banners['data'],
-            'otherMenus' => $this->otherMenus
         ]);
     }
 
@@ -135,12 +135,16 @@ class PackageProductController extends Controller
         } else {
             $this->header['ax-request-by'] = '';
         }
-        
-        $response = Http::withHeaders($this->header)->get($this->url.'core-umra/package_product/'.$id);
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
 
+        // Package Lain
+        $other_package = [];
+
         return view('pages.packageProducts.detailUmroh', [
-            'package_product' => $package_product
+            'package_product' => $package_product['data'],
+            'other_package' => $other_package
         ]);
     }
 

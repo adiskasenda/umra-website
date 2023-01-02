@@ -65,37 +65,51 @@ class LandingPageController extends Controller
         // Experience
         $experience = [
             [
-                'image' => '',
+                'image' => asset('assets-web/img/image/keluarga.png'),
                 'title' => 'Keluarga Bapak Dr. Ramadhan',
                 'description' => 'Cibubur, Jakarta Barat',
             ],
             [
-                'image' => '',
+                'image' => asset('assets-web/img/image/keluarga.png'),
                 'title' => 'Keluarga Bapak Dr. Ramadhan',
                 'description' => 'Cibubur, Jakarta Barat',
             ],
             [
-                'image' => '',
+                'image' => asset('assets-web/img/image/keluarga.png'),
                 'title' => 'Keluarga Bapak Dr. Ramadhan',
                 'description' => 'Cibubur, Jakarta Barat',
             ]
         ];
 
+        // Experience 2
         $experience2 = [
             [
-                'image' => '',
-                'title' => '',
-                'description' => '',
+                'title' => 'Ragu jadi Seru!',
+                'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
             ],
             [
-                'image' => '',
-                'title' => '',
-                'description' => '',
+                'image' => 'Mudahnya Umroh Privat',
+                'title' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
             ],
             [
-                'image' => '',
-                'title' => '',
-                'description' => '',
+                'image' => 'Ragu jadi Seru!',
+                'title' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
+            ]
+        ];
+
+        // Mitra
+        $mitras = [
+            [
+                "name" => "PT. Berkah Umroh sentosa",
+                "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
+            ],
+            [
+                "name" => "PT. Berkah Umroh sentosa",
+                "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
+            ],
+            [
+                "name" => "Pt. Berkah Umroh sentosa",
+                "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
             ]
         ];
 
@@ -110,10 +124,11 @@ class LandingPageController extends Controller
         ];
 
         // Artikel
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/wisatahalal');
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/5/id_blog/desc');
         $news = json_decode($response->getBody(), true);
-
+        
         return view('pages.landingPage.landingPage', [
+            'layanan' => $layanan,
             'banners' => $banners,
             'banners2' => $banners2['data'],
             'package_product_umrah' => array_slice($package_product_umrah['data'], 0, 2),
@@ -121,8 +136,10 @@ class LandingPageController extends Controller
             'package_product_wisata_halal' => array_slice($package_product_wisata_halal['data'], 0, 2),
             'banner3' => $banner3,
             'experience' => $experience,
+            'experience2' => $experience2,
+            "mitras" => $mitras,
             'partners' => $partners,
-            'news' => $news,
+            'news' => $news['data']['content'],
         ]);
     }
 }
