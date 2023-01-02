@@ -41,12 +41,12 @@
     <!-- Artikel Start -->
     <div class="container-fluid py-5 mb-8">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row g-4 align-items-center">
                 @foreach($news as $new)
                     <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
                         <a href="{{ url('/news', $new['id_blog']) }}">
                             <div class="card" style="width: 100$;">
-                                <div class="card-body">
+                                <div class="card-body" style="padding: 1rem !important;">
                                     <img src="{{ $new['url_banner'] }}" width="100%" alt="" srcset="">
                                     <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
                                     <p>28 May 2022 00:21</p>
