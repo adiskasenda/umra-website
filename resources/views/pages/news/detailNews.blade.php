@@ -1,14 +1,20 @@
 @extends('layouts.master')
 
 @section('content')
-    @include('pages.news.partials.breadcrumb')
-
+    
     <!-- Banner Form Start -->
-    <div class="container-xxl pt-5 mt-5">
-        <div>Dengan teknologi umroh bisa sendiri dan cuma 3 hari</div>
-        <div>DIpublikasikan pada 28 May 2022 00:21:47</div>
-        <img src="https://ihram.s3.amazonaws.com/ihram/upload/banner/ihram_asia_banner_promosi_9daf763a4fb38ae88595979c5f7d987a.jpg" alt="https://ihram.s3.amazonaws.com/ihram/upload/banner/ihram_asia_banner_promosi_9daf763a4fb38ae88595979c5f7d987a.jpg" width="100%">
-        <div>Jakarta, CNN Indonesia --</div>
+    {{ dd($new) }}
+    <div class="container-xxl py-5">
+        <div class="container">
+            @include('pages.news.partials.breadcrumb',[
+                'breadcrumb' => $new['name']
+            ])
+
+            <div>{{ $new['subject'] }}</div>
+            <div>DIpublikasikan pada 28 May 2022 00:21:47</div>
+            <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
+            <div>{!! $new['content'] !!}</div>
+        </div>
     </div>
 
     <!-- Artikel Start -->

@@ -2,12 +2,14 @@
 
 @section('content')
 
-    @include('pages.packageProducts.partials.breadcrumb')
 
     <!-- Detail Paket -->
-
     <div class="container-xxl py-5">
         <div class="container">
+            @include('pages.packageProducts.partials.breadcrumb',[
+                'breadcrumb' => $package_product['name']
+            ])
+
             <div class="row">
                 <div class="col-md-4">
                     <img src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%" height="100%">
