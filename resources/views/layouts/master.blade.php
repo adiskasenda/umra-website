@@ -13,7 +13,7 @@
         @include('layouts.partials.navbarMaster')
 
         <!-- Content Start -->
-        <div class="content" style="margin-top: 78px;">
+        <div class="content" style="margin-top: 76px;">
             @yield('content')
             
             @include('layouts.partials.footer')

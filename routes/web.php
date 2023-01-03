@@ -67,6 +67,7 @@ Route::get('/', [ LandingPageController::class, 'index' ]);
 
 // Package Product
 Route::group([ 'prefix' =>'/package' ], function() {
+    Route::get('/search', [ PackageProductController::class, 'search' ]);
     Route::get('/umroh', [ PackageProductController::class, 'umroh' ]);
     Route::get('/umroh-plus', [ PackageProductController::class, 'umrohPlus' ]);
     Route::get('/wisata-halal', [ PackageProductController::class, 'wisataHalal' ]);

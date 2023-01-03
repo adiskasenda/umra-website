@@ -3,11 +3,10 @@
 @section('content')
     
     <!-- Banner Form Start -->
-    {{ dd($new) }}
     <div class="container-xxl py-5">
         <div class="container">
             @include('pages.news.partials.breadcrumb',[
-                'breadcrumb' => $new['name']
+                'breadcrumb' => $new['subject']
             ])
 
             <div>{{ $new['subject'] }}</div>

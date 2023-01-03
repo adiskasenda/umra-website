@@ -1,13 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container-fluid my-5 pt-4" style="background-image:url('{{ asset('assets-web/img/background/package-umroh.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
+    <div class="container-fluid" style="background-image:url('{{ asset('assets-web/img/background/package-umroh.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container py-5">
             <h3 class="text-white mb-4">Paket Ibadah Umrah</h3>
             <p class="text-white mb-4">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
         </div>
     </div>
-
 
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="row g-4 align-items-center">

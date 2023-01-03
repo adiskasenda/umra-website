@@ -47,6 +47,23 @@ class PackageProductController extends Controller
          ];
     }
 
+    public function search(Request $request)
+    {
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/searching/'.$request->layanan.'/'.date('Y-m-d', strtotime($request->departure_date)).'/'.date('Y-m-d', strtotime($request->return_date)));
+        $package_products = json_decode($response->getBody(), true);
+
+        return view('pages.packageProducts.search', [
+            'package_products' => $package_products['data']
+        ]);
+    }
+
     public function umroh()
     {
         if ( !empty(Session::get('user')) ) {

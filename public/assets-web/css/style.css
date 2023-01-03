@@ -38,6 +38,12 @@
     color: var(--green);
 }
 
+.text-weight-700 {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+}
+
 
 
 /*** Spinner ***/
