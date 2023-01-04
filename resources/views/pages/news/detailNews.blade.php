@@ -10,7 +10,7 @@
             ])
 
             <div>{{ $new['subject'] }}</div>
-            <div>DIpublikasikan pada 28 May 2022 00:21:47</div>
+            <div>DIpublikasikan pada {{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
             <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
             <div>{!! $new['content'] !!}</div>
         </div>

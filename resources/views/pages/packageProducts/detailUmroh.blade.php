@@ -194,28 +194,30 @@
             </div>
             <div class="row">
                 <!-- Paket Lain -->
-                <div class="col-md-3">
-                    <a href="{{ url('/package/1') }}">
-                        <div class="card" style="width: 100$;">
-                            <div class="card-body" style="padding: 1rem !important;">
-                                <img src="https://sit.umra.id/uploads/packet_banner/1410112022-8397ba55-be9a-4639-9590-fe452b8a2212.jpg" width="100%" alt="https://sit.umra.id/uploads/packet_banner/1410112022-8397ba55-be9a-4639-9590-fe452b8a2212.jpg">
-                                <h5 class="card-titl mt-4">test umra</h5>
-                                <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
-                                <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div>Mulai dari</div>
-                                        <div>Rp. 30.000.000</div>
+                @foreach( $other_packages as $other_package )
+                    <div class="col-md-3">
+                        <a href="{{ url('/package/1') }}">
+                            <div class="card" style="width: 100$;">
+                                <div class="card-body" style="padding: 1rem !important;">
+                                    <img src="https://sit.umra.id/uploads/packet_banner/1410112022-8397ba55-be9a-4639-9590-fe452b8a2212.jpg" width="100%" alt="https://sit.umra.id/uploads/packet_banner/1410112022-8397ba55-be9a-4639-9590-fe452b8a2212.jpg">
+                                    <h5 class="card-titl mt-4">test umra</h5>
+                                    <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
+                                    <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div>Mulai dari</div>
+                                            <div>Rp. 30.000.000</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
-                                    </div>
+                                    <div>Rp. 28.500.000 / Orang</div>
                                 </div>
-                                <div>Rp. 28.500.000 / Orang</div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

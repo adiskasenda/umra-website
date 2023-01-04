@@ -11,7 +11,13 @@ use App\Http\Controllers\{
     Auth\LoginPhoneController,
 
     Auth\RegisterController,
+
     LandingPage\LandingPageController,
+    LandingPage\AboutMeController,
+    LandingPage\ContactMeController,
+    LandingPage\LocationMeController,
+    LandingPage\FaqController,
+
     NewsPage\NewsController,
     PackageProduct\PackageProductController,
     Profile\ProfileController,
@@ -58,7 +64,6 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
     Route::post('/register-phone', [ RegisterController::class, 'registerPhone' ]);
 });
 
-
 // Logout 
 Route::get('/logout', [ LoginController::class, 'logout' ]);
 
@@ -87,8 +92,17 @@ Route::group([ 'prefix' =>'/profile' ], function() {
     Route::patch('/', [ ProfileController::class, 'update' ]);
 });
 
+
+// About Me
+Route::get('/about-me', [ AboutMeController::class, 'index' ]);
+// Contact Me
+Route::get('/contact-me', [ ContactMeController::class, 'index' ]);
+// Location Me
+Route::get('/location-me', [ LocationMeController::class, 'index' ]);
 // Faq
-Route::get('/faq', [ ProfileController::class, 'index' ]);
+Route::get('/faq', [ FaqController::class, 'index' ]);
+
+
 
 Route::group([ 'prefix' =>'/template' ], function() {
     Route::get('/landing', function() {

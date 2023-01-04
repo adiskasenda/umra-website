@@ -31,12 +31,25 @@ class NewsController extends Controller
             $this->header['ax-request-by'] = '';
         }
 
+
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/10/id_blog/desc');
         $news = json_decode($response->getBody(), true);
         
         $banners = [
             [
-                "url" => asset('assets-web/img/banner/banner-news.png')
+                "url_banner" => asset('assets-web/img/banner/banner-news.png'),
+                "subject" => "hello Test 1",
+                "created_date" => "28 May 2022 00:21"
+            ],
+            [
+                "url_banner" => asset('assets-web/img/banner/banner-news.png'),
+                "subject" => "hello Test 2",
+                "created_date" => "28 May 2022 00:21"
+            ],
+            [
+                "url_banner" => asset('assets-web/img/banner/banner-news.png'),
+                "subject" => "hello Test 3",
+                "created_date" => "28 May 2022 00:21"
             ],
         ];
 

@@ -6,7 +6,7 @@
         <div class="carousel-inner">
             @foreach( $banners as $key => $banner )
             <div @if( $key == 0) class="carousel-item active"  @else class="carousel-item" @endif>
-                <img class="d-block w-100" src="{{ $banner['url'] }}" alt="First slide">
+                <img class="d-block w-100" src="{{ $banner['url_banner'] }}" alt="First slide">
             </div>
             @endforeach
         </div>
@@ -46,8 +46,8 @@
                             <div class="card" style="width: 100$;">
                                 <div class="card-body" style="padding: 1rem !important;">
                                     <img src="{{ $new['url_banner'] }}" width="100%" alt="" srcset="">
-                                    <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
-                                    <p>28 May 2022 00:21</p>
+                                    <h5 class="card-title mt-4">{{ $new['subject'] }}</h5>
+                                    <p>{{ date('d M Y H:i', strtotime($new['created_date'])) }}</p>
                                 </div>
                             </div>
                         </a>

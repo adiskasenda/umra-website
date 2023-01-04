@@ -157,11 +157,22 @@ class PackageProductController extends Controller
         $package_product = json_decode($response->getBody(), true);
 
         // Package Lain
-        $other_package = [];
+        switch ($package_product['data']['flag_umroh']) {
+            case '0':
+                $flag_umroh = 'umroh';
+                break;
+            case '1':
+                $flag_umroh = 'umroh_plush';
+                break;
+            default:
+                $flag_umroh = 'wisata_halal';
+        }
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$flag_umroh.'/pagination/0/3/date_start/asc');
+        $other_packages = json_decode($response->getBody(), true);
 
         return view('pages.packageProducts.detailUmroh', [
             'package_product' => $package_product['data'],
-            'other_package' => $other_package
+            'other_packages' => $other_packages['data']['content']
         ]);
     }
 

@@ -293,7 +293,7 @@
                         <div class="bg-white testimonial-text border rounded p-4 pt-5 mb-5">
                             Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan
                         </div>
-                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-1.jpg')}}" alt="">
+                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/users/user-1.jpg')}}" alt="">
                         <h4 class="text-white">Client Name</h4>
                         <span class="text-light">Profession</span>
                     </div>
@@ -319,7 +319,7 @@
                             </div>
                             Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan
                         </div>
-                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-1.jpg')}}" alt="">
+                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/users/user-1.jpg')}}" alt="">
                         <h4 class="text-drak">Client Name</h4>
                         <span class="text-light">Profession</span>
                     </div>
