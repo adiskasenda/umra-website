@@ -12,7 +12,7 @@ class ProfileController extends Controller
         return view('pages.profile.profile');
     }
 
-    public function update()
+    public function update(Request $request)
     {
         $body = [
             "title" => "Bapak",
@@ -27,7 +27,14 @@ class ProfileController extends Controller
             "passport_no" => "",
             "url_photo" => "",
         ];
+
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
         
-        return redirect()->back();
+        $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/'.Session::get('user')['user_id'], $body);
+        $customer = json_decode($response->getBody(), true);
+
+        return redirect()->back()
+                        ->withSuccess('Data Customer Berhasil Di Update');
     }
 }

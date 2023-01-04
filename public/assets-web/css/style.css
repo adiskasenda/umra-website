@@ -6,6 +6,7 @@
     --light: #DFE4FD;
     --dark: #101010;
     --green: #006B67;
+    --green-secondary: #7CB041;
     --green-light: #E6F1F0;
 }
 
@@ -36,6 +37,12 @@
 /*** Master Title ***/
 .text-green {
     color: var(--green);
+}
+
+.text-weight-700 {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
 }
 
 

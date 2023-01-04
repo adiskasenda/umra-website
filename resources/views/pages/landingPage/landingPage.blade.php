@@ -16,17 +16,16 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="bg-white border rounded p-3 p-sm-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                        <form class="row" method="GET" action="{{ url('/package/umroh') }}">
+                        <form class="row" method="GET" action="{{ url('/package/search') }}">
                             <div class="col-md-10">
                                 <div class="row">
                                     <div class="col-sm-4 justify-content-md-center">
                                         <label for="specificSizeInputGroupUsername">Layanan</label>
-                                        <select class="form-select" data-control="select2" data-placeholder="Select an option">
+                                        <select class="form-select" name="layanan" data-control="select2" data-placeholder="Select an option">
                                             @foreach($layanan as $layanan)
-                                                <option value="{{ $layanan }}">{{ $layanan }}</option>
+                                                <option value="{{ $layanan['value'] }}">{{ $layanan['text'] }}</option>
                                             @endforeach
                                         </select>
-                                        <!-- <input type="text" id="tanggal" placeholder="Layanan" name="tanggal" class="form-control mt-2" required/> -->
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="specificSizeInputGroupUsername">Tanggal Keberangkatan</label>
@@ -39,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2 justify-content-md-center">
-                                <button type="submit" class="btn btn-success  mt-3" style="width: 100%;">Cari</button>
+                                <button type="submit" class="btn btn-success mt-3" style="width: 100%;">Cari</button>
                             </div>
                         </form>
                     </div>
@@ -82,7 +81,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h3 class="mb-4" style="font-size: 48px;">Paket <br/> Umroh Reguler</h3>
+                    <h3 class="mb-4 text-weight-700 text-green" style="font-size: 48px;">Paket <br/> Umroh Reguler</h3>
                     <p class="mb-4" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                     <div class="row mb-5">
                         <div class="col-4">
@@ -294,7 +293,7 @@
                         <div class="bg-white testimonial-text border rounded p-4 pt-5 mb-5">
                             Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan
                         </div>
-                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-1.jpg')}}" alt="">
+                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/users/user-1.jpg')}}" alt="">
                         <h4 class="text-white">Client Name</h4>
                         <span class="text-light">Profession</span>
                     </div>
@@ -320,7 +319,7 @@
                             </div>
                             Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan
                         </div>
-                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/testimonial-1.jpg')}}" alt="">
+                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/users/user-1.jpg')}}" alt="">
                         <h4 class="text-drak">Client Name</h4>
                         <span class="text-light">Profession</span>
                     </div>

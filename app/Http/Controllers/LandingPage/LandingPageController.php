@@ -27,7 +27,11 @@ class LandingPageController extends Controller
 
     public function index(Request $request)
     {
-        $layanan = ['Paket Umroh', 'Paket Umroh Plus', 'Wisata Halal', 'DIY'];
+        $layanan = [
+            ['value' => 'umroh', 'text' => 'Paket Umroh'], 
+            ['value' => 'umroh_plush', 'text' => 'Paket Umroh Plus'], 
+            ['value' => 'wisata_halal', 'text' => 'Wisata Halal'],
+        ];
         
         if ( !empty(Session::get('user')) ) {
             $this->header['ax-request-by'] = Session::get('user')['email'];

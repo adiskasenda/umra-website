@@ -18,21 +18,21 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 mb-5">
                         <h4 class="text-dark mb-4">Layanan</h4>
-                        <a class="btn btn-link" href="">Umroh</a>
-                        <a class="btn btn-link" href="">Umroh Plus+</a>
-                        <a class="btn btn-link" href="">Wisata Halal</a>
+                        <a class="btn btn-link" href="{{ url('/package/umroh') }}">Umroh</a>
+                        <a class="btn btn-link" href="{{ url('/package/umroh-plus') }}">Umroh Plus+</a>
+                        <a class="btn btn-link" href="{{ url('/package/wisata-halal') }}">Wisata Halal</a>
                     </div>
                     <div class="col-lg-4 col-md-6 mb-5">
                         <h4 class="text-dark mb-4">Perusahaan</h4>
-                        <a class="btn btn-link" href="">Tentang Kami</a>
-                        <a class="btn btn-link" href="">Lokasi Kami</a>
-                        <a class="btn btn-link" href="">Kontak Kami</a>
+                        <a class="btn btn-link" href="{{ url('/about-me') }}">Tentang Kami</a>
+                        <a class="btn btn-link" href="{{ url('/location-me') }}">Lokasi Kami</a>
+                        <a class="btn btn-link" href="{{ url('/contact-me') }}">Kontak Kami</a>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h4 class="text-dark mb-4">Lainya</h4>
-                        <a class="btn btn-link" href="">Syarat & Ketentuan</a>
-                        <a class="btn btn-link" href="">Kebijakan data pengguna</a>
-                        <a class="btn btn-link" href="">FaQ</a>
+                        <a class="btn btn-link" href="#">Syarat & Ketentuan</a>
+                        <a class="btn btn-link" href="#">Kebijakan data pengguna</a>
+                        <a class="btn btn-link" href="{{ url('/faq') }}">FaQ</a>
                     </div>
                 </div>
             </div>
