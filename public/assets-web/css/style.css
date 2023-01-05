@@ -10,6 +10,11 @@
     --green-light: #E6F1F0;
 }
 
+.fa-diamond-turn-right:before, .fa-directions:before {
+    content: "\f5eb";
+    font-size: 36px;
+}
+
 .separator {
     display: block;
     height: 0;
@@ -37,6 +42,10 @@
 /*** Master Title ***/
 .text-green {
     color: var(--green);
+}
+
+.text-opacity {
+    opacity: 0.7;
 }
 
 .text-weight-700 {
@@ -96,6 +105,21 @@
     align-items: center;
     justify-content: center;
     font-weight: normal;
+}
+
+.btn-transparent {
+    background-color: transparent;
+    border-color: white;
+    border-radius: 5px;
+    height: 48px;
+}
+
+.btn-white-large {
+    background-color: white;
+    height: 70px;
+    width: 40px;
+    border: none;
+    border-radius: 7px;
 }
 
 /*** Navbar ***/
@@ -214,7 +238,7 @@
         position: relative;
         min-height: 450px;
     }
-    
+
     #header-carousel .carousel-item img {
         position: absolute;
         width: 100%;
@@ -433,20 +457,6 @@
     color: var(--light);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*** Testimonial ***/
 .testimonial-item {
     position: relative;
@@ -531,12 +541,6 @@
 .testimonial-carousel .owl-dot.active::after {
     background: var(--primary);
 }
-
-
-/*** Partner ***/
-.partner
-
-
 
 /*** Artikel ***/
 .artikel a {
