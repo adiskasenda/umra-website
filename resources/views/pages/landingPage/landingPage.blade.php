@@ -282,19 +282,18 @@
 
     <!-- Experience Start -->
     <div class="container-fluid py-5">
-        <div class="container">
+        <div class="container" style="margin-top:5%;">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h1 class="display-5 mb-5">Pengalaman ibadah mereka bersama UMRA.ID</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
                 @foreach($experience as $experience)
-                    <div class="testimonial-item">
-                        <div class="bg-white testimonial-text border rounded p-4 pt-5 mb-5">
-                            Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan
+                    <div class="card" style="margin-top: 6%; margin-bottom:5%;">
+                        <div class="card-body p-5">
+                            <img src="{{ $experience['image'] }}" style="height: 100%" alt="{{ $experience['image'] }}">
+                            <h5 class="card-title mt-4">{{ $experience['title'] }}</h5>
+                            <span class="card-title mt-4">{{ $experience['description'] }}</span>
                         </div>
-                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/users/user-1.jpg')}}" alt="">
-                        <h4 class="text-white">Client Name</h4>
-                        <span class="text-light">Profession</span>
                     </div>
                 @endforeach
             </div>
@@ -305,22 +304,23 @@
 
     <!-- Testimonial Start -->
     <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-5.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
-        <div class="container">
+        <div class="container" style="margin-top: 5%;">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h1 class="text-drak display-5 mb-5">Apa kata mereka tentang UMRA.ID?</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
                 @foreach($experience2 as $experience2)
-                    <div class="testimonial-item">
-                        <div class="bg-white testimonial-text border rounded p-4 pt-5 mb-5">
-                            <div class="btn-square bg-white border rounded-circle">
+                    <div class="testimonial-item" style="margin-bottom: 5%;">
+                        <div class="bg-white testimonial-text border rounded p-4 pt-5" style="margin-bottom: 10%">
+                            {{-- <div class="btn-square bg-white border rounded-circle">
                                 <i class="fa fa-quote-right fa-2x text-primary"></i>
-                            </div>
-                            Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan
+                            </div> --}}
+                            <h5>{{ $experience2['title'] }}</h5>
+                            {{ $experience2['description'] }}
                         </div>
-                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/users/user-1.jpg')}}" alt="">
-                        <h4 class="text-drak">Client Name</h4>
-                        <span class="text-light">Profession</span>
+                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/users/user-1.jpg')}}" style="width: 10%; height:10%;" alt="">
+                        <h4 class="text-drak">Husein</h4>
+                        <span class="text-opacity">Profession</span>
                     </div>
                 @endforeach
             </div>
@@ -400,7 +400,7 @@
                 <div class="col-md-4" style="margin-top: 4%; margin-bottom:4%;">
                     <center><button class="btn-white-large mb-5" style="width: 70%;"><h3 class="text-green">Daftar Affiliate</h3></button></center>
                     <div class="text-white text-center mx-auto" style="max-width:70%;margin-top:4%">
-                        <h3 class="text-white">Syarat & Ketentuan</h3>
+                        <a href="#" class="text-white">Syarat & Ketentuan</a>
                     </div>
                 </div>
             </div>
@@ -437,13 +437,19 @@
                     <h1 class="text-white display-5">Artikel Tentang Kami</h1>
                 </div>
                 <div class="col-md-6 col-sm-12 text-md-end">
-                    <a href="{{ url('/news') }}" class="text-white">Lihat Semua ></a>
+                    <a href="{{ url('/news') }}" class="text-white">Lihat Semua <i class="fas fa-chevron-right"></i></a>
                 </div>
             </div>
 
             <div class="row g-4 align-items-center">
                 <div class="col-md-6">
-                    <h1>Artikel Utama</h1>
+                    <div class="card" style="margin-top: 6%; margin-bottom:5%; display:flex;">
+                        <div class="card-body p-5">
+                            <img src="{{ $experience['image'] }}" width="100%" height="100%" alt="">
+                            <h2 class="card-title mt-5">{{ $experience['title'] }}</h2>
+                            <span class="card-title mt-5">{{ $experience['description'] }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row">

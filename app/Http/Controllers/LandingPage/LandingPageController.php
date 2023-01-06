@@ -92,12 +92,12 @@ class LandingPageController extends Controller
                 'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
             ],
             [
-                'image' => 'Mudahnya Umroh Privat',
-                'title' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
+                'title' => 'Mudahnya Umroh Privat',
+                'description' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
             ],
             [
-                'image' => 'Ragu jadi Seru!',
-                'title' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
+                'title' => 'Ragu jadi Seru!',
+                'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
             ]
         ];
 
