@@ -1,7 +1,7 @@
 <div class="container-fluid py-5">
     <div class="container">
         <div class="mx-auto">
-            <h1 class="display-5 mb-5">Paket Layanan lain</h1>
+            <div class="mb-5" style="font-size: 32px;">Paket Layanan lain</div>
         </div>
         <div class="row">
             @foreach( $otherMenus as $otherMenu )
@@ -13,8 +13,8 @@
                                     <img src="{{ $otherMenu['icon'] }}" alt="{{ $otherMenu['icon'] }}" width="100px" height="100px" />
                                 </div>
                                 <div class="col-md-9">
-                                    <div>{{ $otherMenu['title'] }}</div>
-                                    <div>{{ $otherMenu['description'] }}</div>
+                                    <div class="text-dark">{{ $otherMenu['title'] }}</div>
+                                    <div class="text-tertiary">{{ $otherMenu['description'] }}</div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="d-grid gap-2">

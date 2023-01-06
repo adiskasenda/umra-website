@@ -12,28 +12,27 @@
         <div class="row g-4 align-items-center">
             @foreach($package_products as $package_product)
                 <div class="col-md-3">
-                    <a href="{{ url('/package', $package_product['id_packet']) }}">
-                        <div class="card" style="width: 100$;">
-                            <div class="card-body" style="padding: 1rem !important;">
-                                <img src="{{ $package_product['url_banner'] }}" width="100%" alt="" srcset="">
-                                <h5 class="card-titl mt-4">{{ $package_product['name'] }}</h5>
-                                <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
-                                <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
-                                <div class="row mb-3">
-                                    <div class="col-6">
-                                        <div>Mulai dari</div>
-                                        <div>Rp. {{ number_format($package_product['price']) }}</div>
-                                    </div>
-                                    <div class="col-6" style="margin:auto;">
-                                        <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}"/>
-                                    </div>
-                                </div>
-                                <div>Rp. 28.500.000 / Orang</div>
-                            </div>
-                        </div>
-                    </a>
+                    @include('pages.packageProducts.partials.cardPackage', [
+                        'url' => url('/package', $package_product['id_packet']),
+                        'url_banner' => $package_product['url_banner'],
+                        'name' => $package_product['name']
+                    ])
                 </div>
             @endforeach
         </div>
     </div>
+
+    <!-- Banner Header Start -->
+    @include('pages.packageProducts.partials.bannerHeader')
+    <!-- Banner Header End -->
+
+
+    <!-- Paket Lain Start -->
+    @include('pages.packageProducts.partials.otherMenu')
+    <!-- Paket Lain End -->
+
+
+    <!-- Banner Start -->
+    @include('pages.packageProducts.partials.banner')
+    <!-- Banner End -->
 @endsection
