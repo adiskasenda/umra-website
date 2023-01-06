@@ -80,7 +80,7 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-4" style="margin-top: 5%">
+                <div class="col-md-4" style="margin: auto;">
                     <h3 class="mb-4 text-weight-700 text-green" style="font-size: 48px;">Paket <br/> Umroh Reguler</h3>
                     <p class="mb-4" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                     <div class="row mb-5" style="margin-top: 5%">
@@ -98,26 +98,11 @@
                 <div class="col-md-2"></div>
                 @foreach( $package_product_umrah as $umrah )
                     <div class="col-md-3 my-5">
-                        <a href="{{ url('/package', $umrah['id_packet']) }}">
-                            <div class="card" style="width: 100$;">
-                                <div class="card-body" style="padding: 1rem !important;">
-                                    <img src="{{ $umrah['url_banner'] }}" width="100%" alt="{{ $umrah['url_banner'] }}">
-                                    <h5 class="card-titl mt-4">{{ $umrah['name'] }}</h5>
-                                    <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
-                                    <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
-                                    <div class="row mb-3">
-                                        <div class="col-6">
-                                            <div>Mulai dari</div>
-                                            <div>Rp. 30.000.000</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
-                                        </div>
-                                    </div>
-                                    <div>Rp. 28.500.000 / Orang</div>
-                                </div>
-                            </div>
-                        </a>
+                        @include('pages.landingPage.partials.cardPackage', [
+                            'url' => url('/package', $umrah['id_packet']),
+                            'url_banner' => $umrah['url_banner'],
+                            'name' => $umrah['name']
+                        ])
                     </div>
                 @endforeach
             </div>
@@ -129,7 +114,7 @@
     <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-1.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container">
             <div class="row">
-                <div class="col-md-4" style="margin-top: 5%">
+                <div class="col-md-4" style="margin: auto;">
                     <h3 class="mb-4 text-white" style="font-size: 48px;">Paket <br/> Umroh Plus+</h3>
                     <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                     <div class="row mb-5" style="margin-top: 5%">
@@ -151,26 +136,11 @@
                 <div class="col-md-2"></div>
                 @foreach($package_product_wisata_halal as $umrah_plus)
                     <div class="col-md-3 my-5">
-                        <a href="{{ url('/package', $umrah_plus['id_packet']) }}">
-                            <div class="card" style="width: 100$;">
-                                <div class="card-body" style="padding: 1rem !important;">
-                                    <img src="{{ $umrah_plus['url_banner'] }}" width="100%" alt="{{ $umrah_plus['url_banner'] }}">
-                                    <h5 class="card-titl mt-4">{{ $umrah_plus['name'] }}</h5>
-                                    <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
-                                    <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
-                                    <div class="row mb-3">
-                                        <div class="col-6">
-                                            <div>Mulai dari</div>
-                                            <div>Rp. 30.000.000</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
-                                        </div>
-                                    </div>
-                                    <div>Rp. 28.500.000 / Orang</div>
-                                </div>
-                            </div>
-                        </a>
+                        @include('pages.landingPage.partials.cardPackage', [
+                            'url' => url('/package', $umrah_plus['id_packet']),
+                            'url_banner' => $umrah_plus['url_banner'],
+                            'name' => $umrah_plus['name']
+                        ])
                     </div>
                 @endforeach
             </div>
@@ -234,7 +204,7 @@
         </div>
         <div class="container" style="background-image:url('{{ asset('assets-web/img/background/background-3.png') }}');background-repeat: no-repeat;background-size: 100% 100%;margin-bottom:5%">
             <div class="row p-5">
-                <div class="col-md-4" style="margin-left: 3%;margin-right:2%;margin-top:5%">
+                <div class="col-md-4" style="margin: auto;">
                     <h3 class="mb-4 text-white" style="font-size: 48px;">Paket <br/> Umroh Plus+</h3>
                     <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                     <div class="row mb-5" style="margin-left: 3%;margin-top:6%;">
@@ -252,26 +222,11 @@
                 <div class="col-md-1"></div>
                 @foreach($package_product_wisata_halal as $wisata_halal)
                     <div class="col-md-3 my-3">
-                        <a href="{{ url('/package', $wisata_halal['id_packet']) }}">
-                            <div class="card" style="width: 100$;">
-                                <div class="card-body" style="padding: 1rem !important;">
-                                    <img src="{{ $wisata_halal['url_banner'] }}" width="100%" alt="{{ $wisata_halal['url_banner'] }}">
-                                    <h5 class="card-titl mt-4">{{ $wisata_halal['name'] }}</h5>
-                                    <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
-                                    <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
-                                    <div class="row mb-3">
-                                        <div class="col-6">
-                                            <div>Mulai dari</div>
-                                            <div>Rp. 30.000.000</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
-                                        </div>
-                                    </div>
-                                    <div>Rp. 28.500.000 / Orang</div>
-                                </div>
-                            </div>
-                        </a>
+                        @include('pages.landingPage.partials.cardPackage', [
+                            'url' => url('/package', $wisata_halal['id_packet']),
+                            'url_banner' => $wisata_halal['url_banner'],
+                            'name' => $wisata_halal['name']
+                        ])
                     </div>
                 @endforeach
             </div>

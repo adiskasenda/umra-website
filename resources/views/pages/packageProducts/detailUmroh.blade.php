@@ -204,12 +204,12 @@
                                     <div> <img src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" width="6%" height="6%">  Tersisa 24 Pax</div>
                                     <div class="mb-3"> <img src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}" width="6%" height="6%">  Tersedia 3 Pilihan Kamar</div>
                                     <div class="row mb-3">
-                                        <div class="col-md-6">
+                                        <div class="col-6">
                                             <div>Mulai dari</div>
                                             <div>Rp. 30.000.000</div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" width="100%" height="100%" />
+                                        <div class="col-6" style="margin:auto;">
+                                            <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}"/>
                                         </div>
                                     </div>
                                     <div>Rp. 28.500.000 / Orang</div>
