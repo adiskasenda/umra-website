@@ -72,11 +72,12 @@ class NewsController extends Controller
         $new = json_decode($response->getBody(), true);
         
         // Artikel Lain
-        $other_news = [];
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/2/id_blog/desc');
+        $other_news = json_decode($response->getBody(), true);
 
         return view('pages.news.detailNews', [
             'new' => $new['data'],
-            'other_news' => $other_news
+            'other_news' => $other_news['data']['content']
         ]);
     }
 

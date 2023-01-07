@@ -28,11 +28,11 @@ class LandingPageController extends Controller
     public function index(Request $request)
     {
         $layanan = [
-            ['value' => 'umroh', 'text' => 'Paket Umroh'], 
-            ['value' => 'umroh_plush', 'text' => 'Paket Umroh Plus'], 
+            ['value' => 'umroh', 'text' => 'Paket Umroh'],
+            ['value' => 'umroh_plush', 'text' => 'Paket Umroh Plus'],
             ['value' => 'wisata_halal', 'text' => 'Wisata Halal'],
         ];
-        
+
         if ( !empty(Session::get('user')) ) {
             $this->header['ax-request-by'] = Session::get('user')['email'];
             $this->header['Authorization'] = 'Bearer '.Session::get('token');
@@ -92,12 +92,12 @@ class LandingPageController extends Controller
                 'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
             ],
             [
-                'image' => 'Mudahnya Umroh Privat',
-                'title' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
+                'title' => 'Mudahnya Umroh Privat',
+                'description' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
             ],
             [
-                'image' => 'Ragu jadi Seru!',
-                'title' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
+                'title' => 'Ragu jadi Seru!',
+                'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
             ]
         ];
 
@@ -124,13 +124,37 @@ class LandingPageController extends Controller
             ],
             [
                 "url" => asset('assets-web/img/partner/partner-2.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-1.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-2.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-1.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-2.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-1.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-2.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-1.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-2.png')
             ]
         ];
 
         // Artikel
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/5/id_blog/desc');
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/4/id_blog/desc');
         $news = json_decode($response->getBody(), true);
-        
+
         return view('pages.landingPage.landingPage', [
             'layanan' => $layanan,
             'banners' => $banners,

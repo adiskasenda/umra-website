@@ -27,19 +27,19 @@ class PackageProductController extends Controller
 
         $this->otherMenus = [
             [ 
-                 'icon' => asset('/assets-web/img/icon/umroh.png'),
+                 'icon' => asset('/assets-web/img/icon/package-umroh.png'),
                  'title' => 'Paket Umroh',
                  'description' => 'Perjalanan ibadah umroh dengan nyaman & fasilitas lengkap dari keberangkatan',
                  'url' => url('/package/umroh')
             ],
             [ 
-                'icon' => asset('/assets-web/img/icon/umroh-plus.png'),
+                'icon' => asset('/assets-web/img/icon/package-umroh-plus.png'),
                 'title' => 'Paket Umroh Plus+',
                 'description' => 'Ibadah umroh dengan fasilitas terbaik agar ibadah anda lebih kusyu.',
                 'url' => url('/package/umroh-plus')
             ],
             [ 
-                 'icon' => asset('/assets-web/img/icon/wisata-halal.png'),
+                 'icon' => asset('/assets-web/img/icon/package-wisata-halal.png'),
                  'title' => 'Wisata Halal',
                  'description' => 'Berlibur & mengungjungi negara, kota, serta destinasi halal bersama UMRA.',
                  'url' => url('/package/wisata-halal')
@@ -73,20 +73,25 @@ class PackageProductController extends Controller
             $this->header['ax-request-by'] = '';
         }
 
+        // Pakage Umroh
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umroh/pagination/0/3/date_start/asc');
         $package_products = json_decode($response->getBody(), true);
 
         // remove array otherMenus
         unset($this->otherMenus[0]);
 
-        // Banner
+        // Banner Header
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_HEADER_1');
-        $banners = json_decode($response->getBody(), true);
+        $banner_headers = json_decode($response->getBody(), true);
+
+        // Banner
+        $banner = asset('assets-web/img/banner/banner-fasilitas.png');
 
         return view('pages.packageProducts.umroh', [
             'package_products' => $package_products['data']['content'],
             'otherMenus' => $this->otherMenus,
-            'banners' => $banners['data'],
+            'banner_headers' => $banner_headers['data'],
+            'banner' => $banner
         ]);
     }
 
@@ -99,15 +104,25 @@ class PackageProductController extends Controller
             $this->header['ax-request-by'] = '';
         }
 
+        // Package Umroh Plus
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umroh_plush/pagination/0/3/date_start/asc');
         $package_products = json_decode($response->getBody(), true);
 
         // remove array otherMenus
         unset($this->otherMenus[1]);
 
+        // Banner
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_HEADER_1');
+        $banner_headers = json_decode($response->getBody(), true);
+
+        // Banner
+        $banner = asset('assets-web/img/banner/banner-fasilitas.png');
+
         return view('pages.packageProducts.umrohPlush',[
             'package_products' => $package_products,
-            'otherMenus' => $this->otherMenus
+            'otherMenus' => $this->otherMenus,
+            'banner_headers' => $banner_headers['data'],
+            'banner' => $banner
         ]);
     }
 
@@ -120,15 +135,25 @@ class PackageProductController extends Controller
             $this->header['ax-request-by'] = '';
         }
 
+        // Package Wisata Halal
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/wisata_halal/pagination/0/3/date_start/asc');
         $package_products = json_decode($response->getBody(), true);
 
         // remove array otherMenus
         unset($this->otherMenus[3]);
 
+        // Banner
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_HEADER_1');
+        $banner_headers = json_decode($response->getBody(), true);
+
+        // Banner
+        $banner = asset('assets-web/img/banner/banner-fasilitas.png');
+
         return view('pages.packageProducts.wisataHalal', [
             'package_products' => $package_products,
-            'otherMenus' => $this->otherMenus
+            'otherMenus' => $this->otherMenus,
+            'banner_headers' => $banner_headers['data'],
+            'banner' => $banner
         ]);
     }
 
@@ -167,6 +192,7 @@ class PackageProductController extends Controller
             default:
                 $flag_umroh = 'wisata_halal';
         }
+
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$flag_umroh.'/pagination/0/3/date_start/asc');
         $other_packages = json_decode($response->getBody(), true);
 

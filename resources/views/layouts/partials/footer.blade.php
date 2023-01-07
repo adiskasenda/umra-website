@@ -1,6 +1,6 @@
 <!-- Footer Start -->
 <div class="container-fluid text-dark footer bg-white wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-5">
+    <div class="container" style="padding-bottom: 1%; padding-top:5%;">
         <div class="row g-5">
             <div class="col-lg-4 col-md-6">
                 <img src="{{ asset('assets-web/img/background/icon-logo-footer.png') }}" alt="{{ asset('assets-web/img/background/icon-logo-footer.png') }}">
@@ -37,14 +37,14 @@
                 </div>
             </div>
         </div>
+        <hr/>
     </div>
 </div>
 <!-- Footer End -->
 
 <!-- Copyright Start -->
-<div class="container-fluid copyright py-4 bg-white">
-    <div class="container">
-        <hr/>
+<div class="container-fluid copyright py-5 bg-white">
+    <div class="container py-5">
         <div class="text-center">
             Copyright &copy; 2020, UMRA.ID.
         </div>

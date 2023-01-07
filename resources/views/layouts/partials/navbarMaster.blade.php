@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="{{ url('/package/wisata-halal') }}" style="width: 380px;" class="dropdown-item">
+                            <!-- <a href="{{ url('/package/wisata-halal') }}" style="width: 380px;" class="dropdown-item">
                                 <div class="row" style="width: 380px; margin: 15px 0;">
                                     <div class="col-2">
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
@@ -57,7 +57,7 @@
                                         <div>Atur sendiri hotel, maskapai, durasi serta <br/> destinasi perjalanan umroh + wisata anda.</div>
                                     </div>
                                 </div>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                     <a href="{{ url('/about-me') }}" class="nav-item nav-link" style="font-size: 16px;">Tentang Kami</a>
