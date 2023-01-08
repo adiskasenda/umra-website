@@ -4,9 +4,9 @@
     <!-- Banner Form Start -->
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
         <div class="carousel-inner">
-            @foreach( $banners as $key => $banner )
+            @foreach( $news_banners as $key => $news_banner )
             <div @if( $key == 0) class="carousel-item active"  @else class="carousel-item" @endif>
-                <img class="d-block w-100" src="{{ $banner['url_banner'] }}" alt="First slide">
+                <img class="d-block w-100" src="{{ $news_banner['url_banner'] }}" alt="First slide">
             </div>
             @endforeach
         </div>
@@ -15,14 +15,14 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="bg-white border rounded p-3 p-sm-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                    <form class="row" method="GET" action="{{ url('/package/umroh') }}">
+                    <form class="row" method="GET" action="{{ url('/news') }}">
                         <div class="col-md-10">
                             <div class="row">
                                 <div class="col-sm-8" style="margin:auto;">
                                     <label for="specificSizeInputGroupUsername">Cari Berita Terkini mengenai perjalanan ibadah  umroh Anda</label>
                                 </div>
                                 <div class="col-sm-4 justify-content-md-center">
-                                    <input type="text" id="tanggal" placeholder="Pencarian" name="tanggal" class="form-control" required/>
+                                    <input type="text" id="search" placeholder="Pencarian" name="search" value="{{ $search }}" class="form-control" required/>
                                 </div>
                             </div>
                         </div>

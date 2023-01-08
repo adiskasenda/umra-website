@@ -22,7 +22,7 @@ class NewsController extends Controller
         $this->url = env('APP_URL_API');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         if ( !empty(Session::get('user')) ) {
             $this->header['ax-request-by'] = Session::get('user')['email'];
@@ -31,11 +31,10 @@ class NewsController extends Controller
             $this->header['ax-request-by'] = '';
         }
 
-
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/10/id_blog/desc');
-        $news = json_decode($response->getBody(), true);
-        
-        $banners = [
+        // News Banner
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/3/id_blog/desc');
+        // $news_banners = json_decode($response->getBody(), true);
+        $news_banners = [
             [
                 "url_banner" => asset('assets-web/img/banner/banner-news.png'),
                 "subject" => "hello Test 1",
@@ -53,9 +52,14 @@ class NewsController extends Controller
             ],
         ];
 
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/10/id_blog/desc');
+        $news = json_decode($response->getBody(), true);
+
         return view('pages.news.news', [
+            // 'news_banners' => $news_banners['data']['content'],
+            'news_banners' => $news_banners,
             'news' => $news['data']['content'],
-            'banners' => $banners
+            'search' => $request->search
         ]);
     }
 
