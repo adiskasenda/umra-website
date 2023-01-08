@@ -13,7 +13,7 @@
 
     <div class="card-body" style="padding: 1rem !important;">
 
-        <!-- Account And security -->
+        <!-- account & security -->
         <div class="d-flex flex-stack fs-4 py-3">
             <div class="fw-bold rotate collapsible active" data-bs-toggle="collapse" href="#kt_user_akun_and_security" role="button" aria-expanded="true" aria-controls="kt_user_akun_and_security">
                 Akun & Keamanan 
@@ -36,12 +36,12 @@
             </div>
             <div class="pb-5 fs-6">
                 <div class="mt-5">
-                    <a href="{{ url('/update-password') }}" class="text-dark">Ganti Password</a>
+                    <a href="{{ url('/profile/password') }}" class="text-dark">Ganti Password</a>
                 </div>
             </div>
             <div class="pb-5 fs-6">
                 <div class="mt-5">
-                    <a href="{{ url('/update-pin') }}" class="text-dark">Atur PIN</a>
+                    <a href="{{ url('/profile/pin') }}" class="text-dark">Atur PIN</a>
                 </div>
             </div>
         </div>
@@ -62,10 +62,14 @@
         <div class="separator"></div>
         <div id="kt_user_activity" class="collapse show" style="">
             <div class="pb-5 fs-6">
-                <div class="mt-5">Riwayat Transaksi</div>
+                <div class="mt-5">
+                    <a href="{{ url('/profile/list-transaction') }}" class="text-dark">Riwayat Transaksi</a>
+                </div>
             </div>
             <div class="pb-5 fs-6">
-                <div class="mt-5">Riwayat Kegiatan</div>
+                <div class="mt-5">
+                    <a href="#" class="text-dark">Riwayat Kegiatan</a>
+                </div>
             </div>
         </div>
 

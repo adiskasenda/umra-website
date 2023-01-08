@@ -110,16 +110,26 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
         Route::get('/biodata', [ TransactionController::class, 'biodata' ]);
         Route::get('/checkout', [ TransactionController::class, 'checkout' ]);
         Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
+       
+        // Detail Trasaction
         Route::get('/{id}/detail', [ TransactionController::class, 'show' ]);
     });
 
     // Profile
     Route::group([ 'prefix' =>'/profile' ], function() {
-        Route::get('/', [ ProfileController::class, 'index' ]);
-        Route::patch('/', [ ProfileController::class, 'update' ]);
-        Route::get('/update-password', [ ProfileController::class, 'updatePassword' ]);
-        Route::get('/update-pin', [ ProfileController::class, 'updatePIN' ]);
-        Route::get('/list-transaction', [ ProfileController::class, 'listTransaction' ]);
+        // account & security
+        Route::get('/', [ ProfileController::class, 'profile' ]);
+        Route::patch('/', [ ProfileController::class, 'updateProfile' ]);
+        Route::get('/password', [ ProfileController::class, 'profilePassword' ]);
+        Route::patch('/update-password', [ ProfileController::class, 'updatePassword' ]);
+        Route::get('/pin', [ ProfileController::class, 'profilePIN' ]);
+        Route::patch('/update-pin', [ ProfileController::class, 'updatePIN' ]);
+
+        // Activity
+        // Route::get('/list-transaction', [ ProfileController::class, 'listTransaction' ]);
+
+        // Help
+
     });
 
 });

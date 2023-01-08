@@ -25,12 +25,12 @@ class ProfileController extends Controller
         $this->url = env('APP_URL_API');
     }
 
-    public function index()
+    public function profile()
     {
         return view('pages.profile.profile');
     }
 
-    public function update(Request $request)
+    public function updateProfile(Request $request)
     {
         $body = [
             "title" => "Bapak",
@@ -56,12 +56,22 @@ class ProfileController extends Controller
                         ->withSuccess('Data Customer Berhasil Di Update');
     }
 
+    public function profilePassword()
+    {
+        return view('pages.profile.profilePassword');
+    }
+
     public function updatePassword()
     {
         return ;
     }
 
-    public function listTransaction()
+    public function profilePIN()
+    {
+        return view('pages.profile.profilePassword');
+    }
+
+    public function updatePIN()
     {
         return ;
     }
