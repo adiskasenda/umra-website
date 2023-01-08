@@ -4,15 +4,11 @@
     --secondary: #E93C05;
     --tertiary: #555555;
     --light: #DFE4FD;
+    --white: #FFFFFF;
     --dark: #101010;
     --green: #006B67;
     --green-secondary: #7CB041;
     --green-light: #E6F1F0;
-}
-
-.fa-diamond-turn-right:before, .fa-directions:before {
-    content: "\f5eb";
-    font-size: 36px;
 }
 
 .separator {
@@ -63,15 +59,25 @@
     background-color: var(--green-light);
 }
 
-/*** Master Font ***/
+/*** Master Icon ***/
+.fa-diamond-turn-right:before, .fa-directions:before {
+    content: "\f5eb";
+    font-size: 36px;
+}
 
+/*** Master Font ***/
 .font-normal-700 {
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 700;
 }
 
-
+/*** Master Image ***/
+.image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /*** Spinner ***/
 #spinner {
@@ -137,6 +143,18 @@
     width: 40px;
     border: none;
     border-radius: 7px;
+}
+
+.btn-white {
+    color: var(--dark);
+    border-color: var(--white);
+    background-color: var(--white);
+}
+
+.btn-white:hover {
+    color: var(--dark);
+    border-color: var(--white);
+    background-color: var(--white);
 }
 
 /*** Navbar ***/

@@ -61,7 +61,7 @@
                         </div>
                         <div class="carousel-inner">
                             @foreach( $banners2 as $key => $banner2 )
-                                <div @if( $key == 0) class="carousel-item active"  @else class="carousel-item" @endif>
+                                <div @if( $key == 0) class="carousel-item active mb-8"  @else class="carousel-item mb-8" @endif>
                                     <img src="{{ $banner2['url_banner_web'] }}" class="d-block w-100" alt="{{ $banner2['url_banner_web'] }}" width="100%" height="200px;">
                                 </div>
                             @endforeach
@@ -80,22 +80,22 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-4" style="margin: auto;">
+                <div class="col-md-5" style="margin: auto;">
                     <h3 class="mb-4 text-weight-700 text-green" style="font-size: 48px;">Paket <br/> Umroh Reguler</h3>
                     <p class="mb-4" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
-                    <div class="row mb-5" style="margin-top: 5%">
+                    <div class="row mt-5">
                         <div class="col-4">
                             <img src="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" alt="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" width="40px">
-                            <span class="ml-2" style="font-size: 16px;">Hotel</span>
+                            <span style="font-size: 16px; margin-left: 5%;">Hotel</span>
                         </div>
                         <div class="col-4">
                             <img src="{{ asset('assets-web/img/icon/plane-umrah.png')}}" alt="{{ asset('assets-web/img/icon/plane-umrah.png')}}" height="40px">
-                            <span class="ml-2" style="font-size: 16px;">Pesawat</span>
+                            <span style="font-size: 16px; margin-left: 5%;">Pesawat</span>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-success" style="margin-top: 5%">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-1"></div>
                 @foreach( $package_product_umrah as $umrah )
                     <div class="col-md-3 my-5">
                         @include('pages.landingPage.partials.cardPackage', [
@@ -114,26 +114,26 @@
     <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-1.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container">
             <div class="row">
-                <div class="col-md-4" style="margin: auto;">
+                <div class="col-md-5" style="margin: auto;">
                     <h3 class="mb-4 text-white" style="font-size: 48px;">Paket <br/> Umroh Plus+</h3>
                     <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
-                    <div class="row mb-5" style="margin-top: 5%">
+                    <div class="row mt-5">
                         <div class="col-4">
                             <img src="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" alt="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" width="40px">
-                            <span class="text-light" style="font-size: 16px;">Hotel</span>
+                            <span class="text-light" style="font-size: 16px; margin-left: 5%;">Hotel</span>
                         </div>
                         <div class="col-4">
                             <img src="{{ asset('assets-web/img/icon/plane-umrah.png')}}" alt="{{ asset('assets-web/img/icon/plane-umrah.png')}}" width="40px">
-                            <span class="text-light" style="font-size: 16px;">Pesawat</span>
+                            <span class="text-light" style="font-size: 16px; margin-left: 5%;">Pesawat</span>
                         </div>
                         <div class="col-4">
                             <img src="{{ asset('assets-web/img/icon/tour-umrah.png')}}" alt="{{ asset('assets-web/img/icon/tour-umrah.png')}}" height="40px">
-                            <span class="text-light" style="font-size: 16px;">Wisata</span>
+                            <span class="text-light" style="font-size: 16px; margin-left: 5%;">Wisata</span>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-success" style="margin-top: 5%">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-1"></div>
                 @foreach($package_product_wisata_halal as $umrah_plus)
                     <div class="col-md-3 my-5">
                         @include('pages.landingPage.partials.cardPackage', [
@@ -207,17 +207,17 @@
                 <div class="col-md-4" style="margin: auto;">
                     <h3 class="mb-4 text-white" style="font-size: 48px;">Paket <br/> Umroh Plus+</h3>
                     <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
-                    <div class="row mb-5" style="margin-left: 3%;margin-top:6%;">
+                    <div class="row mt-5">
                         <div class="col-4">
-                            <img src="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" alt="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" width="40px" style="margin-right: 10%">
-                            <span class="ml-2 text-light" style="font-size: 16px;">Hotel</span>
+                            <img src="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" alt="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" width="40px">
+                            <span class="text-light" style="font-size: 16px; margin-left: 5%;">Hotel</span>
                         </div>
                         <div class="col-5">
-                            <img src="{{ asset('assets-web/img/icon/plane-umrah.png')}}" alt="{{ asset('assets-web/img/icon/plane-umrah.png')}}" height="40px" style="margin-right: 10%">
-                            <span class="ml-2 text-light" style="font-size: 16px;">Pesawat</span>
+                            <img src="{{ asset('assets-web/img/icon/plane-umrah.png')}}" alt="{{ asset('assets-web/img/icon/plane-umrah.png')}}" height="40px">
+                            <span class="text-light" style="font-size: 16px; margin-left: 5%;">Pesawat</span>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-success btn-large" style="margin-top: 6%">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="btn btn-success btn-large mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
                 <div class="col-md-1"></div>
                 @foreach($package_product_wisata_halal as $wisata_halal)
@@ -302,11 +302,11 @@
                     <div class="card mb-2" style="width: 100$;">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-10">
                                     <h4>{{ $mitra['name'] }}</h4>
                                     {{ $mitra['address'] }}
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-2" style="margin:auto;">
                                     <i class="fa-sharp fa-solid fa-diamond-turn-right fa-2xl" style="color: green;"></i>
                                 </div>
                             </div>
@@ -375,7 +375,7 @@
             <div class="row justify-content-md-center" style="margin-bottom: 5%">
                 @foreach($partners as $partner)
                     <div class="col-md-3 mt-5">
-                        <img src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}">
+                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}" width="100%">
                     </div>
                 @endforeach
             </div>
@@ -400,7 +400,7 @@
                 <div class="col-md-6">
                     <div class="card" style="margin-top: 6%; margin-bottom:5%; display:flex;">
                         <div class="card-body p-5">
-                            <img src="{{ $experience['image'] }}" width="100%" height="100%" alt="">
+                            <img src="{{ $experience['image'] }}" alt="{{ $experience['image'] }}" width="100%">
                             <h2 class="card-title mt-5">{{ $experience['title'] }}</h2>
                             <span class="card-title mt-5">{{ $experience['description'] }}</span>
                         </div>
@@ -409,14 +409,9 @@
                 <div class="col-md-6">
                     <div class="row">
                         @foreach($news as $new)
-                        <div class="col-md-6 pt-3">
-                            <div class="card" style="width: 100$;">
-                                <div class="card-body" style="padding: 1rem !important;">
-                                    <img src="{{ $new['url_banner'] }}" width="100%" alt="{{ $new['url_banner'] }}">
-                                    <h5 class="card-titl mt-4">{{ $new['subject'] }}</h5>
-                                </div>
+                            <div class="col-md-6 pt-3">
+                                @include('pages.landingPage.partials.cardNews')
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

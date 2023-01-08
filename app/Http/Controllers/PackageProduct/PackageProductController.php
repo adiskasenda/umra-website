@@ -59,8 +59,21 @@ class PackageProductController extends Controller
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/searching/'.$request->layanan.'/'.date('Y-m-d', strtotime($request->departure_date)).'/'.date('Y-m-d', strtotime($request->return_date)));
         $package_products = json_decode($response->getBody(), true);
 
+        // remove array otherMenus
+        unset($this->otherMenus[0]);
+
+        // Banner Header
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_HEADER_1');
+        $banner_headers = json_decode($response->getBody(), true);
+
+        // Banner
+        $banner = asset('assets-web/img/banner/banner-fasilitas.png');
+
         return view('pages.packageProducts.search', [
-            'package_products' => $package_products['data']
+            'package_products' => $package_products['data'],
+            'otherMenus' => $this->otherMenus,
+            'banner_headers' => $banner_headers['data'],
+            'banner' => $banner
         ]);
     }
 
@@ -107,7 +120,7 @@ class PackageProductController extends Controller
         // Package Umroh Plus
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umroh_plush/pagination/0/3/date_start/asc');
         $package_products = json_decode($response->getBody(), true);
-
+        
         // remove array otherMenus
         unset($this->otherMenus[1]);
 
@@ -119,7 +132,7 @@ class PackageProductController extends Controller
         $banner = asset('assets-web/img/banner/banner-fasilitas.png');
 
         return view('pages.packageProducts.umrohPlush',[
-            'package_products' => $package_products,
+            'package_products' => $package_products['data']['content'],
             'otherMenus' => $this->otherMenus,
             'banner_headers' => $banner_headers['data'],
             'banner' => $banner
@@ -140,7 +153,7 @@ class PackageProductController extends Controller
         $package_products = json_decode($response->getBody(), true);
 
         // remove array otherMenus
-        unset($this->otherMenus[3]);
+        unset($this->otherMenus[2]);
 
         // Banner
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_HEADER_1');
@@ -150,7 +163,7 @@ class PackageProductController extends Controller
         $banner = asset('assets-web/img/banner/banner-fasilitas.png');
 
         return view('pages.packageProducts.wisataHalal', [
-            'package_products' => $package_products,
+            'package_products' => $package_products['data']['content'],
             'otherMenus' => $this->otherMenus,
             'banner_headers' => $banner_headers['data'],
             'banner' => $banner

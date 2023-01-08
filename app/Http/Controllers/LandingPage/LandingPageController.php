@@ -126,28 +126,10 @@ class LandingPageController extends Controller
                 "url" => asset('assets-web/img/partner/partner-2.png')
             ],
             [
-                "url" => asset('assets-web/img/partner/partner-1.png')
+                "url" => asset('assets-web/img/partner/partner-3.png')
             ],
             [
-                "url" => asset('assets-web/img/partner/partner-2.png')
-            ],
-            [
-                "url" => asset('assets-web/img/partner/partner-1.png')
-            ],
-            [
-                "url" => asset('assets-web/img/partner/partner-2.png')
-            ],
-            [
-                "url" => asset('assets-web/img/partner/partner-1.png')
-            ],
-            [
-                "url" => asset('assets-web/img/partner/partner-2.png')
-            ],
-            [
-                "url" => asset('assets-web/img/partner/partner-1.png')
-            ],
-            [
-                "url" => asset('assets-web/img/partner/partner-2.png')
+                "url" => asset('assets-web/img/partner/partner-4.png')
             ]
         ];
 
