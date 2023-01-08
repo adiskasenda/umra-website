@@ -3,7 +3,9 @@
     <div class="container" style="padding-bottom: 1%; padding-top:5%;">
         <div class="row g-5">
             <div class="col-lg-4 col-md-6">
-                <img src="{{ asset('assets-web/img/background/icon-logo-footer.png') }}" alt="{{ asset('assets-web/img/background/icon-logo-footer.png') }}">
+                <a href="{{ url('/') }}"> 
+                    <img src="{{ asset('assets-web/img/background/icon-logo-footer.png') }}" alt="{{ asset('assets-web/img/background/icon-logo-footer.png') }}">
+                </a>
                 <div class="pt-5">PT. UMRAH MANDIRI RILLAH AMANAH</div>
                 <div>SK. PPIU NO 177 TAHUN 2020</div>
 
@@ -25,7 +27,7 @@
                     <div class="col-lg-4 col-md-6 mb-5">
                         <h4 class="text-dark mb-4">Perusahaan</h4>
                         <a class="btn btn-link" href="{{ url('/about-me') }}">Tentang Kami</a>
-                        <a class="btn btn-link" href="{{ url('/location-me') }}">Lokasi Kami</a>
+                        <!-- <a class="btn btn-link" href="{{ url('/location-me') }}">Lokasi Kami</a> -->
                         <a class="btn btn-link" href="{{ url('/contact-me') }}">Kontak Kami</a>
                     </div>
                     <div class="col-lg-4 col-md-6">

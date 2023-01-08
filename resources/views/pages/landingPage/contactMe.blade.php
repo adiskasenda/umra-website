@@ -4,17 +4,24 @@
 
     <!-- Banner Start -->
     <div class="container-fluid py-5">
-        <div class="container">
-            <div>Pusat Pengaduan Customer</div>
-            <div>UMRA.ID berkomitmen untuk senantiasa memberikan pelayanan terbaik bagi seluruh jamaah & customer UMRA.ID. Apabila anda memiliki kritik & saran atas layanan kami, anda dapat menghubungi Customer Service kami.</div>
+        <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
+            <div class="row">
+                <div class="col-md-6" style="margin-top: 5%;">
+                    <h3 class="mb-4 text-weight-700" style="font-size: 48px;">Pusat Pengaduan <br/> Customer</h3>
+                    <p class="font-normal-400">UMRA.ID berkomitmen untuk senantiasa memberikan pelayanan terbaik bagi seluruh jamaah & customer UMRA.ID. Apabila anda memiliki kritik & saran atas layanan kami, anda dapat menghubungi Customer Service kami.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('assets-web/img/image/hubungi-kami.png')}}" style="margin-left: 5%;" width="90%" alt="{{ asset('assets-web/img/image/hubungi-kami.png')}}">
+                </div>
+            </div>
         </div>
     </div>
     <!-- Banner End -->
 
     <!-- Sosmed Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div>Kunjungi juga Sosial Media Kami</div>
+    <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-6.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
+        <div class="container" style="margin-top: 5%; margin-bottom:5%;">
+            <h2 class="font-normal-700 text-green" style="font-size: 32px;">Kunjungi juga Sosial Media Kami</h2>
             <!-- Sosmed -->
         </div>
     </div>

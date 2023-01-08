@@ -45,8 +45,8 @@
 }
 
 .icon-cicilan {
-    width: 64px; 
-    height: 20.1px; 
+    width: 64px;
+    height: 20.1px;
     float: right;
 }
 
@@ -59,6 +59,13 @@
     background-color: var(--green-light);
 }
 
+.bg-green-card {
+    background-color: #7CB041;
+}
+
+/*** Master Font ***/
+
+
 /*** Master Icon ***/
 .fa-diamond-turn-right:before, .fa-directions:before {
     content: "\f5eb";
@@ -70,6 +77,20 @@
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 700;
+}
+
+.font-normal-500 {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 500;
+}
+
+.font-normal-400 {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
 }
 
 /*** Master Image ***/
@@ -146,15 +167,9 @@
 }
 
 .btn-white {
-    color: var(--dark);
-    border-color: var(--white);
-    background-color: var(--white);
-}
-
-.btn-white:hover {
-    color: var(--dark);
-    border-color: var(--white);
-    background-color: var(--white);
+    background-color: white;
+    border: none;
+    border-radius: 4px;
 }
 
 /*** Navbar ***/
