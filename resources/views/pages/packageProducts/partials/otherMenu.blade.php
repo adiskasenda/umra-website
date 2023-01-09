@@ -6,7 +6,7 @@
         <div class="row">
             @foreach( $otherMenus as $otherMenu )
                 <div class="col-md-6 mb-8">
-                    <div class="card" style="width: 100$;">
+                    <div class="card card-bordered" style="width: 100$;">
                         <div class="card-body">
                             <div class="row mb-5">
                                 <div class="col-3" style="margin:auto;">

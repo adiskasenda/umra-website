@@ -1,7 +1,7 @@
 <!-- Navbar Start -->
 <div class="container-fluid px-0 bg-white shadow" style="position: fixed;top: 0;right: 0;left: 0;z-index: 1030;">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5">
+        <nav class="navbar navbar-expand-lg navbar-light py-lg-0">
             <a href="{{ url('/') }}" class="navbar-brand ms-4 ms-lg-0">
                 <img src="{{ asset('assets-web/img/icon/icon-logo.png') }}" alt="" srcset="">
             </a>
@@ -20,7 +20,7 @@
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
                                     </div>
                                     <div class="col-10">
-                                        <div style="font-size: 16px;">Paket Umrah</div>   
+                                        <div style="font-size: 16px;">Paket Umrah</div>
                                         <div>Perjalanan ibadah umroh dengan nyaman & <br/> fasilitas lengkap dari keberangkatan</div>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                     <a href="{{ url('/contact-me') }}" class="nav-item nav-link" style="font-size: 16px;">Hubungi Kami</a>
                 </div>
                 <!-- <div class="form-inline ms-auto">
-                    @if ( empty(Session::get('user')) ) 
+                    @if ( empty(Session::get('user')) )
                         <a href="{{ url('/login') }}" class="my-2 my-sm-0 nav-link-href" type="submit">Masuk</a>
                         <a href="{{ url('/register') }}" class="btn btn-outline-success my-2 my-sm-0" type="submit">Daftar</a>
                     @else

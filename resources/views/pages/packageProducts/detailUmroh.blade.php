@@ -47,7 +47,7 @@
                     <div class="row">
                         @foreach($package_product['list_hotel'] as $list_hotel)
                             <div class="col-md-6">
-                                <div class="card">
+                                <div class="card card-bordered">
                                     <div class="card-body" style="padding: 1rem !important;">
                                         <div class="d-flex flex-stack flex-wrap">
                                             <div class="d-flex align-items-center pe-2">
@@ -85,7 +85,7 @@
                     <div>Maskapai Penerbangan</div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="card">
+                            <div class="card card-bordered">
                                 <div class="card-body" style="padding: 1rem !important;">
                                     <div class="d-flex flex-stack flex-wrap">
                                         <div class="d-flex align-items-center pe-2">
@@ -144,7 +144,7 @@
                     <div class="mt-4">Detail Faslitas</div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="card card-flush">
+                            <div class="card card-bordered">
                                 <div class="card-header">
                                     <div class="card-title">
                                         <h2 class="mb-0">Sudah Termasuk</h2>
@@ -162,7 +162,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card card-flush">
+                            <div class="card card-bordered">
                                 <div class="card-header">
                                     <div class="card-title">
                                         <h2 class="mb-0">Belum Termasuk</h2>

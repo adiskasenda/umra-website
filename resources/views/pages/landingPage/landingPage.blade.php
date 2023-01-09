@@ -243,7 +243,7 @@
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
                 @foreach($experience as $experience)
-                    <div class="card" style="margin-top: 6%; margin-bottom:5%;">
+                    <div class="card card-bordered" style="margin-top: 6%; margin-bottom:5%;">
                         <div class="card-body p-5">
                             <img src="{{ $experience['image'] }}" style="height: 100%" alt="{{ $experience['image'] }}">
                             <h5 class="card-title mt-4">{{ $experience['title'] }}</h5>
@@ -316,7 +316,7 @@
                     <button class="btn-transparent text-white mt-3 mb-5" style="width: 100%;">Lihat Semua <i class="fas fa-chevron-right"></i></button>
                 </div>
                 <div class="col-md-6">
-                    <div class="card" style="width: 100$;">
+                    <div class="card card-bordered" style="width: 100$;">
                         <div class="card-body">
                             <div>
                                 <h1>Gabung Sebagai Agen Penjualan</h1>
@@ -398,7 +398,7 @@
 
             <div class="row g-4 align-items-center">
                 <div class="col-md-6">
-                    <div class="card" style="margin-top: 6%; margin-bottom:5%; display:flex;">
+                    <div class="card card-bordered" style="margin-top: 6%; margin-bottom:5%; display:flex;">
                         <div class="card-body p-5">
                             <img src="{{ $experience['image'] }}" alt="{{ $experience['image'] }}" width="100%">
                             <h2 class="card-title mt-5">{{ $experience['title'] }}</h2>

@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-9">
                 <div> Profile </div>
-                <div class="card" style="width: 100%;">
+                <div class="card card-bordered" style="width: 100%;">
                     <div>Foto Profile</div>
                     <div>Information Pemilik Akun</div>
                     <div>Email dan Nomor Ponsel</div>
