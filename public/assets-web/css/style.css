@@ -11,6 +11,11 @@
     --green-light: #E6F1F0;
 }
 
+.p-tb-50 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
 .separator {
     display: block;
     height: 0;
@@ -23,6 +28,16 @@
     right: 30px;
     bottom: 30px;
     z-index: 99;
+}
+
+.content {
+    margin-top: 76px;
+}
+
+@media (max-width: 991.98px) {
+    .content {
+        margin-top: 59px;
+    }
 }
 
 /*** Master Color Text ***/

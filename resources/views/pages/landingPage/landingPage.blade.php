@@ -204,7 +204,7 @@
         </div>
         <div class="container" style="background-image:url('{{ asset('assets-web/img/background/background-3.png') }}');background-repeat: no-repeat;background-size: 100% 100%;margin-bottom:5%">
             <div class="row p-5">
-                <div class="col-lg-5 col-md-4" style="margin: auto auto auto auto;">
+                <div class="col-lg-5 col-md-4" style="margin: auto;">
                     <h3 class="mb-4 text-white" style="font-size: 48px;">Paket <br/> Umroh Plus+</h3>
                     <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                     <div class="row mt-5">

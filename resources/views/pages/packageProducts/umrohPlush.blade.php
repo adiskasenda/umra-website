@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid" style="background-image:url('{{ asset('assets-web/img/background/package-umroh-plus.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
-        <div class="container py-5">
+        <div class="container p-tb-50">
             <div class="text-white" style="font-size: 48px;">Paket Ibadah Umroh Plus+</div>
             <div class="text-light" style="font-size: 24px;">Ibadah umroh dengan fasilitas terbaik agar ibadah anda lebih kusyu’.</div>
 
