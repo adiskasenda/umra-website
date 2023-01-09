@@ -89,6 +89,10 @@
     font-size: 14px;
 }
 
+.fs-12 {
+    font-size: 12px;
+}
+
 .font-normal-700 {
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
@@ -111,8 +115,6 @@
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
 }
 
 /*** Master Image ***/

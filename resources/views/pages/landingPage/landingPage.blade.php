@@ -2,45 +2,47 @@
 
 @section('content')
     <!-- Banner Form Start -->
-    <div class="container-xxl callback p-0" style="margin-bottom: -60px;">
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @foreach( $banners as $key => $banner )
-                    <div @if( $key == 0) class="carousel-item active"  @else class="carousel-item" @endif>
-                        <img class="d-block w-100" src="{{ $banner['url'] }}" alt="First slide">
-                    </div>
-                @endforeach
+    <div class="container-fluid" style="margin-bottom: -20px;">
+        <div class="container">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach( $banners as $key => $banner )
+                        <div @if( $key == 0) class="carousel-item active"  @else class="carousel-item" @endif>
+                            <img class="d-block w-100" src="{{ $banner['url'] }}" alt="First slide">
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
-        <div class="container" style="position: relative;top: -60px;">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="bg-white border rounded p-3 p-sm-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                        <form class="row" method="GET" action="{{ url('/package/search') }}">
-                            <div class="col-md-10">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="specificSizeInputGroupUsername">Layanan</label>
-                                        <select class="form-select mt-2" name="layanan" data-control="select2" data-placeholder="Select an option">
-                                            @foreach($layanan as $layanan)
-                                                <option value="{{ $layanan['value'] }}">{{ $layanan['text'] }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label for="specificSizeInputGroupUsername">Tanggal Keberangkatan</label>
-                                        <input type="text" placeholder="Tanggal Keberangkatan" name="departure_date" class="form-control mt-2" required/>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label for="specificSizeInputGroupUsername">Tanggal Kepulangan</label>
-                                        <input type="text" placeholder="Tanggal Kepulangan" name="return_date" class="form-control mt-2" required/>
+            <div class="container" style="position: relative;top: -50px;">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="bg-white border rounded p-3 p-sm-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                            <form class="row" method="GET" action="{{ url('/package/search') }}">
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="specificSizeInputGroupUsername">Layanan</label>
+                                            <select class="form-select mt-2" name="layanan" data-control="select2" data-placeholder="Select an option">
+                                                @foreach($layanan as $layanan)
+                                                    <option value="{{ $layanan['value'] }}">{{ $layanan['text'] }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="specificSizeInputGroupUsername">Tanggal Keberangkatan</label>
+                                            <input type="text" placeholder="Tanggal Keberangkatan" name="departure_date" class="form-control mt-2" required/>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="specificSizeInputGroupUsername">Tanggal Kepulangan</label>
+                                            <input type="text" placeholder="Tanggal Kepulangan" name="return_date" class="form-control mt-2" required/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2 justify-content-md-center">
-                                <button type="submit" class="btn btn-success mt-3" style="width: 100%;">Cari</button>
-                            </div>
-                        </form>
+                                <div class="col-md-2 justify-content-md-center">
+                                    <button type="submit" class="btn btn-success mt-3" style="width: 100%;">Cari</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,7 +82,7 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-5" style="margin: auto;">
+                <div class="col-lg-5 col-md-4" style="margin: auto auto auto 0;">
                     <h3 class="mb-4 text-weight-700 text-green" style="font-size: 48px;">Paket <br/> Umroh Reguler</h3>
                     <p class="mb-4" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                     <div class="row mt-5">
@@ -95,9 +97,8 @@
                     </div>
                     <a href="#" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
-                <div class="col-md-1"></div>
                 @foreach( $package_product_umrah as $umrah )
-                    <div class="col-md-3 my-5">
+                    <div class="col-lg-3 col-md-4 my-5">
                         @include('pages.landingPage.partials.cardPackage', [
                             'url' => url('/package', $umrah['id_packet']),
                             'url_banner' => $umrah['url_banner'],
@@ -114,7 +115,7 @@
     <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-1.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container">
             <div class="row">
-                <div class="col-md-5" style="margin: auto;">
+                <div class="col-lg-5 col-md-4" style="margin: auto auto auto 0;">
                     <h3 class="mb-4 text-white" style="font-size: 48px;">Paket <br/> Umroh Plus+</h3>
                     <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                     <div class="row mt-5">
@@ -133,9 +134,8 @@
                     </div>
                     <a href="#" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
-                <div class="col-md-1"></div>
                 @foreach($package_product_wisata_halal as $umrah_plus)
-                    <div class="col-md-3 my-5">
+                    <div class="col-lg-3 col-md-4 my-5">
                         @include('pages.landingPage.partials.cardPackage', [
                             'url' => url('/package', $umrah_plus['id_packet']),
                             'url_banner' => $umrah_plus['url_banner'],
@@ -204,7 +204,7 @@
         </div>
         <div class="container" style="background-image:url('{{ asset('assets-web/img/background/background-3.png') }}');background-repeat: no-repeat;background-size: 100% 100%;margin-bottom:5%">
             <div class="row p-5">
-                <div class="col-md-4" style="margin: auto;">
+                <div class="col-lg-5 col-md-4" style="margin: auto auto auto auto;">
                     <h3 class="mb-4 text-white" style="font-size: 48px;">Paket <br/> Umroh Plus+</h3>
                     <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
                     <div class="row mt-5">
@@ -219,9 +219,8 @@
                     </div>
                     <a href="#" class="btn btn-success btn-large mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
-                <div class="col-md-1"></div>
                 @foreach($package_product_wisata_halal as $wisata_halal)
-                    <div class="col-md-3 my-3">
+                    <div class="col-lg-3 col-md-4 my-3">
                         @include('pages.landingPage.partials.cardPackage', [
                             'url' => url('/package', $wisata_halal['id_packet']),
                             'url_banner' => $wisata_halal['url_banner'],
