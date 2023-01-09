@@ -68,7 +68,7 @@ class ProfileController extends Controller
 
     public function profilePIN()
     {
-        return view('pages.profile.profilePassword');
+        return view('pages.profile.profilePIN');
     }
 
     public function updatePIN()

@@ -21,8 +21,20 @@
     <!-- Sosmed Start -->
     <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-6.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container" style="margin-top: 5%; margin-bottom:5%;">
-            <h2 class="font-normal-700 text-green" style="font-size: 32px;">Kunjungi juga Sosial Media Kami</h2>
-            <!-- Sosmed -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="font-normal-700 text-green" style="font-size: 32px;">Kunjungi juga Sosial Media Kami</h2>
+                </div>
+                <div class="col-md-6">
+                    <!-- Sosmed -->
+                    <div class="d-flex pt-2">
+                        <a class="btn-rounded-green" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-dark rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-dark rounded-circle me-2" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-dark rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Sosmed End -->

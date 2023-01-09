@@ -12,7 +12,13 @@ class AboutMeController extends Controller
         // Activity
         $activity_me = [
             [
-                "url_banner" => ""
+                'image' => asset('assets-web/img/image/kegiatan-1.png')
+            ],
+            [
+                'image' => asset('assets-web/img/image/kegiatan-1.png')
+            ],
+            [
+                'image' => asset('assets-web/img/image/kegiatan-1.png')
             ]
         ];
 
@@ -32,3 +38,4 @@ class AboutMeController extends Controller
         ]);
     }
 }
+

@@ -53,9 +53,9 @@
                 <h3 class="text-opacity">Kami memiliki berbagai macam kegiatan dan perjalanan untuk memberikan Jamaah iami pengalaman yang terbaik dalam beribadah</h3>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
-                {{-- @foreach($experience as $experience) --}}
-                        <img src="{{ asset('assets-web/img/image/kegiatan-1.png') }}" style="height: 100%" alt="">
-                {{-- @endforeach --}}
+                @foreach($activity_me as $activity)
+                        <img src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
+                @endforeach
             </div>
             <hr style="margin-top: 3%;">
         </div>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6" style="margin-bottom: 3%;">
-                        <div class="card" style="width: 100$;">
+                        <div class="card card-bordered" style="width: 100$;">
                             <div class="card-body">
                                 <div>
                                     <h1>Gabung Sebagai Agen Penjualan</h1>
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <div class="col-md-6" style="margin-bottom: 3%;">
-                        <div class="card" style="width: 100$;">
+                        <div class="card card-bordered" style="width: 100$;">
                             <div class="card-body bg-green-card">
                                 <div>
                                     <h1 class="text-white">Jadi Affiliate Umra bisa dapat untung?</h1>
@@ -137,5 +137,4 @@
         </div>
     </div>
     <!-- Kerja sama End -->
-
 @endsection

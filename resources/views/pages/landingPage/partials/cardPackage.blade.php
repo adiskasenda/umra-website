@@ -1,5 +1,5 @@
 <a href="{{ $url }}">
-    <div class="card" style="width: 100$;">
+    <div class="card card-bordered" style="width: 100$;">
         <div class="card-body" style="padding: 1rem !important;">
             <img src="{{ $url_banner }}" width="100%" alt="{{ $url_banner }}">
             <h5 class="card-titl mt-4">{{ $name }}</h5>
