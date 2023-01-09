@@ -2,7 +2,7 @@
 :root {
     --primary: #355EFC;
     --secondary: #E93C05;
-    --tertiary: #555555;
+    --tertiary: rgba(16, 16, 16, 0.7);;
     --light: #DFE4FD;
     --white: #FFFFFF;
     --dark: #101010;
@@ -73,10 +73,32 @@
 }
 
 /*** Master Font ***/
+.fs-32 {
+    font-size: 32px;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
 .font-normal-700 {
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 700;
+}
+
+.font-normal-600 {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600;
 }
 
 .font-normal-500 {
