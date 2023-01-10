@@ -13,7 +13,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0">
             <a href="{{ url('/') }}" class="navbar-brand ms-4 ms-lg-0">
-                <img src="{{ asset('assets-web/img/icon/icon-logo.png') }}" alt="" srcset="">
+                <img src="{{ asset('assets-web/img/icon/icon-logo.png') }}" alt="{{ asset('assets-web/img/icon/icon-logo.png') }}">
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
