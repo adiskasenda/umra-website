@@ -78,8 +78,9 @@
     background-color: #7CB041;
 }
 
-/*** Master Font ***/
-
+.bg-yellow-green {
+    background-color: #F2F8ED;
+}
 
 /*** Master Icon ***/
 .fa-diamond-turn-right:before, .fa-directions:before {
@@ -88,6 +89,10 @@
 }
 
 /*** Master Font ***/
+.fs-44 {
+    font-size: 44px;
+}
+
 .fs-32 {
     font-size: 32px;
 }
