@@ -2,13 +2,18 @@
 :root {
     --primary: #355EFC;
     --secondary: #E93C05;
-    --tertiary: #555555;
+    --tertiary: rgba(16, 16, 16, 0.7);;
     --light: #DFE4FD;
     --white: #FFFFFF;
     --dark: #101010;
     --green: #006B67;
     --green-secondary: #7CB041;
     --green-light: #E6F1F0;
+}
+
+.p-tb-50 {
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .separator {
@@ -23,6 +28,16 @@
     right: 30px;
     bottom: 30px;
     z-index: 99;
+}
+
+.content {
+    margin-top: 76px;
+}
+
+@media (max-width: 991.98px) {
+    .content {
+        margin-top: 59px;
+    }
 }
 
 /*** Master Color Text ***/
@@ -73,10 +88,36 @@
 }
 
 /*** Master Font ***/
+.fs-32 {
+    font-size: 32px;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
 .font-normal-700 {
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 700;
+}
+
+.font-normal-600 {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600;
 }
 
 .font-normal-500 {
@@ -89,8 +130,6 @@
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
 }
 
 /*** Master Image ***/

@@ -18,19 +18,19 @@
             </div>
             <div class="col-lg-8">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 mb-5">
                         <h4 class="text-dark mb-4">Layanan</h4>
                         <a class="btn btn-link" href="{{ url('/package/umroh') }}">Umroh</a>
                         <a class="btn btn-link" href="{{ url('/package/umroh-plus') }}">Umroh Plus+</a>
                         <a class="btn btn-link" href="{{ url('/package/wisata-halal') }}">Wisata Halal</a>
                     </div>
-                    <div class="col-lg-4 col-md-6 mb-5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 mb-5">
                         <h4 class="text-dark mb-4">Perusahaan</h4>
                         <a class="btn btn-link" href="{{ url('/about-me') }}">Tentang Kami</a>
                         <!-- <a class="btn btn-link" href="{{ url('/location-me') }}">Lokasi Kami</a> -->
                         <a class="btn btn-link" href="{{ url('/contact-me') }}">Kontak Kami</a>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
                         <h4 class="text-dark mb-4">Lainya</h4>
                         <a class="btn btn-link" href="#">Syarat & Ketentuan</a>
                         <a class="btn btn-link" href="#">Kebijakan data pengguna</a>

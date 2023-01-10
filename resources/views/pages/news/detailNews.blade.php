@@ -8,8 +8,11 @@
             @include('pages.news.partials.breadcrumb',[
                 'breadcrumb' => $new['subject']
             ])
-            <a href="{{ url('/news') }}" class="mt-5" style="text-decoration: none"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Kembali</a>
-            <h2 class="font-normal-700" style="font-size:40px; margin-top: 1px;">{{ $new['subject'] }}</h2>
+            <a href="{{ url('/news') }}" class="mt-5 text-tertiary">
+                <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Kembali
+            </a>
+
+            <h2 class="font-normal-700 fs-32 mt-2">{{ $new['subject'] }}</h2>
             <div class="mt-5 mb-3">Dipublikasikan pada {{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
             <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
             <div>{!! $new['content'] !!}</div>
@@ -19,15 +22,20 @@
     <!-- Artikel Start -->
     <div class="container-fluid py-5 mb-8">
         <div class="container">
+            <div class="mx-auto wow fadeInUp" data-wow-delay="0.1s">
+                <div class="font-normal-700 fs-32 mb-5">Artikel lainnya</div>
+            </div>
             <div class="row">
-                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
-                    @include('pages.news.partials.cardNews', [
-                        'url' =>  url('/news/1'),
-                        'url_banner' => 'https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg',
-                        'subject' => 'Dengan Teknologi Umroh bisa sendiri dengan blablabla',
-                        'created_date' => '28 May 2022 00:21'
-                    ])
-                </div>
+                @foreach( $other_news as $other_new )
+                    <div class="col-lg-3">
+                        @include('pages.news.partials.cardNews', [
+                            'url' => url('/news', $other_new['id_blog']),
+                            'url_banner' => $other_new['url_banner'],
+                            'subject' => $other_new['subject'],
+                            'created_date' => $other_new['created_date']
+                        ])
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <!-- Detail Paket -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -13,41 +12,89 @@
             <div class="row">
                 <div class="col-md-4">
                     <img src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
-
-                    <button type="submit" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</button>
-                    <!-- <button>  <img src="{{ asset('assets-web/img/icon/cart.png') }}" alt="{{ asset('assets-web/img/icon/cart.png') }}"> Pesan Sekarang</button> -->
+                    <div class="row mb-3 mt-5">
+                        <div class="col-6">
+                            <div class="text-tertiary"> 
+                                <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                <span class="font-normal-400 fs-16">Tersisa 24 Pax</span>
+                            </div>
+                        </div>
+                        <div class="col-6" style="margin:auto;">
+                            <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" height="36px"/>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</button>
                 </div>
                 <div class="col-md-8">
-                    <div>{{ $package_product['name'] }}</div>
-                    <div>{!! $package_product['description'] !!}</div>
+                    @if ( $package_product['flag_umroh'] == 0 )
+                        <a href="{{ url('/package/umroh') }}" class="text-tertiary"> 
+                            <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Umroh
+                        </a>
+                    @elseif ( $package_product['flag_umroh'] == 1 )
+                        <a href="{{ url('/package/umroh-plus') }}" class="text-tertiary">
+                            <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Umroh Plus
+                        </a>
+                    @elseif ( $package_product['flag_umroh'] == 2 )
+                        <a href="{{ url('/package/wisata-halal') }}" class="text-tertiary">
+                            <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Wisata Halal
+                        </a>
+                    @endif
+
+                    <div class="text-dark font-normal-700 fs-32">{{ $package_product['name'] }}</div>
+                    <div class="text-tertiary font-normal-400 fs-16 py-5">{!! $package_product['description'] !!}</div>
 
                     <div class="row">
                         <div class="col-md-4">
-                            <div>Harga mulai dari</div>
-                            <div>{{ $package_product['price'] }}</div>
-                        </div>
-                        <div class="col-md-8">
-                            <div>Jadwal Keberangkatan</div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div>Tanggal Keberangkatan</div>
-                                    <div>{{ $package_product['date_end'] }}</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div>Durasi Perjalanan</div>
-                                    <div>{{ $package_product['day_duration'] }}</div>
+                            <div class="card card-bordered" style="width: 100$;">
+                                <div class="card-body" style="padding: 1rem !important;">
+                                    <div class="text-dark font-normal-600 fs-16">Harga mulai dari</div>
+                                    <div class="text-tertiary font-normal-400 fs-14" style="text-decoration: line-through;">Rp. 30.000.000</div>
+                                    <div class="text-green">
+                                        <span class="font-normal-700 fs-20">Rp. {{ number_format($package_product['price']) }}</span>
+                                        <span class="text-tertiary font-normal-500 fs-14">/ Orang</span>
+                                    </div>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card card-bordered" style="width: 100$;">
+                                <div class="card-body" style="padding: 1rem !important;">
+                                    <div class="text-dark font-normal-600 fs-16">Jadwal Keberangkatan</div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row mt-5">
+                                                <div class="col-2">
+                                                    <img src="{{ asset('assets-web/img/icon/calendar-umroh.png') }}" alt="{{ asset('assets-web/img/icon/calendar-umroh.png') }}">
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="text-tertiary font-normal-400 fs-14">Tanggal Keberangkatan</div>
+                                                    <div class="font-normal-600 fs-14">{{ date('d M Y', strtotime($package_product['date_end'])) }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row mt-5">
+                                                <div class="col-2">
+                                                <img src="{{ asset('assets-web/img/icon/time-umroh.png') }}" alt="{{ asset('assets-web/img/icon/time-umroh.png') }}">
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="text-tertiary font-normal-400 fs-14">Durasi Perjalanan</div>
+                                                    <div class="font-normal-600 fs-14">{{ $package_product['day_duration'] }} Hari</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div>Hotel & Penginapan</div>
-                    
-                    <div class="row">
+                    <div class="text-dark font-normal-700 fs-20 mt-5">Hotel & Penginapan</div>
+                    <div class="row mt-2">
                         @foreach($package_product['list_hotel'] as $list_hotel)
                             <div class="col-md-6">
-                                <div class="card card-bordered">
+                                <div class="card card-bordered mb-5" style="background: #F8FCFC;">
                                     <div class="card-body" style="padding: 1rem !important;">
                                         <div class="d-flex flex-stack flex-wrap">
                                             <div class="d-flex align-items-center pe-2">
@@ -82,10 +129,10 @@
                         @endforeach
                     </div>
 
-                    <div>Maskapai Penerbangan</div>
-                    <div class="row">
+                    <div class="text-dark font-normal-700 fs-20 mt-5">Maskapai Penerbangan</div>
+                    <div class="row mt-2">
                         <div class="col-md-6">
-                            <div class="card card-bordered">
+                            <div class="card card-bordered mb-5" style="background: #F8FCFC;">
                                 <div class="card-body" style="padding: 1rem !important;">
                                     <div class="d-flex flex-stack flex-wrap">
                                         <div class="d-flex align-items-center pe-2">
@@ -98,21 +145,63 @@
                     </div>
                     
                     
-                    <div>Pilihan Kamar Hotel</div>
+                    <div class="text-dark font-normal-700 fs-20 mt-5">Pilihan Kamar Hotel</div>
                     <div class="row">
                         <div class="col-md-4">
-                            <div>{{ number_format($package_product['price_double']) }}</div>
+                            <div class="card card-bordered mt-5" style="width: 100$;">
+                                <div class="card-header" style="background: #F8FCFC;">
+                                    <div class="image-center mt-2">
+                                        <img src="{{ asset('assets-web/img/icon/double.png') }}" alt="{{ asset('assets-web/img/icon/double.png') }}">
+                                        <div class="font-normal-700 fs-14">Double</div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center" style="padding: 1rem !important;">
+                                    <div>
+                                        <span class="text-dark font-normal-700 fs-16">Rp. {{ number_format($package_product['price_double']) }}</span>
+                                        <span class="text-tertiary font-normal-500 fs-14">/Orang</span>
+                                    </div>
+                                    <div class="text-tertiary font-normal-400 fs-12">*1 Kamar terdiri dari 2 jamaah</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <div>{{ number_format($package_product['price_triple']) }}</div>
+                            <div class="card card-bordered mt-5" style="width: 100$;">
+                                <div class="card-header" style="background: #F8FCFC;">
+                                    <div class="image-center mt-2">
+                                        <img src="{{ asset('assets-web/img/icon/triple.png') }}" alt="{{ asset('assets-web/img/icon/triple.png') }}">
+                                        <div class="font-normal-700 fs-14">Triple</div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center" style="padding: 1rem !important;">
+                                    <div>
+                                       <span class="text-dark font-normal-700 fs-16">Rp. {{ number_format($package_product['price_triple']) }} </span>
+                                       <span class="text-tertiary font-normal-500 fs-14">/Orang</span>
+                                    </div>
+                                    <div class="text-tertiary font-normal-400 fs-12">*1 Kamar terdiri dari 3 jamaah</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <div>{{ number_format($package_product['price_quad']) }}</div>
+                            <div class="card card-bordered mt-5" style="width: 100$;">
+                                <div class="card-header" style="background: #F8FCFC;">
+                                    <div class="image-center mt-2">
+                                        <img src="{{ asset('assets-web/img/icon/quad.png') }}" alt="{{ asset('assets-web/img/icon/quad.png') }}">
+                                        <div class="font-normal-700 fs-14">Quad</div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center" style="padding: 1rem !important;">
+                                    <div>
+                                        <span class="text-dark font-normal-700 fs-16">Rp. {{ number_format($package_product['price_quad']) }} </span>
+                                        <span class="text-tertiary font-normal-500 fs-14">/Orang</span>
+                                    </div>
+                                    <div class="text-tertiary font-normal-400 fs-12">*1 Kamar terdiri dari 4 jamaah</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!--begin::Alert-->
-                    <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
+                    <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-5 mt-5 p-6">
                         <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
@@ -131,18 +220,18 @@
                     <!-- Tour Count -->
                     <div class="row">
                         <div class="col-md-6">
-                            <div>Negara yang dikunjungi</div>
-                            <div>{{ $package_product['tour_country'] }}</div>
+                            <div class="text-dark font-normal-700 fs-20">Negara yang dikunjungi</div>
+                            <div class="text-tertiary font-normal-500 fs-14">{{ $package_product['tour_country'] }}</div>
                         </div>
                         <div class="col-md-6">
-                            <div>Kota yang dikunjungi</div>
-                            <div>{{ $package_product['tour_city'] }}</div>
+                            <div class="text-dark font-normal-700 fs-20">Kota yang dikunjungi</div>
+                            <div class="text-tertiary font-normal-500 fs-14">{{ $package_product['tour_city'] }}</div>
                         </div>
                     </div>
 
                     <!-- Detail Fasilitas -->
-                    <div class="mt-4">Detail Faslitas</div>
-                    <div class="row">
+                    <div class="text-dark font-normal-700 fs-20 mt-5">Detail Faslitas</div>
+                    <div class="row mt-2">
                         <div class="col-md-6">
                             <div class="card card-bordered">
                                 <div class="card-header">
@@ -190,7 +279,7 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="mx-auto wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="display-5 mb-5">Paket Layanan lain</h1>
+                <div class="font-normal-700 fs-32 mb-5">Paket Layanan lain</div>
             </div>
             <div class="row">
                 <!-- Paket Lain -->

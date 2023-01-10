@@ -16,7 +16,7 @@
             <div class="row mb-3">
                 <div class="col-6">
                     <div class="text-dark">Mulai dari</div>
-                    <div class="text-tertiary" style="text-decoration : line-through;">Rp. 30.000.000</div>
+                    <div class="text-tertiary" style="text-decoration: line-through;">Rp. 30.000.000</div>
                 </div>
                 <div class="col-6" style="margin:auto;">
                     <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}"/>
