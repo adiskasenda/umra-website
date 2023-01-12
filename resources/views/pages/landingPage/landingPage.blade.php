@@ -1,5 +1,9 @@
 @extends('layouts.landing')
 
+@push('page_css')
+    <link href="{{ asset('assets-web/css/landing/style.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
     <!-- Banner Form Start -->
     <div class="container-fluid" style="margin-bottom: -20px;">
@@ -13,7 +17,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="container" style="position: relative;top: -50px;">
+            <div class="content-form">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <div class="bg-white border rounded p-3 p-sm-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
@@ -82,10 +86,10 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-4" style="margin: auto auto auto 0;">
-                    <h3 class="mb-4 text-weight-700 text-green" style="font-size: 48px;">Paket <br/> Umroh Reguler</h3>
-                    <p class="mb-4" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
-                    <div class="row mt-5">
+                <div class="col-lg-5 col-md-4 content-package">
+                    <div class="mb-4 text-weight-700 fs-44" style="font-weight: bold;">Paket Umroh Reguler</div>
+                    <div class="mb-4 text-weight-400 fs-20">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</div>
+                    <div class="row mt-5 mb-5">
                         <div class="col-4">
                             <img src="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" alt="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" width="40px">
                             <span style="font-size: 16px; margin-left: 5%;">Hotel</span>
@@ -95,7 +99,7 @@
                             <span style="font-size: 16px; margin-left: 5%;">Pesawat</span>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
+                    <a href="{{ url('/package/umroh') }}" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
                 @foreach( $package_product_umrah as $umrah )
                     <div class="col-lg-3 col-md-4 my-5">
@@ -112,13 +116,13 @@
     <!-- Package Umroh End -->
 
     <!-- Package Umroh Plush Start -->
-    <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-1.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
+    <div class="container-fluid py-5 bg-image-1">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-4" style="margin: auto auto auto 0;">
-                    <h3 class="mb-4 text-white" style="font-size: 48px;">Paket <br/> Umroh Plus+</h3>
-                    <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
-                    <div class="row mt-5">
+                <div class="col-lg-5 col-md-4 content-package">
+                    <div class="mb-4 text-white text-weight-700 fs-44" style="font-weight: bold;">Paket Umroh Plus+</div>
+                    <div class="mb-4 text-light text-weight-400 fs-20">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</div>
+                    <div class="row mt-5 mb-5">
                         <div class="col-4">
                             <img src="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" alt="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" width="40px">
                             <span class="text-light" style="font-size: 16px; margin-left: 5%;">Hotel</span>
@@ -132,9 +136,9 @@
                             <span class="text-light" style="font-size: 16px; margin-left: 5%;">Wisata</span>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
+                    <a href="{{ url('/package/umroh-plus') }}" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
-                @foreach($package_product_wisata_halal as $umrah_plus)
+                @foreach($package_product_umrah_plus as $umrah_plus)
                     <div class="col-lg-3 col-md-4 my-5">
                         @include('pages.landingPage.partials.cardPackage', [
                             'url' => url('/package', $umrah_plus['id_packet']),
@@ -151,31 +155,31 @@
 
     <!-- Why Worship Start -->
     <div class="container-fluid py-5">
-        <div class="container" style="margin-top: 5%; margin-bottom:5%;">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 750px; margin-bottom:5%;">
-                <h1 class="display-5">Mengapa ibadah Umrah & wisata bersama Umra.ID?</h1>
-                <h3 class="text-opacity">Kami selalu berusaha konsisten memberikan pelayanan terbaik kepada jamaah yang berangkat beribadah bersama kami sejak 2012 UMRA telah memiliki izin resmi untuk melayani anda.</h3>
+        <div class="container mt-20 mb-20">
+            <div class="text-center">
+                <div class="text-dark text-weight-700 fs-44" style="font-weight: bold;">Mengapa ibadah Umrah & wisata bersama Umra.ID?</div>
+                <div class="text-tertiary text-weight-400 fs-20">Kami selalu berusaha konsisten memberikan pelayanan terbaik kepada jamaah yang berangkat beribadah bersama kami sejak 2012 UMRA telah memiliki izin resmi untuk melayani anda.</div>
             </div>
-            <div class="row g-5">
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
-                    <img src="{{ asset('assets-web/img/icon/izin.png') }}" alt="" srcset="">
-                    <h5 class="text-dark mt-4" >Berizin Resmi</h5>
-                    <span class="text-dark">Memiliki izin resmi untuk perjalanan umrah dari KEMENAG sejak 2012</span>
+            <div class="row mt-10 mb-10 text-dark text-center">
+                <div class="col-sm-6 col-lg-3 mt-5 mb-5">
+                    <img src="{{ asset('assets-web/img/icon/izin.png') }}" alt="{{ asset('assets-web/img/icon/izin.png') }}">
+                    <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Berizin Resmi</div>
+                    <div class="text-weight-400 fs-16 mw-80">Memiliki izin resmi untuk perjalanan umrah dari KEMENAG sejak 2012</div>
                 </div>
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                    <img src="{{ asset('assets-web/img/icon/asuransi.png') }}" alt="" srcset="">
-                    <h5 class="text-dark mt-4" >Asuransi Perjalanan</h5>
-                    <span class="text-dark">Setiap perjalanan jamaah diberikan kebebasan memilih asuransi terbaik</span>
+                <div class="col-sm-6 col-lg-3 mt-5 mb-5">
+                    <img src="{{ asset('assets-web/img/icon/asuransi.png') }}" alt="{{ asset('assets-web/img/icon/asuransi.png') }}">
+                    <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Asuransi Perjalanan</div>
+                    <div class="text-weight-400 fs-16 mw-80">Setiap perjalanan jamaah diberikan kebebasan memilih asuransi terbaik</div>
                 </div>
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
-                    <img src="{{ asset('assets-web/img/icon/hotel.png') }}" alt="" srcset="">
-                    <h5 class="text-dark mt-4" >Hotel Berbintang</h5>
-                    <span class="text-dark">Kami telah bekerjasama dengan hotel terbaik agar ibadah anda lebih khusyu’</span>
+                <div class="col-sm-6 col-lg-3 mt-5 mb-5">
+                    <img src="{{ asset('assets-web/img/icon/hotel.png') }}" alt="{{ asset('assets-web/img/icon/hotel.png') }}">
+                    <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Hotel Berbintang</div>
+                    <div class="text-weight-400 fs-16 mw-80">Kami telah bekerjasama dengan hotel terbaik agar ibadah anda lebih khusyu’</div>
                 </div>
-                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeIn;">
-                    <img src="{{ asset('assets-web/img/icon/bantuan.png') }}" alt="" srcset="">
-                    <h5 class="text-dark mt-4" >Bantuan Setiap Saat</h5>
-                    <span class="text-dark">Layanan pelanggan kami beroperasi sepanjang waktu untuk membantu anda.</span>
+                <div class="col-sm-6 col-lg-3 mt-5 mb-5">
+                    <img src="{{ asset('assets-web/img/icon/bantuan.png') }}" alt="{{ asset('assets-web/img/icon/bantuan.png') }}">
+                    <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Bantuan Setiap Saat</div>
+                    <div class="text-weight-400 fs-16 mw-80">Layanan pelanggan kami beroperasi sepanjang waktu untuk membantu anda.</div>
                 </div>
             </div>
         </div>
@@ -195,39 +199,41 @@
 
 
     <!-- Explore& wisata Start -->
-    <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-2.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
-        <div class="container">
-            <div class="text-white text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;margin-top:5%;margin-bottom:4%">
-                <h1 class="display-5 text-white mb-5">Explore & Berwisata Keliling Jazirah Arab</h1>
-                <h4 class="text-opacity text-white">Berangkat beribadah tidak pernah semenyenangkan ini dengan bebas atur fasilitas hotel, pesawat, asuransi, visa & destinasi wisata halal impian anda.</h4>
-            </div>
-        </div>
-        <div class="container" style="background-image:url('{{ asset('assets-web/img/background/background-3.png') }}');background-repeat: no-repeat;background-size: 100% 100%;margin-bottom:5%">
-            <div class="row p-5">
-                <div class="col-lg-5 col-md-4" style="margin: auto;">
-                    <h3 class="mb-4 text-white" style="font-size: 48px;">Paket <br/> Umroh Plus+</h3>
-                    <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
-                    <div class="row mt-5">
-                        <div class="col-4">
-                            <img src="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" alt="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" width="40px">
-                            <span class="text-light" style="font-size: 16px; margin-left: 5%;">Hotel</span>
-                        </div>
-                        <div class="col-5">
-                            <img src="{{ asset('assets-web/img/icon/plane-umrah.png')}}" alt="{{ asset('assets-web/img/icon/plane-umrah.png')}}" height="40px">
-                            <span class="text-light" style="font-size: 16px; margin-left: 5%;">Pesawat</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-success btn-large mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
+    <div class="container-fluid py-5 bg-image-2">
+        <div class="mt-20 mb-20">
+            <div class="container mb-5">
+                <div class="text-center">
+                    <div class="text-white text-weight-700 fs-44" style="font-weight: bold;">Explore & Berwisata Keliling Jazirah Arab</div>
+                    <div class="text-light text-weight-400 fs-20">Berangkat beribadah tidak pernah semenyenangkan ini dengan bebas atur fasilitas hotel, pesawat, asuransi, visa & destinasi wisata halal impian anda.</div>
                 </div>
-                @foreach($package_product_wisata_halal as $wisata_halal)
-                    <div class="col-lg-3 col-md-4 my-3">
-                        @include('pages.landingPage.partials.cardPackage', [
-                            'url' => url('/package', $wisata_halal['id_packet']),
-                            'url_banner' => $wisata_halal['url_banner'],
-                            'name' => $wisata_halal['name']
-                        ])
+            </div>
+            <div class="container bg-image-3">
+                <div class="row p-5">
+                    <div class="col-lg-5 col-md-4" style="margin: auto;">
+                        <h3 class="mb-4 text-white" style="font-size: 48px;">Paket Wisata Halal</h3>
+                        <p class="mb-4 text-light" style="font-size: 20px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</p>
+                        <div class="row mt-5 mb-5">
+                            <div class="col-4">
+                                <img src="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" alt="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" width="40px">
+                                <span class="text-light" style="font-size: 16px; margin-left: 5%;">Hotel</span>
+                            </div>
+                            <div class="col-5">
+                                <img src="{{ asset('assets-web/img/icon/plane-umrah.png')}}" alt="{{ asset('assets-web/img/icon/plane-umrah.png')}}" height="40px">
+                                <span class="text-light" style="font-size: 16px; margin-left: 5%;">Pesawat</span>
+                            </div>
+                        </div>
+                        <a href="{{ url('/package/wisata-halal') }}" class="btn btn-success btn-large mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                     </div>
-                @endforeach
+                    @foreach($package_product_wisata_halal as $wisata_halal)
+                        <div class="col-lg-3 col-md-4 my-3">
+                            @include('pages.landingPage.partials.cardPackage', [
+                                'url' => url('/package', $wisata_halal['id_packet']),
+                                'url_banner' => $wisata_halal['url_banner'],
+                                'name' => $wisata_halal['name']
+                            ])
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
@@ -244,9 +250,9 @@
                 @foreach($experience as $experience)
                     <div class="card card-bordered" style="margin-top: 6%; margin-bottom:5%;">
                         <div class="card-body p-5">
-                            <img src="{{ $experience['image'] }}" style="height: 100%" alt="{{ $experience['image'] }}">
-                            <h5 class="card-title mt-4">{{ $experience['title'] }}</h5>
-                            <span class="card-title mt-4">{{ $experience['description'] }}</span>
+                            <img style="height:'100%';" src="{{ $experience['image'] }}" alt="{{ $experience['image'] }}">
+                            <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience['title'] }}</div>
+                            <div class="text-weight-400 fs-16">{{ $experience['description'] }}</div>
                         </div>
                     </div>
                 @endforeach
@@ -257,7 +263,7 @@
 
 
     <!-- Testimonial Start -->
-    <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-5.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
+    <div class="container-fluid py-5 bg-image-5">
         <div class="container" style="margin-top: 5%;">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h1 class="text-drak display-5 mb-5">Apa kata mereka tentang UMRA.ID?</h1>
@@ -266,15 +272,12 @@
                 @foreach($experience2 as $experience2)
                     <div class="testimonial-item" style="margin-bottom: 5%;">
                         <div class="bg-white testimonial-text border rounded p-4 pt-5" style="margin-bottom: 10%">
-                            {{-- <div class="btn-square bg-white border rounded-circle">
-                                <i class="fa fa-quote-right fa-2x text-primary"></i>
-                            </div> --}}
-                            <h5>{{ $experience2['title'] }}</h5>
-                            {{ $experience2['description'] }}
+                            <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience2['title'] }}</div>
+                            <div class="text-weight-400 fs-16">{{ $experience2['description'] }}</div>
                         </div>
-                        <img class="rounded-circle mb-3" src="{{ asset('assets-web/img/users/user-1.jpg')}}" style="width: 10%; height:10%;" alt="">
-                        <h4 class="text-drak">Husein</h4>
-                        <span class="text-opacity">Profession</span>
+                        <img style="width: 10%; height:10%;" class="rounded-circle mb-5" src="{{ asset('assets-web/img/users/user-1.jpg')}}" alt="{{ asset('assets-web/img/users/user-1.jpg')}}">
+                        <h4 class="text-drak">{{ $experience2['name'] }}</h4>
+                        <span class="text-tertiary">{{ $experience2['username'] }}</span>
                     </div>
                 @endforeach
             </div>
@@ -284,16 +287,16 @@
 
 
     <!-- Mitra Start -->
-    <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-4.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
+    <div class="container-fluid py-5 bg-image-4">
         <div class="container">
             <div class="text-white text-center mx-auto" style="max-width: 600px;margin-top:5%">
                 <h1 class="display-5 text-white mb-5">Kami memiliki 150+ Mitra Umra di seluruh Indonesia</h1>
             </div>
             <div class="text-white text-center mx-auto" style="max-width: 800px;">
-                <p class="text-opacity">UMRA.ID mengajak anda sebagai perusahaan atau perseorangan untuk bergabung menjadi Mitra Umra untuk mendapatkan manfaat yang saling menguntungkan!</p>
+                <p class="text-light">UMRA.ID mengajak anda sebagai perusahaan atau perseorangan untuk bergabung menjadi Mitra Umra untuk mendapatkan manfaat yang saling menguntungkan!</p>
             </div>
             <div class="text-white text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                <p class="text-opacity">UMRA.ID juga diakselerasi dengan model New Retail dengan pendekatan O2O (Offline to Offline).</p>
+                <p class="text-light">UMRA.ID juga diakselerasi dengan model New Retail dengan pendekatan O2O (Offline to Offline).</p>
             </div>
             <div class="row mb-5">
                 <div class="col-md-6">
@@ -312,7 +315,11 @@
                         </div>
                     </div>
                     @endforeach
-                    <button class="btn-transparent text-white mt-3 mb-5" style="width: 100%;">Lihat Semua <i class="fas fa-chevron-right"></i></button>
+                    <a href="{{ url('/mitra') }}">
+                        <button class="btn-transparent text-white mt-3 mb-5" style="width: 100%;">
+                            Lihat Semua <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </a>
                 </div>
                 <div class="col-md-6">
                     <div class="card card-bordered" style="width: 100$;">
@@ -334,7 +341,7 @@
                             </div>
                             <hr>
                             <div class="mt-5">
-                                <button class="btn btn-success" style="width: 100%">Gabung Sekarang</button>
+                                <a href="https://zeals.asia/" class="btn btn-success" style="width: 100%">Gabung Sekarang</a>
                             </div>
                         </div>
                     </div>
@@ -347,12 +354,16 @@
                 <div class="col-md-8 p-0" style="margin-top: 3%; margin-bottom:4%;">
                     <div class="text-white" style="max-width: 100%;margin-top:3%; margin-left:7%">
                         <h1 class="display-5 text-white mb-5">Jadi Affiliate Umra bisa dapat untung?</h1>
-                        <h2 class="text-opacity text-white">Siapa saja bisa menjadi affiliate Umra hanya dengan gawai anda,</h2>
-                        <h2 class="text-opacity text-white">Share referral & jadi Digital Referrer Umrapreneur</h2>
+                        <h2 class="text-tertiary text-white">Siapa saja bisa menjadi affiliate Umra hanya dengan gawai anda,</h2>
+                        <h2 class="text-tertiary text-white">Share referral & jadi Digital Referrer Umrapreneur</h2>
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-top: 4%; margin-bottom:4%;">
-                    <center><button class="btn-white-large mb-5" style="width: 70%;"><h3 class="text-green">Daftar Affiliate</h3></button></center>
+                    <center>
+                        <button class="btn-white-large mb-5" style="width: 70%;">
+                            <h3 class="text-green">Daftar Affiliate</h3>
+                        </button>
+                    </center>
                     <div class="text-white text-center mx-auto" style="max-width:70%;margin-top:4%">
                         <a href="#" class="text-white">Syarat & Ketentuan</a>
                     </div>
@@ -368,7 +379,7 @@
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;margin-top:4%;margin-bottom:4%">
                 <h1 class="display-5 mb-5">Partner Terpercaya Kami</h1>
-                <h3 class="text-opacity">Kami memiliki partner yang terpercaya di bidangnya, dan kami selalu berusaha memberikan pengalaman terbaik untuk ibadah Anda</h3>
+                <h3 class="text-tertiary">Kami memiliki partner yang terpercaya di bidangnya, dan kami selalu berusaha memberikan pengalaman terbaik untuk ibadah Anda</h3>
             </div>
 
             <div class="row justify-content-md-center" style="margin-bottom: 5%">

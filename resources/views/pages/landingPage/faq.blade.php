@@ -4,7 +4,7 @@
     <div class="container-fluid bg-green py-5 artikel">
         <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
             <h1 class="text-white font-normal-700 fs-44">Frequently Asked Questions (FAQ)</h1>
-            <h1 class="text-light font-normal-400 fs-16 mt-5">Jika tidak dapat menemukan jawaban dari pertanyaan anda, tanya kami lewat halaman <a href="{{ url('/contact-me') }}">Hubungi Kami</a></h1>
+            <h1 class="text-light font-normal-400 fs-16 mt-5">Jika tidak dapat menemukan jawaban dari pertanyaan anda, tanya kami lewat halaman <a href="{{ url('/contact-me') }}" class="text-light" style="text-decoration: underline;">Hubungi Kami</a></h1>
         </div>
     </div>
     <div class="container" style="position: relative;top: -35px;">

@@ -69,17 +69,17 @@ class LandingPageController extends Controller
         // Experience
         $experience = [
             [
-                'image' => asset('assets-web/img/image/keluarga.png'),
+                'image' => asset('assets-web/img/image/experience-1.png'),
                 'title' => 'Keluarga Bapak Dr. Ramadhan',
                 'description' => 'Cibubur, Jakarta Barat',
             ],
             [
-                'image' => asset('assets-web/img/image/keluarga.png'),
+                'image' => asset('assets-web/img/image/experience-2.png'),
                 'title' => 'Keluarga Bapak Dr. Ramadhan',
                 'description' => 'Cibubur, Jakarta Barat',
             ],
             [
-                'image' => asset('assets-web/img/image/keluarga.png'),
+                'image' => asset('assets-web/img/image/experience-3.png'),
                 'title' => 'Keluarga Bapak Dr. Ramadhan',
                 'description' => 'Cibubur, Jakarta Barat',
             ]
@@ -90,14 +90,15 @@ class LandingPageController extends Controller
             [
                 'title' => 'Ragu jadi Seru!',
                 'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
+                'name' => 'Husain',
+                'username' => 'Jamaah UMRAID 2020',
+                
             ],
             [
                 'title' => 'Mudahnya Umroh Privat',
                 'description' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
-            ],
-            [
-                'title' => 'Ragu jadi Seru!',
-                'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
+                'name' => 'Dr. Nurul',
+                'username' => 'Jamaah UMRAID 2020',
             ]
         ];
 

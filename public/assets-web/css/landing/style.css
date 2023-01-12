@@ -1,0 +1,46 @@
+/*** Banner Form ***/
+    .content-form {
+        position: relative;
+        top: -50px;
+    }
+
+    /*** Tab Version ***/
+    @media (max-width: 768px) and (min-width: 575.99px) {
+        .content-form {
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 0;
+            width: 100%;
+            padding-right: calc(var(--bs-gutter-x) * .5);
+            padding-left: calc(var(--bs-gutter-x) * .5);
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    /*** Mobile version ***/
+    @media (max-width:575.98px) {
+        .content-form {
+            position: unset;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    }
+
+/*** Package ***/
+    .content-package {
+        margin: auto;
+    }
+
+    @media (max-width:575.98px) {
+        .content-package {
+            margin: 20px 0;
+        }
+    }
+
+/*** Why Worship ***/
+@media (max-width:575.98px) {
+    .mw-80 {
+        width:80%; 
+        margin:auto;
+    }
+}

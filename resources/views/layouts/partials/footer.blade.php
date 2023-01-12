@@ -4,16 +4,18 @@
         <div class="row g-5">
             <div class="col-lg-4 col-md-6">
                 <a href="{{ url('/') }}"> 
-                    <img src="{{ asset('assets-web/img/background/icon-logo-footer.png') }}" alt="{{ asset('assets-web/img/background/icon-logo-footer.png') }}">
+                    <img class="mt-5 mb-5" src="{{ asset('assets-web/img/background/icon-logo-footer.png') }}" alt="{{ asset('assets-web/img/background/icon-logo-footer.png') }}">
                 </a>
-                <div class="pt-5">PT. UMRAH MANDIRI RILLAH AMANAH</div>
-                <div>SK. PPIU NO 177 TAHUN 2020</div>
+                <div class="text-tertiary font-normal-600 fs-16">
+                    <div>PT. UMRAH MANDIRI RILLAH AMANAH</div>
+                    <div>SK. PPIU NO 177 TAHUN 2020</div>
+                </div>
 
-                <div class="d-flex pt-2">
-                    <a class="btn btn-square btn-outline-dark rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-outline-dark rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-outline-dark rounded-circle me-2" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square btn-outline-dark rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                <div class="d-flex mt-5">
+                    <a class="btn btn-square btn-success rounded-circle me-2" href="https://web.facebook.com/umraidn?_rdc=1&_rdr"><i class="fab fa-facebook-f" style="margin-left: 6px;"></i></a>
+                    <a class="btn btn-square btn-success rounded-circle me-2" href="https://twitter.com/umra_idn"><i class="fab fa-twitter" style="margin-left: 6px;"></i></a>
+                    <a class="btn btn-square btn-success rounded-circle me-2" href="https://instagram.com/umra.id"><i class="fab fa-instagram" style="margin-left: 6px;"></i></a>
+                    <a class="btn btn-square btn-success rounded-circle me-2" href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.."><i class="fab fa-whatsapp" style="margin-left: 6px;"></i></a>
                 </div>
             </div>
             <div class="col-lg-8">

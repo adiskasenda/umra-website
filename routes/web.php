@@ -17,6 +17,7 @@ use App\Http\Controllers\{
     LandingPage\ContactMeController,
     LandingPage\LocationMeController,
     LandingPage\FaqController,
+    LandingPage\MitraController,
 
     NewsPage\NewsController,
     Transaction\TransactionController,
@@ -81,6 +82,9 @@ Route::get('/contact-me', [ ContactMeController::class, 'index' ]);
 
 // Location Me
 Route::get('/location-me', [ LocationMeController::class, 'index' ]);
+
+// Mitra
+Route::get('/mitra', [ MitraController::class, 'index' ]);
 
 // Faq
 Route::get('/faq', [ FaqController::class, 'index' ]);
