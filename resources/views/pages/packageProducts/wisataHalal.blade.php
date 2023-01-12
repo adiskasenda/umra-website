@@ -37,7 +37,7 @@
         <div class="container">
             <div class="row g-4 align-items-center">
                 @foreach($package_products as $package_product)
-                    <div class="col-md-3">
+                    <div class="col-lg-3 col-md-4">
                         <!-- package Product -->
                         @include('pages.packageProducts.partials.cardPackage', [
                             'url' => url('/package', $package_product['id_packet']),

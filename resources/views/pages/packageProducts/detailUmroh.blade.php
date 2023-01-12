@@ -64,10 +64,10 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="row mt-5">
-                                                <div class="col-2">
+                                                <div class="col-lg-2 col-md-4 col-2">
                                                     <img src="{{ asset('assets-web/img/icon/calendar-umroh.png') }}" alt="{{ asset('assets-web/img/icon/calendar-umroh.png') }}">
                                                 </div>
-                                                <div class="col-10">
+                                                <div class="col-lg-10 col-md-8 col-10">
                                                     <div class="text-tertiary font-normal-400 fs-14">Tanggal Keberangkatan</div>
                                                     <div class="font-normal-600 fs-14">{{ date('d M Y', strtotime($package_product['date_end'])) }}</div>
                                                 </div>
@@ -75,10 +75,10 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="row mt-5">
-                                                <div class="col-2">
-                                                <img src="{{ asset('assets-web/img/icon/time-umroh.png') }}" alt="{{ asset('assets-web/img/icon/time-umroh.png') }}">
+                                                <div class="col-lg-2 col-md-4 col-2">
+                                                    <img src="{{ asset('assets-web/img/icon/time-umroh.png') }}" alt="{{ asset('assets-web/img/icon/time-umroh.png') }}">
                                                 </div>
-                                                <div class="col-10">
+                                                <div class="col-lg-10 col-md-8 col-10">
                                                     <div class="text-tertiary font-normal-400 fs-14">Durasi Perjalanan</div>
                                                     <div class="font-normal-600 fs-14">{{ $package_product['day_duration'] }} Hari</div>
                                                 </div>
@@ -284,7 +284,7 @@
             <div class="row">
                 <!-- Paket Lain -->
                 @foreach( $other_packages as $other_package )
-                    <div class="col-md-3">
+                    <div class="col-lg-3 col-md-4">
                         @include('pages.packageProducts.partials.cardPackage', [
                             'url' => url('/package', $package_product['id_packet']),
                             'url_banner' => $package_product['url_banner'],

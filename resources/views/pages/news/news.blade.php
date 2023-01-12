@@ -41,7 +41,7 @@
         <div class="container">
             <div class="row g-4 align-items-center">
                 @foreach($news as $new)
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-md-4">
                         @include('pages.news.partials.cardNews', [
                             'url' => url('/news', $new['id_blog']),
                             'url_banner' => $new['url_banner'],
