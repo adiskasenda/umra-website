@@ -28,7 +28,7 @@ class MitraController extends Controller
             ]
         ];
 
-        return view('pages.landingPage.locationMe', [
+        return view('pages.landingPage.mitra', [
             'mitras' => $mitras
         ]);
     }

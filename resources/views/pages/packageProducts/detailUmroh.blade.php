@@ -221,11 +221,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="text-dark font-normal-700 fs-20">Negara yang dikunjungi</div>
-                            <div class="text-tertiary font-normal-500 fs-14">{{ $package_product['tour_country'] }}</div>
+
+                            @foreach( explode(',', $package_product['tour_country']) as $tour_country )
+                                <div class="text-tertiary font-normal-500 fs-14">
+                                    {{ $tour_country }}
+                                </div>
+                            @endforeach
                         </div>
                         <div class="col-md-6">
                             <div class="text-dark font-normal-700 fs-20">Kota yang dikunjungi</div>
-                            <div class="text-tertiary font-normal-500 fs-14">{{ $package_product['tour_city'] }}</div>
+                            
+                            @foreach( explode(',', $package_product['tour_city']) as $tour_city )
+                                <div class="text-tertiary font-normal-500 fs-14">
+                                    {{ $tour_city }}
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
