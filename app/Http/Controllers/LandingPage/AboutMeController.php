@@ -15,10 +15,10 @@ class AboutMeController extends Controller
                 'image' => asset('assets-web/img/image/kegiatan-1.png')
             ],
             [
-                'image' => asset('assets-web/img/image/kegiatan-1.png')
+                'image' => asset('assets-web/img/image/kegiatan-2.png')
             ],
             [
-                'image' => asset('assets-web/img/image/kegiatan-1.png')
+                'image' => asset('assets-web/img/image/kegiatan-3.png')
             ]
         ];
 
@@ -29,6 +29,12 @@ class AboutMeController extends Controller
             ],
             [
                 "url" => asset('assets-web/img/partner/partner-2.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-3.png')
+            ],
+            [
+                "url" => asset('assets-web/img/partner/partner-4.png')
             ]
         ];
 
