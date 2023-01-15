@@ -1,6 +1,6 @@
 <!-- Footer Start -->
 <div class="container-fluid text-dark footer bg-white wow fadeIn" data-wow-delay="0.1s">
-    <div class="container mt-20 mb-20">
+    <div class="container pt-20 pb-20">
         <div class="row">
             <div class="col-lg-4 col-md-5">
                 <a href="{{ url('/') }}"> 
@@ -45,24 +45,40 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 mt-10">
                         <h4 class="text-dark mb-4">Lainya</h4>
-                        <a class="btn btn-link" href="#">Syarat & Ketentuan</a>
-                        <a class="btn btn-link" href="#">Kebijakan data pengguna</a>
+                        <a class="btn btn-link url-term-and-condition" href="#" target="_blank">Syarat & Ketentuan</a>
+                        <a class="btn btn-link url-privacy-policy" href="#" target="_blank">Kebijakan data pengguna</a>
                         <a class="btn btn-link" href="{{ url('/faq') }}">FaQ</a>
                     </div>
                 </div>
             </div>
         </div>
         <hr/>
+        <div class="text-center mt-10">
+            Copyright &copy; 2019 - 2023, UMRA.ID.
+        </div>
     </div>
 </div>
 <!-- Footer End -->
 
 <!-- Copyright Start -->
-<div class="container-fluid copyright py-5 bg-white">
+<!-- <div class="container-fluid copyright py-5 bg-white">
     <div class="container py-5">
-        <div class="text-center">
-            Copyright &copy; 2019 - 2023, UMRA.ID.
-        </div>
+        
     </div>
-</div>
+</div> -->
 <!-- Copyright End -->
+
+@push('page_js')
+    <script>
+        $.ajax({
+            url: "{{ url('/api/configuration/META') }}",
+            dataType: "json",
+            type: 'GET',
+            success: function(response) {
+                $('.url-term-and-condition').attr('href', response.data[2].value_configuration);
+                $('.url-privacy-policy').attr('href', response.data[5].value_configuration);
+            },
+           
+        })
+    </script>
+@endpush

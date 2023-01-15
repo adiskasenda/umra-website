@@ -19,7 +19,7 @@
                         <div class="col-md-10">
                             <div class="row">
                                 <div class="col-sm-8" style="margin:auto;">
-                                    <label for="specificSizeInputGroupUsername">Cari Berita Terkini mengenai perjalanan ibadah  umroh Anda</label>
+                                    <label for="specificSizeInputGroupUsername" class="fs-16" style="font-weight: bold;">Cari Berita Terkini mengenai perjalanan ibadah  umroh Anda</label>
                                 </div>
                                 <div class="col-sm-4 justify-content-md-center">
                                     <input type="text" id="search" placeholder="Pencarian" name="search" value="{{ $search }}" class="form-control" required/>

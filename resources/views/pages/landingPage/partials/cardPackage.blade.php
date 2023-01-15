@@ -6,7 +6,7 @@
             
             <div class="text-tertiary"> 
                 <img class="icon-package" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}">  
-                Tersisa 24 Pax
+                Tersisa  {{ $quota }} Pax
             </div>
             <div class="mb-3 text-tertiary"> 
                 <img class="icon-package" src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}">  
@@ -16,7 +16,7 @@
             <div class="row mb-3">
                 <div class="col-6">
                     <div class="text-dark">Mulai dari</div>
-                    <div class="text-tertiary" style="text-decoration: line-through;">Rp. 30.000.000</div>
+                    <div class="text-tertiary" style="text-decoration: line-through;">Rp. {{ number_format($price + ( $price * $percent_markup )) }}</div>
                 </div>
                 <div class="col-6" style="margin:auto;">
                     <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}"/>
@@ -24,7 +24,7 @@
             </div>
 
             <div class="text-green">
-                <span style="font-size: 20px;">Rp. 28.500.000</span>
+                <span style="font-size: 20px;">Rp. {{ number_format($price) }}</span>
                 <span class="text-tertiary">/ Orang</span> 
             </div>
         </div>
@@ -34,3 +34,5 @@
 <!-- $url -->
 <!-- $url_banner -->
 <!-- $name -->
+<!-- $percent_markup -->
+<!-- $price -->

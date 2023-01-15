@@ -103,7 +103,6 @@
 
         $(document).scroll(function () {
             var $nav = $(".fixed-top");
-            console.log( $(this).scrollTop(), $nav.height() );
             $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
         });
     </script>

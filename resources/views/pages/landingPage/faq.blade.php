@@ -27,12 +27,12 @@
                 <div class="accordion mb-5" id="kt_accordion_{{ $faq['id_faq'] }}">
                     <div class="accordion-item">
                         <div class="accordion-header" id="kt_accordion_{{ $faq['id_faq'] }}_header_{{ $faq['id_faq'] }}">
-                            <button @if ( $key == 0 ) class="accordion-button fs-4 fw-semibold" aria-expanded="true" @else class="accordion-button fs-4 fw-semibold collapsed" aria-expanded="true" @endif  type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}" aria-controls="kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}">
+                            <button style="font-weight: bold;" @if ( $key == 0 ) class="accordion-button fs-20 fw-semibold" aria-expanded="true" @else class="accordion-button fs-20 fw-semibold collapsed" aria-expanded="true" @endif  type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}" aria-controls="kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}">
                                 {{ $faq['question'] }}
                             </button>
                         </div>
                             <div id="kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}" @if ( $key == 0 ) class="accordion-collapse collapse show" @else class="accordion-collapse collapse" @endif aria-labelledby="kt_accordion_{{ $faq['id_faq'] }}" data-bs-parent="#kt_accordion_{{ $faq['id_faq'] }}_header_{{ $faq['id_faq'] }}">
-                            <div class="accordion-body">
+                            <div class="accordion-body fs-16">
                                 {{ $faq['answer'] }}
                             </div>
                         </div>
