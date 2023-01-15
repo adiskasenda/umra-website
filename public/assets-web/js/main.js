@@ -48,8 +48,9 @@
 
 
     // Experience carousel
-    $(".testimonial-carousel").owlCarousel({
+    $(".experience-carousel").owlCarousel({
         autoplay: true,
+        autoplayTimeout:5000,
         smartSpeed: 1000,
         center: true,
         margin: 24,
@@ -72,12 +73,57 @@
         }
     });
 
-    // setTimeout(() => {
-    //     var carouselData = $(".testimonial-carousel").data();
-    //     var carouselOptions = carouselData['owl.carousel'].options;
-    //         carouselOptions.autoplayTimeout = 6000;
-    //     $(".testimonial-carousel").trigger('refresh.owl.carousel');
-    // }, 2000);
+    // Testimonial carousel
+    $(".testimonial-carousel").owlCarousel({
+        autoplay: true,
+        autoplayTimeout:8000,
+        smartSpeed: 1000,
+        center: true,
+        margin: 24,
+        dots: true,
+        loop: true,
+        nav : false,
+        responsive: {
+            0:{
+                items:1
+            },
+			576:{
+                items:1
+            },
+            768:{
+                items:2
+            },
+            992:{
+                items:2
+            }
+        }
+    });
+
+    // Event carousel
+    $(".event-carousel").owlCarousel({
+        autoplay: true,
+        autoplayTimeout:5000,
+        smartSpeed: 1000,
+        center: true,
+        margin: 24,
+        dots: true,
+        loop: true,
+        nav : false,
+        responsive: {
+            0:{
+                items:1
+            },
+			576:{
+                items:1
+            },
+            768:{
+                items:2
+            },
+            992:{
+                items:3
+            }
+        }
+    });
     
 })(jQuery);
 

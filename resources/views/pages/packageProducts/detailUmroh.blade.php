@@ -23,7 +23,8 @@
                             <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" height="36px"/>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</button>
+
+                    <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
                 </div>
                 <div class="col-md-8">
                     @if ( $package_product['flag_umroh'] == 0 )

@@ -20,7 +20,7 @@
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
                                     </div>
                                     <div class="col-10">
-                                        <div style="font-size: 16px;">Paket Umrah</div>
+                                        <div class="fs-16" style="font-weight: bold;">Paket Umrah</div>
                                         <div>Perjalanan ibadah umroh dengan nyaman & <br/> fasilitas lengkap dari keberangkatan</div>
                                     </div>
                                 </div>
@@ -31,7 +31,7 @@
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
                                     </div>
                                     <div class="col-10">
-                                        <div style="font-size: 16px;">Paket Umrah Plush+</div>
+                                        <div class="fs-16" style="font-weight: bold;">Paket Umrah Plush+</div>
                                         <div>Ibadah umroh dengan fasilitas terbaik agar <br/> ibadah anda lebih kusyu.</div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
                                     </div>
                                     <div class="col-10">
-                                        <div style="font-size: 16px;">Wisata Halal</div>
+                                        <div class="fs-16" style="font-weight: bold;">Wisata Halal</div>
                                         <div>Berlibur & mengungjungi negara, kota, serta <br/> destinasi halal bersama UMRA.</div>
                                     </div>
                                 </div>

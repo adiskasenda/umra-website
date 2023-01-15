@@ -25,7 +25,7 @@
                                 <div class="col-md-10">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <label for="specificSizeInputGroupUsername">Layanan</label>
+                                            <label for="specificSizeInputGroupUsername" class="fs-16" style="font-weight: bold;">Layanan</label>
                                             <input id="invisible_id" name="invisible" type="hidden" value="secret">
                                             <select class="form-select mt-2" name="layanan" data-control="select2" data-placeholder="Select an option">
                                                 @foreach($layanan as $layanan)
@@ -34,11 +34,11 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label for="specificSizeInputGroupUsername">Tanggal Keberangkatan</label>
+                                            <label for="specificSizeInputGroupUsername" class="fs-16" style="font-weight: bold;">Tanggal Keberangkatan</label>
                                             <input type="text" placeholder="Tanggal Keberangkatan" name="departure_date" class="form-control mt-2" required/>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label for="specificSizeInputGroupUsername">Tanggal Kepulangan</label>
+                                            <label for="specificSizeInputGroupUsername" class="fs-16" style="font-weight: bold;">Tanggal Kepulangan</label>
                                             <input type="text" placeholder="Tanggal Kepulangan" name="return_date" class="form-control mt-2" required/>
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-4 content-package">
-                    <div class="mb-4 text-white text-weight-700 fs-44" style="font-weight: bold;">Paket Umroh Plus+</div>
+                    <div class="mb-4 text-white text-weight-700 fs-44" style="font-weight: bold;">Paket Umroh+</div>
                     <div class="mb-4 text-light text-weight-400 fs-20">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</div>
                     <div class="row mt-5 mb-5">
                         <div class="col-4">
@@ -158,29 +158,29 @@
     <div class="container-fluid py-5">
         <div class="container mt-20 mb-20">
             <div class="text-center">
-                <div class="text-dark text-weight-700 fs-44" style="font-weight: bold;">Mengapa ibadah Umrah & wisata bersama Umra.ID?</div>
-                <div class="text-tertiary text-weight-400 fs-20">Kami selalu berusaha konsisten memberikan pelayanan terbaik kepada jamaah yang berangkat beribadah bersama kami sejak 2012 UMRA telah memiliki izin resmi untuk melayani anda.</div>
+                <div class="text-dark text-weight-700 fs-44" style="font-weight: bold;">Mengapa ibadah Umrah & wisata bersama UMRA.ID ?</div>
+                <div class="text-tertiary text-weight-400 fs-20">Kami berkomitmen memberikan pelayanan terbaik untuk Umroh Anda. Tapi kami tahu Anda juga memerlukan kebebasan dalam menentukan perjalanan.</div>
             </div>
             <div class="row mt-10 mb-10 text-dark text-center">
                 <div class="col-sm-6 col-lg-3 mt-5 mb-5">
                     <img src="{{ asset('assets-web/img/icon/izin.png') }}" alt="{{ asset('assets-web/img/icon/izin.png') }}">
                     <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Berizin Resmi</div>
-                    <div class="text-weight-400 fs-16 mw-80">Memiliki izin resmi untuk perjalanan umrah dari KEMENAG sejak 2012</div>
+                    <div class="text-weight-400 fs-16 mw-80">Berijin resmi Kementrian Agama (Ijin PPIU dan PIHK)</div>
                 </div>
                 <div class="col-sm-6 col-lg-3 mt-5 mb-5">
                     <img src="{{ asset('assets-web/img/icon/asuransi.png') }}" alt="{{ asset('assets-web/img/icon/asuransi.png') }}">
                     <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Asuransi Perjalanan</div>
-                    <div class="text-weight-400 fs-16 mw-80">Setiap perjalanan jamaah diberikan kebebasan memilih asuransi terbaik</div>
+                    <div class="text-weight-400 fs-16 mw-80">Perjalanan Anda aman & nyaman dengan perlindungan maksimal</div>
                 </div>
                 <div class="col-sm-6 col-lg-3 mt-5 mb-5">
                     <img src="{{ asset('assets-web/img/icon/hotel.png') }}" alt="{{ asset('assets-web/img/icon/hotel.png') }}">
                     <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Hotel Berbintang</div>
-                    <div class="text-weight-400 fs-16 mw-80">Kami telah bekerjasama dengan hotel terbaik agar ibadah anda lebih khusyu’</div>
+                    <div class="text-weight-400 fs-16 mw-80">Bekerjasama dengan lebih dari 270 hotel untuk akomodasi</div>
                 </div>
                 <div class="col-sm-6 col-lg-3 mt-5 mb-5">
                     <img src="{{ asset('assets-web/img/icon/bantuan.png') }}" alt="{{ asset('assets-web/img/icon/bantuan.png') }}">
                     <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Bantuan Setiap Saat</div>
-                    <div class="text-weight-400 fs-16 mw-80">Layanan pelanggan kami beroperasi sepanjang waktu untuk membantu anda.</div>
+                    <div class="text-weight-400 fs-16 mw-80">Tersedia Umroh Paket dan Umroh "Do It Yourself" bagi Anda yang perlu kebebasan</div>
                 </div>
             </div>
         </div>
@@ -204,8 +204,8 @@
         <div class="mt-20 mb-20">
             <div class="container mb-5">
                 <div class="text-center">
-                    <div class="text-white text-weight-700 fs-44" style="font-weight: bold;">Explore & Berwisata Keliling Jazirah Arab</div>
-                    <div class="text-light text-weight-400 fs-20">Berangkat beribadah tidak pernah semenyenangkan ini dengan bebas atur fasilitas hotel, pesawat, asuransi, visa & destinasi wisata halal impian anda.</div>
+                    <div class="text-white text-weight-700 fs-44" style="font-weight: bold;">Eksplorasi Umroh dan Destinasi Sejarah Islam</div>
+                    <div class="text-light text-weight-400 fs-20">Umroh saja tak cukup? Eksplorasi pilihan Umroh plus destinasi wisata lainnya yang bersejarah.</div>
                 </div>
             </div>
             <div class="container bg-image-3">
@@ -247,9 +247,9 @@
     <div class="container-fluid py-5">
         <div class="container mt-20 mb-20">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="display-5 mb-5">Pengalaman ibadah mereka bersama UMRA.ID</h1>
+                <h1 class="display-5 mb-5">Pengalaman Ibadah bersama UMRA.ID</h1>
             </div>
-            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
+            <div class="owl-carousel experience-carousel wow fadeInUp" data-wow-delay="0.3s">
                 @foreach($experience as $experience)
                     <div class="card card-bordered" style="margin-top: 6%; margin-bottom:5%;">
                         <div class="card-body p-5">
@@ -268,10 +268,10 @@
     <!-- Testimonial Start -->
     <div class="container-fluid py-5 bg-image-5">
         <div class="container mt-20 mb-20">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <div class="text-center mx-auto">
                 <h1 class="text-drak display-5 mb-5">Apa kata mereka tentang UMRA.ID?</h1>
             </div>
-            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
+            <div class="owl-carousel testimonial-carousel">
                 @foreach($experience2 as $experience2)
                     <div class="testimonial-item" style="margin-bottom: 5%;">
                         <div class="bg-white testimonial-text border rounded p-4 pt-5" style="margin-bottom: 10%">
@@ -292,17 +292,12 @@
     <!-- Mitra Start -->
     <div class="container-fluid py-5 bg-image-4">
         <div class="container mt-20 mb-20">
-            <div class="text-white text-center mx-auto" style="max-width: 600px;">
-                <h1 class="display-5 text-white mb-5">Kami memiliki 150+ Mitra Umra di seluruh Indonesia</h1>
-            </div>
-            <div class="text-white text-center mx-auto" style="max-width: 800px;">
-                <p class="text-light">UMRA.ID mengajak anda sebagai perusahaan atau perseorangan untuk bergabung menjadi Mitra Umra untuk mendapatkan manfaat yang saling menguntungkan!</p>
-            </div>
-            <div class="text-white text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                <p class="text-light">UMRA.ID juga diakselerasi dengan model New Retail dengan pendekatan O2O (Offline to Offline).</p>
+            <div class="text-white text-center mx-auto">
+                <div class="text-white text-weight-700 fs-44 mb-5">Kesempatan Bergabung sebagai Mitra Pemasaran</div>
+                <div class="text-light text-weight-400 fs-20 mb-5">UMRA.ID membuka kesempatan bagi perusahaan atau badan usaha untuk bergabung sebagai CABANG dan perseorangan untuk menjadi AFILIATOR atau RESELLER</div>
             </div>
             <div class="row mb-5">
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     @foreach($mitras as $mitra)
                     <div class="card mb-2" style="width: 100$;">
                         <div class="card-body">
@@ -323,35 +318,47 @@
                             Lihat Semua <i class="fas fa-chevron-right"></i>
                         </button>
                     </a>
-                </div>
-                <div class="col-md-6">
+                </div> -->
+                <div class="col-md-6 mt-5">
                     <div class="card card-bordered" style="width: 100$;">
                         <div class="card-body">
+                            <div class="text-weight-60 fs-20" style="font-weight: bold;">Gabung Sebagai Agen Penjualan</div>
+                            <div class="text-weight-400 fs-16">Manfaat sebagai menjadi agen penjualan dan pelayanan umroh kami :</div>
                             <div>
-                                <h1>Gabung Sebagai Agen Penjualan</h1>
+                                <i class="fa-solid fa-circle-check" style="color: green"></i>  
+                                Eksklusif melayani wilayah tertentu (kota/ kabupaten)
                             </div>
                             <div>
-                               <p>Jadi agen penjualan, pelayanan & mendaftarkan calon jamaah akan lebih mudah menggunakan aplikasi dan ekosistem UMRA.</p>
+                                <i class="fa-solid fa-circle-check" style="color: green"></i>  
+                                Keuntungan ganda dari komisi dan harga jual
                             </div>
                             <div>
-                                <i class="fa-solid fa-circle-check" style="color: green"></i>  Dibantu pemasaran oleh tim digital marketing UMRA.ID
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-circle-check" style="color: green"></i>  Konsulitasi strategi penjualan dengan UMRA
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-circle-check" style="color: green"></i>  Share profit transaksi perjalanan jamaah yang selesai
+                                <i class="fa-solid fa-circle-check" style="color: green"></i>  
+                                Dukungan, branding dan konsultansi penjualan
                             </div>
                             <hr>
                             <div class="mt-5">
-                                <a href="https://zeals.asia/" class="btn btn-success" style="width: 100%">Gabung Sekarang</a>
+                                <a href="https://zeals.asia/" class="btn btn-success" style="width: 100%;">Yuk Gabung!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-5">
+                    <div class="card bg-image-1" style="width: 100$;">
+                        <div class="card-body">
+                            <div class="text-weight-60 fs-20 text-white" style="font-weight: bold;">Jualan umroh dengan modal media sosial? Bisa!</div>
+                            <div class="text-weight-400 fs-16 text-light">Siapa saja bisa mendapatkan keuntungan dengan menjadi afiliator umroh, menggunakan media sosial dan chat messenger sebagi sarana jualan. Yuk gabung!</div>
+                            <hr>
+                            <div class="mt-5">
+                                <a href="https://zeals.asia/" class="btn mb-4" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
+                                <!-- <a href="#" class="text-white" style="margin-left:auto; margin-right:auto; width:100%:">Syarat & Ketentuan</a> -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <hr class="text-white mt-3">
+            <!-- <hr class="text-white mt-3">
 
             <div class="bg-image-1">
                 <div class="row p-2">
@@ -371,7 +378,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Mitra End -->
@@ -379,13 +386,13 @@
 
     <!-- Partner Start -->
     <div class="container-fluid py-5">
-        <div class="container">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;margin-top:4%;margin-bottom:4%">
-                <h1 class="display-5 mb-5">Partner Terpercaya Kami</h1>
-                <h3 class="text-tertiary">Kami memiliki partner yang terpercaya di bidangnya, dan kami selalu berusaha memberikan pengalaman terbaik untuk ibadah Anda</h3>
+        <div class="container mt-20 mb-20">
+            <div class="text-center mx-auto">
+                <div class="text-weight-700 fs-44">Partner Terpercaya Kami</div>
+                <div class="text-tertiary text-weight-400 fs-20 mb-5">Kami memiliki partner yang terpercaya di bidangnya, dan kami selalu berusaha memberikan pengalaman terbaik untuk ibadah Anda</div>
             </div>
 
-            <div class="row justify-content-md-center" style="margin-bottom: 5%">
+            <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
                     <div class="col-md-3 mt-5">
                         <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}" width="100%">
@@ -398,19 +405,17 @@
 
 
     <!-- Artikel Start -->
-    <div class="container-fluid bg-green py-5 artikel">
-        <div class="container py-5">
-            <div class="row text-white justify-content-between mb-5">
-                <div class="col-md-6 col-sm-12">
-                    <h1 class="text-white display-5">Artikel Tentang Kami</h1>
-                </div>
-                <div class="col-md-6 col-sm-12 text-md-end">
+    <div class="container-fluid bg-green py-5">
+        <div class="container mt-20 mb-20">
+            <div class="text-center mx-auto">
+                <div class="text-white text-weight-700 fs-44">Liputan Media dan Artikel tentang Kami</div>
+                <!-- <div class="col-md-6 col-sm-12 text-md-end">
                     <a href="{{ url('/news') }}" class="text-white">Lihat Semua <i class="fas fa-chevron-right"></i></a>
-                </div>
+                </div> -->
             </div>
 
             <div class="row g-4 align-items-center">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12">
                     <div class="card card-bordered" style="margin-top: 6%; margin-bottom:5%; display:flex;">
                         <div class="card-body p-5">
                             <img src="{{ $experience['image'] }}" alt="{{ $experience['image'] }}" width="100%">
@@ -419,7 +424,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-12">
                     <div class="row">
                         @foreach($news as $new)
                             <div class="col-md-6 pt-3">
@@ -429,6 +434,10 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center">
+                <a href="{{ url('/news') }}" class="btn text-white mt-5" style="border-color:white;">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+            </div>
+            
         </div>
     </div>
     <!-- Artikel End -->

@@ -135,8 +135,10 @@ class LandingPageController extends Controller
         ];
 
         // Artikel
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/4/id_blog/desc');
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/5/id_blog/desc');
         $news = json_decode($response->getBody(), true);
+        $new = $news['data']['content'][0];
+        unset($news['data']['content'][0]);
 
         return view('pages.landingPage.landingPage', [
             'layanan' => $layanan,
@@ -148,8 +150,9 @@ class LandingPageController extends Controller
             'banner3' => $banner3,
             'experience' => $experience,
             'experience2' => $experience2,
-            "mitras" => $mitras,
+            'mitras' => $mitras,
             'partners' => $partners,
+            'new' => $new,
             'news' => $news['data']['content'],
         ]);
     }
