@@ -6,7 +6,7 @@
         <div class="row">
             @foreach( $otherMenus as $otherMenu )
                 <div class="col-md-6 mb-8">
-                    <div class="card" style="width: 100$;">
+                    <div class="card card-bordered" style="width: 100$;">
                         <div class="card-body">
                             <div class="row mb-5">
                                 <div class="col-3" style="margin:auto;">
@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-grid gap-2">
-                                        <a href="{{ $otherMenu['url'] }}" class="btn btn-success btn-block">Lihat Selengapnya</a>
+                                        <a href="{{ $otherMenu['url'] }}" class="btn btn-success" style="width:100%;">Lihat Selengapnya</a>
                                     </div>
                                 </div>
                             </div>

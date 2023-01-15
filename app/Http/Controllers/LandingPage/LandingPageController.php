@@ -69,17 +69,17 @@ class LandingPageController extends Controller
         // Experience
         $experience = [
             [
-                'image' => asset('assets-web/img/image/keluarga.png'),
+                'image' => asset('assets-web/img/image/experience-1.png'),
                 'title' => 'Keluarga Bapak Dr. Ramadhan',
                 'description' => 'Cibubur, Jakarta Barat',
             ],
             [
-                'image' => asset('assets-web/img/image/keluarga.png'),
+                'image' => asset('assets-web/img/image/experience-2.png'),
                 'title' => 'Keluarga Bapak Dr. Ramadhan',
                 'description' => 'Cibubur, Jakarta Barat',
             ],
             [
-                'image' => asset('assets-web/img/image/keluarga.png'),
+                'image' => asset('assets-web/img/image/experience-3.png'),
                 'title' => 'Keluarga Bapak Dr. Ramadhan',
                 'description' => 'Cibubur, Jakarta Barat',
             ]
@@ -90,14 +90,15 @@ class LandingPageController extends Controller
             [
                 'title' => 'Ragu jadi Seru!',
                 'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
+                'name' => 'Husain',
+                'username' => 'Jamaah UMRAID 2020',
+                
             ],
             [
                 'title' => 'Mudahnya Umroh Privat',
                 'description' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
-            ],
-            [
-                'title' => 'Ragu jadi Seru!',
-                'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
+                'name' => 'Dr. Nurul',
+                'username' => 'Jamaah UMRAID 2020',
             ]
         ];
 
@@ -134,8 +135,10 @@ class LandingPageController extends Controller
         ];
 
         // Artikel
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/4/id_blog/desc');
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/5/id_blog/desc');
         $news = json_decode($response->getBody(), true);
+        $new = $news['data']['content'][0];
+        unset($news['data']['content'][0]);
 
         return view('pages.landingPage.landingPage', [
             'layanan' => $layanan,
@@ -147,8 +150,9 @@ class LandingPageController extends Controller
             'banner3' => $banner3,
             'experience' => $experience,
             'experience2' => $experience2,
-            "mitras" => $mitras,
+            'mitras' => $mitras,
             'partners' => $partners,
+            'new' => $new,
             'news' => $news['data']['content'],
         ]);
     }

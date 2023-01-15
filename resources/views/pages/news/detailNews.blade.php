@@ -1,38 +1,42 @@
 @extends('layouts.master')
 
 @section('content')
-    
+
     <!-- Banner Form Start -->
     <div class="container-xxl py-5">
         <div class="container">
             @include('pages.news.partials.breadcrumb',[
                 'breadcrumb' => $new['subject']
             ])
+            <a href="{{ url('/news') }}" class="mt-5 text-tertiary">
+                <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Kembali
+            </a>
 
-            <div>{{ $new['subject'] }}</div>
-            <div>DIpublikasikan pada {{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
+            <h2 class="font-normal-700 fs-32 mt-2">{{ $new['subject'] }}</h2>
+            <div class="mt-5 mb-3">Dipublikasikan pada {{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
             <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
-            <div>{!! $new['content'] !!}</div>
+            <div class="mt-5 fs-16">{!! $new['content'] !!}</div>
         </div>
     </div>
 
     <!-- Artikel Start -->
     <div class="container-fluid py-5 mb-8">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <a href="{{ url('/news/1') }}">
-                        <div class="card" style="width: 100$;">
-                            <div class="card-body" style="padding: 1rem !important;">
-                                <img src="https://asset.kompas.com/crops/_Gklmi7JJu6ArpsXWwE8pd0ybfM=/0x0:739x493/750x500/data/photo/2020/06/04/5ed85d403302a.jpg" width="100%" alt="" srcset="">
-                                <h5 class="card-title mt-4">Dengan Teknologi Umroh bisa sendiri dengan blablabla</h5>
-                                <p>28 May 2022 00:21</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+            <div class="mx-auto wow fadeInUp" data-wow-delay="0.1s">
+                <div class="font-normal-700 fs-32 mb-5" style="font-weight: bold;">Artikel lainnya</div>
+            </div>
+            <div class="row">
+                @foreach( $other_news as $other_new )
+                    <div class="col-lg-3 col-md-4">
+                        @include('pages.news.partials.cardNews', [
+                            'url' => url('/news', $other_new['id_blog']),
+                            'url_banner' => $other_new['url_banner'],
+                            'subject' => $other_new['subject'],
+                            'created_date' => $other_new['created_date']
+                        ])
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
-    
 @endsection

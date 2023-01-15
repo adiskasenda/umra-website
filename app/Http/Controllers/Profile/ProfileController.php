@@ -4,15 +4,33 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Session;
+use Illuminate\Support\Facades\Http;
+use Ramsey\Uuid\Uuid;
 
 class ProfileController extends Controller
 {
-    public function index()
+    private $header;
+    private $url;
+
+    public function __construct()
+    {
+        $this->header = [
+            'ax-request-id' => Uuid::uuid4()->toString(),
+            'ax-request-at' => Carbon::now()->toIso8601String(),
+            'ax-channel-in' => 'UMRA-WEB'
+        ];
+
+        $this->url = env('APP_URL_API');
+    }
+
+    public function profile()
     {
         return view('pages.profile.profile');
     }
 
-    public function update(Request $request)
+    public function updateProfile(Request $request)
     {
         $body = [
             "title" => "Bapak",
@@ -37,4 +55,26 @@ class ProfileController extends Controller
         return redirect()->back()
                         ->withSuccess('Data Customer Berhasil Di Update');
     }
+
+    public function profilePassword()
+    {
+        return view('pages.profile.profilePassword');
+    }
+
+    public function updatePassword()
+    {
+        return ;
+    }
+
+    public function profilePIN()
+    {
+        return view('pages.profile.profilePIN');
+    }
+
+    public function updatePIN()
+    {
+        return ;
+    }
+
+   
 }

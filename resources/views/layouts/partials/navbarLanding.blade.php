@@ -13,7 +13,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0">
             <a href="{{ url('/') }}" class="navbar-brand ms-4 ms-lg-0">
-                <img src="{{ asset('assets-web/img/icon/icon-logo.png') }}" alt="" srcset="">
+                <img src="{{ asset('assets-web/img/icon/icon-logo.png') }}" alt="{{ asset('assets-web/img/icon/icon-logo.png') }}">
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
@@ -30,7 +30,7 @@
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
                                     </div>
                                     <div class="col-10">
-                                        <div style="font-size: 16px;">Paket Umrah</div>   
+                                        <div class="fs-16" style="font-weight: bold;">Paket Umrah</div>   
                                         <div>Perjalanan ibadah umroh dengan nyaman & <br/> fasilitas lengkap dari keberangkatan</div>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
                                     </div>
                                     <div class="col-10">
-                                        <div style="font-size: 16px;">Paket Umrah Plush+</div>
+                                        <div class="fs-16" style="font-weight: bold;">Paket Umrah Plush+</div>
                                         <div>Ibadah umroh dengan fasilitas terbaik agar <br/> ibadah anda lebih kusyu.</div>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
                                     </div>
                                     <div class="col-10">
-                                        <div style="font-size: 16px;">Wisata Halal</div>
+                                        <div class="fs-16" style="font-weight: bold;">Wisata Halal</div>
                                         <div>Berlibur & mengungjungi negara, kota, serta <br/> destinasi halal bersama UMRA.</div>
                                     </div>
                                 </div>

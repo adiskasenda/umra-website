@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/package-umroh.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
-        <div class="container">
+        <div class="container p-tb-50">
             <div class="text-white" style="font-size: 48px;">Paket Ibadah Umrah</div>
             <div class="text-light" style="font-size: 24px;">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</div>
             
@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row g-4 align-items-center">
                 @foreach($package_products as $package_product)
-                    <div class="col-md-3">
+                    <div class="col-lg-3 col-md-4">
                         <!-- package Product -->
                         @include('pages.packageProducts.partials.cardPackage', [
                             'url' => url('/package', $package_product['id_packet']),

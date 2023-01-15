@@ -17,8 +17,11 @@ use App\Http\Controllers\{
     LandingPage\ContactMeController,
     LandingPage\LocationMeController,
     LandingPage\FaqController,
+    LandingPage\MitraController,
 
     NewsPage\NewsController,
+    Transaction\TransactionController,
+
     PackageProduct\PackageProductController,
     Profile\ProfileController,
 };
@@ -62,6 +65,7 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
     Route::get('/register', [ RegisterController::class, 'index' ]);
     Route::post('/register-email', [ RegisterController::class, 'registerEmail' ]);
     Route::post('/register-phone', [ RegisterController::class, 'registerPhone' ]);
+
 });
 
 // Logout 
@@ -69,6 +73,21 @@ Route::get('/logout', [ LoginController::class, 'logout' ]);
 
 // Landing Page
 Route::get('/', [ LandingPageController::class, 'index' ]);
+
+// About Me
+Route::get('/about-me', [ AboutMeController::class, 'index' ]);
+
+// Contact Me
+Route::get('/contact-me', [ ContactMeController::class, 'index' ]);
+
+// Location Me
+Route::get('/location-me', [ LocationMeController::class, 'index' ]);
+
+// Mitra
+Route::get('/mitra', [ MitraController::class, 'index' ]);
+
+// Faq
+Route::get('/faq', [ FaqController::class, 'index' ]);
 
 // Package Product
 Route::group([ 'prefix' =>'/package' ], function() {
@@ -86,38 +105,35 @@ Route::group([ 'prefix' =>'/news' ], function() {
     Route::get('/{id}', [ NewsController::class, 'show' ]);
 });
 
-// Profile
-Route::group([ 'prefix' =>'/profile' ], function() {
-    Route::get('/', [ ProfileController::class, 'index' ]);
-    Route::patch('/', [ ProfileController::class, 'update' ]);
-});
 
+Route::group([ 'middleware' =>'tokenNotFound'], function(){
 
-// About Me
-Route::get('/about-me', [ AboutMeController::class, 'index' ]);
-// Contact Me
-Route::get('/contact-me', [ ContactMeController::class, 'index' ]);
-// Location Me
-Route::get('/location-me', [ LocationMeController::class, 'index' ]);
-// Faq
-Route::get('/faq', [ FaqController::class, 'index' ]);
+    // Transaction
+    Route::group([ 'prefix' =>'/transaction' ], function() {
+        Route::get('/jamaah', [ TransactionController::class, 'jamaah' ]);
+        Route::get('/biodata', [ TransactionController::class, 'biodata' ]);
+        Route::get('/checkout', [ TransactionController::class, 'checkout' ]);
+        Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
+       
+        // Detail Trasaction
+        Route::get('/{id}/detail', [ TransactionController::class, 'show' ]);
+    });
 
+    // Profile
+    Route::group([ 'prefix' =>'/profile' ], function() {
+        // account & security
+        Route::get('/', [ ProfileController::class, 'profile' ]);
+        Route::patch('/', [ ProfileController::class, 'updateProfile' ]);
+        Route::get('/password', [ ProfileController::class, 'profilePassword' ]);
+        Route::patch('/update-password', [ ProfileController::class, 'updatePassword' ]);
+        Route::get('/pin', [ ProfileController::class, 'profilePIN' ]);
+        Route::patch('/update-pin', [ ProfileController::class, 'updatePIN' ]);
 
+        // Activity
+        // Route::get('/list-transaction', [ ProfileController::class, 'listTransaction' ]);
 
-Route::group([ 'prefix' =>'/template' ], function() {
-    Route::get('/landing', function() {
-        return view('template-website/landing');
+        // Help
+
     });
-    Route::get('/profile', function() {
-        return view('template-website/profile');
-    });
-    Route::get('/package-product', function() {
-        return view('template-website/package');
-    });
-    Route::get('/package-product', function() {
-        return view('template-website/package');
-    });
-    Route::get('/login', function() {
-        return view('template-website/login');
-    });
+
 });
