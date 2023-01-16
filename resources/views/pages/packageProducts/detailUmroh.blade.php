@@ -14,17 +14,29 @@
                     <img src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
                     <div class="row mb-3 mt-5">
                         <div class="col-6">
-                            <div class="text-tertiary"> 
-                                <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
-                                <span class="font-normal-400 fs-16">Tersisa 24 Pax</span>
-                            </div>
+                            @if ( $package_product['quota'] == 0 )
+                                <div class="text-tertiary"> 
+                                    <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                    <span class="font-normal-400 fs-16">Seat Penuh</span>
+                                </div>
+                            @else
+                                <div class="text-tertiary"> 
+                                    <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                    <span class="font-normal-400 fs-16">Tersisa {{ $quota }} Pax</span>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-6" style="margin:auto;">
                             <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" height="36px"/>
                         </div>
                     </div>
 
-                    <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
+                    @if( $package_product['quota'] == 0 )
+                        <button class="btn btn-success mt-3" style="width: 100%;" disabled>Pesan Sekarang</button>
+                    @else
+                        <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
+                    @endif
+
                 </div>
                 <div class="col-md-8">
                     @if ( $package_product['flag_umroh'] == 0 )

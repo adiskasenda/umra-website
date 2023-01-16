@@ -3,15 +3,21 @@
         <div class="card-body" style="padding: 1rem !important;">
             <img src="{{ $url_banner }}" width="100%" alt="{{ $url_banner }}">
             <h5 class="card-titl mt-4">{{ $name }}</h5>
-            
-            <div class="text-tertiary"> 
-                <img class="icon-package" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}">  
-                Tersisa  {{ $quota }} Pax
-            </div>
-            <div class="mb-3 text-tertiary"> 
-                <img class="icon-package" src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}">  
-                Tersedia 3 Pilihan Kamar
-            </div>
+            @if ( $package_product['quota'] == 0 )
+                <div class="text-danger"> 
+                    <img class="icon-package" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}">  
+                    Seat Penuh
+                </div>
+            @else
+                <div class="text-tertiary"> 
+                    <img class="icon-package" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}">  
+                    Tersisa  {{ $quota }} Pax
+                </div>
+                <div class="mb-3 text-tertiary"> 
+                    <img class="icon-package" src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}">  
+                    Tersedia 3 Pilihan Kamar
+                </div>
+            @endif
 
             <div class="row mb-3">
                 <div class="col-6">
