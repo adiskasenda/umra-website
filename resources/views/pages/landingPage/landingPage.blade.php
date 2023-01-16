@@ -24,7 +24,7 @@
                             <form class="row" method="GET" action="{{ url('/package/search') }}">
                                 <div class="col-md-10">
                                     <div class="row">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-4 mt-2 mb-2">
                                             <label for="specificSizeInputGroupUsername" class="fs-16" style="font-weight: bold;">Layanan</label>
                                             <input id="invisible_id" name="invisible" type="hidden" value="secret">
                                             <select class="form-select mt-2" name="layanan" data-control="select2" data-placeholder="Select an option">
@@ -33,17 +33,17 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-4 mt-2 mb-2">
                                             <label for="specificSizeInputGroupUsername" class="fs-16" style="font-weight: bold;">Tanggal Keberangkatan</label>
                                             <input type="text" placeholder="Tanggal Keberangkatan" name="departure_date" class="form-control mt-2" required/>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-4 mt-2 mb-2">
                                             <label for="specificSizeInputGroupUsername" class="fs-16" style="font-weight: bold;">Tanggal Kepulangan</label>
                                             <input type="text" placeholder="Tanggal Kepulangan" name="return_date" class="form-control mt-2" required/>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2 justify-content-md-center">
+                                <div class="col-md-2 justify-content-md-center mt-2 mb-2" style="margin:auto;">
                                     <button type="submit" class="btn btn-success mt-3" style="width: 100%;">Cari</button>
                                 </div>
                             </form>
@@ -110,7 +110,8 @@
                             'name' => $umrah['name'],
                             'quota' => $umrah['quota'],
                             'percent_markup' => $umrah['percent_markup'],
-                            'price' => $umrah['price']
+                            'price' => $umrah['price'],
+                            'image_configuration' => $configuration['data'][3]['value_configuration']
                         ])
                     </div>
                 @endforeach
@@ -150,7 +151,8 @@
                             'name' => $umrah_plus['name'],
                             'quota' => $umrah['quota'],
                             'percent_markup' => $umrah['percent_markup'],
-                            'price' => $umrah['price']
+                            'price' => $umrah['price'],
+                            'image_configuration' => $configuration['data'][3]['value_configuration']
                         ])
                     </div>
                 @endforeach
@@ -240,7 +242,8 @@
                                     'name' => $wisata_halal['name'],
                                     'quota' => $umrah['quota'],
                                     'percent_markup' => $umrah['percent_markup'],
-                                    'price' => $umrah['price']
+                                    'price' => $umrah['price'],
+                                    'image_configuration' => $configuration['data'][3]['value_configuration']
                                 ])
                             </div>
                         @endforeach
@@ -333,17 +336,19 @@
                         <div class="card-body">
                             <div class="text-weight-60 fs-20" style="font-weight: bold;">Gabung Sebagai Agen Penjualan</div>
                             <div class="text-weight-400 fs-16">Manfaat sebagai menjadi agen penjualan dan pelayanan umroh kami :</div>
-                            <div>
-                                <i class="fa-solid fa-circle-check" style="color: green"></i>  
-                                Eksklusif melayani wilayah tertentu (kota/ kabupaten)
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-circle-check" style="color: green"></i>  
-                                Keuntungan ganda dari komisi dan harga jual
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-circle-check" style="color: green"></i>  
-                                Dukungan, branding dan konsultansi penjualan
+                            <div class="mt-2 mb-2">
+                                <div class="text-weight-400 fs-16">
+                                    <i class="fa-solid fa-circle-check" style="color: green"></i>  
+                                    Eksklusif melayani wilayah tertentu (kota/ kabupaten)
+                                </div>
+                                <div class="text-weight-400 fs-16">
+                                    <i class="fa-solid fa-circle-check" style="color: green"></i>  
+                                    Keuntungan ganda dari komisi dan harga jual
+                                </div>
+                                <div class="text-weight-400 fs-16">
+                                    <i class="fa-solid fa-circle-check" style="color: green"></i>  
+                                    Dukungan, branding dan konsultansi penjualan
+                                </div>
                             </div>
                             <hr>
                             <div class="mt-5">
@@ -356,8 +361,8 @@
                     <div class="card bg-image-1" style="width: 100$;">
                         <div class="card-body">
                             <div class="text-weight-60 fs-20 text-white" style="font-weight: bold;">Jualan umroh dengan modal media sosial? Bisa!</div>
-                            <div class="text-weight-400 fs-16 text-light">Siapa saja bisa mendapatkan keuntungan dengan menjadi afiliator umroh, menggunakan media sosial dan chat messenger sebagi sarana jualan. Yuk gabung!</div>
-                            <!-- <hr> -->
+                            <div class="text-weight-400 fs-16 text-light mt-2 mb-2">Siapa saja bisa mendapatkan keuntungan dengan menjadi afiliator umroh, menggunakan media sosial dan chat messenger sebagi sarana jualan. Yuk gabung!</div>
+                            <hr>
                             <div class="mt-5">
                                 <a href="https://zeals.asia/" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
                                 <!-- <a href="#" class="text-white" style="margin-left:auto; margin-right:auto; width:100%:">Syarat & Ketentuan</a> -->
@@ -407,7 +412,7 @@
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
                     <div class="col-md-3 mt-5">
-                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}" width="100%">
+                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}">
                     </div>
                 @endforeach
             </div>
@@ -428,19 +433,25 @@
 
             <div class="row g-4 align-items-center mt-5 mb-5">
                 <div class="col-lg-6 col-md-12">
-                    <div class="card card-bordered">
-                        <div class="card-body p-5">
-                            <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
-                            <h2 class="card-title mt-5">{{ $new['subject'] }}</h2>
-                            <span class="card-title mt-5">{{ date('d M Y H:i', strtotime($new['created_date'])) }}</span>
+                    <a href="{{ url('/news', $new['id_blog'] ) }}">
+                        <div class="card card-bordered" style="width: 100%; height: 100%;">
+                            <div class="card-body p-5">
+                                <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
+                                <div class="text-dark text-weight-600 fs-20" style="font-weight: bold;">{{ $new['subject'] }}</div>
+                                <div  class="text-tertiary text-weight-600 fs-16">{{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="row">
                         @foreach($news as $new)
-                            <div class="col-md-6 pt-3">
-                                @include('pages.landingPage.partials.cardNews')
+                            <div class="col-md-6 my-5">
+                                @include('pages.landingPage.partials.cardNews', [
+                                    'url' => url('/news', $new['id_blog']),
+                                    'url_banner' => $new['url_banner'],
+                                    'subject' => $new['subject']
+                                ])
                             </div>
                         @endforeach
                     </div>
@@ -462,11 +473,13 @@
             // departure_date
             $("input[name='departure_date']").flatpickr({
                 dateFormat: "d-m-Y",
+                allowInput: true,
             });
 
             // return_date
             $("input[name='return_date']").flatpickr({
                 dateFormat: "d-m-Y",
+                allowInput: true,
             });
         });
     </script>

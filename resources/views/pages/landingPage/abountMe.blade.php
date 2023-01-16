@@ -11,10 +11,9 @@
         <div class="container" style="margin-top: 3%; margin-bottom:3%;">
             <div class="row">
                 <div class="col-md-8" style="margin-top: 5%">
-                    <div class="text-weight-700 fs-44" style="font-weight: bold;">Hadir Untuk Kenyamanan</div>
-                    <div class="text-weight-700 fs-44" style="font-weight: bold;">Beribadah Jamaah</div>
-                    <div class="text-opacity text-weight-700 fs-20 mt-5">UMRA.ID hadir untuk memberikan kenyamanan beribadah umroh kepada jamaah.</div>
-                    <div class="font-normal-400 fs-16 mt-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt voluptatum nisi soluta, aut commodi dolores odit iste, nostrum aliquid, dicta numquam neque. Non dicta doloremque natus repellendus fuga ratione officiis.</div>
+                    <div class="text-weight-700 fs-44" style="font-weight: bold;">Hadir Untuk Kenyamanan Beribadah Jamaah</div>
+                    <div class="text-opacity text-weight-700 fs-20 mt-5">UMRA ID hadir untuk memberikan kenyamanan, kemudahan dan keleluasaan beribadah umroh dan wisata Islam lainnya</div>
+                    <div class="font-normal-400 fs-16 mt-5">Kami menjawab berbagai persoalan klasik yang calon jamaah hadapi saat merancang umroh 'konvensional'. Selain menyediakan paket umroh yang telah terjadwal atau terprogram, UMRA ID juga memberi kemudahan dalam menyusun perjalanan umroh yang "customized/ Do It Yourself" atau swakelola</div>
                 </div>
                 <div class="col-md-4">
                     <img style="margin-top:40px;" class="image-center" src="{{ asset('assets-web/img/image/about-me.png')}}" alt="{{ asset('assets-web/img/image/about-me.png')}}" width="80%" height="100%">
@@ -26,7 +25,7 @@
 
 
     <!-- visi & misi Start -->
-    <div class="container-fluid py-5 bg-image-6">
+    <!-- <div class="container-fluid py-5 bg-image-6">
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="row">
@@ -45,23 +44,22 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- visi & misi End -->
 
 
     <!-- Kegiatan Kami Start -->
-    <div class="container-fluid py-5">
-        <div class="container" style="margin-top: 5%;">
+    <div class="container-fluid py-5 bg-image-6">
+        <div class="container mt-20 mb-20">
             <div class="text-center mx-auto" style="max-width: 800px;margin-top:4%;margin-bottom:4%">
                 <div class="text-weight-700 fs-44 mb-5">Kegiatan Kami</div>
-                <div class="text-opacity text-weight-400 fs-20">Kami memiliki berbagai macam kegiatan dan perjalanan untuk memberikan Jamaah iami pengalaman yang terbaik dalam beribadah</div>
+                <div class="text-opacity text-weight-400 fs-20">Sejak dikembangkan mulai tahun 2017 kemudian diluncurkan pada 28 November 2019, kami terus melakukan perbaikan dan meningkatkan pelayanan.</div>
             </div>
             <div class="owl-carousel event-carousel" data-wow-delay="0.3s">
                 @foreach($activity_me as $activity)
                         <img src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
                 @endforeach
             </div>
-            <hr style="margin-top: 3%;">
         </div>
     </div>
     <!-- Kegiatan Kami End -->
@@ -78,7 +76,7 @@
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
                     <div class="col-md-3 mt-5">
-                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}" width="100%">
+                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}">
                     </div>
                 @endforeach
             </div>
@@ -100,12 +98,8 @@
                     <div class="col-md-6" style="margin-bottom: 3%;">
                         <div class="card card-bordered" style="width: 100$;">
                             <div class="card-body">
-                                <div>
-                                    <h1>Gabung Sebagai Agen Penjualan</h1>
-                                </div>
-                                <div>
-                                   <p>Jadi agen penjualan, pelayanan & mendaftarkan calon jamaah akan lebih mudah menggunakan aplikasi dan ekosistem UMRA.</p>
-                                </div>
+                                <div class="text-weight-60 fs-20" style="font-weight: bold;">Gabung Sebagai Agen Penjualan</div>
+                                <div class="text-weight-400 fs-16">Jadi agen penjualan, pelayanan & mendaftarkan calon jamaah akan lebih mudah menggunakan aplikasi dan ekosistem UMRA.</div>
                                 <hr>
                                 <div class="mt-5">
                                     <button class="btn btn-success font-normal-500" style="width: 100%">Gabung Sekarang</button>
@@ -118,16 +112,12 @@
                     </div>
                     <div class="col-md-6" style="margin-bottom: 3%;">
                         <div class="card" style="width: 100$;">
-                            <div class="card-body bg-green-card">
-                                <div>
-                                    <h1 class="text-white">Jadi Affiliate Umra bisa dapat untung?</h1>
-                                </div>
-                                <div>
-                                   <p class="text-white">Siapa saja bisa menjadi affiliate Umra hanya dengan gawai anda, Share referral & jadi Digital Referrer Umrapreneur.</p>
-                                </div>
+                            <div class="card-body bg-green-card text-white">
+                                <div class="text-weight-60 fs-20" style="font-weight: bold;">Jadi Affiliate Umra bisa dapat untung?</div>
+                                <div class="text-weight-400 fs-16">Siapa saja bisa menjadi affiliate Umra hanya dengan gawai anda, Share referral & jadi Digital Referrer Umrapreneur.</div>
                                 <hr>
                                 <div class="mt-5">
-                                    <a href="#" class="btn btn-white" style="width: 100%; font-color: #7CB041;">Daftar Affiliate</a>
+                                    <a href="https://zeals.asia/" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
                                 </div>
                                 <!-- <div class="mt-5">
                                     <center><a href="#" class="text-white font-normal-500">Syarat & Ketentuan</a></center>

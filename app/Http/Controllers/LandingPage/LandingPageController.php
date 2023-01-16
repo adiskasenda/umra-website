@@ -63,6 +63,10 @@ class LandingPageController extends Controller
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/home/wisatahalal');
         $package_product_wisata_halal = json_decode($response->getBody(), true);
 
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
         // Banner 3
         $banner3 = asset('assets-web/img/banner/banner-fasilitas.png');
 
@@ -147,6 +151,7 @@ class LandingPageController extends Controller
             'package_product_umrah' => array_slice($package_product_umrah['data'], 0, 2),
             'package_product_umrah_plus' => array_slice($package_product_umrah_plus['data'], 0, 2),
             'package_product_wisata_halal' => array_slice($package_product_wisata_halal['data'], 0, 2),
+            'configuration' => $configuration,
             'banner3' => $banner3,
             'experience' => $experience,
             'experience2' => $experience2,

@@ -130,7 +130,7 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
         Route::patch('/update-pin', [ ProfileController::class, 'updatePIN' ]);
 
         // Activity
-        // Route::get('/list-transaction', [ ProfileController::class, 'listTransaction' ]);
+        Route::get('/list-transaction', [ ProfileController::class, 'listTransaction' ]);
 
         // Help
 

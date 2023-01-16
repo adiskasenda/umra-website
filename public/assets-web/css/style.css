@@ -16,6 +16,11 @@
     padding-bottom: 50px;
 }
 
+.p-tb-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
 .separator {
     display: block;
     height: 0;
@@ -53,8 +58,16 @@
     color: var(--green);
 }
 
+.text-red {
+    color: var(--secondary);
+}
+
 .text-opacity {
     opacity: 0.7;
+}
+
+.text-right {
+    text-align:right !important
 }
 
 /*** Master Icon ***/
@@ -169,7 +182,7 @@
     }
 
     .fs-20 {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .fs-16 {
@@ -179,15 +192,15 @@
 
 @media (max-width:575.98px) {
     .fs-44 {
-        font-size: 24px;
+        font-size: 30px;
     }
 
     .fs-32 {
-        font-size: 20px;
+        font-size: 28px;
     }
 
     .fs-20 {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .fs-16 {
@@ -217,6 +230,11 @@
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 400;
+}
+
+/* Badge Custom */
+.badge-green-light {
+    background-color: #20A95A;
 }
 
 /*** Master Image ***/
@@ -256,6 +274,10 @@
     align-items: center;
     justify-content: center;
     font-weight: normal;
+}
+
+.checked {
+    color: orange;
 }
 
 

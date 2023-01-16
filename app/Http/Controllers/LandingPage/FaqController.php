@@ -26,7 +26,7 @@ class FaqController extends Controller
         $this->url = env('APP_URL_API');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         if ( !empty(Session::get('user')) ) {
             $this->header['ax-request-by'] = Session::get('user')['email'];
@@ -40,7 +40,8 @@ class FaqController extends Controller
         $faqs = json_decode($response->getBody(), true);
         
         return view('pages.landingPage.faq', [
-            'faqs' => $faqs['data']
+            'faqs' => $faqs['data'],
+            'search' => $request->search
         ]);
     }
 }
