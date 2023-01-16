@@ -4,3 +4,9 @@
         <h5 class="card-title mt-4">{{ $new['subject'] }}</h5>
     </div>
 </div>
+
+
+<!-- $url -->
+<!-- $url_banner -->
+<!-- $subject -->
+<!-- $created_date -->

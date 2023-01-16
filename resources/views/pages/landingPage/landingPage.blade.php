@@ -107,7 +107,10 @@
                         @include('pages.landingPage.partials.cardPackage', [
                             'url' => url('/package', $umrah['id_packet']),
                             'url_banner' => $umrah['url_banner'],
-                            'name' => $umrah['name']
+                            'name' => $umrah['name'],
+                            'quota' => $umrah['quota'],
+                            'percent_markup' => $umrah['percent_markup'],
+                            'price' => $umrah['price']
                         ])
                     </div>
                 @endforeach
@@ -144,7 +147,10 @@
                         @include('pages.landingPage.partials.cardPackage', [
                             'url' => url('/package', $umrah_plus['id_packet']),
                             'url_banner' => $umrah_plus['url_banner'],
-                            'name' => $umrah_plus['name']
+                            'name' => $umrah_plus['name'],
+                            'quota' => $umrah['quota'],
+                            'percent_markup' => $umrah['percent_markup'],
+                            'price' => $umrah['price']
                         ])
                     </div>
                 @endforeach
@@ -231,7 +237,10 @@
                                 @include('pages.landingPage.partials.cardPackage', [
                                     'url' => url('/package', $wisata_halal['id_packet']),
                                     'url_banner' => $wisata_halal['url_banner'],
-                                    'name' => $wisata_halal['name']
+                                    'name' => $wisata_halal['name'],
+                                    'quota' => $umrah['quota'],
+                                    'percent_markup' => $umrah['percent_markup'],
+                                    'price' => $umrah['price']
                                 ])
                             </div>
                         @endforeach
@@ -348,10 +357,13 @@
                         <div class="card-body">
                             <div class="text-weight-60 fs-20 text-white" style="font-weight: bold;">Jualan umroh dengan modal media sosial? Bisa!</div>
                             <div class="text-weight-400 fs-16 text-light">Siapa saja bisa mendapatkan keuntungan dengan menjadi afiliator umroh, menggunakan media sosial dan chat messenger sebagi sarana jualan. Yuk gabung!</div>
-                            <hr>
+                            <!-- <hr> -->
                             <div class="mt-5">
-                                <a href="https://zeals.asia/" class="btn mb-4" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
+                                <a href="https://zeals.asia/" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
                                 <!-- <a href="#" class="text-white" style="margin-left:auto; margin-right:auto; width:100%:">Syarat & Ketentuan</a> -->
+                                <div class="text-center mx-auto">
+                                    <a href="#" class="text-white">Syarat & Ketentuan</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -414,13 +426,13 @@
                 </div> -->
             </div>
 
-            <div class="row g-4 align-items-center">
+            <div class="row g-4 align-items-center mt-5 mb-5">
                 <div class="col-lg-6 col-md-12">
-                    <div class="card card-bordered" style="margin-top: 6%; margin-bottom:5%; display:flex;">
+                    <div class="card card-bordered">
                         <div class="card-body p-5">
-                            <img src="{{ $experience['image'] }}" alt="{{ $experience['image'] }}" width="100%">
-                            <h2 class="card-title mt-5">{{ $experience['title'] }}</h2>
-                            <span class="card-title mt-5">{{ $experience['description'] }}</span>
+                            <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
+                            <h2 class="card-title mt-5">{{ $new['subject'] }}</h2>
+                            <span class="card-title mt-5">{{ date('d M Y H:i', strtotime($new['created_date'])) }}</span>
                         </div>
                     </div>
                 </div>
@@ -434,8 +446,9 @@
                     </div>
                 </div>
             </div>
+
             <div class="text-center">
-                <a href="{{ url('/news') }}" class="btn text-white mt-5" style="border-color:white;">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+                <a href="{{ url('/news') }}" class="btn text-white mt-5" style="border: 1px solid white;">Lihat Semua <i class="fas fa-chevron-right"></i></a>
             </div>
             
         </div>

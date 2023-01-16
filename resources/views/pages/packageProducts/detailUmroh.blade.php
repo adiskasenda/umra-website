@@ -14,17 +14,29 @@
                     <img src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
                     <div class="row mb-3 mt-5">
                         <div class="col-6">
-                            <div class="text-tertiary"> 
-                                <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
-                                <span class="font-normal-400 fs-16">Tersisa 24 Pax</span>
-                            </div>
+                            @if ( $package_product['quota'] == 0 )
+                                <div class="text-tertiary"> 
+                                    <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                    <span class="font-normal-400 fs-16">Seat Penuh</span>
+                                </div>
+                            @else
+                                <div class="text-tertiary"> 
+                                    <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                    <span class="font-normal-400 fs-16">Tersisa {{ $quota }} Pax</span>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-6" style="margin:auto;">
                             <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" height="36px"/>
                         </div>
                     </div>
 
-                    <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
+                    @if( $package_product['quota'] == 0 )
+                        <button class="btn btn-success mt-3" style="width: 100%;" disabled>Pesan Sekarang</button>
+                    @else
+                        <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
+                    @endif
+
                 </div>
                 <div class="col-md-8">
                     @if ( $package_product['flag_umroh'] == 0 )
@@ -299,7 +311,10 @@
                         @include('pages.packageProducts.partials.cardPackage', [
                             'url' => url('/package', $package_product['id_packet']),
                             'url_banner' => $package_product['url_banner'],
-                            'name' => $package_product['name']
+                            'name' => $package_product['name'],
+                            'quota' => $package_product['quota'],
+                            'percent_markup' => $package_product['percent_markup'],
+                            'price' => $package_product['price']
                         ])
                     </div>
                 @endforeach
@@ -307,4 +322,25 @@
         </div>
     </div>
     <!-- Paket Lain End -->
+
+    <!-- you Have Question Start -->
+    <div class="container-fluid py-5 bg-image-1">
+        <div class="container mt-20 mb-20">
+            <div class="row p-2">
+                <div class="col-md-8">
+                    <div class="text-white ms-5">
+                        <div class="text-weight-600 fs-32 mb-5" style="font-weight: bold;">Punya pertanyaan seputar paket perjalanan?</div>
+                        <div class="text-weight-400 fs-16">Customer service kami siap membantu anda terkait paket perjalanan sesuai kebutuhan anda.</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://zeals.asia/" class="btn mb-4" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
+                    <div class="text-center mx-auto">
+                        <a href="#" class="text-white">Syarat & Ketentuan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- you Have Question End -->
 @endsection

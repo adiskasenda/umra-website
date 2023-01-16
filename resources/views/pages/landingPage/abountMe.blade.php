@@ -69,8 +69,8 @@
 
     <!-- Partner Start -->
     <div class="container-fluid py-5">
-        <div class="container">
-            <div class="text-center mx-auto" style="max-width: 800px;margin-top:4%;margin-bottom:4%">
+        <div class="container mt-20 mb-20">
+            <div class="text-center mx-auto">
                 <div class="text-weight-700 fs-44 mb-5">Partner Terpercaya Kami</div>
                 <div class="text-opacity text-weight-400 fs-20">Kami memiliki partner yang terpercaya di bidangnya, dan kami selalu berusaha memberikan pengalaman terbaik untuk ibadah Anda</div>
             </div>
