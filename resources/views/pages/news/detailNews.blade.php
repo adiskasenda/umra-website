@@ -22,12 +22,12 @@
     <!-- Artikel Start -->
     <div class="container-fluid py-5 mb-8">
         <div class="container">
-            <div class="mx-auto wow fadeInUp" data-wow-delay="0.1s">
+            <div class="mx-auto">
                 <div class="font-normal-700 fs-32 mb-5" style="font-weight: bold;">Artikel lainnya</div>
             </div>
             <div class="row">
                 @foreach( $other_news as $other_new )
-                    <div class="col-lg-3 col-md-4">
+                    <div class="col-lg-3 col-md-4 my-5">
                         @include('pages.news.partials.cardNews', [
                             'url' => url('/news', $other_new['id_blog']),
                             'url_banner' => $other_new['url_banner'],

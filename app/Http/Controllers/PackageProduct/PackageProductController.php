@@ -56,8 +56,13 @@ class PackageProductController extends Controller
             $this->header['ax-request-by'] = '';
         }
 
+        // Package Umroh, Umroh Plus, Wisata Halal
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/searching/'.$request->layanan.'/'.date('Y-m-d', strtotime($request->departure_date)).'/'.date('Y-m-d', strtotime($request->return_date)));
         $package_products = json_decode($response->getBody(), true);
+        
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
 
         // remove array otherMenus
         unset($this->otherMenus[0]);
@@ -73,7 +78,8 @@ class PackageProductController extends Controller
             'package_products' => $package_products['data'],
             'otherMenus' => $this->otherMenus,
             'banner_headers' => $banner_headers['data'],
-            'banner' => $banner
+            'banner' => $banner,
+            'configuration' => $configuration
         ]);
     }
 
@@ -90,6 +96,10 @@ class PackageProductController extends Controller
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umroh/pagination/0/8/date_start/asc');
         $package_products = json_decode($response->getBody(), true);
 
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
         // remove array otherMenus
         unset($this->otherMenus[0]);
 
@@ -104,7 +114,8 @@ class PackageProductController extends Controller
             'package_products' => $package_products['data']['content'],
             'otherMenus' => $this->otherMenus,
             'banner_headers' => $banner_headers['data'],
-            'banner' => $banner
+            'banner' => $banner,
+            'configuration' => $configuration
         ]);
     }
 
@@ -120,6 +131,10 @@ class PackageProductController extends Controller
         // Package Umroh Plus
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/umrohplus/pagination/0/8/date_start/asc');
         $package_products = json_decode($response->getBody(), true);
+
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
         
         // remove array otherMenus
         unset($this->otherMenus[1]);
@@ -135,7 +150,8 @@ class PackageProductController extends Controller
             'package_products' => $package_products['data']['content'],
             'otherMenus' => $this->otherMenus,
             'banner_headers' => $banner_headers['data'],
-            'banner' => $banner
+            'banner' => $banner,
+            'configuration' => $configuration
         ]);
     }
 
@@ -152,6 +168,10 @@ class PackageProductController extends Controller
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/wisatahalal/pagination/0/8/date_start/asc');
         $package_products = json_decode($response->getBody(), true);
 
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
         // remove array otherMenus
         unset($this->otherMenus[2]);
 
@@ -166,7 +186,8 @@ class PackageProductController extends Controller
             'package_products' => $package_products['data']['content'],
             'otherMenus' => $this->otherMenus,
             'banner_headers' => $banner_headers['data'],
-            'banner' => $banner
+            'banner' => $banner,
+            'configuration' => $configuration
         ]);
     }
 
@@ -209,9 +230,14 @@ class PackageProductController extends Controller
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$flag_umroh.'/pagination/0/4/date_start/asc');
         $other_packages = json_decode($response->getBody(), true);
 
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
         return view('pages.packageProducts.detailUmroh', [
             'package_product' => $package_product['data'],
-            'other_packages' => $other_packages['data']['content']
+            'other_packages' => $other_packages['data']['content'],
+            'configuration' => $configuration
         ]);
     }
 

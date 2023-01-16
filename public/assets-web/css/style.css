@@ -16,6 +16,11 @@
     padding-bottom: 50px;
 }
 
+.p-tb-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
 .separator {
     display: block;
     height: 0;
@@ -169,7 +174,7 @@
     }
 
     .fs-20 {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .fs-16 {
@@ -179,15 +184,15 @@
 
 @media (max-width:575.98px) {
     .fs-44 {
-        font-size: 24px;
+        font-size: 30px;
     }
 
     .fs-32 {
-        font-size: 20px;
+        font-size: 28px;
     }
 
     .fs-20 {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .fs-16 {

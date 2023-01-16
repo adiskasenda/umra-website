@@ -11,10 +11,9 @@
         <div class="container" style="margin-top: 3%; margin-bottom:3%;">
             <div class="row">
                 <div class="col-md-8" style="margin-top: 5%">
-                    <div class="text-weight-700 fs-44" style="font-weight: bold;">Hadir Untuk Kenyamanan</div>
-                    <div class="text-weight-700 fs-44" style="font-weight: bold;">Beribadah Jamaah</div>
-                    <div class="text-opacity text-weight-700 fs-20 mt-5">UMRA.ID hadir untuk memberikan kenyamanan beribadah umroh kepada jamaah.</div>
-                    <div class="font-normal-400 fs-16 mt-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt voluptatum nisi soluta, aut commodi dolores odit iste, nostrum aliquid, dicta numquam neque. Non dicta doloremque natus repellendus fuga ratione officiis.</div>
+                    <div class="text-weight-700 fs-44" style="font-weight: bold;">Hadir Untuk Kenyamanan Beribadah Jamaah</div>
+                    <div class="text-opacity text-weight-700 fs-20 mt-5">UMRA ID hadir untuk memberikan kenyamanan, kemudahan dan keleluasaan beribadah umroh dan wisata Islam lainnya</div>
+                    <div class="font-normal-400 fs-16 mt-5">Kami menjawab berbagai persoalan klasik yang calon jamaah hadapi saat merancang umroh 'konvensional'. Selain menyediakan paket umroh yang telah terjadwal atau terprogram, UMRA ID juga memberi kemudahan dalam menyusun perjalanan umroh yang "customized/ Do It Yourself" atau swakelola</div>
                 </div>
                 <div class="col-md-4">
                     <img style="margin-top:40px;" class="image-center" src="{{ asset('assets-web/img/image/about-me.png')}}" alt="{{ asset('assets-web/img/image/about-me.png')}}" width="80%" height="100%">
@@ -26,7 +25,7 @@
 
 
     <!-- visi & misi Start -->
-    <div class="container-fluid py-5 bg-image-6">
+    <!-- <div class="container-fluid py-5 bg-image-6">
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="row">
@@ -45,23 +44,22 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- visi & misi End -->
 
 
     <!-- Kegiatan Kami Start -->
-    <div class="container-fluid py-5">
-        <div class="container" style="margin-top: 5%;">
+    <div class="container-fluid py-5 bg-image-6">
+        <div class="container mt-20 mb-20">
             <div class="text-center mx-auto" style="max-width: 800px;margin-top:4%;margin-bottom:4%">
                 <div class="text-weight-700 fs-44 mb-5">Kegiatan Kami</div>
-                <div class="text-opacity text-weight-400 fs-20">Kami memiliki berbagai macam kegiatan dan perjalanan untuk memberikan Jamaah iami pengalaman yang terbaik dalam beribadah</div>
+                <div class="text-opacity text-weight-400 fs-20">Sejak dikembangkan mulai tahun 2017 kemudian diluncurkan pada 28 November 2019, kami terus melakukan perbaikan dan meningkatkan pelayanan.</div>
             </div>
             <div class="owl-carousel event-carousel" data-wow-delay="0.3s">
                 @foreach($activity_me as $activity)
                         <img src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
                 @endforeach
             </div>
-            <hr style="margin-top: 3%;">
         </div>
     </div>
     <!-- Kegiatan Kami End -->

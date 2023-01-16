@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid bg-green py-5 artikel mb-4">
-        <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
+        <div class="container p-tb-50">
             <div class="text-white font-normal-700 fs-44">Frequently Asked Questions (FAQ)</div>
             <div class="text-light font-normal-400 fs-16 mt-2">Jika tidak dapat menemukan jawaban dari pertanyaan anda, tanya kami lewat halaman <a href="{{ url('/contact-me') }}" class="text-light" style="text-decoration: underline;">Hubungi Kami</a></div>
         </div>

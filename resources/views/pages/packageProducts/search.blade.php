@@ -9,16 +9,17 @@
     </div>
 
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="row g-4 align-items-center">
+        <div class="row">
             @foreach($package_products as $package_product)
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-3 col-md-4 my-5">
                     @include('pages.packageProducts.partials.cardPackage', [
                         'url' => url('/package', $package_product['id_packet']),
                         'url_banner' => $package_product['url_banner'],
                         'name' => $package_product['name'],
                         'quota' => $package_product['quota'],
                         'percent_markup' => $package_product['percent_markup'],
-                        'price' => $package_product['price']
+                        'price' => $package_product['price'],
+                        'image_configuration' => $configuration['data'][3]['value_configuration']
                     ])
                 </div>
             @endforeach
@@ -38,4 +39,9 @@
     <!-- Banner Start -->
     @include('pages.packageProducts.partials.banner')
     <!-- Banner End -->
+
+
+    <!-- you Have Question Start -->
+    @include('layouts.partials.question')
+    <!-- you Have Question End -->
 @endsection
