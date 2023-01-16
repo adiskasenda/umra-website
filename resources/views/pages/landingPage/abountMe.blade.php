@@ -76,7 +76,7 @@
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
                     <div class="col-md-3 mt-5">
-                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}" width="100%">
+                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}">
                     </div>
                 @endforeach
             </div>
@@ -98,12 +98,8 @@
                     <div class="col-md-6" style="margin-bottom: 3%;">
                         <div class="card card-bordered" style="width: 100$;">
                             <div class="card-body">
-                                <div>
-                                    <h1>Gabung Sebagai Agen Penjualan</h1>
-                                </div>
-                                <div>
-                                   <p>Jadi agen penjualan, pelayanan & mendaftarkan calon jamaah akan lebih mudah menggunakan aplikasi dan ekosistem UMRA.</p>
-                                </div>
+                                <div class="text-weight-60 fs-20" style="font-weight: bold;">Gabung Sebagai Agen Penjualan</div>
+                                <div class="text-weight-400 fs-16">Jadi agen penjualan, pelayanan & mendaftarkan calon jamaah akan lebih mudah menggunakan aplikasi dan ekosistem UMRA.</div>
                                 <hr>
                                 <div class="mt-5">
                                     <button class="btn btn-success font-normal-500" style="width: 100%">Gabung Sekarang</button>
@@ -116,16 +112,12 @@
                     </div>
                     <div class="col-md-6" style="margin-bottom: 3%;">
                         <div class="card" style="width: 100$;">
-                            <div class="card-body bg-green-card">
-                                <div>
-                                    <h1 class="text-white">Jadi Affiliate Umra bisa dapat untung?</h1>
-                                </div>
-                                <div>
-                                   <p class="text-white">Siapa saja bisa menjadi affiliate Umra hanya dengan gawai anda, Share referral & jadi Digital Referrer Umrapreneur.</p>
-                                </div>
+                            <div class="card-body bg-green-card text-white">
+                                <div class="text-weight-60 fs-20" style="font-weight: bold;">Jadi Affiliate Umra bisa dapat untung?</div>
+                                <div class="text-weight-400 fs-16">Siapa saja bisa menjadi affiliate Umra hanya dengan gawai anda, Share referral & jadi Digital Referrer Umrapreneur.</div>
                                 <hr>
                                 <div class="mt-5">
-                                    <a href="#" class="btn btn-white" style="width: 100%; font-color: #7CB041;">Daftar Affiliate</a>
+                                    <a href="https://zeals.asia/" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
                                 </div>
                                 <!-- <div class="mt-5">
                                     <center><a href="#" class="text-white font-normal-500">Syarat & Ketentuan</a></center>

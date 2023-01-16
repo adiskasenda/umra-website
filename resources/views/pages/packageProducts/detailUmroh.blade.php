@@ -259,10 +259,10 @@
                     <div class="text-dark font-normal-700 fs-20 mt-5">Detail Faslitas</div>
                     <div class="row mt-2">
                         <div class="col-md-6">
-                            <div class="card card-bordered">
-                                <div class="card-header">
+                            <div class="card card-bordered" >
+                                <div class="card-header" style="background: #F8FCFC;">
                                     <div class="card-title">
-                                        <h2 class="mb-0">Sudah Termasuk</h2>
+                                        <h2 class="mb-0 text-success">Sudah Termasuk</h2>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
@@ -278,9 +278,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card card-bordered">
-                                <div class="card-header">
+                                <div class="card-header" style="background: #FCF8F8;">
                                     <div class="card-title">
-                                        <h2 class="mb-0">Belum Termasuk</h2>
+                                        <h2 class="mb-0 text-danger">Belum Termasuk</h2>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">

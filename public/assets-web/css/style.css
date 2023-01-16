@@ -58,8 +58,16 @@
     color: var(--green);
 }
 
+.text-red {
+    color: var(--secondary);
+}
+
 .text-opacity {
     opacity: 0.7;
+}
+
+.text-right {
+    text-align:right !important
 }
 
 /*** Master Icon ***/
@@ -224,6 +232,11 @@
     font-weight: 400;
 }
 
+/* Badge Custom */
+.badge-green-light {
+    background-color: #20A95A;
+}
+
 /*** Master Image ***/
 .image-center {
     display: block;
@@ -261,6 +274,10 @@
     align-items: center;
     justify-content: center;
     font-weight: normal;
+}
+
+.checked {
+    color: orange;
 }
 
 

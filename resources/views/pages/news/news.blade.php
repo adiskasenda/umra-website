@@ -8,8 +8,8 @@
             <div @if( $key == 0) class="carousel-item active"  @else class="carousel-item" @endif style="background-image: url('{{ $news_banner['url_banner'] }}');background-size: 100% 100%;background-repeat: no-repeat;background-position: center;">
                 <div class="container p-tb-100 mt-20">
                     <a href="{{ url('/news', $news_banner['id_blog'] ) }}">
-                        <div class="text-white text-weight-700 fs-32">{{ $news_banner['subject'] }}</div>
-                        <div class="mb-4 text-light text-weight-400 fs-20">{{ date('d M Y H:i', strtotime($news_banner['created_date'])) }}</div>
+                        <div class="text-white text-weight-700 fs-32" style="font-weight: bold;">{{ $news_banner['subject'] }}</div>
+                        <div class="mb-4 text-light text-weight-400 fs-16">{{ date('d M Y H:i', strtotime($news_banner['created_date'])) }}</div>
                     </a>
                 </div>
             </div>
@@ -19,7 +19,7 @@
     <div class="container" style="position: relative;top: -35px;">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="bg-white border rounded p-3 p-sm-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                <div class="bg-white border rounded p-3 p-sm-4">
                     <form class="row" method="GET" action="{{ url('/news') }}">
                         <div class="col-md-10">
                             <div class="row">

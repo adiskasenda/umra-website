@@ -22,18 +22,30 @@
     <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-6.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container" style="margin-top: 5%; margin-bottom:5%;">
             <div class="row">
-                <div class="col-md-6">
-                    <h2 class="font-normal-700 text-green" style="font-size: 32px;">Kunjungi juga Sosial Media Kami</h2>
+                <div class="col-md-6" style="margin:auto;">
+                    <h2 class="font-normal-700 text-green fs-32" style="font-weight: bold;">Kunjungi juga Sosial Media Kami</h2>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 py-5">
                     <!-- Sosmed -->
                     <div class="d-flex justify-content-center">
-                        <a class="btn btn-square btn-success rounded-circle me-2" target="_blank" href="https://web.facebook.com/umraidn?_rdc=1&_rdr"><i class="fab fa-facebook-f" style="margin-left: 6px;"></i></a>
-                        <a class="btn btn-square btn-success rounded-circle me-2" target="_blank" href="https://twitter.com/umra_idn"><i class="fab fa-twitter" style="margin-left: 6px;"></i></a>
-                        <a class="btn btn-square btn-success rounded-circle me-2" target="_blank" href="https://instagram.com/umra.id"><i class="fab fa-instagram" style="margin-left: 6px;"></i></a>
-                        <a class="btn btn-square btn-success rounded-circle me-2" target="_blank" href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.."><i class="fab fa-whatsapp" style="margin-left: 6px;"></i></a>
-                        <a class="btn btn-square btn-success rounded-circle me-2" target="_blank" href="https://www.tiktok.com/@umradotid"><i class="fab fa-tiktok" style="margin-left: 6px;"></i></a>
-                        <a class="btn btn-square btn-success rounded-circle me-2" target="_blank" href="https://www.youtube.com/channel/UCYG0l-187D4h6jVHSWXDuRw?sub_confirmation=1"><i class="fab fa-youtube" style="margin-left: 6px;"></i></a>
+                        <a class="btn btn-square btn-success rounded-circle me-2 mx-4" target="_blank" href="https://web.facebook.com/umraidn?_rdc=1&_rdr">
+                            <i class="fab fa-facebook-f" style="margin-left:6px;"></i>
+                        </a>
+                        <a class="btn btn-square btn-success rounded-circle me-2 mx-4" target="_blank" href="https://twitter.com/umra_idn">
+                            <i class="fab fa-twitter" style="margin-left:6px;"></i>
+                        </a>
+                        <a class="btn btn-square btn-success rounded-circle me-2 mx-4" target="_blank" href="https://instagram.com/umra.id">
+                            <i class="fab fa-instagram" style="margin-left:6px;"></i>
+                        </a>
+                        <a class="btn btn-square btn-success rounded-circle me-2 mx-4" target="_blank" href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya..">
+                            <i class="fab fa-whatsapp" style="margin-left:6px;"></i>
+                        </a>
+                        <a class="btn btn-square btn-success rounded-circle me-2 mx-4" target="_blank" href="https://www.tiktok.com/@umradotid">
+                            <i class="fab fa-tiktok" style="margin-left:6px;"></i>
+                        </a>
+                        <a class="btn btn-square btn-success rounded-circle me-2 mx-4" target="_blank" href="https://www.youtube.com/channel/UCYG0l-187D4h6jVHSWXDuRw?sub_confirmation=1">
+                            <i class="fab fa-youtube" style="margin-left:6px;"></i>
+                        </a>
                     </div>
                 </div>
             </div>

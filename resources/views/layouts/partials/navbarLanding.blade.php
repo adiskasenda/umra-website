@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav p-4 p-lg-0">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="font-size: 16px;">Paket Perjalanan</a>
+                        <a href="#" class="nav-link dropdown-toggle {{ Request::is('/package*') ? 'active' : '' }}" data-bs-toggle="dropdown" style="font-size: 16px;">Paket Perjalanan</a>
                         <div class="dropdown-menu border-light m-0">
                             <a href="{{ url('/package/umroh') }}" style="width: 380px;" class="dropdown-item">
                                 <div class="row" style="width: 380px; margin: 15px 0;">
@@ -41,7 +41,7 @@
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
                                     </div>
                                     <div class="col-10">
-                                        <div class="fs-16" style="font-weight: bold;">Paket Umrah Plush+</div>
+                                        <div class="fs-16" style="font-weight: bold;">Paket Umrah+</div>
                                         <div>Ibadah umroh dengan fasilitas terbaik agar <br/> ibadah anda lebih kusyu.</div>
                                     </div>
                                 </div>
@@ -70,9 +70,9 @@
                             </a> -->
                         </div>
                     </div>
-                    <a href="{{ url('/about-me') }}" class="nav-item nav-link" style="font-size: 16px;">Tentang Kami</a>
-                    <a href="{{ url('/news') }}" class="nav-item nav-link" style="font-size: 16px;">Artikel</a>
-                    <a href="{{ url('/contact-me') }}" class="nav-item nav-link" style="font-size: 16px;">Hubungi Kami</a>
+                    <a href="{{ url('/about-me') }}" class="nav-item nav-link {{ Request::is('/about-me') ? 'active' : '' }}" style="font-size: 16px;">Tentang Kami</a>
+                    <a href="{{ url('/news') }}" class="nav-item nav-link {{ Request::is('/news*') ? 'active' : '' }}" style="font-size: 16px;">Artikel</a>
+                    <a href="{{ url('/contact-me') }}" class="nav-item nav-link {{ Request::is('/contact-me') ? 'active' : '' }}" style="font-size: 16px;">Hubungi Kami</a>
                 </div>
                 <!-- <div class="form-inline ms-auto">
                     @if ( empty(Session::get('user')) ) 
@@ -98,8 +98,13 @@
 
 @push('page_js')
     <script>
-        var $nav = $(".fixed-top");
-        $nav.toggleClass('scrolled', $(document).scrollTop() > $nav.height());
+        $( document ).ready(function() {
+            var $nav = $(".fixed-top");
+            $nav.toggleClass('scrolled', $(document).scrollTop() > $nav.height());
+            if( $(document).scrollTop() > $nav.height() ) {
+                $(".fixed-top").addClass('bg-white shadow scrolled');
+            }
+        });
 
         $(document).scroll(function () {
             var $nav = $(".fixed-top");

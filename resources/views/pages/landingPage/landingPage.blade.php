@@ -412,7 +412,7 @@
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
                     <div class="col-md-3 mt-5">
-                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}" width="100%">
+                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}">
                     </div>
                 @endforeach
             </div>
@@ -433,19 +433,25 @@
 
             <div class="row g-4 align-items-center mt-5 mb-5">
                 <div class="col-lg-6 col-md-12">
-                    <div class="card card-bordered" style="width: 100%; height: 100%;">
-                        <div class="card-body p-5">
-                            <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
-                            <h2 class="card-title mt-5">{{ $new['subject'] }}</h2>
-                            <span class="card-title mt-5">{{ date('d M Y H:i', strtotime($new['created_date'])) }}</span>
+                    <a href="{{ url('/news', $new['id_blog'] ) }}">
+                        <div class="card card-bordered" style="width: 100%; height: 100%;">
+                            <div class="card-body p-5">
+                                <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
+                                <div class="text-dark text-weight-600 fs-20" style="font-weight: bold;">{{ $new['subject'] }}</div>
+                                <div  class="text-tertiary text-weight-600 fs-16">{{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="row">
                         @foreach($news as $new)
-                            <div class="col-md-6 pt-3">
-                                @include('pages.landingPage.partials.cardNews')
+                            <div class="col-md-6 my-5">
+                                @include('pages.landingPage.partials.cardNews', [
+                                    'url' => url('/news', $new['id_blog']),
+                                    'url_banner' => $new['url_banner'],
+                                    'subject' => $new['subject']
+                                ])
                             </div>
                         @endforeach
                     </div>
