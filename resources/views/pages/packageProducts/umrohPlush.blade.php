@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid" style="background-image:url('{{ asset('assets-web/img/background/package-umroh-plus.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container p-tb-50">
-            <div class="text-white" style="font-size: 48px;">Paket Ibadah Umroh Plus+</div>
-            <div class="text-light" style="font-size: 24px;">Ibadah umroh dengan fasilitas terbaik agar ibadah anda lebih kusyu’.</div>
+            <div class="mb-4 text-white text-weight-700 fs-44" style="font-weight: bold;">Paket Ibadah Umroh Plus+</div>
+            <div class="mb-4 text-light text-weight-400 fs-20">Ibadah umroh dengan fasilitas terbaik agar ibadah anda lebih kusyu’.</div>
 
             <div class="row mt-5 text-white">
                 <div class="col-6 col-md-2 mb-5">
@@ -36,14 +36,18 @@
     <!-- Package Umroh Start -->
     <div class="container-fluid py-5">
         <div class="container">
-            <div class="row g-4 align-items-center">
+            <div class="row">
                 @foreach($package_products as $package_product)
-                    <div class="col-lg-3 col-md-4">
+                    <div class="col-lg-3 col-md-4 my-5">
                         <!-- package Product -->
                         @include('pages.packageProducts.partials.cardPackage', [
                             'url' => url('/package', $package_product['id_packet']),
                             'url_banner' => $package_product['url_banner'],
-                            'name' => $package_product['name']
+                            'name' => $package_product['name'],
+                            'quota' => $package_product['quota'],
+                            'percent_markup' => $package_product['percent_markup'],
+                            'price' => $package_product['price'],
+                            'image_configuration' => $configuration['data'][3]['value_configuration']
                         ])
                     </div>
                 @endforeach
@@ -65,4 +69,9 @@
     <!-- Banner Start -->
     @include('pages.packageProducts.partials.banner')
     <!-- Banner End -->
+
+
+    <!-- you Have Question Start -->
+    @include('layouts.partials.question')
+    <!-- you Have Question End -->
 @endsection

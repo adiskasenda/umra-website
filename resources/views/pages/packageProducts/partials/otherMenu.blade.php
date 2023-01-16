@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-grid gap-2">
-                                        <a href="{{ $otherMenu['url'] }}" class="btn btn-success btn-block">Lihat Selengapnya</a>
+                                        <a href="{{ $otherMenu['url'] }}" class="btn btn-success" style="width:100%;">Lihat Selengapnya</a>
                                     </div>
                                 </div>
                             </div>

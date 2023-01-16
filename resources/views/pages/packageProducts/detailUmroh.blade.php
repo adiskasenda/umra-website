@@ -14,16 +14,30 @@
                     <img src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
                     <div class="row mb-3 mt-5">
                         <div class="col-6">
-                            <div class="text-tertiary"> 
-                                <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
-                                <span class="font-normal-400 fs-16">Tersisa 24 Pax</span>
-                            </div>
+                            @if ( $package_product['quota'] == 0 )
+                                <div class="text-tertiary"> 
+                                    <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package-danger.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                    <span class="font-normal-400 fs-16">Seat Penuh</span>
+                                </div>
+                            @else
+                                <div class="text-tertiary"> 
+                                    <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                    <span class="font-normal-400 fs-16">Tersisa {{ $quota }} Pax</span>
+                                </div>
+                            @endif
                         </div>
+
                         <div class="col-6" style="margin:auto;">
-                            <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}" height="36px"/>
+                            <img class="icon-cicilan" src="{{ $configuration['data'][3]['value_configuration'] }}" alt="{{ $configuration['data'][3]['value_configuration'] }}" height="36px"/>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</button>
+
+                    @if( $package_product['quota'] == 0 )
+                        <button class="btn btn-success mt-3" style="width: 100%;" disabled>Pesan Sekarang</button>
+                    @else
+                        <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
+                    @endif
+
                 </div>
                 <div class="col-md-8">
                     @if ( $package_product['flag_umroh'] == 0 )
@@ -221,11 +235,23 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="text-dark font-normal-700 fs-20">Negara yang dikunjungi</div>
-                            <div class="text-tertiary font-normal-500 fs-14">{{ $package_product['tour_country'] }}</div>
+                            @foreach( explode(',', $package_product['tour_country']) as $tour_country )
+                                @if( $tour_country )
+                                    <div class="text-tertiary font-normal-500 fs-14 mt-3">
+                                        <i class="fas fa-flag mx-3"></i> {{ $tour_country }}
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                         <div class="col-md-6">
                             <div class="text-dark font-normal-700 fs-20">Kota yang dikunjungi</div>
-                            <div class="text-tertiary font-normal-500 fs-14">{{ $package_product['tour_city'] }}</div>
+                            @foreach( explode(',', $package_product['tour_city']) as $tour_city )
+                                @if( $tour_city )
+                                    <div class="text-tertiary font-normal-500 fs-14 mt-3">
+                                        <i class="fas fa-flag mx-3"></i> {{ $tour_city }}
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
 
@@ -243,7 +269,7 @@
                                     <div class="d-flex flex-column text-gray-600">
                                         @foreach($package_product['list_include'] as $include)
                                             <div class="d-flex align-items-center py-2">
-                                                <span class="bullet bg-primary me-3"></span> {{ $include['include'] }}
+                                                <i class="fas fa-circle mx-3"></i> {{ $include['include'] }}
                                             </div>
                                         @endforeach
                                     </div>
@@ -261,7 +287,7 @@
                                     <div class="d-flex flex-column text-gray-600">
                                         @foreach($package_product['list_exclude'] as $exclude)
                                             <div class="d-flex align-items-center py-2">
-                                                <span class="bullet bg-primary me-3"></span> {{ $exclude['exclude'] }}
+                                                <i class="fas fa-circle mx-3"></i> {{ $exclude['exclude'] }}
                                             </div>
                                         @endforeach
                                     </div>
@@ -286,9 +312,13 @@
                 @foreach( $other_packages as $other_package )
                     <div class="col-lg-3 col-md-4">
                         @include('pages.packageProducts.partials.cardPackage', [
-                            'url' => url('/package', $package_product['id_packet']),
-                            'url_banner' => $package_product['url_banner'],
-                            'name' => $package_product['name']
+                            'url' => url('/package', $other_package['id_packet']),
+                            'url_banner' => $other_package['url_banner'],
+                            'name' => $other_package['name'],
+                            'quota' => $other_package['quota'],
+                            'percent_markup' => $other_package['percent_markup'],
+                            'price' => $other_package['price'],
+                            'image_configuration' => $configuration['data'][3]['value_configuration']
                         ])
                     </div>
                 @endforeach
@@ -296,4 +326,8 @@
         </div>
     </div>
     <!-- Paket Lain End -->
+
+    <!-- you Have Question Start -->
+        @include('layouts.partials.question')
+    <!-- you Have Question End -->
 @endsection
