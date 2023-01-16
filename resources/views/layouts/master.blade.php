@@ -4,6 +4,7 @@
         @include('layouts.partials.meta')
 
         @include('layouts.partials.style')
+        @stack('page_css')
     </head>
 
     <body>
@@ -19,5 +20,6 @@
         </div>
         
         @include('layouts.partials.script') 
+        @stack('page_js')
     </body>
 </html>
