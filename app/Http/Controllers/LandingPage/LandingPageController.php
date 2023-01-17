@@ -71,70 +71,78 @@ class LandingPageController extends Controller
         $banner3 = asset('assets-web/img/banner/banner-fasilitas.png');
 
         // Experience
-        $experience = [
-            [
-                'image' => asset('assets-web/img/image/experience-1.png'),
-                'title' => 'Keluarga Bapak Dr. Ramadhan',
-                'description' => 'Cibubur, Jakarta Barat',
-            ],
-            [
-                'image' => asset('assets-web/img/image/experience-2.png'),
-                'title' => 'Keluarga Bapak Dr. Ramadhan',
-                'description' => 'Cibubur, Jakarta Barat',
-            ],
-            [
-                'image' => asset('assets-web/img/image/experience-3.png'),
-                'title' => 'Keluarga Bapak Dr. Ramadhan',
-                'description' => 'Cibubur, Jakarta Barat',
-            ]
-        ];
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/testimony/type/1');
+        $experience = json_decode($response->getBody(), true);
+        // dd($experience);
+        
+        // $experience = [
+        //     [
+        //         'image' => asset('assets-web/img/image/experience-1.png'),
+        //         'title' => 'Keluarga Bapak Dr. Ramadhan',
+        //         'description' => 'Cibubur, Jakarta Barat',
+        //     ],
+        //     [
+        //         'image' => asset('assets-web/img/image/experience-2.png'),
+        //         'title' => 'Keluarga Bapak Dr. Ramadhan',
+        //         'description' => 'Cibubur, Jakarta Barat',
+        //     ],
+        //     [
+        //         'image' => asset('assets-web/img/image/experience-3.png'),
+        //         'title' => 'Keluarga Bapak Dr. Ramadhan',
+        //         'description' => 'Cibubur, Jakarta Barat',
+        //     ]
+        // ];
 
         // Experience 2
-        $experience2 = [
-            [
-                'title' => 'Ragu jadi Seru!',
-                'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
-                'name' => 'Husain',
-                'username' => 'Jamaah UMRAID 2020',
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/testimony/type/2');
+        $experience2 = json_decode($response->getBody(), true);
+        // $experience2 = [
+        //     [
+        //         'title' => 'Ragu jadi Seru!',
+        //         'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
+        //         'name' => 'Husain',
+        //         'username' => 'Jamaah UMRAID 2020',
                 
-            ],
-            [
-                'title' => 'Mudahnya Umroh Privat',
-                'description' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
-                'name' => 'Dr. Nurul',
-                'username' => 'Jamaah UMRAID 2020',
-            ]
-        ];
+        //     ],
+        //     [
+        //         'title' => 'Mudahnya Umroh Privat',
+        //         'description' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
+        //         'name' => 'Dr. Nurul',
+        //         'username' => 'Jamaah UMRAID 2020',
+        //     ]
+        // ];
 
         // Mitra
-        $mitras = [
-            [
-                "name" => "PT. Berkah Umroh sentosa",
-                "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
-            ],
-            [
-                "name" => "PT. Berkah Umroh sentosa",
-                "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
-            ],
-            [
-                "name" => "Pt. Berkah Umroh sentosa",
-                "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
-            ]
-        ];
+        // $mitras = [
+        //     [
+        //         "name" => "PT. Berkah Umroh sentosa",
+        //         "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
+        //     ],
+        //     [
+        //         "name" => "PT. Berkah Umroh sentosa",
+        //         "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
+        //     ],
+        //     [
+        //         "name" => "Pt. Berkah Umroh sentosa",
+        //         "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
+        //     ]
+        // ];
 
         // Partner
+        // $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/partner');
+        // $partners = json_decode($response->getBody(), true);
         $partners = [
             [
-                "url" => asset('assets-web/img/partner/partner-1.png')
+                "url_logo" => asset('assets-web/img/partner/partner-1.png')
             ],
             [
-                "url" => asset('assets-web/img/partner/partner-2.png')
+                "url_logo" => asset('assets-web/img/partner/partner-2.png')
             ],
             [
-                "url" => asset('assets-web/img/partner/partner-3.png')
+                "url_logo" => asset('assets-web/img/partner/partner-3.png')
             ],
             [
-                "url" => asset('assets-web/img/partner/partner-4.png')
+                "url_logo" => asset('assets-web/img/partner/partner-4.png')
             ]
         ];
 
@@ -153,9 +161,9 @@ class LandingPageController extends Controller
             'package_product_wisata_halal' => array_slice($package_product_wisata_halal['data'], 0, 2),
             'configuration' => $configuration,
             'banner3' => $banner3,
-            'experience' => $experience,
-            'experience2' => $experience2,
-            'mitras' => $mitras,
+            'experience' => $experience['data'],
+            'experience2' => $experience2['data'],
+            // 'mitras' => $mitras,
             'partners' => $partners,
             'new' => $new,
             'news' => $news['data']['content'],

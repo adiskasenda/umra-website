@@ -63,7 +63,15 @@ class ProfileController extends Controller
 
     public function updatePassword()
     {
-        return ;
+        $body = [
+            "password_new" => $request->password_new,
+            "password_confirm" => $request->password_confirm
+        ];
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        return redirect()->back()
+                        ->withSuccess('Data Password Customer Berhasil Di Update');
     }
 
     public function profilePIN()
@@ -73,50 +81,15 @@ class ProfileController extends Controller
 
     public function updatePIN()
     {
-        return ;
-    }
-
-    public function listTransaction()
-    {
-        // Riwayat Transaksi
-        $histories = [
-            [
-                "type" => "Umroh Reguler",
-                "service" => "Umroh Hemat Bonus Tour Thoif",
-                "departure" => "14 Maret 2023",
-                "duration" => "9",
-                "payment_type" => "Cicilan 2x",
-                "payment_status" => "Belum Lunas",
-                "nominal" => "Rp.40.500.000",
-                "jamaah_count" => "3",
-                "duedate_payment" => "14 Jan 2024 18:31",
-            ],
-            [
-                "type" => "Umroh Reguler",
-                "service" => "Umroh Hemat Bonus Tour Thoif",
-                "departure" => "14 Maret 2023",
-                "duration" => "9",
-                "payment_type" => "Cash",
-                "payment_status" => "Lunas",
-                "nominal" => "Rp.40.500.000",
-                "jamaah_count" => "3",
-                "duedate_payment" => "14 Jan 2024 18:31",
-            ],
-            [
-                "type" => "Umroh Reguler",
-                "service" => "Umroh Hemat Bonus Tour Thoif",
-                "departure" => "14 Maret 2023",
-                "duration" => "9",
-                "payment_type" => "Cicilan 2x",
-                "payment_status" => "Dibatalkan",
-                "nominal" => "Rp.40.500.000",
-                "jamaah_count" => "3",
-                "duedate_payment" => "14 Jan 2024 18:31",
-            ]
+        $body = [
+            "pin_new" => $request->pin_new,
+            "pin_confirm" => $request->pin_confirm
         ];
-        return view('pages.profile.listTransaction', [
-            "histories" => $histories
-        ]);
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        return redirect()->back()
+                        ->withSuccess('Data Password Customer Berhasil Di Update');
     }
 
 

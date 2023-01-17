@@ -258,16 +258,16 @@
     <!-- Experience Start -->
     <div class="container-fluid py-5">
         <div class="container mt-20 mb-20">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <div class="text-center mx-auto" style="max-width: 600px;">
                 <h1 class="display-5 mb-5">Pengalaman Ibadah bersama UMRA.ID</h1>
             </div>
-            <div class="owl-carousel experience-carousel wow fadeInUp" data-wow-delay="0.3s">
+            <div class="owl-carousel experience-carousel mt-10">
                 @foreach($experience as $experience)
-                    <div class="card card-bordered" style="margin-top: 6%; margin-bottom:5%;">
+                    <div class="card card-bordered" style="width: 100%; height: 100%;">
                         <div class="card-body p-5">
-                            <img style="height:'100%';" src="{{ $experience['image'] }}" alt="{{ $experience['image'] }}">
-                            <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience['title'] }}</div>
-                            <div class="text-weight-400 fs-16">{{ $experience['description'] }}</div>
+                            <img style="height:'100%';" src="{{ $experience['url_banner'] ? $experience['url_banner'] : asset('assets-web/img/image/experience-1.png') }}" alt="{{ $experience['url_banner'] ? $experience['url_banner'] : asset('assets-web/img/image/experience-1.png') }}">
+                            <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience['name_person'] }}</div>
+                            <div class="text-weight-400 fs-16">{{ $experience['location_person'] }}</div>
                         </div>
                     </div>
                 @endforeach
@@ -285,14 +285,16 @@
             </div>
             <div class="owl-carousel testimonial-carousel">
                 @foreach($experience2 as $experience2)
-                    <div class="testimonial-item" style="margin-bottom: 5%;">
-                        <div class="bg-white testimonial-text border rounded p-4 pt-5" style="margin-bottom: 10%">
-                            <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience2['title'] }}</div>
-                            <div class="text-weight-400 fs-16">{{ $experience2['description'] }}</div>
+                    <div class="testimonial-item">
+                        <div class="bg-white testimonial-text border rounded p-4" style="margin-bottom: 10%; min-height:150px;">
+                            <div style="margin-top:auto;margin-bottom:auto;">
+                                <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience2['title_testimony'] }}</div>
+                                <div class="text-weight-400 fs-16">{{ $experience2['description_testimony'] }}</div>
+                            </div>
                         </div>
-                        <img style="width: 10%; height:10%;" class="rounded-circle mb-5" src="{{ asset('assets-web/img/users/user-1.jpg')}}" alt="{{ asset('assets-web/img/users/user-1.jpg')}}">
-                        <h4 class="text-drak">{{ $experience2['name'] }}</h4>
-                        <span class="text-tertiary">{{ $experience2['username'] }}</span>
+                        <img style="width: 10%; height:10%;" class="rounded-circle mb-5" src="{{ $experience2['url_ava'] ? $experience2['url_ava'] : asset('assets-web/img/users/user-1.jpg') }}" alt="{{ $experience2['url_ava'] ? $experience2['url_ava'] : asset('assets-web/img/users/user-1.jpg') }}">
+                        <h4 class="text-drak">{{ $experience2['name_person'] }}</h4>
+                        <span class="text-tertiary">{{ $experience2['profession_person'] }}</span>
                     </div>
                 @endforeach
             </div>
@@ -309,7 +311,7 @@
                 <div class="text-light text-weight-400 fs-20 mb-5">UMRA.ID membuka kesempatan bagi perusahaan atau badan usaha untuk bergabung sebagai CABANG dan perseorangan untuk menjadi AFILIATOR atau RESELLER</div>
             </div>
             <div class="row mb-5">
-                <!-- <div class="col-md-6">
+                {{-- <!-- <div class="col-md-6">
                     @foreach($mitras as $mitra)
                     <div class="card mb-2" style="width: 100$;">
                         <div class="card-body">
@@ -330,7 +332,7 @@
                             Lihat Semua <i class="fas fa-chevron-right"></i>
                         </button>
                     </a>
-                </div> -->
+                </div> --> --}}
                 <div class="col-md-6 mt-5">
                     <div class="card card-bordered" style="width: 100$;">
                         <div class="card-body">
@@ -411,8 +413,8 @@
 
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
-                    <div class="col-md-3 mt-5">
-                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}">
+                    <div class="col-lg-3 col-md-4 col-12 mt-5">
+                        <img class="image-center" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
                     </div>
                 @endforeach
             </div>

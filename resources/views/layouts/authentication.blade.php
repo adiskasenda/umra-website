@@ -3,7 +3,7 @@
 	<head>
 		@include('layouts.partials.meta')
 
-		@include('layouts.partials.style1')
+		@include('layouts.partials.style')
 		
 		@stack('page_css')
         <style>
@@ -26,6 +26,8 @@
 	</head>
 	<body id="kt_body" class="app-blank app-blank bgi-size-cover bgi-position-center bgi-no-repeat">
 		@yield('content')
+
+        @include('layouts.partials.script')
+		@stack('page_js')
 	</body>
-	@stack('page_js')
 </html>

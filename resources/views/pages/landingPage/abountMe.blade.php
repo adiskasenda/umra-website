@@ -8,7 +8,7 @@
 
     <!-- Banner Start -->
     <div class="container-fluid py-5">
-        <div class="container" style="margin-top: 3%; margin-bottom:3%;">
+        <div class="container mt-20 mb-20">
             <div class="row">
                 <div class="col-md-8" style="margin-top: 5%">
                     <div class="text-weight-700 fs-44" style="font-weight: bold;">Hadir Untuk Kenyamanan Beribadah Jamaah</div>
@@ -75,8 +75,8 @@
 
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
-                    <div class="col-md-3 mt-5">
-                        <img class="image-center" src="{{ $partner['url'] }}" alt="{{ $partner['url'] }}">
+                    <div class="col-lg-3 col-md-4 col-12 mt-5">
+                        <img class="image-center" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
                     </div>
                 @endforeach
             </div>
