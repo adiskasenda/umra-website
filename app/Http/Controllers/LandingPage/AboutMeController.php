@@ -23,18 +23,20 @@ class AboutMeController extends Controller
         ];
 
         // Partner
+        // $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/partner');
+        // $partners = json_decode($response->getBody(), true);
         $partners = [
             [
-                "url" => asset('assets-web/img/partner/partner-1.png')
+                "url_logo" => asset('assets-web/img/partner/partner-1.png')
             ],
             [
-                "url" => asset('assets-web/img/partner/partner-2.png')
+                "url_logo" => asset('assets-web/img/partner/partner-2.png')
             ],
             [
-                "url" => asset('assets-web/img/partner/partner-3.png')
+                "url_logo" => asset('assets-web/img/partner/partner-3.png')
             ],
             [
-                "url" => asset('assets-web/img/partner/partner-4.png')
+                "url_logo" => asset('assets-web/img/partner/partner-4.png')
             ]
         ];
 

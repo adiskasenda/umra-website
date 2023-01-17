@@ -7,6 +7,8 @@
 <script src="{{ asset('assets-web/lib/counterup/counterup.min.js')}}"></script>
 <script src="{{ asset('assets-web/lib/wow/wow.min.js') }}"></script>
 <script src="{{ asset('assets-web/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+<script src="{{ asset('assets-web/lib/pincode/pincode-input.min.js')}}"></script>
+
 
 <!-- Template Javascript -->
 <script src="{{ asset('assets-web/js/main.js')}}"></script>

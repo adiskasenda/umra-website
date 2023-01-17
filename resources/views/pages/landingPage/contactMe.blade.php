@@ -4,14 +4,14 @@
 
     <!-- Banner Start -->
     <div class="container-fluid py-5">
-        <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
+        <div class="container mt-20 mb-20">
             <div class="row">
-                <div class="col-md-6" style="margin-top: 5%;">
+                <div class="col-md-6" style="margin:auto;">
                     <div class="mb-4 text-weight-700 fs-44" style="font-weight: bold;">Pusat Pengaduan <br/> Customer</div>
                     <div class="mb-4 text-weight-400 fs-20">UMRA.ID berkomitmen untuk senantiasa memberikan pelayanan terbaik bagi seluruh jamaah & customer UMRA.ID. Apabila anda memiliki kritik & saran atas layanan kami, anda dapat menghubungi Customer Service kami.</div>
                 </div>
                 <div class="col-md-6">
-                    <img class="image-center" width="80%" src="{{ asset('assets-web/img/image/hubungi-kami.png')}}" alt="{{ asset('assets-web/img/image/hubungi-kami.png')}}">
+                    <img class="image-center mt-10 mb-5" width="80%" src="{{ asset('assets-web/img/image/hubungi-kami.png')}}" alt="{{ asset('assets-web/img/image/hubungi-kami.png')}}">
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
 
     <!-- Sosmed Start -->
     <div class="container-fluid py-5" style="background-image:url('{{ asset('assets-web/img/background/background-6.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
-        <div class="container" style="margin-top: 5%; margin-bottom:5%;">
+        <div class="container mt-20 mb-20">
             <div class="row">
                 <div class="col-md-6" style="margin:auto;">
                     <h2 class="font-normal-700 text-green fs-32" style="font-weight: bold;">Kunjungi juga Sosial Media Kami</h2>

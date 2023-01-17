@@ -21,10 +21,12 @@
             @endif
 
             <div class="row mb-4 mt-4">
-                <div class="col-6">
-                    <div class="text-dark text-weight-600 fs-16" style="font-weight: bold;">Mulai dari</div>
-                    <div class="text-tertiary text-weight-400 fs-16" style="text-decoration: line-through;">Rp. {{ number_format($price + ( $price * $percent_markup )) }}</div>
-                </div>
+                @if( $percent_markup > 0 )
+                    <div class="col-6">
+                        <div class="text-dark text-weight-600 fs-16" style="font-weight: bold;">Mulai dari</div>
+                        <div class="text-tertiary text-weight-400 fs-16" style="text-decoration: line-through;">Rp. {{ number_format($price + ( $price * $percent_markup )) }}</div>
+                    </div>
+                @endif
                 <div class="col-6" style="margin:auto;">
                     <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}"/>
                 </div>

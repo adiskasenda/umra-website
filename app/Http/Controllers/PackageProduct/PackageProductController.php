@@ -221,10 +221,10 @@ class PackageProductController extends Controller
                 $flag_umroh = 'umroh';
                 break;
             case '1':
-                $flag_umroh = 'umroh_plush';
+                $flag_umroh = 'umrohplus';
                 break;
             default:
-                $flag_umroh = 'wisata_halal';
+                $flag_umroh = 'wisatahalal';
         }
 
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$flag_umroh.'/pagination/0/4/date_start/asc');

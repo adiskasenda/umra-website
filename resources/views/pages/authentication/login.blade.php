@@ -1,6 +1,9 @@
 @extends('layouts.authentication')
 
 @section('content')
+
+
+
     <div class="d-flex flex-column flex-root" id="kt_app_root">
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
             <div class="d-flex flex-lg-row-fluid">
@@ -8,7 +11,7 @@
                     <img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20" src="{{ asset('assets-web/img/logo/logo_umra_icon.png') }}" alt="" />
                 </div>
             </div>
-            <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-12">
+            <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end">
                 <div class="bg-body d-flex flex-center rounded-4 w-md-600px p-10">
                     <div class="w-md-400px">
 
@@ -19,6 +22,7 @@
                         @if ( old('type') == 'gmail' ) 
                             @include('layouts.partials.message')
                         @endif
+
                         <div class="d-grid mb-10">
                             <a href="{{ url('/login-gmail') }}" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
                                 <span class="indicator-label">

@@ -17,6 +17,7 @@
 <!-- Libraries Stylesheet -->
 <link href="{{ asset('assets-web/lib/animate/animate.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets-web/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets-web/lib/pincode/pincode-input.min.css') }}" rel="stylesheet">
 
 <style>
     /* Chrome, Safari, Edge, Opera */

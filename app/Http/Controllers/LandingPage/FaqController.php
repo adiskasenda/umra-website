@@ -36,8 +36,15 @@ class FaqController extends Controller
         }
 
         // Faq
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/faq');
-        $faqs = json_decode($response->getBody(), true);
+        
+        if ( $request->search ) {
+            $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/faq/searching?name='.$request->search);
+            $faqs = json_decode($response->getBody(), true);
+        } else {
+            $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/faq');
+            $faqs = json_decode($response->getBody(), true);
+        }
+        
         
         return view('pages.landingPage.faq', [
             'faqs' => $faqs['data'],
