@@ -9,8 +9,8 @@ use App\Http\Controllers\{
     Auth\LoginEmailController,
     Auth\LoginGoogleController,
     Auth\LoginPhoneController,
-
     Auth\RegisterController,
+    Auth\ForgotPasswordController,
 
     LandingPage\LandingPageController,
     LandingPage\AboutMeController,
@@ -24,6 +24,7 @@ use App\Http\Controllers\{
 
     PackageProduct\PackageProductController,
     Profile\ProfileController,
+    Profile\ProfileTransactionController,
 };
 
 /*
@@ -65,6 +66,9 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
     Route::get('/register', [ RegisterController::class, 'index' ]);
     Route::post('/register-email', [ RegisterController::class, 'registerEmail' ]);
     Route::post('/register-phone', [ RegisterController::class, 'registerPhone' ]);
+
+    // Reset Password Email & PIN
+    Route::get('/reset-password', [ ForgotPasswordController::class, 'email']);
 
 });
 
@@ -130,7 +134,7 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
         Route::patch('/update-pin', [ ProfileController::class, 'updatePIN' ]);
 
         // Activity
-        // Route::get('/list-transaction', [ ProfileController::class, 'listTransaction' ]);
+        Route::get('/list-transaction', [ ProfileTransactionController::class, 'listTransaction' ]);
 
         // Help
 

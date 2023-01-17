@@ -48,7 +48,7 @@ class ProfileController extends Controller
 
         $this->header['ax-request-by'] = Session::get('user')['email'];
         $this->header['Authorization'] = 'Bearer '.Session::get('token');
-        
+
         $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/'.Session::get('user')['user_id'], $body);
         $customer = json_decode($response->getBody(), true);
 
@@ -63,7 +63,15 @@ class ProfileController extends Controller
 
     public function updatePassword()
     {
-        return ;
+        $body = [
+            "password_new" => $request->password_new,
+            "password_confirm" => $request->password_confirm
+        ];
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        return redirect()->back()
+                        ->withSuccess('Data Password Customer Berhasil Di Update');
     }
 
     public function profilePIN()
@@ -73,8 +81,17 @@ class ProfileController extends Controller
 
     public function updatePIN()
     {
-        return ;
+        $body = [
+            "pin_new" => $request->pin_new,
+            "pin_confirm" => $request->pin_confirm
+        ];
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        return redirect()->back()
+                        ->withSuccess('Data Password Customer Berhasil Di Update');
     }
 
-   
+
 }
+

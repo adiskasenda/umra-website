@@ -26,7 +26,7 @@ class FaqController extends Controller
         $this->url = env('APP_URL_API');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         if ( !empty(Session::get('user')) ) {
             $this->header['ax-request-by'] = Session::get('user')['email'];
@@ -36,11 +36,19 @@ class FaqController extends Controller
         }
 
         // Faq
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/faq');
-        $faqs = json_decode($response->getBody(), true);
+        
+        if ( $request->search ) {
+            $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/faq/searching?name='.$request->search);
+            $faqs = json_decode($response->getBody(), true);
+        } else {
+            $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/faq');
+            $faqs = json_decode($response->getBody(), true);
+        }
+        
         
         return view('pages.landingPage.faq', [
-            'faqs' => $faqs['data']
+            'faqs' => $faqs['data'],
+            'search' => $request->search
         ]);
     }
 }

@@ -61,9 +61,13 @@
                         <div class="col-md-4">
                             <div class="card card-bordered" style="width: 100$;">
                                 <div class="card-body" style="padding: 1rem !important;">
-                                    <div class="text-dark font-normal-600 fs-16">Harga mulai dari</div>
-                                    <div class="text-tertiary font-normal-400 fs-14" style="text-decoration: line-through;">Rp. 30.000.000</div>
-                                    <div class="text-green">
+                                    @if( $package_product['percent_markup'] > 0 )
+                                        <div class="text-dark font-normal-600 fs-16">Harga mulai dari</div>
+                                        <div class="text-tertiary font-normal-400 fs-14" style="text-decoration: line-through;">Rp. {{ number_format($package_product['price'] + ( $package_product['price'] * $package_product['percent_markup'] )) }}</div>
+                                    @else
+                                        <div class="text-dark font-normal-600 fs-16">Harga</div>
+                                    @endif
+                                    <div class="text-green mb-3">
                                         <span class="font-normal-700 fs-20">Rp. {{ number_format($package_product['price']) }}</span>
                                         <span class="text-tertiary font-normal-500 fs-14">/ Orang</span>
                                     </div>
@@ -259,10 +263,10 @@
                     <div class="text-dark font-normal-700 fs-20 mt-5">Detail Faslitas</div>
                     <div class="row mt-2">
                         <div class="col-md-6">
-                            <div class="card card-bordered">
-                                <div class="card-header">
+                            <div class="card card-bordered" >
+                                <div class="card-header" style="background: #F8FCFC;">
                                     <div class="card-title">
-                                        <h2 class="mb-0">Sudah Termasuk</h2>
+                                        <h2 class="mb-0 text-success">Sudah Termasuk</h2>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
@@ -278,9 +282,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card card-bordered">
-                                <div class="card-header">
+                                <div class="card-header" style="background: #FCF8F8;">
                                     <div class="card-title">
-                                        <h2 class="mb-0">Belum Termasuk</h2>
+                                        <h2 class="mb-0 text-danger">Belum Termasuk</h2>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
@@ -304,7 +308,7 @@
     <!-- Paket Lain Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="mx-auto wow fadeInUp" data-wow-delay="0.1s">
+            <div class="mx-auto">
                 <div class="font-normal-700 fs-32 mb-5">Paket Layanan lain</div>
             </div>
             <div class="row">
