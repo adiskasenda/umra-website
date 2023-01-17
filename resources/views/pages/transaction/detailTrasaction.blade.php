@@ -143,9 +143,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button class="btn btn-success" style="width: 100%;">
-                                    Lihat detail fasilitas
-                                </button>
+                                <button type="button" class="btn btn-success" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#detailFasilitasModal">
                             </div>
                         </div>
                         {{-- end:Akomodasi --}}
@@ -408,6 +406,108 @@
                     </div>
                 </div>
                 {{-- end:Kebijakan --}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" tabindex="-1" id="detailFasilitasModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Detail Fasilitas</h3>
+
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-1"></span>
+                </div>
+                <!--end::Close-->
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="font-normal-700 fs-16">
+                            Negara yang dikunjungi
+                        </div>
+                        <div class="font-normal-400 fs-14 mt-2">
+                            <i class="fa-solid fa-flag" style="color: var(--green)"></i>
+                            Arab Saudi
+                        </div>
+                        <div class="font-normal-400 fs-14 mt-2">
+                            <i class="fa-solid fa-flag" style="color: var(--green)"></i>
+                            Turkey
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="font-normal-700 fs-16">
+                            Kota yang dikunjungi
+                        </div>
+                        <div class="font-normal-400 fs-14 mt-2">
+                            <i class="fa-solid fa-location-dot" style="color: var(--green)"></i>
+                            Madinah
+                        </div>
+                        <div class="font-normal-400 fs-14 mt-2">
+                            <i class="fa-solid fa-location-dot" style="color: var(--green)"></i>
+                            Makkah
+                        </div>
+                        <div class="font-normal-400 fs-14 mt-2">
+                            <i class="fa-solid fa-location-dot" style="color: var(--green)"></i>
+                            Istanbul
+                        </div>
+                    </div>
+                </div>
+                <!-- Detail Fasilitas -->
+                <div class="text-dark font-normal-700 fs-20 mt-5">Detail Faslitas</div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <div class="card card-bordered">
+                            <div class="card-header" style="background-color: #F8FCFC">
+                                <div class="card-title">
+                                    <h4 class="mb-0 text-green">
+                                        <i class="fa-solid fa-circle-check" style="color: var(--green)"></i>
+                                        Sudah Termasuk
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="d-flex flex-column text-gray-600">
+                                    @foreach($package_product['list_include'] as $include)
+                                        <div class="d-flex align-items-center py-2">
+                                            <span class="bullet bg-primary me-3"></span> {{ $include['include'] }}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-bordered">
+                            <div class="card-header" style="background-color: #FCF8F8">
+                                <div class="card-title">
+                                    <h4 class="mb-0" style="color: #B3261E">
+                                        <i class="fa-solid fa-circle-xmark" style="color: #B3261E"></i>
+                                        Belum Termasuk
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="d-flex flex-column text-gray-600">
+                                    @foreach($package_product['list_exclude'] as $exclude)
+                                        <div class="d-flex align-items-center py-2">
+                                            <span class="bullet bg-primary me-3"></span> {{ $exclude['exclude'] }}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
