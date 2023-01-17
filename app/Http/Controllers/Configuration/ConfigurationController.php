@@ -12,6 +12,7 @@ use Ramsey\Uuid\Uuid;
 class ConfigurationController extends Controller
 {
     private $header;
+    private $url;
 
     public function __construct()
     {
