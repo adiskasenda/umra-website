@@ -15,7 +15,7 @@
                     Tersisa  {{ $quota }} Pax
                 </div>
                 <div class="mb-3 mt-3 text-tertiary text-weight-400 fs-16"> 
-                    <img class="icon-package" src="{{ $image_configuration }}" alt="{{ $image_configuration }}">  
+                    <img class="icon-package" src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}">  
                     Tersedia 3 Pilihan Kamar
                 </div>
             @endif
@@ -28,7 +28,7 @@
                     </div>
                 @endif
                 <div class="col-6" style="margin:auto;">
-                    <img class="icon-cicilan" src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}"/>
+                    <img class="icon-cicilan" src="{{ $image_configuration }}" alt="{{ $image_configuration }}"/>
                 </div>
             </div>
 

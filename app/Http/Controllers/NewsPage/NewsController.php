@@ -11,6 +11,9 @@ use Ramsey\Uuid\Uuid;
 
 class NewsController extends Controller
 {
+    private $header;
+    private $url;
+    
     public function __construct()
     {
         $this->header = [
