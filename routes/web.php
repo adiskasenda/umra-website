@@ -25,6 +25,7 @@ use App\Http\Controllers\{
     PackageProduct\PackageProductController,
     Profile\ProfileController,
     Profile\ProfileTransactionController,
+    Profile\ProfileActivityController,
 };
 
 /*
@@ -135,7 +136,7 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
 
         // Activity
         Route::get('/list-transaction', [ ProfileTransactionController::class, 'listTransaction' ]);
-
+        Route::get('/activity', [ ProfileActivityController::class, 'activity' ]);
         // Help
 
     });
