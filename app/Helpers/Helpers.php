@@ -1,7 +1,7 @@
 <?php
 namespace App\Helpers;
 
-class Helper
+class Helpers
 {
 
     // public static function  getUserIP() {
