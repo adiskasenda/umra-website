@@ -12,7 +12,8 @@
     </div>
 
     <div class="card-body" style="padding: 1rem !important;">
-
+    @foreach( $sidebars = Helpers::sidebarProfile as $sidebar )
+    @endforeach
         {{-- <!-- account & security -->
         <div class="d-flex flex-stack fs-4 py-3">
             <div class="fw-bold rotate collapsible active" data-bs-toggle="collapse" href="#kt_user_akun_and_security" role="button" aria-expanded="true" aria-controls="kt_user_akun_and_security">

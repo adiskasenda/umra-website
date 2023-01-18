@@ -19,6 +19,8 @@ use App\Http\Controllers\{
     LandingPage\FaqController,
     LandingPage\MitraController,
 
+    Feedback\FeedBackController,
+
     NewsPage\NewsController,
     Transaction\TransactionController,
 
@@ -72,6 +74,14 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
     Route::get('/reset-password', [ ForgotPasswordController::class, 'email']);
 
 });
+
+// https://umra.id/index.php/redirect-feedback/emailVerification?status=2&message=Token%20Verification%20Not%20Existing!
+// https://umra.id/index.php/redirect-feedback/emailVerification?status=1&message=Success%20verification,%20Your%20account%20is%20active.
+// sendretry?="http://103.179.57.237:8200/core-umra/customer/get_verify_email/hanifalbaaits@dataku.id"
+// https://umra.id/index.php/redirect-feedback/emailVerification?status=2&message=Token%20Verification%20Not%20Existing?sendretry=http://103.179.57.237:8200/core-umra/customer/get_verify_email/hanifalbaaits@dataku.id
+
+// FeedBack
+Route::get('/redirect-feedback/emailVerification', [ FeedBackController::class, 'emailVerification' ]);
 
 // Logout 
 Route::get('/logout', [ LoginController::class, 'logout' ]);
@@ -137,7 +147,6 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
         // Activity
         Route::get('/list-transaction', [ ProfileTransactionController::class, 'listTransaction' ]);
         Route::get('/activity', [ ProfileActivityController::class, 'activity' ]);
-        // Help
 
     });
 
