@@ -12,8 +12,9 @@
     </div>
 
     <div class="card-body" style="padding: 1rem !important;">
-
-        <!-- account & security -->
+    @foreach( $sidebars = Helpers::sidebarProfile as $sidebar )
+    @endforeach
+        {{-- <!-- account & security -->
         <div class="d-flex flex-stack fs-4 py-3">
             <div class="fw-bold rotate collapsible active" data-bs-toggle="collapse" href="#kt_user_akun_and_security" role="button" aria-expanded="true" aria-controls="kt_user_akun_and_security">
                 Akun & Keamanan 
@@ -31,17 +32,23 @@
         <div id="kt_user_akun_and_security" class="collapse show" style="">
             <div class="pb-5 fs-6">
                 <div class="mt-5">
-                    <a href="{{ url('/profile') }}" class="text-dark">Profile</a>
+                    <a href="{{ url('/profile') }}" class="text-dark">
+                        <img src="{{ asset('assets-web/img/icon/icon-sidebar-user.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-user.png') }}"> Profile
+                    </a>
                 </div>
             </div>
             <div class="pb-5 fs-6">
                 <div class="mt-5">
-                    <a href="{{ url('/profile/password') }}" class="text-dark">Ganti Password</a>
+                    <a href="{{ url('/profile/password') }}" class="text-dark">
+                        <img src="{{ asset('assets-web/img/icon/icon-sidebar-lock-closed.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-lock-closed.png') }}"> Ganti Password
+                    </a>
                 </div>
             </div>
             <div class="pb-5 fs-6">
                 <div class="mt-5">
-                    <a href="{{ url('/profile/pin') }}" class="text-dark">Atur PIN</a>
+                    <a href="{{ url('/profile/pin') }}" class="text-dark">
+                        <img src="{{ asset('assets-web/img/icon/icon-sidebar-subtract.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-subtract.png') }}"> Atur PIN
+                    </a>
                 </div>
             </div>
         </div>
@@ -63,12 +70,16 @@
         <div id="kt_user_activity" class="collapse show" style="">
             <div class="pb-5 fs-6">
                 <div class="mt-5">
-                    <a href="{{ url('/profile/list-transaction') }}" class="text-dark">Riwayat Transaksi</a>
+                    <a href="{{ url('/profile/list-transaction') }}" class="text-dark"> 
+                        <img src="{{ asset('assets-web/img/icon/icon-sidebar-history.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-history.png') }}"> Riwayat Transaksi
+                    </a>
                 </div>
             </div>
             <div class="pb-5 fs-6">
                 <div class="mt-5">
-                    <a href="#" class="text-dark">Riwayat Kegiatan</a>
+                    <a href="#" class="text-dark">
+                        <img src="{{ asset('assets-web/img/icon/icon-sidebar-phone.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-phone.png') }}"> Aktivitas Anda
+                    </a>
                 </div>
             </div>
         </div>
@@ -89,17 +100,33 @@
         <div class="separator"></div>
         <div id="kt_user_help" class="collapse show" style="">
             <div class="pb-5 fs-6">
-                <div class="mt-5">Customer Service</div>
+                <div class="mt-5"> 
+                    <a href="#" class="text-dark">
+                        <img src="{{ asset('assets-web/img/icon/icon-sidebar-history.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-history.png') }}"> Customer Service
+                    </a>
+                </div>
             </div>
             <div class="pb-5 fs-6">
-                <div class="mt-5">Faq</div>
+                <div class="mt-5"> 
+                    <a href="#" class="text-dark">
+                        <i class="fas fa-chevron-right"></i> Faq
+                    </a>
+                </div>
             </div>
             <div class="pb-5 fs-6">
-                <div class="mt-5">Kebijakan Privasi</div>
+                <div class="mt-5">
+                    <a href="#" class="text-dark">
+                        <i class="fas fa-chevron-right"></i> Kebijakan Privasi
+                    </a>    
+                </div>
             </div>
             <div class="pb-5 fs-6">
-                <div class="mt-5">Syarat dan Ketentuan</div>
+                <div class="mt-5">
+                    <a href="#" class="text-dark">
+                        <i class="fas fa-chevron-right"></i> Syarat dan Ketentuan
+                    </a>
+                </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
