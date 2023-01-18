@@ -10,46 +10,47 @@
             ])
 
             <div class="row">
-                <div class="col-md-4">
-                    <img src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
-                    <div class="row mb-3 mt-5">
-                        <div class="col-6">
-                            @if ( $package_product['quota'] == 0 )
-                                <div class="text-tertiary"> 
-                                    <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package-danger.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
-                                    <span class="font-normal-400 fs-16">Seat Penuh</span>
-                                </div>
-                            @else
-                                <div class="text-tertiary"> 
-                                    <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
-                                    <span class="font-normal-400 fs-16">Tersisa {{ $quota }} Pax</span>
-                                </div>
-                            @endif
+                <div class="col-md-4 mt-5">
+                    <div style="position: -webkit-sticky;position: sticky;top: 120px;">
+                        <img class="img-card" src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
+                        <div class="row mb-3 mt-5">
+                            <div class="col-6">
+                                @if ( $package_product['quota'] == 0 )
+                                    <div class="text-tertiary"> 
+                                        <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package-danger.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                        <span class="font-normal-400 fs-16">Seat Penuh</span>
+                                    </div>
+                                @else
+                                    <div class="text-tertiary"> 
+                                        <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                        <span class="font-normal-400 fs-16">Tersisa {{ $package_product['quota'] }} Pax</span>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div class="col-6" style="margin:auto;">
+                                <img class="icon-cicilan" src="{{ $configuration['data'][3]['value_configuration'] }}" alt="{{ $configuration['data'][3]['value_configuration'] }}" height="36px"/>
+                            </div>
                         </div>
 
-                        <div class="col-6" style="margin:auto;">
-                            <img class="icon-cicilan" src="{{ $configuration['data'][3]['value_configuration'] }}" alt="{{ $configuration['data'][3]['value_configuration'] }}" height="36px"/>
-                        </div>
+                        @if( $package_product['quota'] == 0 )
+                            <button class="btn btn-success mt-3" style="width: 100%;" disabled>Pesan Sekarang</button>
+                        @else
+                            <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
+                        @endif
                     </div>
-
-                    @if( $package_product['quota'] == 0 )
-                        <button class="btn btn-success mt-3" style="width: 100%;" disabled>Pesan Sekarang</button>
-                    @else
-                        <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
-                    @endif
-
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 mt-5">
                     @if ( $package_product['flag_umroh'] == 0 )
-                        <a href="{{ url('/package/umroh') }}" class="text-tertiary"> 
+                        <a href="{{ url('/package/umroh') }}" class="text-tertiary fs-16"> 
                             <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Umroh
                         </a>
                     @elseif ( $package_product['flag_umroh'] == 1 )
-                        <a href="{{ url('/package/umroh-plus') }}" class="text-tertiary">
+                        <a href="{{ url('/package/umroh-plus') }}" class="text-tertiary fs-16">
                             <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Umroh Plus
                         </a>
                     @elseif ( $package_product['flag_umroh'] == 2 )
-                        <a href="{{ url('/package/wisata-halal') }}" class="text-tertiary">
+                        <a href="{{ url('/package/wisata-halal') }}" class="text-tertiary fs-16">
                             <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Wisata Halal
                         </a>
                     @endif
@@ -58,7 +59,7 @@
                     <div class="text-tertiary font-normal-400 fs-16 py-5">{!! $package_product['description'] !!}</div>
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-5">
                             <div class="card card-bordered" style="width: 100$;">
                                 <div class="card-body" style="padding: 1rem !important;">
                                     @if( $package_product['percent_markup'] > 0 )
@@ -74,7 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 mt-5">
                             <div class="card card-bordered" style="width: 100$;">
                                 <div class="card-body" style="padding: 1rem !important;">
                                     <div class="text-dark font-normal-600 fs-16">Jadwal Keberangkatan</div>
@@ -165,8 +166,8 @@
                     
                     <div class="text-dark font-normal-700 fs-20 mt-5">Pilihan Kamar Hotel</div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="card card-bordered mt-5" style="width: 100$;">
+                        <div class="col-md-4 mt-5">
+                            <div class="card card-bordered" style="width: 100$;">
                                 <div class="card-header" style="background: #F8FCFC;">
                                     <div class="image-center mt-2">
                                         <img src="{{ asset('assets-web/img/icon/double.png') }}" alt="{{ asset('assets-web/img/icon/double.png') }}">
@@ -182,8 +183,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card card-bordered mt-5" style="width: 100$;">
+                        <div class="col-md-4 mt-5">
+                            <div class="card card-bordered" style="width: 100$;">
                                 <div class="card-header" style="background: #F8FCFC;">
                                     <div class="image-center mt-2">
                                         <img src="{{ asset('assets-web/img/icon/triple.png') }}" alt="{{ asset('assets-web/img/icon/triple.png') }}">
@@ -199,8 +200,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card card-bordered mt-5" style="width: 100$;">
+                        <div class="col-md-4 mt-5">
+                            <div class="card card-bordered" style="width: 100$;">
                                 <div class="card-header" style="background: #F8FCFC;">
                                     <div class="image-center mt-2">
                                         <img src="{{ asset('assets-web/img/icon/quad.png') }}" alt="{{ asset('assets-web/img/icon/quad.png') }}">
@@ -237,7 +238,7 @@
 
                     <!-- Tour Count -->
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mt-5">
                             <div class="text-dark font-normal-700 fs-20">Negara yang dikunjungi</div>
                             @foreach( explode(',', $package_product['tour_country']) as $tour_country )
                                 @if( $tour_country )
@@ -247,7 +248,7 @@
                                 @endif
                             @endforeach
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 mt-5">
                             <div class="text-dark font-normal-700 fs-20">Kota yang dikunjungi</div>
                             @foreach( explode(',', $package_product['tour_city']) as $tour_city )
                                 @if( $tour_city )
@@ -262,7 +263,7 @@
                     <!-- Detail Fasilitas -->
                     <div class="text-dark font-normal-700 fs-20 mt-5">Detail Faslitas</div>
                     <div class="row mt-2">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mt-5">
                             <div class="card card-bordered" >
                                 <div class="card-header" style="background: #F8FCFC;">
                                     <div class="card-title">
@@ -280,7 +281,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 mt-5">
                             <div class="card card-bordered">
                                 <div class="card-header" style="background: #FCF8F8;">
                                     <div class="card-title">

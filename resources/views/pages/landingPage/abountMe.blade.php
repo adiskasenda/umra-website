@@ -57,7 +57,7 @@
             </div>
             <div class="owl-carousel event-carousel" data-wow-delay="0.3s">
                 @foreach($activity_me as $activity)
-                        <img src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
+                    <img class="img-card" src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
                 @endforeach
             </div>
         </div>
@@ -76,7 +76,7 @@
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
                     <div class="col-lg-3 col-md-4 col-12 mt-5">
-                        <img class="image-center" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
+                        <img class="img-card image-center" width="70%" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
                     </div>
                 @endforeach
             </div>
@@ -87,42 +87,40 @@
 
     <!-- Kerja sama Start -->
     <div class="container-fluid py-5 bg-image-7">
-        <div class="container-fluid py-5">
-            <div class="container">
-                <div class="text-white text-center mx-auto">
-                    <div class="text-white text-weight-700 fs-44 mb-5">Ingin Bekerjasama dengan Kami?</div>
-                    <div class="text-light text-weight-400 fs-20">Kami sangat senang untuk bekerjasama dengan Anda, baik itu berupa kerjasama antar perusahaan ataupun perseorangan, Kami tunggu kerjasama Anda!</div>
-                </div>
+        <div class="container mt-20 mb-20">
+            <div class="text-white text-center mx-auto">
+                <div class="text-white text-weight-700 fs-44 mb-5">Ingin Bekerjasama dengan Kami?</div>
+                <div class="text-light text-weight-400 fs-20">Kami sangat senang untuk bekerjasama dengan Anda, baik itu berupa kerjasama antar perusahaan ataupun perseorangan, Kami tunggu kerjasama Anda!</div>
+            </div>
 
-                <div class="row mt-5">
-                    <div class="col-md-6" style="margin-bottom: 3%;">
-                        <div class="card card-bordered" style="width: 100$;">
-                            <div class="card-body">
-                                <div class="text-weight-60 fs-20" style="font-weight: bold;">Gabung Sebagai Agen Penjualan</div>
-                                <div class="text-weight-400 fs-16">Jadi agen penjualan, pelayanan & mendaftarkan calon jamaah akan lebih mudah menggunakan aplikasi dan ekosistem UMRA.</div>
-                                <hr>
-                                <div class="mt-5">
-                                    <button class="btn btn-success font-normal-500" style="width: 100%">Gabung Sekarang</button>
-                                </div>
-                                <!-- <div class="mt-5">
-                                   <center><a href="#">Lihat semua mitra umra</a></center>
-                                </div> -->
+            <div class="row mt-5">
+                <div class="col-md-6 mb-5">
+                    <div class="card card-bordered" style="width: 100$;">
+                        <div class="card-body">
+                            <div class="text-weight-60 fs-20" style="font-weight: bold;">Gabung Sebagai Agen Penjualan</div>
+                            <div class="text-weight-400 fs-16">Jadi agen penjualan, pelayanan & mendaftarkan calon jamaah akan lebih mudah menggunakan aplikasi dan ekosistem UMRA.</div>
+                            <hr>
+                            <div class="mt-5">
+                                <button class="btn btn-success font-normal-500" style="width: 100%">Gabung Sekarang</button>
                             </div>
+                            <!-- <div class="mt-5">
+                                <center><a href="#">Lihat semua mitra umra</a></center>
+                            </div> -->
                         </div>
                     </div>
-                    <div class="col-md-6" style="margin-bottom: 3%;">
-                        <div class="card" style="width: 100$;">
-                            <div class="card-body bg-green-card text-white">
-                                <div class="text-weight-60 fs-20" style="font-weight: bold;">Jadi Affiliate Umra bisa dapat untung?</div>
-                                <div class="text-weight-400 fs-16">Siapa saja bisa menjadi affiliate Umra hanya dengan gawai anda, Share referral & jadi Digital Referrer Umrapreneur.</div>
-                                <hr>
-                                <div class="mt-5">
-                                    <a href="https://zeals.asia/" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
-                                </div>
-                                <!-- <div class="mt-5">
-                                    <center><a href="#" class="text-white font-normal-500">Syarat & Ketentuan</a></center>
-                                 </div> -->
+                </div>
+                <div class="col-md-6 mb-5">
+                    <div class="card" style="width: 100$;">
+                        <div class="card-body bg-green-card text-white">
+                            <div class="text-weight-60 fs-20" style="font-weight: bold;">Jadi Affiliate Umra bisa dapat untung?</div>
+                            <div class="text-weight-400 fs-16">Siapa saja bisa menjadi affiliate Umra hanya dengan gawai anda, Share referral & jadi Digital Referrer Umrapreneur.</div>
+                            <hr>
+                            <div class="mt-5">
+                                <a href="https://zeals.asia/" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
                             </div>
+                            <!-- <div class="mt-5">
+                                <center><a href="#" class="text-white font-normal-500">Syarat & Ketentuan</a></center>
+                                </div> -->
                         </div>
                     </div>
                 </div>

@@ -5,10 +5,10 @@
             <div class="col-lg-4 col-md-5">
                 <a href="{{ url('/') }}"> 
                     <div class="row">
-                        <div class="col-lg-3 col-md-4 col-3" style="border-right: 2px solid #DFE4FD;">
+                        <div class="col-lg-3 col-md-4 col-4" style="border-right: 2px solid #DFE4FD;">
                             <img class="mt-5 mb-5" src="{{ asset('assets-web/img/logo/footer-1.png') }}" alt="{{ asset('assets-web/img/logo/footer-1.png') }}">
                         </div>
-                        <div class="col-lg-9 col-md-8 col-9">
+                        <div class="col-lg-9 col-md-8 col-8">
                             <img class="mt-5 mb-5" src="{{ asset('assets-web/img/logo/footer-2.png') }}" alt="{{ asset('assets-web/img/logo/footer-2.png') }}">
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 mt-10">
                         <h4 class="text-dark mb-4">Layanan</h4>
                         <a class="btn btn-link" href="{{ url('/package/umroh') }}">Umroh</a>
-                        <a class="btn btn-link" href="{{ url('/package/umroh-plus') }}">Umroh Plus+</a>
+                        <a class="btn btn-link" href="{{ url('/package/umroh-plus') }}">Umroh+</a>
                         <a class="btn btn-link" href="{{ url('/package/wisata-halal') }}">Wisata Halal</a>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 mt-10">

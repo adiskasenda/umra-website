@@ -11,6 +11,9 @@ use Ramsey\Uuid\Uuid;
 
 class NewsController extends Controller
 {
+    private $header;
+    private $url;
+    
     public function __construct()
     {
         $this->header = [
@@ -32,28 +35,8 @@ class NewsController extends Controller
         }
 
         // News Banner
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/3/id_blog/desc');
-        // $news_banners = json_decode($response->getBody(), true);
-        $news_banners = [
-            [
-                "url_banner" => asset('assets-web/img/banner/banner-news-1.png'),
-                "id_blog" => "1",
-                "subject" => "hello Test 1",
-                "created_date" => "28 May 2022 00:21"
-            ],
-            [
-                "url_banner" => asset('assets-web/img/banner/banner-news-1.png'),
-                "id_blog" => "1",
-                "subject" => "hello Test 2",
-                "created_date" => "28 May 2022 00:21"
-            ],
-            [
-                "url_banner" => asset('assets-web/img/banner/banner-news-1.png'),
-                "id_blog" => "1",
-                "subject" => "hello Test 3",
-                "created_date" => "28 May 2022 00:21"
-            ],
-        ];
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/2/id_blog/asc');
+        $news_banners = json_decode($response->getBody(), true);
 
         if ( $request->search ) {
             $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/8/id_blog/desc');
@@ -64,8 +47,7 @@ class NewsController extends Controller
         }
 
         return view('pages.news.news', [
-            // 'news_banners' => $news_banners['data']['content'],
-            'news_banners' => $news_banners,
+            'news_banners' => $news_banners['data']['content'],
             'news' => $news['data']['content'],
             'search' => $request->search
         ]);

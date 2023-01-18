@@ -7,7 +7,7 @@
         <div class="container-fluid py-5">
             <div class="container" style="margin-top: 3%; margin-bottom:3%;">
                 <h1 class="font-normal-700 fs-44 text-white">Perjalanan DIY (Do It Your Self)</h1>
-                <h4 class="text-opacity text-white font-normal-400" style="margin-top: 2%">Atur sendiri hotel, maskapai, durasi serta destinasi perjalanan umroh + wisata anda.</h4>
+                <h4 class="text-opacity text-white font-normal-400" style="margin-top: 2%">Atur sendiri hotel, maskapai, durasi serta destinasi perjalanan Umroh+ wisata anda.</h4>
                 <div class="row mt-5">
                     <div class="col-2">
                         <img src="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" alt="{{ asset('assets-web/img/icon/hotel-umrah.png')}}" width="30px">
