@@ -37,9 +37,13 @@ class Helper
         return $ip;
     }
     
+    // you can use this function with Helpers::imageBannerDefault()
+    public static function imageBannerDefault() {
+        return asset('assets-web/img/image/image-not-found.png');
+    }
 
-    // you can use this function with Helpers::imageDefault()
-    public static function imageDefault() {
+    // you can use this function with Helpers::imageCardDefault()
+    public static function imageCardDefault() {
         return asset('assets-web/img/image/image-not-found.png');
     }
 

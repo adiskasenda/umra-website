@@ -57,7 +57,7 @@
             </div>
             <div class="owl-carousel event-carousel" data-wow-delay="0.3s">
                 @foreach($activity_me as $activity)
-                        <img src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
+                    <img class="img-card" src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
                 @endforeach
             </div>
         </div>
@@ -76,7 +76,7 @@
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
                     <div class="col-lg-3 col-md-4 col-12 mt-5">
-                        <img class="image-center" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
+                        <img class="img-card image-center" width="70%" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
                     </div>
                 @endforeach
             </div>

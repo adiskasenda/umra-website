@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-4 mt-5">
                     <div style="position: -webkit-sticky;position: sticky;top: 120px;">
-                        <img src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
+                        <img class="img-card" src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
                         <div class="row mb-3 mt-5">
                             <div class="col-6">
                                 @if ( $package_product['quota'] == 0 )
