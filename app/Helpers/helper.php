@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Helpers;
 
 class Helper
 {
@@ -25,7 +25,7 @@ class Helper
         return $ipaddress;
     }
 
-    function getIp() {
+    public static function getIp() {
         $ip = $_SERVER['REMOTE_ADDR'];
      
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -37,4 +37,14 @@ class Helper
         return $ip;
     }
     
+
+    // you can use this function with Helpers::imageDefault()
+    public static function imageDefault() {
+        return asset('assets-web/img/image/image-not-found.png');
+    }
+
+    // you can use this function with Helpers::avatarDefault()
+    public static function avatarDefault() {
+        return asset('assets-web/img/users/user-1.jpg');
+    }
 }

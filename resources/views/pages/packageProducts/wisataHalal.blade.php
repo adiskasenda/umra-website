@@ -4,7 +4,7 @@
     <div class="container-fluid" style="background-image:url('{{ asset('assets-web/img/background/package-wisata-halal.png') }}');background-repeat: no-repeat;background-size: 100% 100%;">
         <div class="container p-tb-50">
             <div class="mb-4 text-white text-weight-700 fs-44" style="font-weight: bold;">Wisata Halal</div>
-            <div class="mb-4 text-light text-weight-400 fs-20">Berlibur & mengungjungi negara, kota, serta destinasi halal bersama UMRA.</div>
+            <div class="mb-4 text-light text-weight-400 fs-20">Berlibur & mengunjungi negara, kota, serta destinasi halal bersama UMRA.</div>
 
             <div class="row mt-5 text-white">
                 <div class="col-6 col-md-2 mb-5">

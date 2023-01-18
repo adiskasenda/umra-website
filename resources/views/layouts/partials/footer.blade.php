@@ -34,7 +34,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-4 mt-10">
                         <h4 class="text-dark mb-4">Layanan</h4>
                         <a class="btn btn-link" href="{{ url('/package/umroh') }}">Umroh</a>
-                        <a class="btn btn-link" href="{{ url('/package/umroh-plus') }}">Umroh Plus+</a>
+                        <a class="btn btn-link" href="{{ url('/package/umroh-plus') }}">Umroh+</a>
                         <a class="btn btn-link" href="{{ url('/package/wisata-halal') }}">Wisata Halal</a>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 mt-10">

@@ -106,7 +106,7 @@
                     <div class="col-lg-3 col-md-4 my-5">
                         @include('pages.landingPage.partials.cardPackage', [
                             'url' => url('/package', $umrah['id_packet']),
-                            'url_banner' => $umrah['url_banner'],
+                            'url_banner' => $umrah['url_banner'] ? $umrah['url_banner'] : Helpers::imageDefault(),
                             'name' => $umrah['name'],
                             'quota' => $umrah['quota'],
                             'percent_markup' => $umrah['percent_markup'],
@@ -147,7 +147,7 @@
                     <div class="col-lg-3 col-md-4 my-5">
                         @include('pages.landingPage.partials.cardPackage', [
                             'url' => url('/package', $umrah_plus['id_packet']),
-                            'url_banner' => $umrah_plus['url_banner'],
+                            'url_banner' => $umrah_plus['url_banner'] ? $umrah_plus['url_banner'] : Helpers::imageDefault(),
                             'name' => $umrah_plus['name'],
                             'quota' => $umrah['quota'],
                             'percent_markup' => $umrah['percent_markup'],
@@ -238,7 +238,7 @@
                             <div class="col-lg-3 col-md-4 my-3">
                                 @include('pages.landingPage.partials.cardPackage', [
                                     'url' => url('/package', $wisata_halal['id_packet']),
-                                    'url_banner' => $wisata_halal['url_banner'],
+                                    'url_banner' => $wisata_halal['url_banner'] ? $wisata_halal['url_banner'] : Helpers::imageDefault(),
                                     'name' => $wisata_halal['name'],
                                     'quota' => $umrah['quota'],
                                     'percent_markup' => $umrah['percent_markup'],
@@ -265,7 +265,7 @@
                 @foreach($experience as $experience)
                     <div class="card card-bordered" style="width: 100%; height: 100%;">
                         <div class="card-body p-5">
-                            <img style="height:'100%';" src="{{ $experience['url_banner'] ? $experience['url_banner'] : asset('assets-web/img/image/experience-1.png') }}" alt="{{ $experience['url_banner'] ? $experience['url_banner'] : asset('assets-web/img/image/experience-1.png') }}">
+                            <img style="height:'100%';" src="{{ $experience['url_banner'] ? $experience['url_banner'] : Helpers::imageDefault() }}" alt="{{ $experience['url_banner'] ? $experience['url_banner'] : Helpers::imageDefault() }}">
                             <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience['name_person'] }}</div>
                             <div class="text-weight-400 fs-16">{{ $experience['location_person'] }}</div>
                         </div>
@@ -292,7 +292,7 @@
                                 <div class="text-weight-400 fs-16">{{ $experience2['description_testimony'] }}</div>
                             </div>
                         </div>
-                        <img style="width: 10%; height:10%;" class="rounded-circle mb-5" src="{{ $experience2['url_ava'] ? $experience2['url_ava'] : asset('assets-web/img/users/user-1.jpg') }}" alt="{{ $experience2['url_ava'] ? $experience2['url_ava'] : asset('assets-web/img/users/user-1.jpg') }}">
+                        <img style="width: 10%; height:10%;" class="rounded-circle mb-5" src="{{ $experience2['url_ava'] ? $experience2['url_ava'] : Helpers::avatarDefault() }}" alt="{{ $experience2['url_ava'] ? $experience2['url_ava'] : Helpers::avatarDefault() }}">
                         <h4 class="text-drak">{{ $experience2['name_person'] }}</h4>
                         <span class="text-tertiary">{{ $experience2['profession_person'] }}</span>
                     </div>
@@ -401,8 +401,7 @@
         </div>
     </div>
     <!-- Mitra End -->
-
-
+    
     <!-- Partner Start -->
     <div class="container-fluid py-5">
         <div class="container mt-20 mb-20">
@@ -414,7 +413,7 @@
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
                     <div class="col-lg-3 col-md-4 col-12 mt-5">
-                        <img class="image-center" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
+                        <img class="image-center" width="70%" src="{{ $partner['url_logo'] ? $partner['url_logo'] : Helpers::imageDefault() }}" alt="{{ $partner['url_logo'] ? $partner['url_logo'] : Helpers::imageDefault() }}">
                     </div>
                 @endforeach
             </div>
@@ -438,7 +437,7 @@
                     <a href="{{ url('/news', $new['id_blog'] ) }}">
                         <div class="card card-bordered" style="width: 100%; height: 100%;">
                             <div class="card-body p-5">
-                                <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
+                                <img src="{{ $new['url_banner'] ? $new['url_banner'] : Helpers::imageDefault() }}" alt="{{ $new['url_banner'] ? $new['url_banner'] : Helpers::imageDefault() }}" width="100%">
                                 <div class="text-dark text-weight-600 fs-20" style="font-weight: bold;">{{ $new['subject'] }}</div>
                                 <div  class="text-tertiary text-weight-600 fs-16">{{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
                             </div>
@@ -451,7 +450,7 @@
                             <div class="col-md-6 my-5">
                                 @include('pages.landingPage.partials.cardNews', [
                                     'url' => url('/news', $new['id_blog']),
-                                    'url_banner' => $new['url_banner'],
+                                    'url_banner' => $new['url_banner'] ? $new['url_banner'] : Helpers::imageDefault(),
                                     'subject' => $new['subject']
                                 ])
                             </div>
@@ -461,7 +460,9 @@
             </div>
 
             <div class="text-center">
-                <a href="{{ url('/news') }}" class="btn text-white mt-5" style="border: 1px solid white;">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+                <a href="{{ url('/news') }}" class="btn text-white mt-5" style="border: 1px solid white;">
+                    Lihat Semua <i class="fas fa-chevron-right"></i>
+                </a>
             </div>
             
         </div>
