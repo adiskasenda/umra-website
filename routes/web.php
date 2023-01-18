@@ -142,6 +142,6 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
 
 });
 
-Route::get('testing', function() {
-    return view('pages.testing');
-});
+// Route::get('testing', function() {
+//     return view('pages.testing');
+// });
