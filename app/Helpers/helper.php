@@ -49,6 +49,6 @@ class Helper
 
     // you can use this function with Helpers::avatarDefault()
     public static function avatarDefault() {
-        return asset('assets-web/img/users/user-1.jpg');
+        return asset('assets-web/img/icon/avatar.png');
     }
 }
