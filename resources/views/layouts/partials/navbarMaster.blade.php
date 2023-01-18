@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-10">
                                         <div style="font-size: 16px;">DIY</div>
-                                        <div>Atur sendiri hotel, maskapai, durasi serta <br/> destinasi perjalanan umroh + wisata anda.</div>
+                                        <div>Atur sendiri hotel, maskapai, durasi serta <br/> destinasi perjalanan Umroh+ wisata anda.</div>
                                     </div>
                                 </div>
                             </a> -->

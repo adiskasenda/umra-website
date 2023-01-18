@@ -12,7 +12,7 @@
                 <div class="carousel-inner">
                     @foreach( $banners as $key => $banner )
                         <div @if( $key == 0) class="carousel-item active"  @else class="carousel-item" @endif>
-                            <img class="d-block w-100" src="{{ $banner['url'] }}" alt="First slide">
+                            <img class="d-block w-100 img-banner" src="{{ $banner['url'] }}" alt="First slide">
                         </div>
                     @endforeach
                 </div>
@@ -69,14 +69,14 @@
                         <div class="carousel-inner">
                             @foreach( $banners2 as $key => $banner2 )
                                 <div @if( $key == 0) class="carousel-item active mb-8"  @else class="carousel-item mb-8" @endif>
-                                    <img src="{{ $banner2['url_banner_web'] }}" class="d-block w-100" alt="{{ $banner2['url_banner_web'] }}" width="100%" height="200px;">
+                                    <img class="d-block w-100 img-banner" src="{{ $banner2['url_banner_web'] }}" alt="{{ $banner2['url_banner_web'] }}" width="100%" height="200px;">
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <img src="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" alt="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" width="100%" height="200px;">
+                    <img class="img-banner" src="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" alt="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" width="100%" height="200px;">
                 </div>
             </div>
         </div>
@@ -200,7 +200,7 @@
     <div class="container-fluid bg-green-light py-5">
         <div class="container mt-20 mb-20">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <img src="{{ $banner3 }}" alt="{{ $banner3 }}" width="100%" height="100%">
+                <img class="img-banner" src="{{ $banner3 }}" alt="{{ $banner3 }}" width="100%" height="100%">
             </div>
         </div>
     </div>
@@ -265,8 +265,8 @@
                 @foreach($experience as $experience)
                     <div class="card card-bordered" style="width: 100%; height: 100%;">
                         <div class="card-body p-5">
-                            <img style="height:'100%';" src="{{ $experience['url_banner'] ? $experience['url_banner'] : asset('assets-web/img/image/experience-1.png') }}" alt="{{ $experience['url_banner'] ? $experience['url_banner'] : asset('assets-web/img/image/experience-1.png') }}">
-                            <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience['name_person'] }}</div>
+                            <img style="height:'100%';" class="img-card" src="{{ $experience['url_banner'] }}" alt="{{ $experience['url_banner'] }}">
+                            <div class="text-weight-700 fs-20 mt-4" style="font-weight: bold;">{{ $experience['name_person'] }}</div>
                             <div class="text-weight-400 fs-16">{{ $experience['location_person'] }}</div>
                         </div>
                     </div>
@@ -292,7 +292,7 @@
                                 <div class="text-weight-400 fs-16">{{ $experience2['description_testimony'] }}</div>
                             </div>
                         </div>
-                        <img style="width: 10%; height:10%;" class="rounded-circle mb-5" src="{{ $experience2['url_ava'] ? $experience2['url_ava'] : asset('assets-web/img/users/user-1.jpg') }}" alt="{{ $experience2['url_ava'] ? $experience2['url_ava'] : asset('assets-web/img/users/user-1.jpg') }}">
+                        <img style="width: 10%; height:10%;" class="img-avatar rounded-circle mb-5" src="{{ $experience2['url_ava'] }}" alt="{{ $experience2['url_ava'] }}">
                         <h4 class="text-drak">{{ $experience2['name_person'] }}</h4>
                         <span class="text-tertiary">{{ $experience2['profession_person'] }}</span>
                     </div>
@@ -341,7 +341,7 @@
                             <div class="mt-2 mb-2">
                                 <div class="text-weight-400 fs-16">
                                     <i class="fa-solid fa-circle-check" style="color: green"></i>  
-                                    Eksklusif melayani wilayah tertentu (kota/ kabupaten)
+                                    Eksklusif melayani wilayah tertentu (kota / kabupaten)
                                 </div>
                                 <div class="text-weight-400 fs-16">
                                     <i class="fa-solid fa-circle-check" style="color: green"></i>  
@@ -367,7 +367,7 @@
                             <hr>
                             <div class="mt-5">
                                 <a href="https://zeals.asia/" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
-                                <!-- <a href="#" class="text-white" style="margin-left:auto; margin-right:auto; width:100%:">Syarat & Ketentuan</a> -->
+                                
                                 <div class="text-center mx-auto">
                                     <a href="#" class="text-white">Syarat & Ketentuan</a>
                                 </div>
@@ -401,8 +401,7 @@
         </div>
     </div>
     <!-- Mitra End -->
-
-
+    
     <!-- Partner Start -->
     <div class="container-fluid py-5">
         <div class="container mt-20 mb-20">
@@ -414,7 +413,7 @@
             <div class="row justify-content-md-center mt-5">
                 @foreach($partners as $partner)
                     <div class="col-lg-3 col-md-4 col-12 mt-5">
-                        <img class="image-center" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
+                        <img class="img-card image-center" width="70%" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
                     </div>
                 @endforeach
             </div>
@@ -438,7 +437,7 @@
                     <a href="{{ url('/news', $new['id_blog'] ) }}">
                         <div class="card card-bordered" style="width: 100%; height: 100%;">
                             <div class="card-body p-5">
-                                <img src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
+                                <img class="img-card" src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
                                 <div class="text-dark text-weight-600 fs-20" style="font-weight: bold;">{{ $new['subject'] }}</div>
                                 <div  class="text-tertiary text-weight-600 fs-16">{{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
                             </div>
@@ -461,7 +460,9 @@
             </div>
 
             <div class="text-center">
-                <a href="{{ url('/news') }}" class="btn text-white mt-5" style="border: 1px solid white;">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+                <a href="{{ url('/news') }}" class="btn text-white mt-5" style="border: 1px solid white;">
+                    Lihat Semua <i class="fas fa-chevron-right"></i>
+                </a>
             </div>
             
         </div>

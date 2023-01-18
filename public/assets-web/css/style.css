@@ -70,6 +70,10 @@
     text-align:right !important
 }
 
+.link-green-hover:hover {
+    color: var(--green) !important;
+}
+
 /*** Master Icon ***/
 .icon-package {
     width: 24px;
@@ -137,6 +141,24 @@
 
 .bg-image-7 {
     background-image: url("/assets-web/img/background/background-7.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.bg-image-package-umroh {
+    background-image:url("/assets-web/img/background/package-umroh.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.bg-image-package-umroh-plus {
+    background-image:url("/assets-web/img/background/package-umroh-plus.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.bg-image-package-wisata-halal {
+    background-image: url("/assets-web/img/background/package-wisata-halal.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }

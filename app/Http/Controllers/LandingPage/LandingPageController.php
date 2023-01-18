@@ -29,8 +29,8 @@ class LandingPageController extends Controller
     {
         $layanan = [
             ['value' => 'umroh', 'text' => 'Paket Umroh'],
-            ['value' => 'umroh_plush', 'text' => 'Paket Umroh Plus'],
-            ['value' => 'wisata_halal', 'text' => 'Wisata Halal'],
+            ['value' => 'umrohplus', 'text' => 'Paket Umroh+'],
+            ['value' => 'wisatahalal', 'text' => 'Wisata Halal'],
         ];
 
         if ( !empty(Session::get('user')) ) {
@@ -73,78 +73,14 @@ class LandingPageController extends Controller
         // Experience
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/testimony/type/1');
         $experience = json_decode($response->getBody(), true);
-        // dd($experience);
-        
-        // $experience = [
-        //     [
-        //         'image' => asset('assets-web/img/image/experience-1.png'),
-        //         'title' => 'Keluarga Bapak Dr. Ramadhan',
-        //         'description' => 'Cibubur, Jakarta Barat',
-        //     ],
-        //     [
-        //         'image' => asset('assets-web/img/image/experience-2.png'),
-        //         'title' => 'Keluarga Bapak Dr. Ramadhan',
-        //         'description' => 'Cibubur, Jakarta Barat',
-        //     ],
-        //     [
-        //         'image' => asset('assets-web/img/image/experience-3.png'),
-        //         'title' => 'Keluarga Bapak Dr. Ramadhan',
-        //         'description' => 'Cibubur, Jakarta Barat',
-        //     ]
-        // ];
 
         // Experience 2
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/testimony/type/2');
         $experience2 = json_decode($response->getBody(), true);
-        // $experience2 = [
-        //     [
-        //         'title' => 'Ragu jadi Seru!',
-        //         'description' => 'Tadinya takut umroh sendiri, lalu coba UMRA.ID umroh jadi seru dan berkesan',
-        //         'name' => 'Husain',
-        //         'username' => 'Jamaah UMRAID 2020',
-                
-        //     ],
-        //     [
-        //         'title' => 'Mudahnya Umroh Privat',
-        //         'description' => 'Lebih fleksibel mengatur umroh bersama keluarga pakai UMRA.ID',
-        //         'name' => 'Dr. Nurul',
-        //         'username' => 'Jamaah UMRAID 2020',
-        //     ]
-        // ];
-
-        // Mitra
-        // $mitras = [
-        //     [
-        //         "name" => "PT. Berkah Umroh sentosa",
-        //         "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
-        //     ],
-        //     [
-        //         "name" => "PT. Berkah Umroh sentosa",
-        //         "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
-        //     ],
-        //     [
-        //         "name" => "Pt. Berkah Umroh sentosa",
-        //         "address" => "Jl. Sudirman Gang II, Kec. Jajaringan, Kab. Brebes, Indonesia 2930",
-        //     ]
-        // ];
 
         // Partner
-        // $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/partner');
-        // $partners = json_decode($response->getBody(), true);
-        $partners = [
-            [
-                "url_logo" => asset('assets-web/img/partner/partner-1.png')
-            ],
-            [
-                "url_logo" => asset('assets-web/img/partner/partner-2.png')
-            ],
-            [
-                "url_logo" => asset('assets-web/img/partner/partner-3.png')
-            ],
-            [
-                "url_logo" => asset('assets-web/img/partner/partner-4.png')
-            ]
-        ];
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/partner');
+        $partners = json_decode($response->getBody(), true);
 
         // Artikel
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/5/id_blog/desc');
@@ -163,8 +99,7 @@ class LandingPageController extends Controller
             'banner3' => $banner3,
             'experience' => $experience['data'],
             'experience2' => $experience2['data'],
-            // 'mitras' => $mitras,
-            'partners' => $partners,
+            'partners' => $partners['data'],
             'new' => $new,
             'news' => $news['data']['content'],
         ]);
