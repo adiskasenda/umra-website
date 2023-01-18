@@ -186,8 +186,8 @@
                     <div class="text-weight-400 fs-16 mw-80">Bekerjasama dengan lebih dari 270 hotel untuk akomodasi</div>
                 </div>
                 <div class="col-sm-6 col-lg-3 mt-5 mb-5">
-                    <img src="{{ asset('assets-web/img/icon/bantuan.png') }}" alt="{{ asset('assets-web/img/icon/bantuan.png') }}">
-                    <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Bantuan Setiap Saat</div>
+                    <img src="{{ asset('assets-web/img/icon/big.png') }}" alt="{{ asset('assets-web/img/icon/big.png') }}">
+                    <div class="mt-4 text-weight-700 fs-20" style="font-weight: bold;">Kebebasan Perjalanan</div>
                     <div class="text-weight-400 fs-16 mw-80">Tersedia Umroh Paket dan Umroh "Do It Yourself" bagi Anda yang perlu kebebasan</div>
                 </div>
             </div>
