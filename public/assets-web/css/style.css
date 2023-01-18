@@ -146,19 +146,19 @@
 }
 
 .bg-image-package-umroh {
-    background-image:url('{{ asset("assets-web/img/background/package-umroh.png") }}');
+    background-image:url("/assets-web/img/background/package-umroh.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
 
 .bg-image-package-umroh-plus {
-    background-image:url('{{ asset("assets-web/img/background/package-umroh-plus.png") }}');
+    background-image:url("/assets-web/img/background/package-umroh-plus.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
 
 .bg-image-package-wisata-halal {
-    background-image: url('{{ asset("assets-web/img/background/package-wisata-halal.png") }}');
+    background-image: url("/assets-web/img/background/package-wisata-halal.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
