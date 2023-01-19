@@ -36,15 +36,20 @@ class AboutMeController extends Controller
         }
 
         // Activity
+        // $activity_me = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner_activity');
+        // $activity_me = json_decode($response->getBody(), true);
         $activity_me = [
             [
-                'image' => asset('assets-web/img/image/kegiatan-1.png')
+                'image' => asset('assets-web/img/image/kegiatan-1.png'),
+                'title' => "Launching UMRA.ID di Hall Bank Syariah Indonesia (Bank Syariah Mandiri)"
             ],
             [
-                'image' => asset('assets-web/img/image/kegiatan-2.png')
+                'image' => asset('assets-web/img/image/kegiatan-2.png'),
+                'title' => "Launching UMRA.ID di Hall Bank Syariah Indonesia (Bank Syariah Mandiri)"
             ],
             [
-                'image' => asset('assets-web/img/image/kegiatan-3.png')
+                'image' => asset('assets-web/img/image/kegiatan-3.png'),
+                'title' => 'Launching UMRA ID di Hall Bank Syariah Indonesia (Bank Syariah Mandiri)'
             ]
         ];
 

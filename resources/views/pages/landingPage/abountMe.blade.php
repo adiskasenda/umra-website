@@ -57,7 +57,10 @@
             </div>
             <div class="owl-carousel event-carousel" data-wow-delay="0.3s">
                 @foreach($activity_me as $activity)
-                    <img class="img-card" src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
+                    <div>
+                        <img class="img-card" src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
+                        <div class="text-dark text-weight-400 fs-20 bg-white p-5" >{{ strlen($activity['title']) > 80 ? substr_replace($activity['title'], ' ...', 80) : $activity['title'] }}</div>
+                    </div>
                 @endforeach
             </div>
         </div>
