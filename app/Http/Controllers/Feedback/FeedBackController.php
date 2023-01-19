@@ -10,6 +10,10 @@ class FeedBackController extends Controller
 
     public function emailVerification(Request $request)
     {
+        // if ( empty($request->status) ) {
+        //     return redirect('/');
+        // }
+
         return view('pages.feedBack.emailVerification', [
             'status' => $request->status,
             'sendretry' => $request->sendretry

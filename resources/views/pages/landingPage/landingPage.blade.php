@@ -354,7 +354,7 @@
                             </div>
                             <hr>
                             <div class="mt-5">
-                                <a href="https://zeals.asia/" class="btn btn-success" style="width: 100%;">Yuk Gabung!</a>
+                                <a href="https://bit.ly/umrapreneur" class="btn btn-success" style="width: 100%;">Yuk Gabung!</a>
                             </div>
                         </div>
                     </div>
@@ -364,13 +364,13 @@
                         <div class="card-body">
                             <div class="text-weight-60 fs-20 text-white" style="font-weight: bold;">Jualan umroh dengan modal media sosial? Bisa!</div>
                             <div class="text-weight-400 fs-16 text-light mt-2 mb-2">Siapa saja bisa mendapatkan keuntungan dengan menjadi afiliator umroh, menggunakan media sosial dan chat messenger sebagi sarana jualan. Yuk gabung!</div>
-                            <hr>
+                            <hr class="mt-10">
                             <div class="mt-5">
                                 <a href="https://zeals.asia/" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
                                 
-                                <div class="text-center mx-auto">
+                                <!-- <div class="text-center mx-auto">
                                     <a href="#" class="text-white">Syarat & Ketentuan</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

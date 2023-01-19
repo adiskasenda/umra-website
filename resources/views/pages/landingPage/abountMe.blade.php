@@ -101,7 +101,7 @@
                             <div class="text-weight-400 fs-16">Jadi agen penjualan, pelayanan & mendaftarkan calon jamaah akan lebih mudah menggunakan aplikasi dan ekosistem UMRA.</div>
                             <hr>
                             <div class="mt-5">
-                                <button class="btn btn-success font-normal-500" style="width: 100%">Gabung Sekarang</button>
+                                <a href="https://bit.ly/umrapreneur" class="btn btn-success font-normal-500" style="width: 100%">Gabung Sekarang</a>
                             </div>
                             <!-- <div class="mt-5">
                                 <center><a href="#">Lihat semua mitra umra</a></center>
