@@ -76,10 +76,10 @@
                 <div class="text-opacity text-weight-400 fs-20">Kami memiliki partner yang terpercaya di bidangnya, dan kami selalu berusaha memberikan pengalaman terbaik untuk ibadah Anda</div>
             </div>
 
-            <div class="row justify-content-md-center mt-5">
+            <div class="row justify-content-md-center mt-10">
                 @foreach($partners as $partner)
-                    <div class="col-lg-3 col-md-4 col-12 mt-5">
-                        <img class="img-card image-center" width="70%" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
+                    <div class="col-lg-3 col-md-4 col-12 mt-10 mb-10" style="display: flex;">
+                        <img class="img-card image-center" style="width:50%;margin:auto;" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
                     </div>
                 @endforeach
             </div>

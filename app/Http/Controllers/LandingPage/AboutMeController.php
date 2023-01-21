@@ -36,7 +36,7 @@ class AboutMeController extends Controller
         }
 
         // Activity
-        // $activity_me = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner_activity');
+        // $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner_activity');
         // $activity_me = json_decode($response->getBody(), true);
         $activity_me = [
             [

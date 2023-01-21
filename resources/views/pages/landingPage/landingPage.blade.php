@@ -286,10 +286,10 @@
             <div class="owl-carousel testimonial-carousel">
                 @foreach($experience2 as $experience2)
                     <div class="testimonial-item">
-                        <div class="bg-white testimonial-text border rounded p-4" style="margin-bottom: 10%; min-height:150px;">
+                        <div class="bg-white testimonial-text border rounded p-4" style="margin-bottom: 10%; min-height:150px; display: flex;">
                             <div style="margin-top:auto;margin-bottom:auto;">
                                 <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience2['title_testimony'] }}</div>
-                                <div class="text-weight-400 fs-16">{{ $experience2['description_testimony'] }}</div>
+                                <div class="mb-2 text-weight-400 fs-16">{{ $experience2['description_testimony'] }}</div>
                             </div>
                         </div>
                         <img style="width: 10%; height:10%;" class="img-avatar rounded-circle mb-5" src="{{ $experience2['url_ava'] }}" alt="{{ $experience2['url_ava'] }}">
@@ -410,10 +410,10 @@
                 <div class="text-tertiary text-weight-400 fs-20 mb-5">Kami memiliki partner yang terpercaya di bidangnya, dan kami selalu berusaha memberikan pengalaman terbaik untuk ibadah Anda</div>
             </div>
 
-            <div class="row justify-content-md-center mt-5">
+            <div class="row justify-content-md-center mt-10">
                 @foreach($partners as $partner)
-                    <div class="col-lg-3 col-md-4 col-12 mt-5">
-                        <img class="img-card image-center" width="70%" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
+                    <div class="col-lg-3 col-md-4 col-12 mt-10 mb-10" style="display: flex;">
+                        <img class="img-card image-center" style="width:50%;margin:auto;" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
                     </div>
                 @endforeach
             </div>
