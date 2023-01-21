@@ -23,22 +23,26 @@
     <div class="container-fluid py-5" style="margin-top: -40px;">
         <div class="container py-5">
             <!--begin::Accordion-->
-            @foreach($faqs as $key => $faq)
-                <div class="accordion mb-5" id="kt_accordion_{{ $faq['id_faq'] }}" style="border: 1px solid #E6F1F0;">
-                    <div class="accordion-item">
-                        <div class="accordion-header" id="kt_accordion_{{ $faq['id_faq'] }}_header_{{ $faq['id_faq'] }}">
-                            <button style="font-weight: bold;" @if ( $key == 0 ) class="accordion-button fs-20" aria-expanded="true" @else class="accordion-button fs-20 collapsed" aria-expanded="true" @endif  type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}" aria-controls="kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}">
-                                {{ $faq['question'] }}
-                            </button>
-                        </div>
-                            <div id="kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}" @if ( $key == 0 ) class="accordion-collapse collapse show" @else class="accordion-collapse collapse" @endif aria-labelledby="kt_accordion_{{ $faq['id_faq'] }}" data-bs-parent="#kt_accordion_{{ $faq['id_faq'] }}_header_{{ $faq['id_faq'] }}">
-                            <div class="accordion-body fs-16">
-                                {{ $faq['answer'] }}
+            @if( count($faqs) > 0 )
+                @foreach($faqs as $key => $faq)
+                    <div class="accordion mb-5" id="kt_accordion_{{ $faq['id_faq'] }}" style="border: 1px solid #E6F1F0;">
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="kt_accordion_{{ $faq['id_faq'] }}_header_{{ $faq['id_faq'] }}">
+                                <button style="font-weight: bold;" @if ( $key == 0 ) class="accordion-button fs-20" aria-expanded="true" @else class="accordion-button fs-20 collapsed" aria-expanded="true" @endif  type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}" aria-controls="kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}">
+                                    {{ $faq['question'] }}
+                                </button>
+                            </div>
+                                <div id="kt_accordion_{{ $faq['id_faq'] }}_body_{{ $faq['id_faq'] }}" @if ( $key == 0 ) class="accordion-collapse collapse show" @else class="accordion-collapse collapse" @endif aria-labelledby="kt_accordion_{{ $faq['id_faq'] }}" data-bs-parent="#kt_accordion_{{ $faq['id_faq'] }}_header_{{ $faq['id_faq'] }}">
+                                <div class="accordion-body fs-16">
+                                    {{ $faq['answer'] }}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            @else
+                @include('layouts.partials.message-search-not-found')
+            @endif
             <!--end::Accordion-->
         </div>
     </div>

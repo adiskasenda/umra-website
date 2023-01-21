@@ -57,7 +57,10 @@
             </div>
             <div class="owl-carousel event-carousel" data-wow-delay="0.3s">
                 @foreach($activity_me as $activity)
-                    <img class="img-card" src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
+                    <div>
+                        <img class="img-card" src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
+                        <div class="text-dark text-weight-400 fs-20 bg-white p-5" >{{ strlen($activity['title']) > 80 ? substr_replace($activity['title'], ' ...', 80) : $activity['title'] }}</div>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -101,7 +104,7 @@
                             <div class="text-weight-400 fs-16">Jadi agen penjualan, pelayanan & mendaftarkan calon jamaah akan lebih mudah menggunakan aplikasi dan ekosistem UMRA.</div>
                             <hr>
                             <div class="mt-5">
-                                <button class="btn btn-success font-normal-500" style="width: 100%">Gabung Sekarang</button>
+                                <a href="https://bit.ly/umrapreneur" class="btn btn-success font-normal-500" style="width: 100%">Gabung Sekarang</a>
                             </div>
                             <!-- <div class="mt-5">
                                 <center><a href="#">Lihat semua mitra umra</a></center>

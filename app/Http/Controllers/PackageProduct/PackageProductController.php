@@ -73,13 +73,14 @@ class PackageProductController extends Controller
 
         // Banner
         $banner = asset('assets-web/img/banner/banner-fasilitas.png');
-
+        
         return view('pages.packageProducts.search', [
             'package_products' => $package_products['data'],
             'otherMenus' => $this->otherMenus,
             'banner_headers' => $banner_headers['data'],
             'banner' => $banner,
-            'configuration' => $configuration
+            'configuration' => $configuration,
+            'layanan' => $request->layanan
         ]);
     }
 

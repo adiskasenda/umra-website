@@ -63,16 +63,20 @@
     <div class="container-fluid py-5 mb-8">
         <div class="container">
             <div class="row">
-                @foreach($news as $new)
-                    <div class="col-lg-3 col-md-4 my-5">
-                        @include('pages.news.partials.cardNews', [
-                            'url' => url('/news', $new['id_blog']),
-                            'url_banner' => $new['url_banner'],
-                            'subject' => $new['subject'],
-                            'created_date' => $new['created_date']
-                        ])
-                    </div>
-                @endforeach
+                @if( count($news) > 0 )
+                    @foreach($news as $new)
+                        <div class="col-lg-3 col-md-4 my-5">
+                            @include('pages.news.partials.cardNews', [
+                                'url' => url('/news', $new['id_blog']),
+                                'url_banner' => $new['url_banner'],
+                                'subject' => $new['subject'],
+                                'created_date' => $new['created_date']
+                            ])
+                        </div>
+                    @endforeach
+                @else
+                    @include('layouts.partials.message-search-not-found')
+                @endif
             </div>
         </div>
     </div>

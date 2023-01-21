@@ -30,6 +30,11 @@ class ProfileController extends Controller
         return view('pages.profile.profile');
     }
 
+    public function editProfile()
+    {
+        return view('pages.profile.editProfile');
+    }
+
     public function updateProfile(Request $request)
     {
         $body = [
