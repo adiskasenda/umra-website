@@ -27,16 +27,16 @@ class Helpers
 
     // public static function getIp() {
     //     $ip = $_SERVER['REMOTE_ADDR'];
-     
+
     //     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
     //         $ip = $_SERVER['HTTP_CLIENT_IP'];
     //     } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
     //         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     //     }
-     
+
     //     return $ip;
     // }
-    
+
     // you can use this function with Helpers::imageBannerDefault()
     public static function imageBannerDefault() {
         return asset('assets-web/img/image/image-not-found.png');
@@ -65,8 +65,8 @@ class Helpers
                     ],
                     [
                         "url" => url('/profile/password'),
-                        "title" => "Profile",
-                        "icon" => asset('assets-web/img/icon/icon-sidebar-lock-closed.pn'),
+                        "title" => "Ganti Password",
+                        "icon" => asset('assets-web/img/icon/icon-sidebar-lock-closed.png'),
                     ],
                     [
                         "url" => url('/profile/pin'),
@@ -122,6 +122,6 @@ class Helpers
             ],
         ];
 
-        return ;
+        return $sidebar;
     }
 }

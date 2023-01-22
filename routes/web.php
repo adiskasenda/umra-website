@@ -138,6 +138,7 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
     Route::group([ 'prefix' =>'/profile' ], function() {
         // account & security
         Route::get('/', [ ProfileController::class, 'profile' ]);
+        Route::get('/edit', [ ProfileController::class, 'editProfile' ]);
         Route::patch('/', [ ProfileController::class, 'updateProfile' ]);
         Route::get('/password', [ ProfileController::class, 'profilePassword' ]);
         Route::patch('/update-password', [ ProfileController::class, 'updatePassword' ]);
