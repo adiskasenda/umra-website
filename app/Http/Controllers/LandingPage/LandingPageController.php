@@ -48,7 +48,7 @@ class LandingPageController extends Controller
         ];
 
         // Banner 2
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_HEADER_1');
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/banner/location/APPS_HOME_BODY_1');
         $banners2 = json_decode($response->getBody(), true);
 
         // Package Umrah
