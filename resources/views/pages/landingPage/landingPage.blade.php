@@ -69,14 +69,14 @@
                         <div class="carousel-inner">
                             @foreach( $banners2 as $key => $banner2 )
                                 <div @if( $key == 0) class="carousel-item active mb-8"  @else class="carousel-item mb-8" @endif>
-                                    <img class="d-block w-100 img-banner" src="{{ $banner2['url_banner_web'] }}" alt="{{ $banner2['url_banner_web'] }}" width="100%" height="200px;">
+                                    <img class="d-block w-100 img-banner" src="{{ $banner2['url_banner_web'] }}" alt="{{ $banner2['url_banner_web'] }}" width="100%">
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <img class="img-banner" src="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" alt="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" width="100%" height="200px;">
+                    <img class="img-banner" src="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" alt="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" width="100%">
                 </div>
             </div>
         </div>
@@ -286,7 +286,7 @@
             <div class="owl-carousel testimonial-carousel">
                 @foreach($experience2 as $experience2)
                     <div class="testimonial-item">
-                        <div class="bg-white testimonial-text border rounded p-4" style="margin-bottom: 10%; min-height:150px; display: flex;">
+                        <div class="bg-white testimonial-text border rounded p-4 justify-content-center" style="margin-bottom: 10%; min-height:150px; display: flex;">
                             <div style="margin-top:auto;margin-bottom:auto;">
                                 <div class="text-weight-700 fs-20" style="font-weight: bold;">{{ $experience2['title_testimony'] }}</div>
                                 <div class="mb-2 text-weight-400 fs-16">{{ $experience2['description_testimony'] }}</div>
