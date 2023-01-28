@@ -1,12 +1,12 @@
 <div class="card card-bordered" style="width: 100%;">
     <div class="card-header">
-        <div class="menu-content d-flex align-items-center px-3">
+        <div class="menu-content d-flex align-items-center px-4">
             <div class="symbol symbol-circle me-5">
-                <img alt="Logo" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-1.jpg">
+                <img alt="Logo" class="img-avatar" src="{{ Session::get('user')['url_photo'] }}">
             </div>
             <div class="d-flex flex-column">
-                <div class="fw-bold d-flex align-items-center fs-5">Max Smith</div>
-                <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com</a>
+                <div class="fw-bold d-flex align-items-center fs-5">{{ Session::get('user')['firstname'] }}</div>
+                <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Session::get('user')['email'] }}</a>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
         @foreach (Helpers::sidebarProfile() as $key => $sidebar)
             <!-- account & security -->
             <div class="d-flex flex-stack fs-4 py-3">
-                <div class="fw-bold rotate collapsible active" data-bs-toggle="collapse" href="#kt_user_akun_and_security" role="button" aria-expanded="true" aria-controls="kt_user_akun_and_security">
+                <div class="fw-bold rotate collapsible active justify-content-between" data-bs-toggle="collapse" href="#kt_user_akun_and_security_{{ $key }}" role="button" aria-expanded="true" aria-controls="kt_user_akun_and_security_{{ $key }}">
                     {{ $sidebar['collaps'] }}
                     <span class="ms-2 rotate-180">
                         <span class="svg-icon svg-icon-3">
@@ -28,12 +28,12 @@
             </div>
 
             <div class="separator"></div>
-            <div id="kt_user_akun_and_security" class="collapse show" style="">
+            <div id="kt_user_akun_and_security_{{ $key }}" class="collapse show">
                 @foreach ($sidebar['menu_collaps'] as $menu)
                     <div class="pb-5 fs-6">
                         <div class="mt-5">
-                            <a href="{{ $menu['url'] }}" class="text-dark">
-                                <img src="{{ $menu['icon'] }}" alt="{{ $menu['icon'] }}"> {{ $menu['title'] }}
+                            <a href="{{ $menu['url'] }}" @if( $menu['title'] == 'Syarat dan Ketentuan' || $menu['title'] == 'Kebijakan Privasi' || $menu['title'] == 'Customer Service' ) target="_blank" @endif class="@if($menu['title'] == 'Syarat dan Ketentuan') url-term-and-condition @endif @if($menu['title'] == 'Kebijakan Privasi') url-privacy-policy @endif text-dark sidebar-custom @if( false ) sidebar-custom-active @endif">
+                                <img src="{{ $menu['icon'] }}" alt="{{ $menu['icon'] }}" class="mx-4"> {{ $menu['title'] }}
                             </a>
                         </div>
                     </div>

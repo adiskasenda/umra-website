@@ -25,14 +25,45 @@ class TransactionController extends Controller
         $this->url = env('APP_URL_API');
     }
 
-    public function jamaah()
+    public function jamaah($id)
     {
-        return view('pages.transaction.jamaah');
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
+        $package_product = json_decode($response->getBody(), true);
+        if ( empty($package_product['data']) ) {
+            return abort(404);
+        }
+
+        return view('pages.transaction.jamaah', [
+            'package_product' => $package_product['data'],
+        ]);
     }
 
-    public function biodata()
+    public function biodata($id)
     {
-        return view('pages.transaction.biodata');
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
+        $package_product = json_decode($response->getBody(), true);
+        
+        if ( empty($package_product['data']) ) {
+            return abort(404);
+        }
+
+        return view('pages.transaction.biodata', [
+            'package_product' => $package_product['data'],
+        ]);
     }
 
     public function checkout()
@@ -51,6 +82,7 @@ class TransactionController extends Controller
 
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
+        
         return view('pages.transaction.detailTrasaction',[
             'package_product' => $package_product['data']
         ]);
@@ -58,6 +90,6 @@ class TransactionController extends Controller
 
     public function storeCheckout()
     {
-        return ;
+        return 'checkout';
     }
 }

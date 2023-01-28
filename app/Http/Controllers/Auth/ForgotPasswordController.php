@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Session;
+use Illuminate\Support\Facades\Http;
+use Ramsey\Uuid\Uuid;
 
 class ForgotPasswordController extends Controller
 {
@@ -22,23 +26,37 @@ class ForgotPasswordController extends Controller
         $this->url = env('APP_URL_API');
     }
 
-    public function email()
+    public function sendEmailResetPassword(Request $request)
     {
-        return ;
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/customer/get_forgotpass/'.$request->email);
+        $resetPassword = json_decode($response->getBody(), true);
+
+        return response()->json([
+            'status' => $resetPassword['status'],
+            'message' => $resetPassword['message'],
+            'data' => $resetPassword['data'],
+        ]);
     }
 
-    public function sendEmail()
+    public function resetPassoword()
     {
-        return ;
+        return view('pages.authentication.updatePassword');
     }
 
-    public function pin()
+    public function updatePassword()
     {
-        return ;
-    }
+        $body = [
+            "password_new" => $request->password_new,
+            "password_confirm" => $request->password_confirm
+        ];
 
-    public function sendPIN()
-    {
-        return ;
+        $this->header['ax-request-by'] = "email"; // Perlu di tanyakan
+        $this->header['Authorization'] = "token"; // Perlu di tanyakan
+
+        $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/change_password/'.$id, $body);
+        $customer = json_decode($response->getBody(), true);
+
+        return redirect('/login');
     }
 }

@@ -36,7 +36,7 @@
                         @if( $package_product['quota'] == 0 )
                             <button class="btn btn-success mt-3" style="width: 100%;" disabled>Pesan Sekarang</button>
                         @else
-                            <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
+                            <a href="{{ url('/transaction/jamaah') }}" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
                         @endif
                     </div>
                 </div>

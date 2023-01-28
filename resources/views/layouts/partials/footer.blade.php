@@ -67,18 +67,3 @@
     </div>
 </div> -->
 <!-- Copyright End -->
-
-@push('page_js')
-    <script>
-        $.ajax({
-            url: "{{ url('/api/configuration/META') }}",
-            dataType: "json",
-            type: 'GET',
-            success: function(response) {
-                $('.url-term-and-condition').attr('href', response.data[2].value_configuration);
-                $('.url-privacy-policy').attr('href', response.data[5].value_configuration);
-            },
-           
-        })
-    </script>
-@endpush

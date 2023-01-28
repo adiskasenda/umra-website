@@ -10,7 +10,9 @@ use App\Http\Controllers\{
     Auth\LoginGoogleController,
     Auth\LoginPhoneController,
     Auth\RegisterController,
+
     Auth\ForgotPasswordController,
+    Auth\ForgotPINController,
 
     LandingPage\LandingPageController,
     LandingPage\AboutMeController,
@@ -49,14 +51,19 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
 
     Route::group([ 'prefix' =>'/login-email' ], function() {
         Route::post('/', [ LoginEmailController::class, 'loginEmail' ]);
-        Route::get('/validate-otp', [ LoginEmailController::class, 'viewOtp' ]);
-        Route::get('/check-otp', [ LoginEmailController::class, 'checkOtp' ]);
-        Route::post('/validate-otp', [ LoginEmailController::class, 'loginOtp' ]);
+        // Route::get('/validate-otp', [ LoginEmailController::class, 'viewOtp' ]);
+        // Route::get('/check-otp', [ LoginEmailController::class, 'checkOtp' ]);
+        // Route::post('/validate-otp', [ LoginEmailController::class, 'loginOtp' ]);
     });
+
     Route::group([ 'prefix' =>'/login-phone' ], function() {
+        Route::get('/', function(){
+            return redirect(url('/login'));
+        });
         Route::post('/', [ LoginPhoneController::class, 'loginPhone' ]);
-        Route::get('/validate-otp', [ LoginPhoneController::class, 'viewOtp' ]);
-        Route::get('/check-otp', [ LoginPhoneController::class, 'checkOtp' ]);
+        // Route::get('/validate-otp', [ LoginPhoneController::class, 'viewOtp' ]);
+
+        // Route::get('/check-otp', [ LoginPhoneController::class, 'checkOtp' ]);
         Route::post('/validate-otp', [ LoginPhoneController::class, 'loginOtp' ]);
     });
 
@@ -71,14 +78,18 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
     Route::post('/register-phone', [ RegisterController::class, 'registerPhone' ]);
 
     // Reset Password Email & PIN
-    Route::get('/reset-password', [ ForgotPasswordController::class, 'email']);
+    Route::group([ 'prefix' =>'/reset-password' ], function() {
+        Route::post('/send-email', [ ForgotPasswordController::class, 'sendEmailResetPassword']);
+        Route::get('/', [ ForgotPasswordController::class, 'resetPassoword']);
+        Route::post('/', [ ForgotPasswordController::class, 'updatePassword']);
+    });
+
+    Route::group([ 'prefix' => '/reset-pin' ], function() {
+        Route::get('/', [ ForgotPINController::class, 'resetPIN']);
+        Route::post('/', [ ForgotPINController::class, 'updatePIN']);
+    });
 
 });
-
-// https://umra.id/index.php/redirect-feedback/emailVerification?status=2&message=Token%20Verification%20Not%20Existing!
-// https://umra.id/index.php/redirect-feedback/emailVerification?status=1&message=Success%20verification,%20Your%20account%20is%20active.
-// sendretry?="http://103.179.57.237:8200/core-umra/customer/get_verify_email/hanifalbaaits@dataku.id"
-// https://umra.id/index.php/redirect-feedback/emailVerification?status=2&message=Token%20Verification%20Not%20Existing?sendretry=http://103.179.57.237:8200/core-umra/customer/get_verify_email/hanifalbaaits@dataku.id
 
 // FeedBack
 Route::get('/redirect-feedback/emailVerification', [ FeedBackController::class, 'emailVerification' ]);
@@ -121,12 +132,12 @@ Route::group([ 'prefix' =>'/news' ], function() {
 });
 
 
-Route::group([ 'middleware' =>'tokenNotFound'], function(){
+Route::group([ 'middleware' =>'token'], function(){
 
     // Transaction
     Route::group([ 'prefix' =>'/transaction' ], function() {
-        Route::get('/jamaah', [ TransactionController::class, 'jamaah' ]);
-        Route::get('/biodata', [ TransactionController::class, 'biodata' ]);
+        Route::get('/jamaah/{id}', [ TransactionController::class, 'jamaah' ]);
+        Route::get('/biodata/{id}', [ TransactionController::class, 'biodata' ]);
         Route::get('/checkout', [ TransactionController::class, 'checkout' ]);
         Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
        

@@ -163,6 +163,12 @@
     background-size: 100% 100%;
 }
 
+.bg-image-package-diy {
+    background-image: url("/assets-web/img/background/package-diy.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
 /*** Master Icon ***/
 .fa-diamond-turn-right:before, .fa-directions:before {
     content: "\f5eb";

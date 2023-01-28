@@ -47,38 +47,79 @@
                                     </div>
                                 </div>
                             </a>
-                            <!-- <a href="{{ url('/package/wisata-halal') }}" style="width: 380px;" class="dropdown-item">
+                            <a href="{{ url('/package/diy') }}" style="width: 380px;" class="dropdown-item">
                                 <div class="row" style="width: 380px; margin: 15px 0;">
                                     <div class="col-2">
                                         <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
                                     </div>
                                     <div class="col-10">
-                                        <div style="font-size: 16px;">DIY</div>
+                                        <div class="fs-16" style="font-weight: bold;">DIY</div>
                                         <div>Atur sendiri hotel, maskapai, durasi serta <br/> destinasi perjalanan Umroh+ wisata anda.</div>
                                     </div>
                                 </div>
-                            </a> -->
+                            </a>
                         </div>
                     </div>
                     <a href="{{ url('/about-me') }}" class="nav-item nav-link {{ Request::is('about-me') ? 'active' : '' }}" style="font-size: 16px;">Tentang Kami</a>
                     <a href="{{ url('/news') }}" class="nav-item nav-link {{ Request::is('news*') ? 'active' : '' }}" style="font-size: 16px;">Artikel</a>
                     <a href="{{ url('/contact-me') }}" class="nav-item nav-link {{ Request::is('contact-me') ? 'active' : '' }}" style="font-size: 16px;">Hubungi Kami</a>
                 </div>
-                <!-- <div class="form-inline ms-auto">
+                <div class="form-inline ms-auto">
                     @if ( empty(Session::get('user')) )
                         <a href="{{ url('/login') }}" class="my-2 my-sm-0 nav-link-href" type="submit">Masuk</a>
-                        <a href="{{ url('/register') }}" class="btn btn-outline-success my-2 my-sm-0" type="submit">Daftar</a>
+                        <a href="{{ url('/register') }}" class="btn btn-success my-2 my-sm-0" type="submit">Daftar</a>
                     @else
                         <div class="navbar-nav p-4 p-lg-0">
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hello</a>
-                                <div class="dropdown-menu border-light m-0">
-                                    <a href="{{ url('/logout') }}" class="dropdown-item">Logout</a>
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ Session::get('user')['firstname'] }}</a>
+
+                                <div class="dropdown-menu border-light m-0" style="right:10px;">
+                                    <div class="p-3">Assalamualaikum, {{ Session::get('user')['firstname'] }}</div>
+                                    <a href="{{ url('/profile') }}" style="width: 200px;" class="dropdown-item">
+                                        <div class="row" style="width: 200px; margin: 8px 0;">
+                                            <div class="col-2">
+                                                <img src="{{ asset('assets-web/img/icon/icon-sidebar-user.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-user.png') }}">
+                                            </div>
+                                            <div class="col-10">
+                                                <div>Profil</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{{ url('/profile/list-transaction') }}" style="width: 200px;" class="dropdown-item">
+                                        <div class="row" style="width: 200px; margin: 8px 0;">
+                                            <div class="col-2">
+                                                <img src="{{ asset('assets-web/img/icon/icon-sidebar-history.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-history.png') }}">
+                                            </div>
+                                            <div class="col-10">
+                                                <div>Riwayat Transaksi</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{{ url('/profile/activity') }}" style="width: 200px;" class="dropdown-item">
+                                        <div class="row" style="width: 200px; margin: 8px 0;">
+                                            <div class="col-2">
+                                                <img src="{{ asset('assets-web/img/icon/icon-sidebar-activity.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-activity.png') }}">
+                                            </div>
+                                            <div class="col-10">
+                                                <div>Aktivitas Anda</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{{ url('/logout') }}" style="width: 200px;" class="dropdown-item">
+                                        <div class="row" style="width: 200px; margin: 8px 0;">
+                                            <div class="col-2">
+                                                <img src="{{ asset('assets-web/img/icon/icon-sidebar-logout.png') }}" alt="{{ asset('assets-web/img/icon/icon-sidebar-logout.png') }}">
+                                            </div>
+                                            <div class="col-10">
+                                                <div>Keluar</div>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     @endif
-                </div> -->
+                </div>
             </div>
         </nav>
     </div>

@@ -3,9 +3,6 @@
 @section('content')
     <div class="container-fluid py-5 mb-8">
         <div class="container">
-            @include('pages.transaction.partials.breadcrumb',[
-                'breadcrumb' => 'hello'
-            ])
             <div class="row">
                 <div class="col-md-3">
                     @include('pages.profile.partials.sidebar')
@@ -49,8 +46,7 @@
                                             <label for="perempuan">Perempuan</label>
                                         </div>
                                         <label for="alamat" class="form-group">Alamat</label>
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" maxlength="250">
-                                        </textarea>
+                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" maxlength="250"></textarea>
                                     </form>
                                 </div>
                                 <div class="col-6">
@@ -98,9 +94,9 @@
 
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn text-green">
+                            <a href="{{ url('/profile') }}" class="btn text-green">
                                 <span class="indicator-label">Batal</span>
-                            </button>
+                            </a>
                             <button type="submit" id="editProfile" class="btn btn-success">
                                 <span class="indicator-label">Simpan</span>
                             </button>

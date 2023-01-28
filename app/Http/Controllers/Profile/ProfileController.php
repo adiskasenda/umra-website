@@ -26,8 +26,10 @@ class ProfileController extends Controller
     }
 
     public function profile()
-    {
-        return view('pages.profile.profile');
+    {   
+        return view('pages.profile.profile', [
+            'user' => Session::get('user')
+        ]);
     }
 
     public function editProfile()
