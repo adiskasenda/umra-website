@@ -52,7 +52,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="font-normal-400 fs-14 mt-10">Tanggal Lahir</div>
-                                    <div class="font-normal-700 fs-16 mt-1">15 Januari 1977 {{ date('d M Y',strtotime($user['birthday'])) }}</div>
+                                    <div class="font-normal-700 fs-16 mt-1">{{ date('d M Y',strtotime($user['birthday'])) }}</div>
                                 </div>
                                 <div class="col-7">
                                     <div class="font-normal-400 fs-14 mt-10">Nomor Telepon</div>

@@ -36,7 +36,7 @@
                         @if( $package_product['quota'] == 0 )
                             <button class="btn btn-success mt-3" style="width: 100%;" disabled>Pesan Sekarang</button>
                         @else
-                            <a href="{{ url('/transaction/jamaah') }}" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
+                            <a href="{{ url('/transaction/jamaah', $package_product['id_packet']) }}" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
                         @endif
                     </div>
                 </div>

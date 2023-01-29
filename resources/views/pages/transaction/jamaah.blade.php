@@ -16,12 +16,12 @@
                     ])
                 </div>
                 <div class="col-md-9">
-                    <a href="{{ url('/') }}" class="font-normal-400 fs-16 text-green mt-3">
+                    <a href="{{ url('/package', $package_product['id_packet']) }}" class="font-normal-400 fs-16 text-green mt-3">
                         <i class="fa-solid fa-arrow-left"></i> Langkah 1 dari 3
                     </a>
                     
-                    <div class="mt-5 mb-4 font-normal-700 fs-32">Jumlah Calon Jamaah</div>
-                    <div class="mb-10 text-opacity font-normal-400 fs-16">Silakan masukkan jumlah jamaah berdasarkan pilih kamar yang tersedia</div>
+                    <div class="mt-5 font-normal-700 fs-32">Jumlah Calon Jamaah</div>
+                    <div class="mt-5 mb-10 text-opacity font-normal-400 fs-16">Silakan masukkan jumlah jamaah berdasarkan pilih kamar yang tersedia</div>
                     
 
                     <!--begin::Alert-->

@@ -183,13 +183,13 @@ class Helpers
     public static function viewFlagUmroh($flagUmroh) {
         switch ($flagUmroh) {
             case '0':
-                $category = 'umroh';
+                $category = 'Umroh';
                 break;
             case '1':
-                $category = 'umrohplus';
+                $category = 'Umroh Plus';
                 break;
             default:
-                $category = 'wisatahalal';
+                $category = 'Wisata Halal';
         }
         
         return $category;

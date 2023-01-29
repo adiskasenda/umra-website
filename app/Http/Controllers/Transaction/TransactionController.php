@@ -71,6 +71,42 @@ class TransactionController extends Controller
         return view('pages.transaction.checkout');
     }
 
+    public function storeCheckout()
+    {
+        $body = [
+            "id_customer" => "681",
+            "uuid_packet" => "fec2779d-6ce0-11ed-9b9f-525400b9f32b",
+            "phone_number" => "62811831891",
+            "person_double" => "1",
+            "person_triple" => "0",
+            "person_quad" => "0",
+            "affliator_code" => "",
+            "type_payment" => "DOWNPAYMENT",
+            "order_guest" => [
+                [
+                    "type_bed" => 2,
+                    "title" => "Mr",
+                    "first_name" => "Hanif",
+                    "last_name" => "Al Baaits",
+                    "birth_date" => "1996-06-06",
+                    "gender" => 1,
+                    "address" => "Bekasi",
+                    "phone_number" => "62811831891",
+                    "ktp_number" => "",
+                    "ktp_url" => "",
+                    "passport_number" => "",
+                    "passport_expiry_date" => "",
+                    "passport_url" => "",
+                    "nationality" => "",
+                    "vaccine_status" => 0,
+                    "vaccine_url" => ""
+                ]
+            ]
+        ];
+
+        return 'checkout';
+    }
+
     public function show($id)
     {
         if ( !empty(Session::get('user')) ) {
@@ -86,10 +122,5 @@ class TransactionController extends Controller
         return view('pages.transaction.detailTrasaction',[
             'package_product' => $package_product['data']
         ]);
-    }
-
-    public function storeCheckout()
-    {
-        return 'checkout';
     }
 }
