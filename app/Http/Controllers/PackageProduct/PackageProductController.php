@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Http;
 use Ramsey\Uuid\Uuid;
+use Helpers;
 
 class PackageProductController extends Controller
 {
@@ -215,20 +216,12 @@ class PackageProductController extends Controller
 
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
-
-        // Package Lain
-        switch ($package_product['data']['flag_umroh']) {
-            case '0':
-                $flag_umroh = 'umroh';
-                break;
-            case '1':
-                $flag_umroh = 'umrohplus';
-                break;
-            default:
-                $flag_umroh = 'wisatahalal';
+        if ( empty($package_product['data']) ) {
+            return abort(404);
         }
 
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$flag_umroh.'/pagination/0/4/date_start/asc');
+        // Package Lain
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.Helpers::checkFlagUmroh($package_product['data']['flag_umroh']).'/pagination/0/4/date_start/asc');
         $other_packages = json_decode($response->getBody(), true);
 
         // configuration

@@ -64,6 +64,13 @@ class ProfileTransactionController extends Controller
                 "duedate_payment" => "14 Jan 2024 18:31",
             ]
         ];
+
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/order_customer/customer/'. Session::get('user')['user_id']);
+        $order_customer = json_decode($response->getBody(), true);
+        
         return view('pages.profile.listTransaction', [
             "histories" => $histories
         ]);

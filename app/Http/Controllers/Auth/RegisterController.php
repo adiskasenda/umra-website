@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Http;
 use Ramsey\Uuid\Uuid;
+use Helpers;
 
 class RegisterController extends Controller
 {
@@ -66,7 +67,6 @@ class RegisterController extends Controller
 
     public function registerPhone(Request $request)
     {
-
         $body = [
             "device" => $_SERVER['HTTP_USER_AGENT'],
             "ip_address" => "139.192.213.113",

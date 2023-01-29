@@ -3,9 +3,6 @@
 @section('content')
     <div class="container-fluid py-5 mb-8">
         <div class="container">
-            @include('pages.transaction.partials.breadcrumb',[
-                'breadcrumb' => 'hello'
-            ])
             <div class="row">
                 <div class="col-md-3">
                     @include('pages.profile.partials.sidebar')

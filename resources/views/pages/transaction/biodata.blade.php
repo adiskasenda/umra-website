@@ -1,17 +1,94 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container-xxl pt-5 mt-5">
-        <div class="row">
-            <div class="col-md-3">
-                @include('pages.transaction.partials.sidebar')
-            </div>
-            <div class="col-md-9">
-                <div> Profile </div>
-                <div class="card card-bordered" style="width: 100%;">
-                    <div>Foto Profile</div>
-                    <div>Information Pemilik Akun</div>
-                    <div>Email dan Nomor Ponsel</div>
+    <div class="container-fluid py-5 mb-8">
+        <div class="container">
+            @include('pages.transaction.partials.breadcrumb',[
+                'breadcrumb' => 'hello',
+            ])
+            <div class="row">
+                <div class="col-md-3">
+                    @include('pages.transaction.partials.sidebar', [
+                        'step' => 1,
+                        'namePackage' => $package_product['name'],
+                        'flag_umroh' =>  Helpers::viewFlagUmroh($package_product['flag_umroh']),
+                        'quota' => $package_product['quota']
+                    ])
+                </div>
+                <div class="col-md-9">
+                    <a href="{{ url('/transaction/jamaah', $package_product['id_packet']) }}" class="font-normal-400 fs-16 text-green mt-3">
+                        <i class="fa-solid fa-arrow-left"></i> Langkah 2 dari 3
+                    </a>
+
+                    <div class="mt-5 font-normal-700 fs-32">Biodata Calon Jamaah</div>
+                    <div class="mt-5 mb-10 text-opacity font-normal-400 fs-16">Silakan lengkapi biodata calon jamaah sesuai data KTP & Passport masing-masing</div>
+                    
+                    <!-- Card Room Jamaah -->
+                    @include('pages.transaction.partials.cardRoom', [
+                        'icon' => asset('assets-web/img/icon/double.png'),
+                        'name' => 'Doble',
+                        'type_room' => 'doble',
+                    ])
+
+                    @include('pages.transaction.partials.cardRoom', [
+                        'icon' => asset('assets-web/img/icon/triple.png'),
+                        'name' => 'Triple',
+                        'type_room' => 'triple',
+                    ])
+
+                    @include('pages.transaction.partials.cardRoom', [
+                        'icon' => asset('assets-web/img/icon/quad.png'),
+                        'name' => 'Quad',
+                        'type_room' => 'quad',
+                    ])
+
+                    <div class="card card-bordered mt-10" style="background-color: #E6F1F0">
+                        <div class="card-body p-5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="font-normal-700 fs-16 text-dark">Total Calon Jamaah</div>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <div class="font-normal-600 fs-16">
+                                        <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
+                                        3 Orang
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="card card-bordered mt-10" style="background-color: #F8FCFC">
+                        <div class="card-body p-5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="font-normal-400 fs-14"><i class="fa-solid fa-phone"></i>Kontak Pemesan</div>
+                                    <div class="font-normal-700 fs-16 text-green">+62897182734 (Mimunatun Jannah)</div>
+                                </div>
+                                <div class="col-6 mt-2 text-right">
+                                    <button class="btn btn-success">Tambahkan Nomor Telepon</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-bordered mt-8 mb-10" style="background-color: #F8FCFC">
+                        <div class="card-body p-5 font-normal-400 fs-14 pt-3 pb-3">
+                            <i class="fa-solid fa-circle-info" style="color: #327DFA"></i>
+                            Pastikan nomor yang dijadikan kontak sudah terdaftar akun WhatsApp
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="text-right">
+                        <button class="btn text-green"><i class="fa-solid fa-chevron-left"></i>Kembali</button>
+                        <i class="fa-solid fa-circle-info" style="color: #B3261E"></i>
+                        <button class="btn btn-success">
+                            Lanjutkan<i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>

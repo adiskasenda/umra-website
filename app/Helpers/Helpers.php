@@ -37,6 +37,44 @@ class Helpers
     //     return $ip;
     // }
 
+    // you can use this function with Helpers::convertPhone($nohp)
+    public static function convertPhone($nohp) {
+        // kadang ada penulisan no hp 0811 239 345
+        $nohp = str_replace(" ","",$nohp);
+        // kadang ada penulisan no hp (0274) 778787
+        $nohp = str_replace("(","",$nohp);
+        // kadang ada penulisan no hp (0274) 778787
+        $nohp = str_replace(")","",$nohp);
+        // kadang ada penulisan no hp 0811.239.345
+        $nohp = str_replace(".","",$nohp);
+
+        // cek apakah no hp mengandung karakter + dan 0-9
+        if(!preg_match('/[^+0-9]/',trim($nohp))){
+                // cek apakah no hp karakter 1-3 adalah +62
+                if(substr(trim($nohp), 0, 3)=='62'){
+                    $hp = trim($nohp);
+                }
+                // cek apakah no hp karakter 1 adalah 0
+                elseif(substr(trim($nohp), 0, 1)=='0'){
+                    $hp = '62'.substr(trim($nohp), 1);
+                }
+                // cek apakah no hp karakter 1 adalah 8
+                elseif(substr(trim($nohp), 0, 1)=='8'){
+                    $hp = '62'.trim($nohp);
+                }
+                // cek apakah no hp karakter 1 adalah +
+                elseif(substr(trim($nohp), 0, 1)=='+'){
+                    $hp = '62'.substr(trim($nohp), 1);
+                }else{
+                    $hp     = $nohp;
+                }
+        } else {
+            $hp     = $nohp;
+        }
+        
+        return $hp;
+    }
+
     // you can use this function with Helpers::imageBannerDefault()
     public static function imageBannerDefault() {
         return asset('assets-web/img/image/image-not-found.png');
@@ -86,7 +124,7 @@ class Helpers
                     [
                         "url" => url('/profile/activity'),
                         "title" => "Aktivitas Anda",
-                        "icon" => asset('assets-web/img/icon/icon-sidebar-history.png'),
+                        "icon" => asset('assets-web/img/icon/icon-sidebar-activity.png'),
                     ]
                 ]
             ],
@@ -96,27 +134,27 @@ class Helpers
                     [
                         "url" => "https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya..",
                         "title" => "Customer Service",
-                        "icon" => asset('assets-web/img/icon/icon-sidebar-history.png'),
+                        "icon" => asset('assets-web/img/icon/icon-sidebar-customer-service.png'),
                     ],
                     [
                         "url" => url('/faq'),
                         "title" => "FAQ",
-                        "icon" => asset('assets-web/img/icon/icon-sidebar-history.png'),
+                        "icon" => asset('assets-web/img/icon/icon-sidebar-faq.png'),
                     ],
                     [
                         "url" => "#",
                         "title" => "Kebijakan Privasi",
-                        "icon" => asset('assets-web/img/icon/icon-sidebar-history.png'),
+                        "icon" => asset('assets-web/img/icon/icon-sidebar-privacy-police.png'),
                     ],
                     [
                         "url" => "#",
                         "title" => "Syarat dan Ketentuan",
-                        "icon" => asset('assets-web/img/icon/icon-sidebar-history.png'),
+                        "icon" => asset('assets-web/img/icon/icon-sidebar-term-and-condition.png'),
                     ],
                     [
                         "url" => url('/logout'),
                         "title" => "Keluar",
-                        "icon" => asset('assets-web/img/icon/icon-sidebar-history.png'),
+                        "icon" => asset('assets-web/img/icon/icon-sidebar-logout.png'),
                     ]
                 ]
             ],
@@ -124,4 +162,46 @@ class Helpers
 
         return $sidebar;
     }
+
+    // you can use this function with Helpers::checkFlagUmroh
+    public static function checkFlagUmroh($flagUmroh) {
+        switch ($flagUmroh) {
+            case '0':
+                $category = 'umroh';
+                break;
+            case '1':
+                $category = 'umrohplus';
+                break;
+            default:
+                $category = 'wisatahalal';
+        }
+        
+        return $category;
+    }
+
+    // you can use this function with Helpers::viewFlagUmroh
+    public static function viewFlagUmroh($flagUmroh) {
+        switch ($flagUmroh) {
+            case '0':
+                $category = 'Umroh';
+                break;
+            case '1':
+                $category = 'Umroh Plus';
+                break;
+            default:
+                $category = 'Wisata Halal';
+        }
+        
+        return $category;
+    }
+
+    // you can use this function with Helpers::checkProfile
+    public static function checkProfile($user) {
+        if ( $user ) {
+            return true;
+        }
+        
+        return false;
+    }
+
 }

@@ -3,9 +3,6 @@
 @section('content')
     <div class="container-fluid py-5 mb-8">
         <div class="container">
-            @include('pages.transaction.partials.breadcrumb',[
-                'breadcrumb' => 'hello'
-            ])
             <div class="row">
                 <div class="col-md-3">
                     @include('pages.profile.partials.sidebar')
@@ -14,6 +11,7 @@
                     <a href="{{ url('/profile') }}" class="font-normal-700 fs-20 text-dark">
                         <i class="fa fa-arrow-left mr-2" style="color: black" aria-hidden="true"></i> Edit Profil
                     </a>
+                    
                     <div class="card card-bordered mt-5" style="width: 100%;">
                         <div class="card-body">
                             <div class="row">
@@ -21,7 +19,7 @@
                                     Foto Profil
                                 </div>
                                 <div class="symbol symbol-circle me-5">
-                                    <img alt="Logo" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-1.jpg">
+                                    <img alt="Logo" class="img-avatar" src="{{ $user['url_photo'] }}">
                                 </div>
                             </div>
                             <div class="row mt-5">
@@ -29,39 +27,45 @@
                                     <div class="font-normal-600 fs-14 mb-3">Informasi Pemilik Akun</div>
                                     <form class="form w-100" method="POST" action="{{ url('/login-email') }}">
                                         @csrf
+
                                         <div class="form-floating">
-                                            <input type="email" class="form-control" id="floatingInputValue" placeholder="Nama Depan" value="Reo"/>
+                                            <input type="email" class="form-control" placeholder="Nama Depan" value="{{ $user['firstname'] }}"/>
                                             <label for="floatingInputValue">Nama Depan</label>
                                         </div>
+
                                         <div class="form-floating mt-3">
-                                            <input type="email" class="form-control" id="floatingInputValue" placeholder="Nama Belakang" value="nology"/>
+                                            <input type="email" class="form-control" placeholder="Nama Belakang" value="{{ $user['lastname'] }}"/>
                                             <label for="floatingInputValue">Nama Belakang</label>
                                         </div>
+
                                         <div class="form-floating mt-3">
-                                            <input type="date" class="form-control" id="floatingInputValue" placeholder="Tanggal Lahir" value=""/>
+                                            <input type="text" class="form-control" placeholder="Tanggal Lahir" value="{{ date('d-m-Y',strtotime($user['birthday'])) }}"/>
                                             <label for="floatingInputValue">Tanggal Lahir</label>
                                         </div>
+                                        
                                         <label for="jenis_kelamin" class="mt-3">Jenis Kelamin</label>
                                         <div class="fv-row mb-3">
                                             <input type="radio" id="laki-laki" name="laki-laki" value="laki-laki">
                                             <label for="laki-laki" style="margin-right: 10px;">Laki-laki</label>
+                                            
                                             <input type="radio" id="perempuan" name="perempuan" value="perempuan">
                                             <label for="perempuan">Perempuan</label>
                                         </div>
+
                                         <label for="alamat" class="form-group">Alamat</label>
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" maxlength="250">
-                                        </textarea>
+                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" maxlength="250">{{ $user['address'] }}</textarea>
                                     </form>
                                 </div>
                                 <div class="col-6">
                                     <div class="font-normal-600 fs-14">Email dan Nomor Ponsel</div>
+                                    
                                     <label for="email" class="font-normal-400 fs-12 mt-3">Email</label>
                                     <div class="card card-bordered" style="background-color: #F8FCFC">
                                         <div class="card-body p-5">
                                             <div class="row">
                                                 <div class="col-10">
                                                     <div class="font-normal-400 fs-12">
-                                                        Reonology@gmail.com
+                                                        {{ $user['email'] }}
                                                     </div>
                                                     <div class="font-normal-400 fs-12 mt-2">
                                                         <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
@@ -74,13 +78,14 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <label for="no_hp" class="font-normal-400 fs-12 mt-3">Nomor Ponsel</label>
                                     <div class="card card-bordered" style="background-color: #F8FCFC">
                                         <div class="card-body p-5 font-normal-600 fs-14">
                                             <div class="row">
                                                 <div class="col-10">
                                                     <div class="font-normal-400 fs-12">
-                                                        +62 34786465342
+                                                        {{ $user['phone'] }}
                                                     </div>
                                                     <div class="font-normal-400 fs-12 mt-2">
                                                         <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
@@ -98,9 +103,9 @@
 
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn text-green">
+                            <a href="{{ url('/profile') }}" class="btn text-green">
                                 <span class="indicator-label">Batal</span>
-                            </button>
+                            </a>
                             <button type="submit" id="editProfile" class="btn btn-success">
                                 <span class="indicator-label">Simpan</span>
                             </button>

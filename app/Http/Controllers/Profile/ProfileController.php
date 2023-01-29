@@ -26,29 +26,32 @@ class ProfileController extends Controller
     }
 
     public function profile()
-    {
-        return view('pages.profile.profile');
+    {   
+        return view('pages.profile.profile', [
+            'user' => Session::get('user')
+        ]);
     }
 
     public function editProfile()
     {
-        return view('pages.profile.editProfile');
+        return view('pages.profile.editProfile', [
+            'user' => Session::get('user')
+        ]);
     }
 
     public function updateProfile(Request $request)
     {
         $body = [
-            "title" => "Bapak",
-            "firstname" => "Hanif",
-            "lastname" => "Al Baaits",
-            "address" => "Bekasi, Pondok Ungu",
-            "nation" => "Indonesia",
-            "birthday" => "2025-11-08",
-            "gender" => 1,
-            "no_nik" => "3275030506960033",
-            "passport_expired" => "",
-            "passport_no" => "",
-            "url_photo" => "",
+            "firstname" => $request->firstname,
+            "lastname" => $request->lastname,
+            "address" => $request->address,
+            // "nation" => "Indonesia",
+            "birthday" => $request->birthday,
+            "gender" => $request->gender,
+            // "no_nik" => "3275030506960033",
+            // "passport_expired" => "",
+            // "passport_no" => "",
+            // "url_photo" => "",
         ];
 
         $this->header['ax-request-by'] = Session::get('user')['email'];

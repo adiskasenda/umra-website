@@ -48,23 +48,26 @@ class LoginPhoneController extends Controller
                             ->with('error', $login['message']);
         }
 
-        return redirect(url('/login-phone/validate-otp?phone='. $request->phone));
-    }
-
-    public function viewOtp(Request $request)
-    {   
+        // return redirect(url('/login-phone/validate-otp?phone='. $request->phone));
         return view('pages.authentication.otp',[
             'phone' => $request->phone,
         ]);
     }
 
-    public function checkOtp(Request $request)
-    {
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/customer/check_otp/'.$request->phone);
-        $otp = json_decode($response->getBody(), true);
+    // public function viewOtp(Request $request)
+    // {   
+    //     return view('pages.authentication.otp',[
+    //         'phone' => $request->phone,
+    //     ]);
+    // }
+
+    // public function checkOtp(Request $request)
+    // {
+    //     $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/customer/check_otp/'.$request->phone);
+    //     $otp = json_decode($response->getBody(), true);
         
-        return redirect()->back();
-    }
+    //     return redirect()->back();
+    // }
 
     public function loginOtp(Request $request)
     {
@@ -76,11 +79,18 @@ class LoginPhoneController extends Controller
         $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/customer/validate_otp_phone', $body);
         $login = json_decode($response->getBody(), true);
         
-        Session::put([
-            'token' => $login['data']['token'] ,
-            'user' => $login['data']['user']
+        if ( $login['status'] == '1' ) {
+            Session::put([
+                'token' => $login['data']['token'] ,
+                'user' => $login['data']['user']
+            ]);
+        }
+        
+        return response()->json([
+            "status" => $login['status'],
+            "message" => $login['message'],
+            "data" => $login['data']
         ]);
-
-        return redirect(url('/'));
+        // return redirect(url('/'));
     }
 }
