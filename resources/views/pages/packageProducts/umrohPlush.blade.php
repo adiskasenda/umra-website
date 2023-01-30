@@ -20,7 +20,8 @@
                             'quota' => $package_product['quota'],
                             'percent_markup' => $package_product['percent_markup'],
                             'price' => $package_product['price'],
-                            'image_configuration' => $configuration['data'][3]['value_configuration']
+                            'image_configuration' => $configuration['data'][3]['value_configuration'],
+                            'status' => $package_product['status']
                         ])
                     </div>
                 @endforeach

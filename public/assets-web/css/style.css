@@ -2,6 +2,7 @@
 :root {
     --primary: #355EFC;
     --secondary: #E93C05;
+    --secondary-light: #F5EEEE;
     --tertiary: rgba(16, 16, 16, 0.7);;
     --light: #DFE4FD;
     --white: #FFFFFF;
@@ -263,6 +264,12 @@
 /* Badge Custom */
 .badge-green-light {
     background-color: #20A95A;
+}
+
+.lable-danger {
+    background: var(--secondary-light);
+    padding: 0.5rem;
+    border-radius: var(--bs-card-border-radius);
 }
 
 /*** Master Image ***/
