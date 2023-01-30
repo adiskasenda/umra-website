@@ -323,7 +323,8 @@
                             'quota' => $other_package['quota'],
                             'percent_markup' => $other_package['percent_markup'],
                             'price' => $other_package['price'],
-                            'image_configuration' => $configuration['data'][3]['value_configuration']
+                            'image_configuration' => $configuration['data'][3]['value_configuration'],
+                            'status' => $other_package['status']
                         ])
                     </div>
                 @endforeach

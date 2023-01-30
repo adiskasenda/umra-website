@@ -86,7 +86,7 @@
     <!-- Package Umroh Start -->
     <div class="container-fluid py-5">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-start">
                 <div class="col-lg-5 col-md-4 content-package">
                     <div class="mb-4 text-weight-700 fs-44" style="font-weight: bold;">Paket Umroh Reguler</div>
                     <div class="mb-4 text-weight-400 fs-20">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</div>
@@ -102,6 +102,9 @@
                     </div>
                     <a href="{{ url('/package/umroh') }}" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
+                @for( $i = count($package_product_umrah); $i < 2; $i++ )
+                    <div class="col-lg-3 col-md-4 my-5"></div>
+                @endfor
                 @foreach( $package_product_umrah as $umrah )
                     <div class="col-lg-3 col-md-4 my-5">
                         @include('pages.landingPage.partials.cardPackage', [
@@ -111,7 +114,8 @@
                             'quota' => $umrah['quota'],
                             'percent_markup' => $umrah['percent_markup'],
                             'price' => $umrah['price'],
-                            'image_configuration' => $configuration['data'][3]['value_configuration']
+                            'image_configuration' => $configuration['data'][3]['value_configuration'],
+                            'status' => $umrah['status']
                         ])
                     </div>
                 @endforeach
@@ -123,7 +127,7 @@
     <!-- Package Umroh Plush Start -->
     <div class="container-fluid py-5 bg-image-1">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-start">
                 <div class="col-lg-5 col-md-4 content-package">
                     <div class="mb-4 text-white text-weight-700 fs-44" style="font-weight: bold;">Paket Umroh+</div>
                     <div class="mb-4 text-light text-weight-400 fs-20">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</div>
@@ -143,16 +147,20 @@
                     </div>
                     <a href="{{ url('/package/umroh-plus') }}" class="btn btn-success mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                 </div>
+                @for( $i = count($package_product_umrah_plus); $i < 2; $i++ )
+                    <div class="col-lg-3 col-md-4 my-5"></div>
+                @endfor
                 @foreach($package_product_umrah_plus as $umrah_plus)
                     <div class="col-lg-3 col-md-4 my-5">
                         @include('pages.landingPage.partials.cardPackage', [
                             'url' => url('/package', $umrah_plus['id_packet']),
                             'url_banner' => $umrah_plus['url_banner'],
                             'name' => $umrah_plus['name'],
-                            'quota' => $umrah['quota'],
-                            'percent_markup' => $umrah['percent_markup'],
-                            'price' => $umrah['price'],
-                            'image_configuration' => $configuration['data'][3]['value_configuration']
+                            'quota' => $umrah_plus['quota'],
+                            'percent_markup' => $umrah_plus['percent_markup'],
+                            'price' => $umrah_plus['price'],
+                            'image_configuration' => $configuration['data'][3]['value_configuration'],
+                            'status' => $umrah_plus['status']
                         ])
                     </div>
                 @endforeach
@@ -218,7 +226,7 @@
             </div>
             <div class="container bg-image-3">
                 <div class="container">
-                    <div class="row">
+                    <div class="row justify-content-start">
                         <div class="col-lg-5 col-md-4 content-package">
                             <div class="mb-4 text-white text-weight-700 fs-44">Paket Wisata Halal</div>
                             <div class="mb-4 text-light text-weight-400 fs-20">Perjalanan umroh lengkap dengan paket hotel berbintang, penerbangan & VISA.</div>
@@ -234,16 +242,20 @@
                             </div>
                             <a href="{{ url('/package/wisata-halal') }}" class="btn btn-success btn-large mt-5">Lihat Semua Paket <i class="fas fa-chevron-right"></i></a>
                         </div>
+                        @for( $i = count($package_product_wisata_halal); $i < 2; $i++ )
+                            <div class="col-lg-3 col-md-4 my-5"></div>
+                        @endfor
                         @foreach($package_product_wisata_halal as $wisata_halal)
                             <div class="col-lg-3 col-md-4 my-3">
                                 @include('pages.landingPage.partials.cardPackage', [
                                     'url' => url('/package', $wisata_halal['id_packet']),
                                     'url_banner' => $wisata_halal['url_banner'],
                                     'name' => $wisata_halal['name'],
-                                    'quota' => $umrah['quota'],
-                                    'percent_markup' => $umrah['percent_markup'],
-                                    'price' => $umrah['price'],
-                                    'image_configuration' => $configuration['data'][3]['value_configuration']
+                                    'quota' => $wisata_halal['quota'],
+                                    'percent_markup' => $wisata_halal['percent_markup'],
+                                    'price' => $wisata_halal['price'],
+                                    'image_configuration' => $configuration['data'][3]['value_configuration'],
+                                    'status' => $wisata_halal['status']
                                 ])
                             </div>
                         @endforeach
@@ -354,7 +366,7 @@
                             </div>
                             <hr>
                             <div class="mt-5">
-                                <a href="https://bit.ly/umrapreneur" class="btn btn-success" style="width: 100%;">Yuk Gabung!</a>
+                                <a href="https://bit.ly/permohonancabangCGN" target="_blank" class="btn btn-success" style="width: 100%;">Yuk Gabung!</a>
                             </div>
                         </div>
                     </div>
@@ -366,7 +378,7 @@
                             <div class="text-weight-400 fs-16 text-light mt-2 mb-2">Siapa saja bisa mendapatkan keuntungan dengan menjadi afiliator umroh, menggunakan media sosial dan chat messenger sebagi sarana jualan. Yuk gabung!</div>
                             <hr class="mt-10">
                             <div class="mt-5">
-                                <a href="https://zeals.asia/" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
+                                <a href="https://zeals.asia/" target="_blank" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
                                 
                                 <!-- <div class="text-center mx-auto">
                                     <a href="#" class="text-white">Syarat & Ketentuan</a>
