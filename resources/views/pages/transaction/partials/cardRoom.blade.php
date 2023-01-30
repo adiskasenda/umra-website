@@ -8,11 +8,11 @@
             <div class="col-2 mt-3">
                 <div class="font-normal-600 fs-16">
                     <i class="fa-solid fa-user-group" style="color: var(--dark)"></i>
-                    1 Orang
+                    <span class="count-people-{{ $type_room }}">0</span> Orang
                 </div>
             </div>
             <div class="col-8 text-right">
-                <button class="btn btn-success">
+                <button class="btn btn-success" id="btn-add-jamaah">
                     <i class="fa-solid fa-plus"></i>
                     Tambah Jamaah
                 </button>

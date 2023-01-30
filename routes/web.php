@@ -138,7 +138,7 @@ Route::group([ 'middleware' =>'token'], function(){
     Route::group([ 'prefix' =>'/transaction' ], function() {
         Route::get('/jamaah/{id}', [ TransactionController::class, 'jamaah' ]);
         Route::get('/biodata/{id}', [ TransactionController::class, 'biodata' ]);
-        Route::get('/checkout', [ TransactionController::class, 'checkout' ]);
+        Route::get('/checkout/{id}', [ TransactionController::class, 'checkout' ]);
         Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
        
         // Detail Trasaction

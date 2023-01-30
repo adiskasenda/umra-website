@@ -41,6 +41,8 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request)
     {
+        $url_avatar = app('App\Http\Controllers\File\FileUploadController')->uploadFile( $request->file('file_url_banner_mobile'), 'banner' );
+
         $body = [
             "firstname" => $request->firstname,
             "lastname" => $request->lastname,
@@ -51,7 +53,7 @@ class ProfileController extends Controller
             // "no_nik" => "3275030506960033",
             // "passport_expired" => "",
             // "passport_no" => "",
-            // "url_photo" => "",
+            "url_photo" => $url_avatar,
         ];
 
         $this->header['ax-request-by'] = Session::get('user')['email'];

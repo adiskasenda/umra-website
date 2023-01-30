@@ -163,7 +163,6 @@
                         </div>
                     </div>
                     
-                    
                     <div class="text-dark font-normal-700 fs-20 mt-5">Pilihan Kamar Hotel</div>
                     <div class="row">
                         <div class="col-md-4 mt-5">
@@ -243,7 +242,7 @@
                             @foreach( explode(',', $package_product['tour_country']) as $tour_country )
                                 @if( $tour_country )
                                     <div class="text-tertiary font-normal-500 fs-14 mt-3">
-                                        <i class="fas fa-flag mx-3"></i> {{ $tour_country }}
+                                        <i class="fas fa-flag mx-3 text-green"></i> {{ $tour_country }}
                                     </div>
                                 @endif
                             @endforeach
@@ -253,7 +252,7 @@
                             @foreach( explode(',', $package_product['tour_city']) as $tour_city )
                                 @if( $tour_city )
                                     <div class="text-tertiary font-normal-500 fs-14 mt-3">
-                                        <i class="fas fa-flag mx-3"></i> {{ $tour_city }}
+                                        <i class="fas fa-location-dot mx-3 text-green"></i> {{ $tour_city }}
                                     </div>
                                 @endif
                             @endforeach
@@ -267,7 +266,10 @@
                             <div class="card card-bordered" >
                                 <div class="card-header" style="background: #F8FCFC;">
                                     <div class="card-title">
-                                        <h2 class="mb-0 text-success">Sudah Termasuk</h2>
+                                        <h2 class="mb-0 text-success">
+                                            <i class="fa-solid fa-circle-check mx-3 text-green"></i>
+                                            Sudah Termasuk
+                                        </h2>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
@@ -285,7 +287,10 @@
                             <div class="card card-bordered">
                                 <div class="card-header" style="background: #FCF8F8;">
                                     <div class="card-title">
-                                        <h2 class="mb-0 text-danger">Belum Termasuk</h2>
+                                        <h2 class="mb-0 text-danger">
+                                            <i class="fa-solid fa-circle-xmark mx-3 text-danger"></i>
+                                            Belum Termasuk
+                                        </h2>
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">

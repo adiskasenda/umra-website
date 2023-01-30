@@ -19,6 +19,7 @@
                                     Foto Profil
                                 </div>
                                 <div class="symbol symbol-circle me-5">
+                                    
                                     <img alt="Logo" class="img-avatar" src="{{ $user['url_photo'] }}">
                                 </div>
                             </div>

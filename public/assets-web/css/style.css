@@ -55,7 +55,7 @@
 }
 
 .text-green {
-    color: var(--green);
+    color: var(--green) !important;
 }
 
 .text-red {

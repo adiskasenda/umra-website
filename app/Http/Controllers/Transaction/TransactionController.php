@@ -66,9 +66,25 @@ class TransactionController extends Controller
         ]);
     }
 
-    public function checkout()
+    public function checkout($id)
     {
-        return view('pages.transaction.checkout');
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
+        $package_product = json_decode($response->getBody(), true);
+        
+        if ( empty($package_product['data']) ) {
+            return abort(404);
+        }
+
+        return view('pages.transaction.checkout', [
+            'package_product' => $package_product['data'],
+        ]);
     }
 
     public function storeCheckout()
@@ -109,18 +125,14 @@ class TransactionController extends Controller
 
     public function show($id)
     {
-        if ( !empty(Session::get('user')) ) {
-            $this->header['ax-request-by'] = Session::get('user')['email'];
-            $this->header['Authorization'] = 'Bearer '.Session::get('token');
-        } else {
-            $this->header['ax-request-by'] = '';
-        }
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
-        $package_product = json_decode($response->getBody(), true);
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/'.$id);
+        $order = json_decode($response->getBody(), true);
         
         return view('pages.transaction.detailTrasaction',[
-            'package_product' => $package_product['data']
+            'order' => $order['data']
         ]);
     }
 }
