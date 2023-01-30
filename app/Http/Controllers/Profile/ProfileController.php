@@ -41,6 +41,8 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request)
     {
+        $url_avatar = app('App\Http\Controllers\File\FileUploadController')->uploadFile( $request->file('file_url_banner_mobile'), 'banner' );
+
         $body = [
             "firstname" => $request->firstname,
             "lastname" => $request->lastname,
@@ -51,7 +53,7 @@ class ProfileController extends Controller
             // "no_nik" => "3275030506960033",
             // "passport_expired" => "",
             // "passport_no" => "",
-            // "url_photo" => "",
+            "url_photo" => $url_avatar,
         ];
 
         $this->header['ax-request-by'] = Session::get('user')['email'];
@@ -69,7 +71,7 @@ class ProfileController extends Controller
         return view('pages.profile.profilePassword');
     }
 
-    public function updatePassword()
+    public function updatePassword(Request $request)
     {
         $body = [
             "password_new" => $request->password_new,
@@ -87,7 +89,12 @@ class ProfileController extends Controller
         return view('pages.profile.profilePIN');
     }
 
-    public function updatePIN()
+    public function newPin(Request $request)
+    {
+        return ;
+    }
+
+    public function updatePIN(Request $request)
     {
         $body = [
             "pin_new" => $request->pin_new,

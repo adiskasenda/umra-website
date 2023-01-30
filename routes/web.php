@@ -77,22 +77,24 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
     Route::post('/register-email', [ RegisterController::class, 'registerEmail' ]);
     Route::post('/register-phone', [ RegisterController::class, 'registerPhone' ]);
 
-    // Reset Password Email & PIN
+    // Reset Password Email
     Route::group([ 'prefix' =>'/reset-password' ], function() {
         Route::post('/send-email', [ ForgotPasswordController::class, 'sendEmailResetPassword']);
-        Route::get('/', [ ForgotPasswordController::class, 'resetPassoword']);
-        Route::post('/', [ ForgotPasswordController::class, 'updatePassword']);
     });
 
-    Route::group([ 'prefix' => '/reset-pin' ], function() {
-        Route::get('/', [ ForgotPINController::class, 'resetPIN']);
-        Route::post('/', [ ForgotPINController::class, 'updatePIN']);
-    });
+    // Route::group([ 'prefix' => '/reset-pin' ], function() {
+    //     Route::get('/', [ ForgotPINController::class, 'resetPIN']);
+    //     Route::post('/', [ ForgotPINController::class, 'updatePIN']);
+    // });
 
 });
 
 // FeedBack
-Route::get('/redirect-feedback/emailVerification', [ FeedBackController::class, 'emailVerification' ]);
+Route::group([ 'prefix' =>'/redirect-feedback' ], function() {
+    Route::get('/emailVerification', [ FeedBackController::class, 'emailVerification' ]);
+    Route::get('/reset-password', [ FeedBackController::class, 'resetPassword' ]);
+    Route::patch('/reset-password', [ FeedBackController::class, 'updatePassword']);
+});
 
 // Logout 
 Route::get('/logout', [ LoginController::class, 'logout' ]);
@@ -138,7 +140,7 @@ Route::group([ 'middleware' =>'token'], function(){
     Route::group([ 'prefix' =>'/transaction' ], function() {
         Route::get('/jamaah/{id}', [ TransactionController::class, 'jamaah' ]);
         Route::get('/biodata/{id}', [ TransactionController::class, 'biodata' ]);
-        Route::get('/checkout', [ TransactionController::class, 'checkout' ]);
+        Route::get('/checkout/{id}', [ TransactionController::class, 'checkout' ]);
         Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
        
         // Detail Trasaction
@@ -155,6 +157,7 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::patch('/update-password', [ ProfileController::class, 'updatePassword' ]);
         Route::get('/pin', [ ProfileController::class, 'profilePIN' ]);
         Route::patch('/update-pin', [ ProfileController::class, 'updatePIN' ]);
+        Route::patch('/new-pin', [ ProfileController::class, 'newPin' ]);
 
         // Activity
         Route::get('/list-transaction', [ ProfileTransactionController::class, 'listTransaction' ]);

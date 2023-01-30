@@ -38,25 +38,4 @@ class ForgotPasswordController extends Controller
             'data' => $resetPassword['data'],
         ]);
     }
-
-    public function resetPassoword()
-    {
-        return view('pages.authentication.updatePassword');
-    }
-
-    public function updatePassword()
-    {
-        $body = [
-            "password_new" => $request->password_new,
-            "password_confirm" => $request->password_confirm
-        ];
-
-        $this->header['ax-request-by'] = "email"; // Perlu di tanyakan
-        $this->header['Authorization'] = "token"; // Perlu di tanyakan
-
-        $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/change_password/'.$id, $body);
-        $customer = json_decode($response->getBody(), true);
-
-        return redirect('/login');
-    }
 }

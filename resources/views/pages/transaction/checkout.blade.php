@@ -9,7 +9,10 @@
         <div class="row">
             <div class="col-md-3">
                 @include('pages.transaction.partials.sidebar', [
-                    'step' => 3
+                    'step' => 3,
+                    'namePackage' => $package_product['name'],
+                    'flag_umroh' =>  Helpers::viewFlagUmroh($package_product['flag_umroh']),
+                    'quota' => $package_product['quota']
                 ])
             </div>
             <div class="col-md-9">

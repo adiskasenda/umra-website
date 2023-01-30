@@ -27,6 +27,14 @@ class ProfileActivityController extends Controller
 
     public function activity()
     {
-        return view('pages.profile.activity');
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/customer/'.Session::get('user')['user_id'].'/notification');
+        $notifications = json_decode($response->getBody(), true);
+
+        return view('pages.profile.activity',[
+            'notifications' => $notifications['data']
+        ]);
     }
 }

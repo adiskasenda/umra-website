@@ -3,9 +3,6 @@
 @section('content')
 <div class="container-fluid py-5 mb-8">
     <div class="container">
-        @include('pages.profile.partials.breadcrumb',[
-            'breadcrumb' => 'hello',
-        ])
         <div class="row">
             <div class="col-md-3">
                 @include('pages.profile.partials.sidebar', [
@@ -15,102 +12,72 @@
             <div class="col-md-9">
                 <div class="font-normal-700 fs-20">Detail Pesanan</div>
 
-                {{-- begin:Invoice --}}
                 <div class="card card-bordered mt-5">
                     <div class="card-header pt-3" style="display: block; background-color: #E6F1F0;">
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="font-normal-600 fs-12">Invoice ID</div>
-                                <div class="font-normal-700 fs-20 text-green">PS003910212</div>
+                                <div class="font-normal-700 fs-20 text-green">{{ $order['order_code'] }}</div>
                             </div>
                             <div class="col-6 text-right">
                                 <div class="font-normal-600 fs-12">Tanggal Pesanan</div>
-                                <div class="font-normal-600 fs-14 text-green">Senin 14 Maret 2023 14:30</div>
+                                <div class="font-normal-600 fs-14 text-green">{{ date('d M Y', strtotime($order['order_customer']['created_at'])) }}</div>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        {{-- begin:Akomodasi --}}
+                        <!-- Detail Package -->
                         <div class="card card-bordered">
                             <div class="card-header pt-3" style="display: block;">
                                 <div class="row mb-3">
                                     <div class="col-6">
-                                        <div class="font-normal-400 fs-12">Umroh Reguler</div>
-                                        <div class="font-normal-700 fs-18">Umroh Hemat Bonus Tour Thoif</div>
+                                        <div class="font-normal-400 fs-12">{{ Helpers::viewFlagUmroh($order['package_product']['flag_umroh']) }}</div>
+                                        <div class="font-normal-700 fs-18">{{ $order['package_product']['name'] }}</div>
                                     </div>
                                     <div class="col-6 text-right">
-                                        <div class="font-normal-400 fs-12">Keberangkatan 14 Maret 2023</div>
-                                        <div class="font-normal-400 fs-12">Durasi 9 Hari</div>
+                                        <div class="font-normal-400 fs-12">Keberangkatan {{ date('Y-m-d', strtotime($order['package_product']['date_start'])) }}</div>
+                                        <div class="font-normal-400 fs-12">Durasi {{ $order['package_product']['day_duration'] }} Hari</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="font-normal-400 fs-14">Hotel & Penginapan</div>
                                 <div class="row mt-2">
-                                    <div class="col-md-6">
-                                        <div class="card card-bordered mb-5" style="background: #F8FCFC;">
-                                            <div class="card-body" style="padding: 1rem !important;">
-                                                <div class="d-flex flex-stack flex-wrap">
-                                                    <div class="d-flex align-items-center pe-2">
-                                                        <div class="font-normal-600 fs-14">
-                                                            Dorrat
+                                    @foreach($order['package_product']['list_hotel'] as $list_hotel)
+                                        <div class="col-md-6">
+                                            <div class="card card-bordered mb-5" style="background: #F8FCFC;">
+                                                <div class="card-body" style="padding: 1rem !important;">
+                                                    <div class="d-flex flex-stack flex-wrap">
+                                                        <div class="d-flex align-items-center pe-2">
+                                                            {{ $list_hotel['hotel'] }}
                                                         </div>
+                                                        <span class="my-2">
+                                                            <div class="rating">
+                                                                <div class="rating-label me-2 {{ $list_hotel['bintang'] >= 1 ? 'checked' : '' }}">
+                                                                    <i class="bi bi-star fs-1"></i>
+                                                                </div>
+                                                                <div class="rating-label me-2 {{ $list_hotel['bintang'] >= 2 ? 'checked' : '' }}">
+                                                                    <i class="bi bi-star fs-1"></i>
+                                                                </div>
+                                                                <div class="rating-label me-2 {{ $list_hotel['bintang'] >= 3 ? 'checked' : '' }}">
+                                                                    <i class="bi bi-star fs-1"></i>
+                                                                </div>
+                                                                <div class="rating-label me-2 {{ $list_hotel['bintang'] >= 4 ? 'checked' : '' }}">
+                                                                    <i class="bi bi-star fs-1"></i>
+                                                                </div>
+                                                                <div class="rating-label me-2 {{ $list_hotel['bintang'] >= 5 ? 'checked' : '' }}">
+                                                                    <i class="bi bi-star fs-1"></i>
+                                                                </div>
+                                                                <div class="rating-label me-2 {{ $list_hotel['bintang'] >= 6 ? 'checked' : '' }}">
+                                                                    <i class="bi bi-star fs-1"></i>
+                                                                </div>
+                                                            </div>
+                                                        </span>
                                                     </div>
-                                                    <span class="my-2">
-                                                        <div class="rating">
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                        </div>
-                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card card-bordered mb-5" style="background: #F8FCFC;">
-                                            <div class="card-body" style="padding: 1rem !important;">
-                                                <div class="d-flex flex-stack flex-wrap">
-                                                    <div class="d-flex align-items-center pe-2">
-                                                        <div class="font-normal-600 fs-14">
-                                                            Dorrat
-                                                        </div>
-                                                    </div>
-                                                    <span class="my-2">
-                                                        <div class="rating">
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                            <div class="rating-label me-2 checked">
-                                                                <i class="bi bi-star fs-1"></i>
-                                                            </div>
-                                                        </div>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
 
                                 <div class="text-dark font-normal-700 fs-20 mt-5">Maskapai Penerbangan</div>
@@ -120,22 +87,7 @@
                                             <div class="card-body" style="padding: 1rem !important;">
                                                 <div class="d-flex flex-stack flex-wrap">
                                                     <div class="d-flex align-items-center pe-2">
-                                                        <div class="font-normal-600 fs-12">
-                                                            Garuda
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card card-bordered mb-5" style="background: #F8FCFC;">
-                                            <div class="card-body" style="padding: 1rem !important;">
-                                                <div class="d-flex flex-stack flex-wrap">
-                                                    <div class="d-flex align-items-center pe-2">
-                                                        <div class="font-normal-600 fs-12">
-                                                            Garuda
-                                                        </div>
+                                                        {{ $order['package_product']['airline_desc'] }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -144,11 +96,12 @@
                                 </div>
                                 <hr>
                                 <button type="button" class="btn btn-success" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#detailFasilitasModal">
+                                    Lihat Detail Fasilitas
+                                </button>
                             </div>
                         </div>
-                        {{-- end:Akomodasi --}}
 
-                        {{-- begin:Jamaah --}}
+                        <!-- Detail Jamaah -->
                         <div class="card card-bordered mt-5">
                             <div class="card-body">
                                 <div class="row">
@@ -160,84 +113,43 @@
                                     </div>
                                     <div class="col-6 text-right">
                                         <div class="font-normal-400 fs-14">
-                                            Jumlah jamaah : 2 Orang
+                                            Jumlah jamaah : {{ count($order['order_guest_double']) + count($order['order_guest_triple']) + count($order['order_guest_quad']) }} Orang
                                         </div>
                                     </div>
                                 </div>
-                                <!--begin::Accordion-->
-                                <div class="accordion mt-5 mb-5" id="kt_accordion_1">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="kt_accordion_1_header_1">
-                                            <button class="accordion-button fs-4 fw-semibold" style="background-color: white" aria-expanded="true"  type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-controls="kt_accordion_1_body_1">
-                                                <div class="row">
-                                                    <div class="col-2 mt-1">
-                                                        <img src="{{ asset('assets-web/img/icon/double.png') }}" alt="">
-                                                    </div>
-                                                    <div class="col-5">
-                                                        <div class="font-normal-700 fs-16">Double</div>
-                                                        <div class="font-normal-600 fs-14 text-green">
-                                                            <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
-                                                            2 Orang
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-5 mt-5">
-                                                        <div class="font-normal-700 fs-18 text-green">
-                                                            Rp. 40.500.000
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </button>
-                                        </h2>
-                                        <div id="kt_accordion_1_body_1" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1" data-bs-parent="#kt_accordion_1_header_1">
-                                            <div class="accordion-body" style="background-color: #F8FCFC">
-                                                <div class="row">
-                                                    <div class="col-10">
-                                                        <div class="font-normal-400 fs-12 text-green">
-                                                            <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
-                                                            Calon Jamaah 1
-                                                        </div>
-                                                        <div class="font-normal-700 fs-16">
-                                                            Siti Masrurotun
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <button class="btn btn-success">View Detail</button>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <div class="font-normal-400 fs-12 text-green">
-                                                            <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
-                                                            Calon Jamaah 2
-                                                        </div>
-                                                        <div class="font-normal-700 fs-16">
-                                                            Agus Riyadhi
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <div class="font-normal-400 fs-12">
-                                                            <i class="fa-solid fa-badge-check"style="color: var(--green)"></i>
-                                                            Verified on
-                                                        </div>
-                                                        <div class="font-normal-400 fs-12">
-                                                            12 Jan 2022 10:31
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <button class="btn btn-success">View Detail</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end::Accordion-->
+
+                                <!-- Option Room Start -->
+                                @if ( count($order['order_guest_double']) > 0 )
+                                    @include('pages.transaction.partials.cardDetailJamaah', [
+                                        'icon' => asset('assets-web/img/icon/double.png'),
+                                        'name' => 'Doble',
+                                        'type_room' => 'doble',
+                                        'jamaah' => $order['order_guest_double'],
+                                    ])
+                                @endif
+
+                                @if ( count($order['order_guest_triple']) > 0 )
+                                    @include('pages.transaction.partials.cardDetailJamaah', [
+                                        'icon' => asset('assets-web/img/icon/triple.png'),
+                                        'name' => 'Triple',
+                                        'type_room' => 'triple',
+                                        'jamaah' => $order['order_guest_triple'],
+                                    ])
+                                @endif
+
+                                @if ( count($order['order_guest_quad']) > 0 )
+                                    @include('pages.transaction.partials.cardDetailJamaah', [
+                                        'icon' => asset('assets-web/img/icon/quad.png'),
+                                        'name' => 'Quad',
+                                        'type_room' => 'quad',
+                                        'jamaah' => $order['order_guest_quad'],
+                                    ])
+                                @endif
+                                <!-- Option Room End -->
                             </div>
                         </div>
-                        {{-- end:Jamaah --}}
-
-                        {{-- begin:Riwayat Pembayaran --}}
+                        
+                        <!-- Riwayat Payment -->
                         <div class="card card-bordered mt-5">
                             <div class="card-body">
                                 <div class="font-normal-700 fs-16">
@@ -337,12 +249,10 @@
                                 {{-- end:Pesanan Batal Otomatis --}}
                             </div>
                         </div>
-                        {{-- end:Riwayat Pembayaran --}}
+                        
                     </div>
                 </div>
-                {{-- end:Invoice --}}
-
-                {{-- begin:Kebijakan --}}
+                
                 <div class="row">
                     <div class="col-6">
                         <div class="card card-bordered mt-5">
@@ -390,22 +300,19 @@
                     </div>
                     <div class="col-6">
                         <div class="card bg-image-1 mt-5">
-                            <div class="card-body p-5">
-                                <div class="font-normal-700 fs-24 text-white mt-3 mb-3">Pusat Bantuan</div>
-                                <div class="font-normal-400 fs-16 text-white mt-3 mb-3">Punya pertanyaan lain seputar pesanan?</div>
-                                <div class="row mt-6 mb-3">
-                                    <div class="col-4">
-                                        <button class="btn btn-success">Hubungi Kami</button>
-                                    </div>
-                                    <div class="col-8">
-                                        <a href="" class="font-normal-600 fs-12 text-white">Baca FAQ</a>
-                                    </div>
-                                </div>
+                            <div class="card-body text-white p-5">
+                                <div class="text-weight-600 fs-20 mb-5" style="font-weight: bold;">Pusat Bantuan</div>
+                                <div class="text-weight-400 fs-16">Punya pertanyaan lain seputar pesanan?</div>
+                                
+                                <div>
+                                    <a href="https://api.whatsapp.com/send?phone=+628118748886&text=Halo Umra, saya mau bertanya.." target="_blank" class="btn mb-4 mt-4" style="color:#7CB041; background-color:white; border-color:white;">Hubungi Kami</a>
+                                    <a href="{{ url('/faq') }}" class="text-white">Baca FAQ</a>
+                                </div>  
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-                {{-- end:Kebijakan --}}
             </div>
         </div>
     </div>
@@ -413,51 +320,36 @@
 
 <!-- Modal -->
 <div class="modal fade" tabindex="-1" id="detailFasilitasModal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Detail Fasilitas</h3>
-
-                <!--begin::Close-->
-                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="svg-icon svg-icon-1"></span>
-                </div>
-                <!--end::Close-->
             </div>
 
             <div class="modal-body">
                 <div class="row">
                     <div class="col-6">
-                        <div class="font-normal-700 fs-16">
-                            Negara yang dikunjungi
-                        </div>
-                        <div class="font-normal-400 fs-14 mt-2">
-                            <i class="fa-solid fa-flag" style="color: var(--green)"></i>
-                            Arab Saudi
-                        </div>
-                        <div class="font-normal-400 fs-14 mt-2">
-                            <i class="fa-solid fa-flag" style="color: var(--green)"></i>
-                            Turkey
-                        </div>
+                        <div class="text-dark font-normal-700 fs-20">Negara yang dikunjungi</div>
+                        @foreach( explode(',', $order['package_product']['tour_country']) as $tour_country )
+                            @if( $tour_country )
+                                <div class="text-tertiary font-normal-500 fs-14 mt-3">
+                                    <i class="fas fa-flag mx-3 text-green"></i> {{ $tour_country }}
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                     <div class="col-6">
-                        <div class="font-normal-700 fs-16">
-                            Kota yang dikunjungi
-                        </div>
-                        <div class="font-normal-400 fs-14 mt-2">
-                            <i class="fa-solid fa-location-dot" style="color: var(--green)"></i>
-                            Madinah
-                        </div>
-                        <div class="font-normal-400 fs-14 mt-2">
-                            <i class="fa-solid fa-location-dot" style="color: var(--green)"></i>
-                            Makkah
-                        </div>
-                        <div class="font-normal-400 fs-14 mt-2">
-                            <i class="fa-solid fa-location-dot" style="color: var(--green)"></i>
-                            Istanbul
-                        </div>
+                        <div class="text-dark font-normal-700 fs-20">Kota yang dikunjungi</div>
+                        @foreach( explode(',', $order['package_product']['tour_city']) as $tour_city )
+                            @if( $tour_city )
+                                <div class="text-tertiary font-normal-500 fs-14 mt-3">
+                                    <i class="fas fa-location-dot mx-3 text-green"></i> {{ $tour_city }}
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
+
                 <!-- Detail Fasilitas -->
                 <div class="text-dark font-normal-700 fs-20 mt-5">Detail Faslitas</div>
                 <div class="row mt-2">
@@ -466,18 +358,18 @@
                             <div class="card-header" style="background-color: #F8FCFC">
                                 <div class="card-title">
                                     <h4 class="mb-0 text-green">
-                                        <i class="fa-solid fa-circle-check" style="color: var(--green)"></i>
+                                        <i class="fa-solid fa-circle-check mx-3 text-green"></i>
                                         Sudah Termasuk
                                     </h4>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
                                 <div class="d-flex flex-column text-gray-600">
-                                    @foreach($package_product['list_include'] as $include)
+                                    @foreach($order['package_product']['list_include'] as $include)
                                         <div class="d-flex align-items-center py-2">
-                                            <span class="bullet bg-primary me-3"></span> {{ $include['include'] }}
+                                            <i class="fas fa-circle mx-3"></i> {{ $include['include'] }}
                                         </div>
-                                    @endforeach
+                                    @endforeach 
                                 </div>
                             </div>
                         </div>
@@ -486,17 +378,17 @@
                         <div class="card card-bordered">
                             <div class="card-header" style="background-color: #FCF8F8">
                                 <div class="card-title">
-                                    <h4 class="mb-0" style="color: #B3261E">
-                                        <i class="fa-solid fa-circle-xmark" style="color: #B3261E"></i>
+                                    <h4 class="mb-0 text-danger">
+                                        <i class="fa-solid fa-circle-xmark mx-3 text-danger"></i>
                                         Belum Termasuk
                                     </h4>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
                                 <div class="d-flex flex-column text-gray-600">
-                                    @foreach($package_product['list_exclude'] as $exclude)
+                                    @foreach($order['package_product']['list_exclude'] as $exclude)
                                         <div class="d-flex align-items-center py-2">
-                                            <span class="bullet bg-primary me-3"></span> {{ $exclude['exclude'] }}
+                                            <i class="fas fa-circle mx-3"></i> {{ $exclude['exclude'] }}
                                         </div>
                                     @endforeach
                                 </div>

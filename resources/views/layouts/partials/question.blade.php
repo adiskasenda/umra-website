@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="col-md-4 mt-2 mb-3">
-                <a href="https://zeals.asia/" class="btn mb-4 mt-4" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
+                <a href="https://zeals.asia/" target="_blank" class="btn mb-4 mt-4" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
                 <div class="text-center mx-auto">
                     <a href="#" class="text-white">Syarat & Ketentuan</a>
                 </div>

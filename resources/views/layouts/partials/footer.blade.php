@@ -15,9 +15,9 @@
                 </a>
                 <div class="text-tertiary font-normal-600 fs-16 mt-5">
                     <div>PT Umra Mandiri Rihlah Amanah</div>
-                    <div>SK. PPIU NO 177 TAHUN 2020</div>
-                    <div>SK PIHK NO 782/ 2019 PT CGN</div>
-                    <div>License by PT Central Global Network</div>
+                    <div>SK PPIU NO 177 TAHUN 2020</div>
+                    <div>SK PIHK NO 782 Tahun 2019</div>
+                    <div>Lisensi Dari PT Central Global Network</div>
                 </div>
 
                 <div class="d-flex mt-5 mb-5">

@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-3">
                     @include('pages.transaction.partials.sidebar', [
-                        'step' => 1,
+                        'step' => 2,
                         'namePackage' => $package_product['name'],
                         'flag_umroh' =>  Helpers::viewFlagUmroh($package_product['flag_umroh']),
                         'quota' => $package_product['quota']
@@ -83,8 +83,10 @@
 
                     <div class="text-right">
                         <button class="btn text-green"><i class="fa-solid fa-chevron-left"></i>Kembali</button>
-                        <i class="fa-solid fa-circle-info" style="color: #B3261E"></i>
-                        <button class="btn btn-success">
+                        
+                        <i class="fa-solid fa-circle-info" style="color: #B3261E; font-size: 23px;"></i>
+                        
+                        <button class="btn btn-success" disabled>
                             Lanjutkan<i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
@@ -94,3 +96,39 @@
         </div>
     </div>
 @endsection
+
+@push('page_js')
+    <!-- check Chart -->
+    <script type="text/javascript" nonce>
+        const cardData = JSON.parse(localStorage.getItem("cartData"));
+
+        // Count Room
+        const count_people_doble = cardData[0][0]['doble'];
+        $('.count-people-doble').html(count_people_doble);
+        const count_people_triple = cardData[0][1]['triple'];
+        $('.count-people-triple').html(count_people_triple);
+        const count_people_quad = cardData[0][2]['quad']
+        $('.count-people-quad').html(count_people_quad);
+
+        // Check Status Register
+        const count_jamaah_double = cardData[0][0]['jamaah'].length;
+        const count_jamaah_triple = cardData[0][1]['jamaah'].length;
+        const count_jamaah_quad = cardData[0][2]['jamaah'].length;
+
+        if ( 
+            count_people_doble == count_jamaah_double &&  
+            count_people_triple == count_jamaah_triple &&  
+            count_people_quad == count_jamaah_quad
+        ) {
+            $('#btn-next').removeAttr("disabled");
+        }
+    </script>
+
+    <!-- Link Button -->
+    <script>
+        $('#btn-next').click(function() {
+            window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
+            return false;
+        });
+    </script>
+@endpush
