@@ -71,7 +71,7 @@ class ProfileController extends Controller
         return view('pages.profile.profilePassword');
     }
 
-    public function updatePassword()
+    public function updatePassword(Request $request)
     {
         $body = [
             "password_new" => $request->password_new,
@@ -89,7 +89,12 @@ class ProfileController extends Controller
         return view('pages.profile.profilePIN');
     }
 
-    public function updatePIN()
+    public function newPin(Request $request)
+    {
+        return ;
+    }
+
+    public function updatePIN(Request $request)
     {
         $body = [
             "pin_new" => $request->pin_new,
