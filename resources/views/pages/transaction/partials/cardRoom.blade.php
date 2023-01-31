@@ -21,7 +21,42 @@
     </div>
     <div class="card-body" style="padding: 1rem !important;">
         <!--begin::Accordion-->
+        
         @include('pages.transaction.partials.formJamaah')
         <!--end::Accordion-->
     </div>
 </div>
+
+@push('page_js')
+    <script>
+        var count, jamaah;
+        const cardData = JSON.parse(localStorage.getItem("cartData"));
+        console.log(cardData);
+        console.log(cardData[0]['jamaah']);
+        console.log(cardData[0]['jamaah'].length);
+
+        if ( "{{ $type_room }}" == 'doble' ) {
+            count = cardData[0]['doble'];
+            jamaah = cardData[0]['jamaah'];
+        } else if ( "{{ $type_room }}" == 'doble' ) {
+            count = cardData[1]['triple'];
+            jamaah = cardData[0]['jamaah'];
+        } else {
+            count = cardData[2]['quad'];
+            jamaah = cardData[0]['jamaah'];
+        }
+
+        $('.count-people-{{ $type_room }}').html(count);
+
+        // Jamaah Not Register
+        for ( var i = jamaah.length; i < count; i++ ) {
+            console.log('oke 2');
+        }
+
+        // Jamaah Done Register
+        jamaah.map(data => {
+            console.log('ok');
+        })
+
+    </script>
+@endpush

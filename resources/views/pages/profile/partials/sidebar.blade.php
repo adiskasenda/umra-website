@@ -11,9 +11,10 @@
         </div>
     </div>
 
-    <div class="card-body" style="padding: 1rem !important;">
+    <div class="card-body" style="padding: 0rem !important;">
         @foreach (Helpers::sidebarProfile() as $key => $sidebar)
-            <!-- account & security -->
+        <div class="card-body card-bordered" style="padding: 1rem !important; border-top: 1px solid var(--kt-card-border-color);">
+            <!-- Side Menu -->
             <div class="d-flex flex-stack fs-4 py-3">
                 <div class="fw-bold rotate collapsible active justify-content-between" data-bs-toggle="collapse" href="#kt_user_akun_and_security_{{ $key }}" role="button" aria-expanded="true" aria-controls="kt_user_akun_and_security_{{ $key }}">
                     {{ $sidebar['collaps'] }}
@@ -26,11 +27,9 @@
                     </span>
                 </div>
             </div>
-
-            <div class="separator"></div>
             <div id="kt_user_akun_and_security_{{ $key }}" class="collapse show">
                 @foreach ($sidebar['menu_collaps'] as $menu)
-                    <div class="pb-5 fs-6">
+                    <div class="fs-6 py-3">
                         <div class="mt-5">
                             <a href="{{ $menu['url'] }}" @if( $menu['title'] == 'Syarat dan Ketentuan' || $menu['title'] == 'Kebijakan Privasi' || $menu['title'] == 'Customer Service' ) target="_blank" @endif class="@if($menu['title'] == 'Syarat dan Ketentuan') url-term-and-condition @endif @if($menu['title'] == 'Kebijakan Privasi') url-privacy-policy @endif text-dark sidebar-custom @if( false ) sidebar-custom-active @endif">
                                 <img src="{{ $menu['icon'] }}" alt="{{ $menu['icon'] }}" class="mx-4"> {{ $menu['title'] }}
@@ -39,6 +38,8 @@
                     </div>
                 @endforeach
             </div>
+        </div>
         @endforeach
     </div>
 </div>
+

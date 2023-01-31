@@ -125,6 +125,7 @@
                                         'name' => 'Doble',
                                         'type_room' => 'doble',
                                         'jamaah' => $order['order_guest_double'],
+                                        'price' => $order['package_product']['price_double'],
                                     ])
                                 @endif
 
@@ -134,6 +135,7 @@
                                         'name' => 'Triple',
                                         'type_room' => 'triple',
                                         'jamaah' => $order['order_guest_triple'],
+                                        'price' => $order['package_product']['price_triple']
                                     ])
                                 @endif
 
@@ -143,6 +145,7 @@
                                         'name' => 'Quad',
                                         'type_room' => 'quad',
                                         'jamaah' => $order['order_guest_quad'],
+                                        'price' => $order['package_product']['price_quad']
                                     ])
                                 @endif
                                 <!-- Option Room End -->
@@ -157,58 +160,64 @@
                                     Riwayat Pembayaran
                                     <span class="badge badge-success px-5 py-2" style="border-radius: 10px">Cicilan 2x</span>
                                 </div>
-                                <div class="card card-bordered mt-5">
-                                    <div class="card-header pt-5" style="display: block;">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="font-normal-600 fs-14">
-                                                    Pembayaran 1
-                                                    <span class="badge badge-success px-4 py-1" style="border-radius: 10px">DP</span>
+
+                                <!-- Term Payment -->
+                                @foreach($order['order_payment'] as $key => $order_payment)
+                                    <div class="card card-bordered mt-5">
+                                        <div class="card-header pt-5" style="display: block;">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="font-normal-600 fs-14">
+                                                        Pembayaran {{ $key+1 }}
+                                                        <span class="badge badge-success px-4 py-1" style="border-radius: 10px">DP</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="font-normal-400 fs-12 text-right text-green">
+                                                        <span class="badge badge-green-light px-4 py-1" style="border-radius: 10px;">Dibayar pada {{ $order_payment['success_date'] }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="font-normal-400 fs-12 text-right text-green">
-                                                    <span class="badge badge-green-light px-4 py-1" style="border-radius: 10px;">Dibayar pada 10 Jan 22 18:31</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="font-normal-500 fs-12">
+                                                        Metode Pembayaran
+                                                    </div>
+                                                    <div class="font-normal-700 fs-14">
+                                                        Mandiri Virtual Account
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="font-normal-500 fs-12">
+                                                        logo bank
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="font-normal-500 fs-12">
+                                                        Nomor Virtual Account
+                                                    </div>
+                                                    <div class="font-normal-700 fs-14">
+                                                        12333123
+                                                        <i class="fa-solid fa-copy" style="color: var(--green)"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="font-normal-500 fs-12">
+                                                        Nominal
+                                                    </div>
+                                                    <div class="font-normal-700 fs-14">
+                                                        Rp. 100.000
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <div class="font-normal-500 fs-12">
-                                                    Metode Pembayaran
-                                                </div>
-                                                <div class="font-normal-700 fs-14">
-                                                    Mandiri Virtual Account
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="font-normal-500 fs-12">
-                                                    logo bank
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="font-normal-500 fs-12">
-                                                    Nomor Virtual Account
-                                                </div>
-                                                <div class="font-normal-700 fs-14">
-                                                    12333123
-                                                    <i class="fa-solid fa-copy" style="color: var(--green)"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="font-normal-500 fs-12">
-                                                    Nominal
-                                                </div>
-                                                <div class="font-normal-700 fs-14">
-                                                    Rp. 100.000
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                                 <hr>
+                                
+                                <!-- Total Payment -->
                                 <div class="row">
                                     <div class="col-md-6"></div>
                                     <div class="col-md-6">
@@ -234,7 +243,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- begin:Pesanan Batal Otomatis --}}
+
+                                <!-- Note Payment -->
                                 <div class="card card-bordered mt-5" style="background-color: #F8FCFC">
                                     <div class="card-body p-5 pt-2 pb-2">
                                         <div class="font-normal-500 fs-14">
@@ -246,7 +256,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- end:Pesanan Batal Otomatis --}}
                             </div>
                         </div>
                         
