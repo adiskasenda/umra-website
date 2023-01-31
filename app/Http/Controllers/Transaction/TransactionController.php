@@ -123,6 +123,11 @@ class TransactionController extends Controller
         return 'checkout';
     }
 
+    public function paymentSuccess()
+    {
+        return view('pages.transaction.paymentSuccess');
+    }
+
     public function show($id)
     {
         $this->header['ax-request-by'] = Session::get('user')['email'];

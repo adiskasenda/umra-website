@@ -38,7 +38,7 @@
                             <a href="{{ url('/package/umroh-plus') }}" style="width: 380px;" class="dropdown-item">
                                 <div class="row" style="width: 380px; margin: 15px 0;">
                                     <div class="col-2">
-                                        <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
+                                        <img src="{{ asset('/assets-web/img/icon/umroh-plus.png') }}" alt="{{ asset('/assets-web/img/icon/umroh-plus.png') }}">
                                     </div>
                                     <div class="col-10">
                                         <div class="fs-16" style="font-weight: bold;">Paket Umrah+</div>
@@ -49,7 +49,7 @@
                             <a href="{{ url('/package/wisata-halal') }}" style="width: 380px;" class="dropdown-item">
                                 <div class="row" style="width: 380px; margin: 15px 0;">
                                     <div class="col-2">
-                                        <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
+                                        <img src="{{ asset('/assets-web/img/icon/wisata-halal.png') }}" alt="{{ asset('/assets-web/img/icon/wisata-halal.png') }}">
                                     </div>
                                     <div class="col-10">
                                         <div class="fs-16" style="font-weight: bold;">Wisata Halal</div>

@@ -89,7 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <button class="btn btn-success">Detail</button>
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-detail-jamaah">Detail</button>
                                     </div>
                                 </div>
                                 <hr>
