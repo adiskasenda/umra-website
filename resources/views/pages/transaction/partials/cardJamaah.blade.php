@@ -8,8 +8,11 @@
                 <div class="font-normal-700 fs-16">{{ $name }}</div>
                 <div class="font-normal-600 fs-14 text-green">Rp. {{ $price }} /Orang</div>
             </div>
-            <div class="col-4 mt-5">
+
+            <div class="col-2 text-right mt-4">
                 Jumlah Jamaah
+            </div>
+            <div class="col-2 mt-2 text-right">
                 <!--begin::Dialer-->
                 <div class="input-group w-md-300px"
                     data-kt-dialer="true"
@@ -17,17 +20,17 @@
                     data-kt-dialer-max="10">
 
                     <!--begin::Decrease control-->
-                    <button class="btn btn-square rounded-circle btn-icon btn-outline btn-success" type="button" data-kt-dialer-control="decrease">
+                    <button class="btn btn-square rounded-circle btn-icon btn-outline btn-success" style="width:25.6px; height:25.6px; top:3.3px; left:3.2px;"  type="button" data-kt-dialer-control="decrease">
                         <i class="bi bi-dash fs-1"></i>
                     </button>
                     <!--end::Decrease control-->
 
                     <!--begin::Input control-->
-                    <input type="text" class="mx-4 form-control count-people-{{ $type_room }}" readonly value="0" data-kt-dialer-control="input"/>
+                    <input type="text" class="mx-4 form-control count-people-{{ $type_room }}" style="height:25.6px; top:3.3px; left:3.2px; max-width:45px;text-align: center;"  readonly value="0" data-kt-dialer-control="input"/>
                     <!--end::Input control-->
 
                     <!--begin::Increase control-->
-                    <button class="btn btn-square rounded-circle btn-icon btn-outline btn-success" type="button" data-kt-dialer-control="increase">
+                    <button class="btn btn-square rounded-circle btn-icon btn-outline btn-success" style="width:25.6px; height:25.6px; top:3.3px; left:3.2px;" type="button" data-kt-dialer-control="increase">
                         <i class="bi bi-plus fs-1"></i>
                     </button>
                     <!--end::Increase control-->

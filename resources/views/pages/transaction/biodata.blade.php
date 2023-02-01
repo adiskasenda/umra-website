@@ -67,7 +67,7 @@
                                     <div class="font-normal-700 fs-16 text-green">+62897182734 (Mimunatun Jannah)</div>
                                 </div>
                                 <div class="col-6 mt-2 text-right">
-                                    <button class="btn btn-success">Tambahkan Nomor Telepon</button>
+                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-tambah-telepon">Tambahkan Nomor Telepon</button>
                                 </div>
                             </div>
                         </div>
@@ -84,13 +84,55 @@
                     <div class="text-right">
                         <button class="btn text-green"><i class="fa-solid fa-chevron-left"></i>Kembali</button>
                         
-                        <i class="fa-solid fa-circle-info" style="color: #B3261E; font-size: 23px;"></i>
+                        <i class="fa-solid fa-circle-info" style="color: #B3261E; font-size: 23px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Lengkapi data berikut untuk melanjutkan: "></i>
                         
                         <button class="btn btn-success" disabled>
                             Lanjutkan<i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal detail jamaah -->
+    <div class="modal fade" tabindex="-1" id="modal-tambah-telepon">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Tambahkan Nomor Telepon</h3>
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="svg-icon svg-icon-1">X</span>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <div class="mb-2">
+                                <label for="nama" class="required form-label">Nama Pemesan</label>
+                                <input type="text" class="form-control" placeholder="Masukkan nama pemesan"/>
+                            </div>
+                            <div class="mb-2">
+                                <label for="nama" class="required form-label">Nomor Telepon (WhatsApp)</label>
+                                <input type="text" class="form-control" placeholder="Masukkan nomor telepon"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="display: block;">
+                    <div class="row">
+                        <div class="col-md-6 text-center mt-2">
+                            <a href="" class="font-normal-16 fs-20 text-green" data-bs-dismiss="modal">Batal</a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="#" class="btn btn-success">
+                                Tambahkan
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

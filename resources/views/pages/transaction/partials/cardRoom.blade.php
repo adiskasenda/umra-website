@@ -2,8 +2,8 @@
     <div class="card-header" style="background: #F8FCFC; display:inline;">
         <div class="row mt-5 mb-5">
             <div class="col-2 mt-2">
-                <img src="{{ asset('assets-web/img/icon/double.png') }}" width="40px" height="40px" alt="{{ asset('assets-web/img/icon/double.png') }}">
-                <span class="font-normal-600 fs-16">Double</span>
+            <img src="{{ $icon }}" width="40px" height="40px" alt="{{ $icon }}">
+                <span class="font-normal-600 fs-16">{{ $name }}</span>
             </div>
             <div class="col-2 mt-3">
                 <div class="font-normal-600 fs-16">
@@ -21,7 +21,7 @@
     </div>
     <div class="card-body" style="padding: 1rem !important;">
         <!--begin::Accordion-->
-        
+        {{-- @include('pages.transaction.partials.formJamaah') --}}
         @include('pages.transaction.partials.formJamaah')
         <!--end::Accordion-->
     </div>

@@ -45,14 +45,14 @@
 <!-- Pilihan Paket -->
 <div class="card card-bordered">
     <div class="card-header" style="padding: 1rem !important; min-height:auto!important;background: #E6F1F0;">
-        <div>Pilihan Paket</div>
-        <a href="{{ url('/') }}">Lihat Detail</a>
+        <div  class="">Pilihan Paket</div>
+        <a href="{{ url('/') }}"  class="">Lihat Detail</a>
     </div>
     <div class="card-body" style="padding: 1rem !important;background: #F8FCFC;">
-        <div>{{ $namePackage }}</div>
+        <div class="">{{ $namePackage }}</div>
         <div class="row mt-3">
             <div class="col-6">
-                <div>{{ $flag_umroh }}</div>
+                <div class="">{{ $flag_umroh }}</div>
             </div>
             <div class="col-6">
                 <div class="text-tertiary"> 
