@@ -10,6 +10,7 @@
             <div class="col-md-3">
                 @include('pages.transaction.partials.sidebar', [
                     'step' => 3,
+                    'id_package' => $package_product['id_packet'],
                     'namePackage' => $package_product['name'],
                     'flag_umroh' =>  Helpers::viewFlagUmroh($package_product['flag_umroh']),
                     'quota' => $package_product['quota']

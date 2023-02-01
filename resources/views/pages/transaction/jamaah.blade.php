@@ -10,7 +10,8 @@
                 <div class="col-md-3">
                     @include('pages.transaction.partials.sidebar', [
                         'step' => 1,
-                        'namePackage' => $package_product['name'],
+                        'id_package' => $package_product['id_packet'],
+                        'name_package' => $package_product['name'],
                         'flag_umroh' =>  Helpers::viewFlagUmroh($package_product['flag_umroh']),
                         'quota' => $package_product['quota']
                     ])
@@ -192,8 +193,12 @@
     <!-- Link Button -->
     <script>
         $('#btn-next').click(function() {
-            window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
-            return false;
+            if ( total_people > 0 ) {
+                window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
+                return false;
+            } else {
+                return false;
+            }
         });
     </script>
 @endpush

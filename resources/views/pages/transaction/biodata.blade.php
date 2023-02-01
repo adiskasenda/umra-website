@@ -4,13 +4,14 @@
     <div class="container-fluid py-5 mb-8">
         <div class="container">
             @include('pages.transaction.partials.breadcrumb',[
-                'breadcrumb' => 'hello',
+                'namePackage' => $package_product['name'],
             ])
             <div class="row">
                 <div class="col-md-3">
                     @include('pages.transaction.partials.sidebar', [
                         'step' => 2,
-                        'namePackage' => $package_product['name'],
+                        'id_package' => $package_product['id_packet'],
+                        'name_package' => $package_product['name'],
                         'flag_umroh' =>  Helpers::viewFlagUmroh($package_product['flag_umroh']),
                         'quota' => $package_product['quota']
                     ])
@@ -51,7 +52,7 @@
                                 <div class="col-6 text-right">
                                     <div class="font-normal-600 fs-16">
                                         <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
-                                        3 Orang
+                                        <span id="total_jamaah">0</span> Orang
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +64,10 @@
                         <div class="card-body p-5">
                             <div class="row">
                                 <div class="col-6">
-                                    <div class="font-normal-400 fs-14"><i class="fa-solid fa-phone"></i>Kontak Pemesan</div>
+                                    <div class="font-normal-400 fs-14">
+                                        <i class="fa-solid fa-phone me-sm-3"></i>
+                                        Kontak Pemesan
+                                    </div>
                                     <div class="font-normal-700 fs-16 text-green">+62897182734 (Mimunatun Jannah)</div>
                                 </div>
                                 <div class="col-6 mt-2 text-right">
@@ -75,7 +79,7 @@
 
                     <div class="card card-bordered mt-8 mb-10" style="background-color: #F8FCFC">
                         <div class="card-body p-5 font-normal-400 fs-14 pt-3 pb-3">
-                            <i class="fa-solid fa-circle-info" style="color: #327DFA"></i>
+                            <i class="fa-solid fa-circle-info me-sm-3" style="color: #327DFA"></i>
                             Pastikan nomor yang dijadikan kontak sudah terdaftar akun WhatsApp
                         </div>
                     </div>
@@ -141,8 +145,8 @@
 
 @push('page_js')
     <!-- check Chart -->
-    <script type="text/javascript" nonce>
-        const cardData = JSON.parse(localStorage.getItem("cartData"));
+    <script>
+        var cardData = JSON.parse(localStorage.getItem("cartData"));
 
         // Count Room
         const count_people_doble = cardData[0][0]['doble'];
