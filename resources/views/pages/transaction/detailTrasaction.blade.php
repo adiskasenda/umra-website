@@ -5,9 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                @include('pages.profile.partials.sidebar', [
-                    'step' => 3
-                ])
+                @include('pages.profile.partials.sidebar')
             </div>
             <div class="col-md-9">
                 <div class="font-normal-700 fs-20">Detail Pesanan</div>

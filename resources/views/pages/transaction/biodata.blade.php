@@ -4,13 +4,14 @@
     <div class="container-fluid py-5 mb-8">
         <div class="container">
             @include('pages.transaction.partials.breadcrumb',[
-                'breadcrumb' => 'hello',
+                'namePackage' => $package_product['name'],
             ])
             <div class="row">
                 <div class="col-md-3">
                     @include('pages.transaction.partials.sidebar', [
                         'step' => 2,
-                        'namePackage' => $package_product['name'],
+                        'id_package' => $package_product['id_packet'],
+                        'name_package' => $package_product['name'],
                         'flag_umroh' =>  Helpers::viewFlagUmroh($package_product['flag_umroh']),
                         'quota' => $package_product['quota']
                     ])
@@ -51,7 +52,7 @@
                                 <div class="col-6 text-right">
                                     <div class="font-normal-600 fs-16">
                                         <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
-                                        3 Orang
+                                        <span id="total_jamaah">0</span> Orang
                                     </div>
                                 </div>
                             </div>
@@ -63,11 +64,14 @@
                         <div class="card-body p-5">
                             <div class="row">
                                 <div class="col-6">
-                                    <div class="font-normal-400 fs-14"><i class="fa-solid fa-phone"></i>Kontak Pemesan</div>
+                                    <div class="font-normal-400 fs-14">
+                                        <i class="fa-solid fa-phone me-sm-3"></i>
+                                        Kontak Pemesan
+                                    </div>
                                     <div class="font-normal-700 fs-16 text-green">+62897182734 (Mimunatun Jannah)</div>
                                 </div>
                                 <div class="col-6 mt-2 text-right">
-                                    <button class="btn btn-success">Tambahkan Nomor Telepon</button>
+                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-tambah-telepon">Tambahkan Nomor Telepon</button>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +79,7 @@
 
                     <div class="card card-bordered mt-8 mb-10" style="background-color: #F8FCFC">
                         <div class="card-body p-5 font-normal-400 fs-14 pt-3 pb-3">
-                            <i class="fa-solid fa-circle-info" style="color: #327DFA"></i>
+                            <i class="fa-solid fa-circle-info me-sm-3" style="color: #327DFA"></i>
                             Pastikan nomor yang dijadikan kontak sudah terdaftar akun WhatsApp
                         </div>
                     </div>
@@ -84,7 +88,7 @@
                     <div class="text-right">
                         <button class="btn text-green"><i class="fa-solid fa-chevron-left"></i>Kembali</button>
                         
-                        <i class="fa-solid fa-circle-info" style="color: #B3261E; font-size: 23px;"></i>
+                        <i class="fa-solid fa-circle-info" style="color: #B3261E; font-size: 23px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Lengkapi data berikut untuk melanjutkan: "></i>
                         
                         <button class="btn btn-success" disabled>
                             Lanjutkan<i class="fa-solid fa-chevron-right"></i>
@@ -95,12 +99,54 @@
             </div>
         </div>
     </div>
+
+    <!-- modal detail jamaah -->
+    <div class="modal fade" tabindex="-1" id="modal-tambah-telepon">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Tambahkan Nomor Telepon</h3>
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="svg-icon svg-icon-1">X</span>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <div class="mb-2">
+                                <label for="nama" class="required form-label">Nama Pemesan</label>
+                                <input type="text" class="form-control" placeholder="Masukkan nama pemesan"/>
+                            </div>
+                            <div class="mb-2">
+                                <label for="nama" class="required form-label">Nomor Telepon (WhatsApp)</label>
+                                <input type="text" class="form-control" placeholder="Masukkan nomor telepon"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="display: block;">
+                    <div class="row">
+                        <div class="col-md-6 text-center mt-2">
+                            <a href="" class="font-normal-16 fs-20 text-green" data-bs-dismiss="modal">Batal</a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="#" class="btn btn-success">
+                                Tambahkan
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('page_js')
     <!-- check Chart -->
-    <script type="text/javascript" nonce>
-        const cardData = JSON.parse(localStorage.getItem("cartData"));
+    <script>
+        var cardData = JSON.parse(localStorage.getItem("cartData"));
 
         // Count Room
         const count_people_doble = cardData[0][0]['doble'];
