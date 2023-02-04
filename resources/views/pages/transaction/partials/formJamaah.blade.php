@@ -15,24 +15,6 @@
         </h2>
         <div id="kt_accordion_room_{{ $room }}_{{ $id }}" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1" data-bs-parent="#kt_accordion_1_header_1">
             <div class="accordion-body" style="background-color: #FAFAFA">
-                <!-- Gender Field -->
-                <!-- <div class="card card-bordered mt-1 mb-5" style="background-color: #F8FCFC">
-                    <div class="card-body p-5">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="font-normal-400 fs-14">
-                                    <div class="form-check form-check-custom">
-                                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault"/>
-                                        <label class="form-check-label text-dark" for="flexCheckDefault">
-                                            Saya sendiri yang berangkat sebagai pemesan & calon jamaah pada pesanan ini.
-                                            <i class="fa-solid fa-circle-info" style="color: #327DFA"></i>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 
                 <!-- Form Jamaah -->
                 <div class="row">
@@ -173,7 +155,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="font-normal-500 fs-16">
-                                            <i class="fa-solid fa-circle-info" style="color: #327DFA"></i> Syarat Passport
+                                            <i class="fa-solid fa-circle-info me-2" style="color: #327DFA"></i> Syarat Passport
                                         </div>
                                         <div class="font-normal-400 fs-14">
                                             Masa berlaku passport harus tersisa <strong>minimal 7 bulan</strong> dari hari keberangkatan sesuai peraturan perjalanan yang telah ditetapkan negara.
@@ -275,7 +257,7 @@
                 <div class="row">
                     <div class="col-4 mt-2">
                         <button class="btn font-normal-500 fs-16 text-red " style="color: var(--secondary);">
-                            <i class="fa-solid fa-trash" style="color: var(--secondary);"></i>
+                            <i class="fa-solid fa-trash me-2" style="color: var(--secondary);"></i>
                             Hapus Jamaah
                         </button>
                     </div>

@@ -30,12 +30,12 @@
                             <div class="col-11">
                                 <div class="text-normal-700 fs-20 fw-bold">{{ $mitra['name'] }}</div>
                                 <div>
-                                    <i class="fa-solid fa-location-dot" style="color: green;"></i>
+                                    <i class="fa-solid fa-location-dot me-2" style="color: green;"></i>
                                     {{ $mitra['address'] }}
                                 </div>
                             </div>
                             <div class="col-1">
-                                <i class="fa-solid fa-arrow-right fs-2x mt-5"></i>
+                                <i class="fa-solid fa-arrow-right fs-2x mt-5 me-2"></i>
                             </div>
                         </div>
                     </div>

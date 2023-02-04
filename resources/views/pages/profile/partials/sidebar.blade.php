@@ -29,8 +29,8 @@
             </div>
             <div id="kt_user_akun_and_security_{{ $key }}" class="collapse show">
                 @foreach ($sidebar['menu_collaps'] as $menu)
-                    <div class="fs-6 py-3">
-                        <div class="mt-5">
+                    <div class="fs-6 py-2">
+                        <div class="p-3" style="@if(request()->url() == $menu['url']) background-color: #E6F1F0; border-radius:3px; @endif" >
                             <a href="{{ $menu['url'] }}" @if( $menu['title'] == 'Syarat dan Ketentuan' || $menu['title'] == 'Kebijakan Privasi' || $menu['title'] == 'Customer Service' ) target="_blank" @endif class="@if($menu['title'] == 'Syarat dan Ketentuan') url-term-and-condition @endif @if($menu['title'] == 'Kebijakan Privasi') url-privacy-policy @endif text-dark sidebar-custom @if( false ) sidebar-custom-active @endif">
                                 <img src="{{ $menu['icon'] }}" alt="{{ $menu['icon'] }}" class="mx-4"> {{ $menu['title'] }}
                             </a>
@@ -42,4 +42,5 @@
         @endforeach
     </div>
 </div>
+
 

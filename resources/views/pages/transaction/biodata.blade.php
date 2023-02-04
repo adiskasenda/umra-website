@@ -4,7 +4,7 @@
     <div class="container-fluid py-5 mb-8">
         <div class="container">
             @include('pages.transaction.partials.breadcrumb',[
-                'namePackage' => $package_product['name'],
+                'name_package' => $package_product['name'],
             ])
             <div class="row">
                 <div class="col-md-3">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-md-9">
                     <a href="{{ url('/transaction/jamaah', $package_product['id_packet']) }}" class="font-normal-400 fs-16 text-green mt-3">
-                        <i class="fa-solid fa-arrow-left"></i> Langkah 2 dari 3
+                        <i class="fa-solid fa-arrow-left me-2"></i> Langkah 2 dari 3
                     </a>
 
                     <div class="mt-5 font-normal-700 fs-32">Biodata Calon Jamaah</div>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-6 text-right">
                                     <div class="font-normal-600 fs-16">
-                                        <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
+                                        <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
                                         <span id="total_jamaah">0</span> Orang
                                     </div>
                                 </div>
@@ -86,12 +86,12 @@
                     <hr>
 
                     <div class="text-right">
-                        <button class="btn text-green"><i class="fa-solid fa-chevron-left"></i>Kembali</button>
+                        <button class="btn text-green"><i class="fa-solid fa-chevron-left me-2"></i>Kembali</button>
                         
-                        <i class="fa-solid fa-circle-info" style="color: #B3261E; font-size: 23px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Lengkapi data berikut untuk melanjutkan: "></i>
+                        <i class="fa-solid fa-circle-info me-2" style="color: #B3261E; font-size: 23px;" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true" title="Lengkapi data berikut untuk melanjutkan :"></i>
                         
-                        <button class="btn btn-success" disabled>
-                            Lanjutkan<i class="fa-solid fa-chevron-right"></i>
+                        <button class="btn btn-success" id="btn-next" disabled>
+                            Lanjutkan<i class="fa-solid fa-chevron-right mx-2"></i>
                         </button>
                     </div>
 

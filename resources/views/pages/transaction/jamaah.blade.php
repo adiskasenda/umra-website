@@ -4,7 +4,7 @@
     <div class="container-fluid py-5 mb-8">
         <div class="container">
             @include('pages.transaction.partials.breadcrumb',[
-                'breadcrumb' => 'hello',
+                'name_package' => $package_product['name'],
             ])
             <div class="row">
                 <div class="col-md-3">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-md-9">
                     <a href="{{ url('/package', $package_product['id_packet']) }}" class="font-normal-400 fs-16 text-green mt-3">
-                        <i class="fa-solid fa-arrow-left"></i> Langkah 1 dari 3
+                        <i class="fa-solid fa-arrow-left me-2"></i> Langkah 1 dari 3
                     </a>
                     
                     <div class="mt-5 font-normal-700 fs-32">Jumlah Calon Jamaah</div>
@@ -62,7 +62,6 @@
                     ])
                     <!-- Option Kamar End  -->
 
-                    <!--begin::Alert-->
                     <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-5 mt-5 p-6">
                         <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,8 +76,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--end::Alert-->
-
                     <hr>
                     <div class="row">
                         <div class="col-md-6"></div>
@@ -86,7 +83,7 @@
                             <div class="row">
                                 <div class="col-6 font-normal-400 fs-18">Jumlah Jamaah</div>
                                 <div class="col-6 font-normal-700 fs-18 text-right">
-                                    <i class="fa-solid fa-user-group"></i>
+                                    <i class="fa-solid fa-user-group me-2"></i>
                                     <span id="total_people">0</span> Orang
                                 </div>
                             </div>
@@ -102,7 +99,7 @@
                             <div class="row">
                                 <div class="col-6 font-normal-400 fs-18">
                                     Uang Muka
-                                    <i class="fa-solid fa-circle-info"></i>
+                                    <i class="fa-solid fa-circle-info mx-2"></i>
                                 </div>
                                 <div class="col-6 text-right font-normal-700 fs-18 text-green">
                                     Rp. <span id="down_payment">0</span>
@@ -114,7 +111,7 @@
                     <div class="text-right">
                         <button class="btn">Batal</button>
                         <button class="btn btn-success" id="btn-next" disabled>
-                            Lanjutkan <i class="fa-solid fa-chevron-right"></i>
+                            Lanjutkan <i class="fa-solid fa-chevron-right mx-2"></i>
                         </button>
                     </div>
                 </div>
@@ -193,6 +190,11 @@
     <!-- Link Button -->
     <script>
         $('#btn-next').click(function() {
+            const count_people_doble = $('.count-people-doble').val();
+            const count_people_triple = $('.count-people-triple').val();
+            const count_people_quad = $('.count-people-quad').val();
+
+            const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
             if ( total_people > 0 ) {
                 window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
                 return false;

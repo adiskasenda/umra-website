@@ -45,19 +45,23 @@
 <!-- Pilihan Paket -->
 <div class="card card-bordered">
     <div class="card-header" style="padding: 1rem !important; min-height:auto!important;background: #E6F1F0;">
-        <div class="">Pilihan Paket</div>
-        <a href="{{ url('/package', $id_package) }}"  class="">Lihat Detail</a>
+        <div class="font-normal-600 fs-14">Pilihan Paket</div>
+        <a href="{{ url('/package', $id_package) }}"  class="font-normal-400 fs-12 text-green">Lihat Detail</a>
     </div>
     <div class="card-body" style="padding: 1rem !important;background: #F8FCFC;">
-        <div class="">{{ $name_package }}</div>
+        <div class="font-normal-700 fs-16">{{ $name_package }}</div>
         <div class="row mt-3">
             <div class="col-6">
-                <div class="">{{ $flag_umroh }}</div>
+                <div style="border-radius: 15px; background-color: #006B67; color: white; border:none; padding:5px 10px; font-size: 13px; width:max-content;">
+                    <div class="font-normal-400 fs-12">
+                        {{ $flag_umroh }}
+                    </div>
+                </div>
             </div>
             <div class="col-6">
-                <div class="text-tertiary"> 
-                    <img class="icon-package" src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}">  
-                    Tersisa {{ $quota }} 
+                <div class="text-tertiary">
+                    <img class="icon-package" src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}">
+                    Tersisa {{ $quota }}
                 </div>
             </div>
         </div>
