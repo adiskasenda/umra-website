@@ -86,12 +86,12 @@
                     <hr>
 
                     <div class="text-right">
-                        <button class="btn text-green"><i class="fa-solid fa-chevron-left me-2"></i>Kembali</button>
-                        
+                        <button class="btn text-green">
+                            <i class="fa-solid fa-chevron-left me-2"></i> Kembali
+                        </button>
                         <i class="fa-solid fa-circle-info me-2" style="color: #B3261E; font-size: 23px;" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true" title="Lengkapi data berikut untuk melanjutkan :"></i>
-                        
                         <button class="btn btn-success" id="btn-next" disabled>
-                            Lanjutkan<i class="fa-solid fa-chevron-right mx-2"></i>
+                            Lanjutkan <i class="fa-solid fa-chevron-right mx-2"></i>
                         </button>
                     </div>
 
@@ -100,7 +100,7 @@
         </div>
     </div>
 
-    <!-- modal detail jamaah -->
+    <!-- Modal Add Telephone -->
     <div class="modal fade" tabindex="-1" id="modal-tambah-telepon">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -144,6 +144,13 @@
 @endsection
 
 @push('page_js')
+
+    <script>
+        $(".date").flatpickr({
+            dateFormat: "d-m-Y",
+        });
+    </script>
+
     <!-- check Chart -->
     <script>
         var cardData = JSON.parse(localStorage.getItem("cartData"));
@@ -173,7 +180,7 @@
     <!-- Link Button -->
     <script>
         $('#btn-next').click(function() {
-            window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
+            window.location.href = "{{ url('/transaction/checkout', $package_product['id_packet']) }}";
             return false;
         });
     </script>

@@ -195,6 +195,28 @@ class Helpers
         return $category;
     }
 
+    // you can use this function with Helpers::viewVaksinasi
+    public static function viewVaksinasi($vaksin) {
+        switch ($vaksin) {
+            case '0':
+                $category = 'Belum Vaksin';
+                break;
+            case '1':
+                $category = 'Dosis Pertama';
+                break;
+            case '2':
+                $category = 'Dosis Kedua';
+                break;
+            case '3':
+                $category = 'Booster';
+                break;
+            default:
+                $category = 'Booster Kedua';
+        }
+        
+        return $category;
+    }
+
     // you can use this function with Helpers::checkProfile
     public static function checkProfile($user) {
         if ( $user ) {

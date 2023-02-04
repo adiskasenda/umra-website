@@ -50,7 +50,7 @@
                         <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Buat Pin</div>
                         <div class="mt-5 text-weight-400 fs-16">Buatlah pin baru yang menurut Anda mudah untuk diingat dan sulit untuk ditebak</div>
 
-                        <div class="pincode-input-container"></div>
+                        <div class="pincode-input-container mt-8"></div>
                     </div>
                     <div class="d-grid">
                         <button type="button" id="btn-buat-pin" class="btn btn-success">

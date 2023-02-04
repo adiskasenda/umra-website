@@ -66,7 +66,7 @@
                                                         @if ( $jamaah['gender'] == 1 )
                                                             Laki-laki <span><i class="fa-solid fa-mars" style="color: black"></i></span>
                                                         @else
-                                                            Perempuan <span><i class="fa-solid fa-mars" style="color: black"></i></span>
+                                                            Perempuan <span><i class="fa-solid fa-venus" style="color: black"></i></span>
                                                         @endif
                                                     </div>
 
