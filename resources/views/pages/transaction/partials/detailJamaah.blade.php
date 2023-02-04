@@ -1,19 +1,19 @@
 <div class="accordion mt-5 mb-5" id="kt_accordion_1">
     <div class="accordion-item">
         <h2 class="accordion-header" id="kt_accordion_1_header_1">
-            <button class="accordion-button fs-4 fw-semibold" style="background-color: white" aria-expanded="true"  type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-controls="kt_accordion_1_body_1">
+            <button class="accordion-button fs-4 fw-semibold" style="background-color: white" aria-expanded="true"  type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_room_{{ $room }}_{{ $id }}" aria-controls="kt_accordion_room_{{ $room }}_{{ $id }}">
                 <div class="row">
                     <div class="col-12">
                         <div class="font-normal-600 fs-14 text-green">
-                            <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
-                            Calon jamaah 1
+                            <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
+                            Calon jamaah {{ $id }}
                         </div>
                         <div class="font-normal-700 fs-16">Reonolgy</div>
                     </div>
                 </div>
             </button>
         </h2>
-        <div id="kt_accordion_1_body_1" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1" data-bs-parent="#kt_accordion_1_header_1">
+        <div id="kt_accordion_room_{{ $room }}_{{ $id }}" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1" data-bs-parent="#kt_accordion_1_header_1">
             <div class="accordion-body" style="background-color: #FAFAFA">
                 <div class="row">
                     <div class="col-6">
@@ -50,7 +50,7 @@
                         </div>
                         <div class="mt-1 font-normal-700 fs-16">
                             08736472643
-                            <i class="fa-solid fa-copy" style="color: var(--green)"></i>
+                            <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
                         </div>
 
                         <div class="mt-5 font-normal-400 fs-14">
@@ -58,7 +58,7 @@
                         </div>
                         <div class="mt-1 font-normal-700 fs-16">
                             Laki-laki
-                            <span><i class="fa-solid fa-mars" style="color: black"></i></span>
+                            <span><i class="fa-solid fa-mars mx-2" style="color: black"></i></span>
                         </div>
                     </div>
                     <div class="col-6">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="mt-1 font-normal-700 fs-16">
                             76217361245651624
-                            <i class="fa-solid fa-copy" style="color: var(--green)"></i>
+                            <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
                         </div>
 
                         <div class="mt-5 font-normal-400 fs-14">
@@ -93,7 +93,7 @@
                         </div>
                         <div class="mt-1 font-normal-700 fs-16">
                             762173612456516244374
-                            <i class="fa-solid fa-copy" style="color: var(--green)"></i>
+                            <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
                         </div>
 
                         <div class="mt-5 font-normal-400 fs-14">
@@ -137,7 +137,7 @@
                     <div class="col-8">
                         <div class="text-right">
                             <button class="btn btn-outline btn-outline-success text-green">
-                                <i class="fa-solid fa-pen-to-square" style="color: var(--green)"></i>
+                                <i class="fa-solid fa-pen-to-square me-2" style="color: var(--green)"></i>
                                 Edit Biodata
                             </button>
                         </div>

@@ -59,13 +59,13 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="font-normal-500 fs-12">
-                                        <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
+                                        <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
                                          Calon 1 Jamaah
                                     </div>
                                 </div>
                                 <div class="col-8">
                                     <div class="font-normal-500 fs-12 text-right">
-                                        <i class="fa-solid fa-circle-info" style="color: #B3261E"></i>
+                                        <i class="fa-solid fa-circle-info me-2" style="color: #B3261E"></i>
                                         Tenggat pelunasan maksimal <span class="text-red"></span>
                                     </div>
                                 </div>

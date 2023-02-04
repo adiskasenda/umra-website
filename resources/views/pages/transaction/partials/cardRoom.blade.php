@@ -2,18 +2,18 @@
     <div class="card-header" style="background: #F8FCFC; display:inline;">
         <div class="row mt-5 mb-5">
             <div class="col-2 mt-2">
-            <img src="{{ $icon }}" width="40px" height="40px" alt="{{ $icon }}">
+                <img src="{{ $icon }}" width="40px" height="40px" alt="{{ $icon }}">
                 <span class="font-normal-600 fs-16">{{ $name }}</span>
             </div>
             <div class="col-2 mt-3">
                 <div class="font-normal-600 fs-16">
-                    <i class="fa-solid fa-user-group" style="color: var(--dark)"></i>
+                    <i class="fa-solid fa-user-group me-2" style="color: var(--dark)"></i>
                     <span class="count-people-{{ $type_room }}">0</span> Orang
                 </div>
             </div>
             <div class="col-8 text-right">
                 <button class="btn btn-success" id="btn-add-jamaah-{{ $type_room }}">
-                    <i class="fa-solid fa-plus"></i>
+                    <i class="fa-solid fa-plus me-2"></i>
                     Tambah Jamaah
                 </button>
             </div>

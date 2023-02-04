@@ -50,7 +50,7 @@
                             <a href="{{ url('/package/diy') }}" style="width: 380px;" class="dropdown-item">
                                 <div class="row" style="width: 380px; margin: 15px 0;">
                                     <div class="col-2">
-                                        <img src="{{ asset('assets-web/img/icon/umroh.png') }}" alt="{{ asset('assets-web/img/icon/umroh.png') }}">
+                                        <img src="{{ asset('assets-web/img/icon/diy.png') }}" alt="{{ asset('assets-web/img/icon/diy.png') }}">
                                     </div>
                                     <div class="col-10">
                                         <div class="fs-16" style="font-weight: bold;">DIY</div>

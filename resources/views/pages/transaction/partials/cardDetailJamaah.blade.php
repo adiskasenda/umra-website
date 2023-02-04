@@ -9,7 +9,7 @@
                     <div class="col-5">
                         <div class="font-normal-700 fs-16">{{ $name }}</div>
                         <div class="font-normal-600 fs-14 text-green">
-                            <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
+                            <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
                             {{ count($jamaah) }} Orang
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-10">
                             <div class="font-normal-400 fs-12 text-green">
-                                <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
+                                <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
                                 Calon Jamaah {{ $key+1 }}
                             </div>
                             <div class="font-normal-700 fs-16">
@@ -89,13 +89,13 @@
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
                                                         {{ $jamaah['address'] }}
-                                                        <i class="fa-solid fa-copy" style="color: var(--green)"></i>
+                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mt-2 font-normal-400 fs-14">
                                                         Nomor Telepon
-                                                        <i class="fa-solid fa-copy" style="color: var(--green)"></i>
+                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
                                                         {{ $jamaah['phone_number'] }}
@@ -113,7 +113,7 @@
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
                                                         {{ $jamaah['ktp_number'] }}
-                                                        <i class="fa-solid fa-copy" style="color: var(--green)"></i>
+                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
                                                     </div>
 
                                                     <div class="mt-5 font-normal-400 fs-14">
@@ -132,7 +132,7 @@
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
                                                         {{ $jamaah['passport_number'] }}
-                                                        <i class="fa-solid fa-copy" style="color: var(--green)"></i>
+                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">

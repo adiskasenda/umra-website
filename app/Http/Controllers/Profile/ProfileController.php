@@ -41,18 +41,18 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $url_avatar = app('App\Http\Controllers\File\FileUploadController')->uploadFile( $request->file('file_url_banner_mobile'), 'banner' );
-
+        if ( !empty($request->avatar) ) {
+            $url_avatar = app('App\Http\Controllers\File\FileUploadController')->uploadFile( $request->file('avatar'), 'profile' );
+        } else {
+            $url_avatar = $request->avatar_old;
+        }
+       
         $body = [
             "firstname" => $request->firstname,
             "lastname" => $request->lastname,
             "address" => $request->address,
-            // "nation" => "Indonesia",
             "birthday" => $request->birthday,
             "gender" => $request->gender,
-            // "no_nik" => "3275030506960033",
-            // "passport_expired" => "",
-            // "passport_no" => "",
             "url_photo" => $url_avatar,
         ];
 
@@ -62,8 +62,80 @@ class ProfileController extends Controller
         $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/'.Session::get('user')['user_id'], $body);
         $customer = json_decode($response->getBody(), true);
 
+        if ( $customer['status'] == '2' ) {
+            return redirect()->back()
+                            ->withInput($request->input())
+                            ->with('error', $customer['message']);
+        }
+
+        $user = Session::get('user');
+        $user['url_photo'] = $url_avatar;
+        $user['firstname'] = $request->firstname;
+        $user['lastname'] = $request->lastname;
+        $user['birthday'] = $request->birthday;
+        $user['gender'] = $request->gender;
+        $user['address'] = $request->address;
+
+        Session::put([
+            'user' => $user
+        ]);
+
+        return redirect(url('/profile'))->withSuccess('Data Customer Berhasil Di Update');
+    }
+
+    public function updateEmail(Request $request)
+    {
+        $body = [
+            "email" => $request->email
+        ];
+
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/change_email/'.Session::get('user')['user_id'], $body);
+        $customer = json_decode($response->getBody(), true);
+
+        if ( $customer['status'] == '2' ) {
+            return redirect()->back()
+                            ->withInput($request->input())
+                            ->with('error', $customer['message']);
+        }
+
+        $user = Session::get('user');
+        $user['email'] = $email;
+        Session::put([
+            'user' => $user
+        ]);
+
         return redirect()->back()
-                        ->withSuccess('Data Customer Berhasil Di Update');
+                    ->withSuccess('Data Email Berhasil Di Update, Silahkan Check Pesan Di Email Lama Anda untuk Verifikasi Email Baru');
+    }
+
+    public function updatePhone(Request $request)
+    {
+        $body = [
+            "phone" => $request->phone
+        ];
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/change_phone/'.Session::get('user')['user_id'], $body);
+        $customer = json_decode($response->getBody(), true);
+
+        if ( $customer['status'] == '2' ) {
+            return redirect()->back()
+                            ->withInput($request->input())
+                            ->with('error', $customer['message']);
+        }
+
+        $user = Session::get('user');
+        $user['phone'] = $phone;
+        Session::put([
+            'user' => $user
+        ]);
+
+        return redirect()->back()
+                    ->withSuccess('Data Nomer Phone Berhasil Di Update');
     }
 
     public function profilePassword()

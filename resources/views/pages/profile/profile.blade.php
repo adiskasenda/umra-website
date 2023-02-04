@@ -15,7 +15,7 @@
                         <div class="col-6">
                             <div class="font-normal-500 fs-16 text-right">
                                 <a href="{{ url('/profile/edit') }}" class="text-green">
-                                    <i class="fa-solid fa-pen-to-square" style="color: green"></i>
+                                    <i class="fa-solid fa-pen-to-square me-2" style="color: green"></i>
                                     Edit Profil
                                 </a>
                             </div>
@@ -38,9 +38,9 @@
                                     <div class="font-normal-400 fs-14 mt-10">Jenis Kelamin</div>
                                     <div class="font-normal-700 fs-16 mt-1">
                                         @if ( $user['gender'] == 1 )
-                                            Laki-laki <span><i class="fa-solid fa-mars" style="color: black"></i></span>
+                                            Laki-laki <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>
                                         @else
-                                            Perempuan <span><i class="fa-solid fa-mars" style="color: black"></i></span>
+                                            Perempuan <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>
                                         @endif
                                     </div>
                                 </div>

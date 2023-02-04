@@ -105,7 +105,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="font-normal-700 fs-16">
-                                            <i class="fa-solid fa-user-group" style="color: var(--green)"></i>
+                                            <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
                                             Calon Jamaah
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                         <div class="card card-bordered mt-5">
                             <div class="card-body">
                                 <div class="font-normal-700 fs-16">
-                                    <i class="fa-solid fa-credit-card" style="color: var(--green)"></i>
+                                    <i class="fa-solid fa-credit-card me-2" style="color: var(--green)"></i>
                                     Riwayat Pembayaran
                                     <span class="badge badge-success px-5 py-2" style="border-radius: 10px">Cicilan 2x</span>
                                 </div>
@@ -198,7 +198,7 @@
                                                     </div>
                                                     <div class="font-normal-700 fs-14">
                                                         12333123
-                                                        <i class="fa-solid fa-copy" style="color: var(--green)"></i>
+                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
@@ -246,7 +246,7 @@
                                 <div class="card card-bordered mt-5" style="background-color: #F8FCFC">
                                     <div class="card-body p-5 pt-2 pb-2">
                                         <div class="font-normal-500 fs-14">
-                                            <i class="fa-solid fa-circle-info" style="color: #B3261E"></i>
+                                            <i class="fa-solid fa-circle-info me-2" style="color: #B3261E"></i>
                                             Pesanan Batal Otomatis
                                         </div>
                                         <div class="font-normal-400 fs-12">
@@ -265,7 +265,7 @@
                         <div class="card card-bordered mt-5">
                             <div class="card-body p-5">
                                 <div class="font-normal-700 fs-18">
-                                    <i class="fa-solid fa-bag-shopping" style="color: var(--green)"></i>
+                                    <i class="fa-solid fa-bag-shopping me-2" style="color: var(--green)"></i>
                                     Kebijakan UMRA ID
                                 </div>
                                 <div class="row">
@@ -275,31 +275,31 @@
                                         </div>
                                     </div>
                                     <div class="col-2 text-right">
-                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <i class="fa-solid fa-arrow-right me-2"></i>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-10">
                                         <div class="font-normal-400 fs-12">
-                                            <i class="fa-solid fa-file" style="color: var(--green)"></i>
+                                            <i class="fa-solid fa-file me-2" style="color: var(--green)"></i>
                                             Kebijakan Pembatalan
                                         </div>
                                     </div>
                                     <div class="col-2 text-right">
-                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <i class="fa-solid fa-arrow-right me-2"></i>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-10">
                                         <div class="font-normal-400 fs-12">
-                                            <i class="fa-solid fa-wallet" style="color: var(--green)"></i>
+                                            <i class="fa-solid fa-wallet me-2" style="color: var(--green)"></i>
                                             Kebijakan Pengembalian Dana
                                         </div>
                                     </div>
                                     <div class="col-2 text-right">
-                                        <i class="fa-solid fa-arrow-right"></i>
+                                        <i class="fa-solid fa-arrow-right me-2"></i>
                                     </div>
                                 </div>
                             </div>
