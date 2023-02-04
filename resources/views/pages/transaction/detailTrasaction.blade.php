@@ -33,7 +33,7 @@
                                         <div class="font-normal-700 fs-18">{{ $order['package_product']['name'] }}</div>
                                     </div>
                                     <div class="col-6 text-right">
-                                        <div class="font-normal-400 fs-12">Keberangkatan {{ date('Y-m-d', strtotime($order['package_product']['date_start'])) }}</div>
+                                        <div class="font-normal-400 fs-12">Keberangkatan {{ date('d M Y', strtotime($order['package_product']['date_start'])) }}</div>
                                         <div class="font-normal-400 fs-12">Durasi {{ $order['package_product']['day_duration'] }} Hari</div>
                                     </div>
                                 </div>
@@ -271,6 +271,7 @@
                                 <div class="row">
                                     <div class="col-10">
                                         <div class="font-normal-400 fs-12 mt-2">
+                                            <i class="fa-solid fa-file me-2" style="color: var(--green)"></i>
                                             Kebijakan Pesanan
                                         </div>
                                     </div>

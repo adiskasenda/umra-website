@@ -31,6 +31,25 @@
 </div>
 
 @push('page_js')
+
+    <!-- Action Form -->
+    <script>
+        $('#form-room-{{ $type_room }}').on('click', '.remove_form_jamaah', function(e) {
+            e.preventDefault();
+            console.log('{{ $type_room }}', $(this).data('id'));
+
+            // remove form
+            $(this).parent().parent().parent().parent().parent().parent().parent().remove()
+        });
+    </script>
+
+    <script>
+        $('#form-room-{{ $type_room }}').on('click', '.btn-save', function(e) {
+            e.preventDefault();
+            console.log('{{ $type_room }}', $(this).parent().parent().parent().parent().serializeArray());
+        });
+    </script>
+
     <script>
         function addCountJamaah(room, addCount) {
             const cardData = JSON.parse(localStorage.getItem("cartData"));
@@ -97,6 +116,7 @@
             $('#total_jamaah').html( parseInt(cardData[0][0]['doble']) + parseInt(cardData[0][1]['triple']) + parseInt(cardData[0][2]['quad']) );
         }
     </script>
+
     <script>
         count = checkCountRoom("{{ $type_room }}");
         jamaah = checkJamaahRoom("{{ $type_room }}");
@@ -120,6 +140,7 @@
 
         totalJamaah();
     </script>
+
     <script>
         $('#btn-add-jamaah-{{ $type_room }}').click(function () {
             addCountJamaah("{{ $type_room }}", 1);
