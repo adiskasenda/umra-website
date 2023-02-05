@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container-fluid py-5 mb-8">
+    <div class="container-fluid py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 mb-8">
                     @include('pages.profile.partials.sidebar')
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 mb-8">
                     <a href="{{ url('/profile') }}" class="font-normal-700 fs-16 text-dark">
                         <i class="fa fa-arrow-left" style="color: black" aria-hidden="true"></i> Edit Profil
                     </a>
@@ -161,7 +161,7 @@
     <div class="modal fade" tabindex="-1" id="modal-ubah-email">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                {{-- begin:Input PIN --}}
+
                 <div class="modal-body text-center" style="padding:40px;" id="input-pin">
 
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
@@ -178,9 +178,7 @@
                         </button>
                     </div>
                 </div>
-                {{-- end:Input PIN --}}
 
-                {{-- begin:Input Password --}}
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="input-password">
 
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
@@ -197,9 +195,7 @@
                         </button>
                     </div>
                 </div>
-                {{-- end:Input Password --}}
 
-                {{-- begin:Input Email --}}
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="input-email">
 
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
@@ -217,9 +213,7 @@
                         </button>
                     </div>
                 </div>
-                {{-- end:Input Email --}}
 
-                {{-- begin:Terkirim --}}
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="email-terkirim">
                     <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
                     <div>
@@ -228,7 +222,7 @@
                     </div>
                     <button type="button" class="btn mt-10 btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="width:150px;">OK</button>
                 </div>
-                {{-- end:Terkirim --}}
+
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-load">
                     @include('layouts.partials.loadingResponse')
                 </div>
@@ -258,8 +252,6 @@
                         </button>
                     </div>
                 </div>
-
-
 
                 <div class="modal-body text-center" style="padding:40px;" id="input-pin">
 

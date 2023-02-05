@@ -17,7 +17,9 @@
                 ])
             </div>
             <div class="col-md-9">
-                <a href="#" class="font-normal-400 fs-16 text-green mt-3"><i class="fa-solid fa-arrow-left me-2"></i> Langkah 3 dari 3</a>
+                <a href="{{ url('/transaction/biodata', $package_product['id_packet']) }}" class="font-normal-400 fs-16 text-green mt-3">
+                    <i class="fa-solid fa-arrow-left me-2"></i> Langkah 3 dari 3
+                </a>
                 <div class="font-normal-700 fs-32">Checkout Pesanan</div>
                 <div class="font-normal-400 fs-16">Periksa & pastikan data pesanan anda sudah sesuai</div>
 
@@ -77,15 +79,18 @@
                     <div class="card-body p-5">
                         <div class="row">
                             <div class="col-4">
-                                <div class="font-normal-400 fs-14"><i class="fa-solid fa-phone me-2"></i>Kontak Pemesan</div>
-                                <div class="font-normal-700 fs-16 text-green">+62897182734</div>
+                                <div class="font-normal-400 fs-14">
+                                    <i class="fa-solid fa-phone me-2"></i>
+                                    Kontak Pemesan
+                                </div>
+                                <div class="font-normal-700 fs-16 text-green">{{ Session::get('user')['phone'] }} ( {{ Session::get('user')['firstname'].' '.Session::get('user')['lastname'] }} )</div>
                             </div>
-                            <div class="col-5 mt-5">
+                            <!-- <div class="col-5 mt-5">
                                 <div class="font-normal-400 fs-12">Ingin menggunakan nomor lain khusus untuk pesanan ini?</div>
                             </div>
                             <div class="col-3 mt-2 text-right">
                                 <button class="btn btn-success">Gunakan kontak lain</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -100,12 +105,13 @@
 
                 <div class="font-normal-700 fs-20">Pilih Jenis Pembayaran</div>
                 <div class="row">
+
                     <div class="col-6">
-                        <div class="card card-bordered mt-5">
+                        <div class="card card-bordered mt-5" for="CASH">
                             <div class="card-body p-5">
                                 <div class="row">
                                     <div class="col-1">
-                                        <input class="mt-7" type="radio" name="" id="">
+                                        <input class="form-check-input mt-7" type="radio" value="CASH" name="gender" id="CASH" checked>
                                     </div>
                                     <div class="col-11">
                                         <div class="font-normal-600 fs-14">Cash</div>
@@ -115,12 +121,13 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-6">
-                        <div class="card card-bordered mt-5">
+                        <div class="card card-bordered mt-5" for="DOWNPAYMENT">
                             <div class="card-body p-5">
                                 <div class="row">
                                     <div class="col-1">
-                                        <input class="mt-7" type="radio" name="" id="">
+                                        <input class="form-check-input mt-7" type="radio" value="DOWNPAYMENT" name="gender" id="DOWNPAYMENT">
                                     </div>
                                     <div class="col-11">
                                         <div class="font-normal-600 fs-14">Cicilan hingga 2x</div>
@@ -130,6 +137,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <hr>
 
@@ -140,7 +148,7 @@
                             <div class="col-6 font-normal-400 fs-18">Jumlah Jamaah</div>
                             <div class="col-6 font-normal-700 fs-18 text-right">
                                 <i class="fa-solid fa-user-group me-2" style="color: var(--dark)"></i>
-                                <span id="total_people">3</span> Orang
+                                <span id="total_people">0</span> Orang
                             </div>
                         </div>
                         <hr>
@@ -168,31 +176,46 @@
 @push('page_js')
     <script>
         function total_price(){
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+            
+            const count_people_doble = cardData[0][0]['doble'];
+            const count_people_triple = cardData[0][1]['triple'];
+            const count_people_quad = cardData[0][2]['quad'];
+
             // total people
-            $('#total_people').html(formatRupiah('0'));
+            $('#total_people').html(parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad));
+
+            // Count Price
+            const count_price_doble = parseInt(count_people_doble) * "{{$package_product['price_double']}}";
+            const count_price_triple = parseInt(count_people_triple) * "{{$package_product['price_triple']}}";
+            const count_price_quad = parseInt(count_people_quad) * "{{$package_product['price_quad']}}";
 
             // total Price
-            $('#total_price').html(formatRupiah('0'));
+            $('#total_price').html(formatRupiah(parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad)));
         }
+
+        total_price();
     </script>
 
     <!-- Link Button -->
     <script>
-        $('#btn-next').click(function() {
-            const cardData = JSON.parse(localStorage.getItem("cartData"));
+        
+
+        // $('#btn-next').click(function() {
+        //     const cardData = JSON.parse(localStorage.getItem("cartData"));
             
-            $.ajax({
-                url: "{{ url('/transaction/checkout', $package_product['id_packet']) }}",
-                type: 'POST',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    'data' : cardData
-                },
-                dataType: "JSON",
-                success: function(data) {
-                    console.log(data);
-                }
-            })
-        });
+        //     $.ajax({
+        //         url: "{{ url('/transaction/checkout', $package_product['id_packet']) }}",
+        //         type: 'POST',
+        //         data: {
+        //             "_token": "{{ csrf_token() }}",
+        //             'data' : cardData
+        //         },
+        //         dataType: "JSON",
+        //         success: function(data) {
+        //             console.log(data);
+        //         }
+        //     })
+        // });
     </script>
 @endpush

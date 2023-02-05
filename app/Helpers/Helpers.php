@@ -226,4 +226,32 @@ class Helpers
         return false;
     }
 
+    // you can use this function with Helpers::typePayment
+    public static function typePayment($type_payment) {
+        switch ($type_payment) {
+            case 'DOWNPAYMENT':
+                $type = 'Cicilan 2x';
+                break;
+            default:
+                $type = 'Cash';
+        }
+        
+        return $type;
+    }
+
+    // you can use this function with Helpers::checkStatusPayment
+    public static function checkStatusPayment($status_payment) {
+        switch ($status_payment) {
+            case '0':
+                $status = '<span class="badge badge-warning" style="border-radius: 10px">Belum Lunas</span>';
+                break;
+            case '1':
+                $status = '<span class="badge badge-success" style="border-radius: 10px">Lunas</span>';
+                break;
+            default:
+                $status = '<span class="badge badge-light" style="border-radius: 10px">Batal</span>';
+        }
+        
+        return $status;
+    }
 }

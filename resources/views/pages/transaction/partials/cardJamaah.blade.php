@@ -17,7 +17,7 @@
                 <div class="input-group w-md-300px"
                     data-kt-dialer="true"
                     data-kt-dialer-min="0"
-                    data-kt-dialer-max="10">
+                    data-kt-dialer-max="{{ $configuration[0]['value_configuration'] }}">
 
                     <button class="btn btn-square rounded-circle btn-icon btn-outline btn-success" style="width:25.6px; height:25.6px; top:3.3px; left:3.2px;"  type="button" data-kt-dialer-control="decrease">
                         <i class="bi bi-dash fs-1"></i>

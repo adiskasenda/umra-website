@@ -68,11 +68,11 @@
                                         <i class="fa-solid fa-phone me-sm-3"></i>
                                         Kontak Pemesan
                                     </div>
-                                    <div class="font-normal-700 fs-16 text-green">+62897182734 (Mimunatun Jannah)</div>
+                                    <div class="font-normal-700 fs-16 text-green">{{ Session::get('user')['phone'] }} ( {{ Session::get('user')['firstname'].' '.Session::get('user')['lastname'] }} )</div>
                                 </div>
-                                <div class="col-6 mt-2 text-right">
+                                <!-- <div class="col-6 mt-2 text-right">
                                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-tambah-telepon">Tambahkan Nomor Telepon</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -86,10 +86,12 @@
                     <hr>
 
                     <div class="text-right">
-                        <button class="btn text-green">
-                            <i class="fa-solid fa-chevron-left me-2"></i> Kembali
-                        </button>
-                        <i class="fa-solid fa-circle-info me-2" style="color: #B3261E; font-size: 23px;" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true" title="Lengkapi data berikut untuk melanjutkan :"></i>
+                        <a href="{{ url('/transaction/jamaah', $package_product['id_packet']) }}">
+                            <button class="btn text-green">
+                                <i class="fa-solid fa-chevron-left me-2"></i> Kembali
+                            </button>
+                        </a>
+                        <!-- <i class="fa-solid fa-circle-info me-2" style="color: #B3261E; font-size: 23px;" data-bs-toggle="tooltip" data-bs-placement="top" data-html="true" title="Lengkapi data berikut untuk melanjutkan :"></i> -->
                         <button class="btn btn-success" id="btn-next" disabled>
                             Lanjutkan <i class="fa-solid fa-chevron-right mx-2"></i>
                         </button>
@@ -129,7 +131,7 @@
                 <div class="modal-footer" style="display: block;">
                     <div class="row">
                         <div class="col-md-6 text-center mt-2">
-                            <a href="" class="font-normal-16 fs-20 text-green" data-bs-dismiss="modal">Batal</a>
+                            <a href="#" class="font-normal-16 fs-20 text-green" data-bs-dismiss="modal">Batal</a>
                         </div>
                         <div class="col-md-6 text-center">
                             <a href="#" class="btn btn-success">
@@ -174,6 +176,14 @@
             count_people_quad == count_jamaah_quad
         ) {
             $('#btn-next').removeAttr("disabled");
+        }
+
+        function count_people () {
+
+        }
+
+        function next_jamaah () {
+
         }
     </script>
 

@@ -36,17 +36,111 @@
     <script>
         $('#form-room-{{ $type_room }}').on('click', '.remove_form_jamaah', function(e) {
             e.preventDefault();
-            console.log('{{ $type_room }}', $(this).data('id'));
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+            const room = '{{ $type_room }}';
+            const id = $(this).data('id');
 
-            // remove form
-            $(this).parent().parent().parent().parent().parent().parent().parent().remove()
+            if ( room == 'doble' ) {
+                const jamaah = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id !== id);
+                cardData[0][0]['doble'] = parseInt(cardData[0][0]['doble']) - 1
+                cardData[0][0]['jamaah'] = jamaah;
+            } else if ( room == 'triple' ) {
+                const jamaah = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id !== id);
+                cardData[0][1]['triple'] = parseInt(cardData[0][1]['triple']) - 1
+                cardData[0][1]['jamaah'] = jamaah;
+            } else {
+                const jamaah = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id !== id);
+                cardData[0][2]['quad'] = parseInt(cardData[0][2]['quad']) - 1
+                cardData[0][2]['jamaah'] = jamaah;
+            }
+
+            // Remove Item
+            $(this).parent().parent().parent().parent().parent().parent().remove()
+            localStorage.setItem("cartData", JSON.stringify(cardData));
+            totalJamaah();
         });
     </script>
 
     <script>
         $('#form-room-{{ $type_room }}').on('click', '.btn-save', function(e) {
             e.preventDefault();
-            console.log('{{ $type_room }}', $(this).parent().parent().parent().parent().serializeArray());
+            var cardData = JSON.parse(localStorage.getItem("cartData"));
+            let data = {};
+            Object.assign(data, { id: $(this).data('id') });
+            let formSubmit = $(this).parent().parent().parent().parent().serializeArray();
+            $.each(formSubmit, function() {
+                if (data[this.name]) {
+                    if (!data[this.name].push) {
+                        data[this.name] = [data[this.name]];
+                    }
+                    data[this.name].push(this.value || '');
+                } else {
+                    data[this.name] = this.value || '';
+                }
+            });
+
+            const room = '{{ $type_room }}';
+            if ( room == 'doble' ) {
+                const jamaah = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id !== data.id);
+                cardData[0][0]['jamaah'] = jamaah;
+                cardData[0][0]['jamaah'].push(data);
+            } else if ( room == 'triple' ) {
+                const jamaah = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id !== data.id);
+                cardData[0][1]['jamaah'] = jamaah;
+                cardData[0][1]['jamaah'].push(data);
+                
+            } else {
+                const jamaah = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id !== data.id);
+                cardData[0][2]['jamaah'] = jamaah;
+                cardData[0][2]['jamaah'].push(data);
+            }
+
+            $(this).parent().parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.detailJamaah',[
+                'id' => '`+ data.id +`',
+                'first_name' => '`+ data.first_name +`',
+                'last_name' => '`+ data.last_name +`',
+                'birth_date' => '`+ data.birth_date +`',
+                'gender' => '`+ data.gender +`',
+                'address' => '`+ data.address +`',
+                'phone_number' => '`+ data.phone_number +`',
+                'ktp_number' => '`+ data.ktp_number +`',
+                'passport_number' => '`+ data.passport_number +`',
+                'passport_expiry_date' => '`+ data.passport_expiry_date +`',
+                'vaccine_status' => '`+ data.vaccine_status +`',
+                'room' => '`+ room +`',
+            ])`);
+
+            localStorage.setItem("cartData", JSON.stringify(cardData));
+        });
+
+        $('#form-room-{{ $type_room }}').on('click', '.btn-edit', function(e) {
+            var cardData = JSON.parse(localStorage.getItem("cartData"));
+            const room = "{{ $type_room }}";
+            const id = $(this).data('id');
+            let data;
+
+            if ( room == 'doble' ) {
+                data = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id == id);
+            } else if ( room == 'triple' ) {
+                data = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id == id);
+            } else {
+                data = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id == id);
+            }
+
+            $(this).parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.formJamaah',[
+                'id' => '`+ id +`',
+                'first_name' => '`+ data[0].first_name +`',
+                'last_name' => '`+ data[0].last_name +`',
+                'birth_date' => '`+ data[0].birth_date +`',
+                'gender' => '`+ data[0].gender +`',
+                'address' => '`+ data[0].address +`',
+                'phone_number' => '`+ data[0].phone_number +`',
+                'ktp_number' => '`+ data[0].ktp_number +`',
+                'passport_number' => '`+ data[0].passport_number +`',
+                'passport_expiry_date' => '`+ data[0].passport_expiry_date +`',
+                'vaccine_status' => '`+ data[0].vaccine_status +`',
+                'room' => '`+ room +`'
+            ])`);
         });
     </script>
 
@@ -56,13 +150,13 @@
             
             if ( room == 'doble' ) {
                 cardData[0][0]['doble'] = parseInt(cardData[0][0]['doble'] + addCount)
-                addFormJamaah(cardData[0][0]['doble'] - 1, room);
+                addFormJamaah(uuid(), room);
             } else if ( room == 'triple' ) {
                 cardData[0][1]['triple'] = parseInt(cardData[0][1]['triple'] + addCount)
-                addFormJamaah(cardData[0][1]['triple'] - 1, room);
+                addFormJamaah(uuid(), room);
             } else {
                 cardData[0][2]['quad'] = parseInt(cardData[0][2]['quad'] + addCount)
-                addFormJamaah(cardData[0][2]['quad'] - 1, room);
+                addFormJamaah(uuid(), room);
             }
             
             localStorage.setItem("cartData", JSON.stringify(cardData));
@@ -70,21 +164,47 @@
         }
 
         function addFormJamaah(i, room) {
-            console.log(i, 'ini id nya');
-            if ( i == 0 ) {
+            count = checkCountRoom(room);
+            if ( count == 0 ) {
                 $('#form-room-'+room).html(``);
             }
 
             $('#form-room-'+room).append(`@include('pages.transaction.partials.formJamaah',[
-                'id' => '`+ (i+1) +`',
+                'id' => '`+ i +`',
+                'first_name' => '',
+                'last_name' => '',
+                'birth_date' => '',
+                'gender' => '',
+                'address' => '',
+                'phone_number' => '',
+                'ktp_number' => '',
+                'passport_number' => '',
+                'passport_expiry_date' => '',
+                'vaccine_status' => '',
                 'room' => '`+ room +`'
             ])`);
 
-            return console.log('view jamaah', i);
+            return ;
         }
 
-        function deatailJamaah(data) {
-            return console.log('detail Jamaah', data);
+        function detailJamaah(data, room) {
+            console.log(data);
+            $('#form-room-'+room).append(`@include('pages.transaction.partials.detailJamaah',[
+                'id' => '`+ data.id +`',
+                'first_name' => '`+ data.first_name +`',
+                'last_name' => '`+ data.last_name +`',
+                'birth_date' => '`+ data.birth_date +`',
+                'gender' => '`+ data.gender +`',
+                'address' => '`+ data.address +`',
+                'phone_number' => '`+ data.phone_number +`',
+                'ktp_number' => '`+ data.ktp_number +`',
+                'passport_number' => '`+ data.passport_number +`',
+                'passport_expiry_date' => '`+ data.passport_expiry_date +`',
+                'vaccine_status' => '`+ data.vaccine_status +`',
+                'room' => '`+ room +`',
+            ])`);
+
+            return ;
         }
 
         function checkCountRoom(room) {
@@ -125,15 +245,15 @@
         $('.count-people-{{ $type_room }}').html(count);
 
         if ( count > 0 ) {
-            // Add Form Register
-            for ( var i = jamaah.length; i < count; i++ ) {
-                addFormJamaah(i, "{{ $type_room }}");
-            }
-
             // Detail Jamaah Register
             jamaah.map(data => {
-                deatailJamaah(data)
+                detailJamaah(data, "{{ $type_room }}")
             })
+
+            // Add Form Register
+            for ( var i = jamaah.length; i < count; i++ ) {
+                addFormJamaah(uuid(), "{{ $type_room }}");
+            }
         } else {
             $('#form-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
         }
@@ -147,10 +267,6 @@
             const count = checkCountRoom("{{ $type_room }}");
             $('.count-people-{{ $type_room }}').html(count);
             totalJamaah();
-        });
-
-        $('.btn-remove-jamaah').click(function () {
-            console.log($('#test').attr('id'));
         });
     </script>
 @endpush

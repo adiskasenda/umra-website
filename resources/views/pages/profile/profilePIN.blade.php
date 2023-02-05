@@ -12,26 +12,29 @@
                         Atur Pin
                     </div>
                     <div class="row mt-5">
-                        <div class="col-md-6">
-                            <a href="#" class="card card-bordered" id="buat-pin" data-bs-toggle="modal" data-bs-target="#modal-buat-pin">
-                                <div class="card-body text-dark">
-                                    <div class="font-normal-700 fs-14">Buat Pin Baru</div>
-                                    <div class="font-normal-400 fs-12 mt-3">
-                                        Anda dapat membuat Pin untuk membuat transaksi Anda lebih aman!
+                        {{-- @if ( empty($user['pin_number']) ) --}}
+                            <div class="col-md-6">
+                                <a href="#" class="card card-bordered" id="buat-pin" data-bs-toggle="modal" data-bs-target="#modal-buat-pin">
+                                    <div class="card-body text-dark">
+                                        <div class="font-normal-700 fs-14">Buat Pin Baru</div>
+                                        <div class="font-normal-400 fs-12 mt-3">
+                                            Anda dapat membuat Pin untuk membuat transaksi Anda lebih aman!
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="#" class="card card-bordered" id="lupa-pin" data-bs-toggle="modal" data-bs-target="#modal-lupa-pin">
-                                <div class="card-body text-dark">
-                                    <div class="font-normal-700 fs-14">Lupa Pin</div>
-                                    <div class="font-normal-400 fs-12 mt-3">
-                                        Jangan khawatir, Anda dapat mengubah Pin Anda dengan mudah.
+                                </a>
+                            </div>
+                        {{-- @elseif ( !empty($user['pin_number']) && !empty($user['email']) )
+                            <div class="col-md-6">
+                                <a href="#" class="card card-bordered" id="lupa-pin" data-bs-toggle="modal" data-bs-target="#modal-lupa-pin">
+                                    <div class="card-body text-dark">
+                                        <div class="font-normal-700 fs-14">Lupa Pin</div>
+                                        <div class="font-normal-400 fs-12 mt-3">
+                                            Jangan khawatir, Anda dapat mengubah Pin Anda dengan mudah.
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        @endif --}}
                     </div>
                 </div>
             </div>
@@ -50,15 +53,22 @@
                         <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Buat Pin</div>
                         <div class="mt-5 text-weight-400 fs-16">Buatlah pin baru yang menurut Anda mudah untuk diingat dan sulit untuk ditebak</div>
 
-                        <div class="pincode-input-container mt-8"></div>
+                        <!-- <div class="pincode-input-new-pin mt-8"></div> -->
+                        <div class="fv-row mb-5 mt-8">
+                            <input type="number" max="6" min="6" placeholder="Masukan PIN Baru" name="pin_new" class="form-control bg-transparent" onkeyup=enforceMinMax(this)/>
+                        </div>
+                        <div class="fv-row mb-5">
+                            <input type="number" max="6" min="6" placeholder="Ulangi PIN Baru" name="pin_confirm" class="form-control bg-transparent" onkeyup=enforceMinMax(this)/>
+                        </div>
                     </div>
+
                     <div class="d-grid">
-                        <button type="button" id="btn-buat-pin" class="btn btn-success">
-                            <span class="indicator-label">Lanjutkan</span>
+                        <button type="button" id="btn-reset-pin" class="btn btn-success">
+                            <span class="indicator-label">Kirim</span>
                         </button>
                     </div>
                 </div>
-                <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-success">
+                <!-- <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-success">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
 
                     <div>
@@ -69,14 +79,14 @@
                     <button type="button" class="btn mt-10 btn-success text-center" style="width:150px;">Simpan</button>
                 </div>
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-load">
-                    @include('layouts.partials.loadingResponse')
-                </div>
+                    
+                </div> -->
             </div>
         </div>
     </div>
 
     <!-- modal Lupa Pin -->
-    <div class="modal fade" tabindex="-1" id="modal-lupa-pin">
+    <!-- <div class="modal fade" tabindex="-1" id="modal-lupa-pin">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body text-center" style="padding:40px;" id="email-reset-failed">
@@ -99,7 +109,7 @@
                     </div>
 
                     <div class="d-grid">
-                        <button type="button" id="btn-reset-password" class="btn btn-success">
+                        <button type="button" id="btn-reset-pin" class="btn btn-success">
                             <span class="indicator-label">Kirim</span>
                         </button>
                     </div>
@@ -115,108 +125,26 @@
                 </div>
                 
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-load">
-                    @include('layouts.partials.loadingResponse')
+                    
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection
 
 @push('page_js')
+    <!-- Create NEW PIN -->
     <script>
-        $('#reset-password').click(function () {
-            resetMessage();
-        });
+        
+    </script>
 
-        $('#btn-reset-password').click(function () {
-            const email = $('input[name="email-reset-password"]').val();
-            console.log('ajax load',  email);
-            console.log(isValidEmailAddress(email));
+    <!-- Lupa PIN -->
+    <script>
 
-            if ( isValidEmailAddress(email) ) {
-                load();
+    </script>
 
-                $.ajax({
-                    url: "{{ url('/reset-password/send-email') }}",
-                    type: 'POST',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        'email' : email
-                    },
-                    dataType: "JSON",
-                    success: function(data) {
-                        if ( data.status == '1' ) {
-                            return responseSuccess();
-                        } else {
-                            return responseFailed();
-                        }
-                    }
-                })
-            }
-        });
+    <!-- Update PIN -->
+    <script>
 
-        function isValidEmailAddress(emailAddress) {
-            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-            return pattern.test(emailAddress);
-        }
-
-        // reset message
-        function resetMessage() {
-            $('#email-reset-failed').css("display", "block");
-            $('#email-reset-load').css("display", "none");
-            $('#email-reset-success').css("display", "none");
-            $('#user-not-found').css("display", "none");
-        }
-
-        // load
-        function load() {
-            $('#email-reset-failed').css("display", "none");
-            $('#email-reset-load').css("display", "none");
-            $('#email-reset-success').css("display", "none");
-            $('#user-not-found').css("display", "block");
-        }
-
-        // success Message
-        function responseFailed() {
-            $('#email-reset-failed').css("display", "block");
-            $('#email-reset-load').css("display", "none");
-            $('#email-reset-success').css("display", "none");
-            $('#user-not-found').css("display", "block");
-        }
-
-        // failed Message
-        function responseSuccess() {
-            $('#email-reset-failed').css("display", "none");
-            $('#email-reset-load').css("display", "none");
-            $('#email-reset-success').css("display", "block");
-            $('#user-not-found').css("display", "none");
-        }
-
-        new PincodeInput('.pincode-input-container', {
-            count: 6,
-            onInput: (value) => {
-                console.log(value.length)
-                if ( value.length >= 6 ) {
-                    $.ajax({
-                        url: "{{ url('/login-phone/validate-otp') }}",
-                        type: 'POST',
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                            'otp' : value
-                        },
-                        dataType: "JSON",
-                        success: function(data) {
-                            if ( data.status == '1' ) {
-                                // return window.location.href = "{{ url('/') }}"
-                                $("#modalGantiPassword").modal('show');
-                            } else {
-                                // border-color: red;
-                                return false;
-                            }
-                        }
-                    })
-                }
-            }
-        })
     </script>
 @endpush

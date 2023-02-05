@@ -9,10 +9,10 @@
         </div>
     </div>
     <div class="col-2">
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-detail-jamaah">Detail</button>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-detail-jamaah-{{ $room }}-{{ $id }}">Detail</button>
         
         <!-- modal detail jamaah -->
-        <div class="modal fade" tabindex="-1" id="modal-detail-jamaah">
+        <div class="modal fade" tabindex="-1" id="modal-detail-jamaah-{{ $room }}-{{ $id }}">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -93,7 +93,7 @@
                                     Tanggal Kadaluarsa
                                 </div>
                                 <div class="mt-1 font-normal-700 fs-16">
-                                    {{ $passport_expiry_date }}
+                                    {{ date('d M Y', strtotime($passport_expiry_date)) }}
                                 </div>
                             </div>
                             <div class="col-md-4 text-center">

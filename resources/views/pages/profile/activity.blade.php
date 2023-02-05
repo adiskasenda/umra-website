@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container-fluid py-5 mb-8">
+    <div class="container-fluid py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 mb-8">
                     @include('pages.profile.partials.sidebar')
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 mb-8">
                     <div class="row">
                         <div class="col-6">
                             <div class="font-normal-700 fs-20 text-left mt-3"> Aktivitas Anda</div>

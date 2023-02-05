@@ -8,7 +8,12 @@
                             <i class="fa-solid fa-user-group me-sm-3" style="color: var(--green)"></i>
                             Calon jamaah
                         </div>
-                        <div class="font-normal-700 fs-16 mt-5">Belum ada nama jamaah</div>
+                        <div class="font-normal-700 fs-16 mt-5">
+                            @if( empty($first_name) || empty($last_name) ) 
+                                Belum ada nama jamaah 
+                            @else 
+                                {{ $first_name.' '.$last_name }} 
+                            @endif</div>
                     </div>
                 </div>
             </button>
@@ -23,13 +28,13 @@
                         <!-- Nama Depan Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="first_name" class="required form-label">Nama Depan</label>
-                            <input type="text" class="form-control" name="first_name" placeholder="Masukkan Nama Depan"/>
+                            <input type="text" class="form-control" name="first_name" value="{{ $first_name }}" placeholder="Masukkan Nama Depan"/>
                         </div>
 
                         <!-- Nama Belakang Field -->
                         <div class="form-group col-sm-6 mb-5">
-                            <label for="last_name" class="required form-label">Nama Belakang</label>
-                            <input type="text" class="form-control" name="last_name" placeholder="Masukkan Nama Belakang"/>
+                            <label for="last_name" class="form-label">Nama Belakang</label>
+                            <input type="text" class="form-control" name="last_name" value="{{ $last_name }}" placeholder="Masukkan Nama Belakang"/>
                         </div>
 
                     </div>
@@ -37,7 +42,7 @@
                     <div class="row">
                         <!-- Jenis Kelamin Field -->
                         <div class="form-group col-sm-6 mb-5">
-                            <label for="gender" class="required form-label">Jenis Kelamin</label>
+                            <label for="gender" class="form-label">Jenis Kelamin</label>
 
                             <div class="row mt-3">
                                 <!--begin::Col-->
@@ -65,7 +70,7 @@
                         <!-- Nomor KTP Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_ktp" class="required form-label">Nomor KTP</label>
-                            <input type="text" class="form-control" name="ktp_number" placeholder="Masukkan nomor KTP"/>
+                            <input type="text" class="form-control" name="ktp_number" value="{{ $ktp_number }}" placeholder="Masukkan nomor KTP"/>
                         </div>
 
                     </div>
@@ -75,12 +80,12 @@
                         <!-- Tanggal Lahir & Alamat Field -->
                         <div class="col-sm-6 mb-5">
                             <div class="form-group mb-5">
-                                <label for="tanggal_lahir" class="required form-label">Tanggal Lahir</label>
-                                <input class="form-control date" name="birthday" placeholder="Masukan Tanggal Lahir" id="birthday"/>
+                                <label for="birth_date" class="required form-label">Tanggal Lahir</label>
+                                <input class="form-control date" name="birth_date" value="{{ $birth_date }}" placeholder="Masukan Tanggal Lahir"/>
                             </div>
                             <div class="form-group">
                                 <label for="address" class="required form-label">Alamat</label>
-                                <textarea class="form-control" placeholder="Masukan Alamat" name="address" data-kt-autosize="true"></textarea>
+                                <textarea class="form-control" placeholder="Masukan Alamat" name="address" data-kt-autosize="true">{{ $address }}</textarea>
                             </div>
                         </div>
                         
@@ -118,6 +123,7 @@
                                 </span>
                             </div> -->
 
+                            <!-- Vaccine Status Field -->
                             <label for="vaccine_status" class="required form-label">Vaksinasi</label>
                             <div class="row">
                                 <!--begin::Col-->
@@ -178,7 +184,7 @@
                         <!-- Nomor Telepon Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_telp" class="required form-label">Nomor Telepon</label>
-                            <input type="text" class="form-control" name="phone_number" placeholder="Masukkan nomor telepon"/>
+                            <input type="text" class="form-control" name="phone_number" value="{{ $phone_number }}" placeholder="Masukkan nomor telepon"/>
                         </div>
                     </div>
 
@@ -188,13 +194,13 @@
                         <!-- Nomor Passport Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_telp" class="required form-label">Nomor Passport</label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nomor Passport"/>
+                            <input type="text" class="form-control" name="passport_number" value="{{ $passport_number }}" placeholder="Masukkan Nomor Passport"/>
                         </div>
 
                         <!-- Nomor Passport Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_telp" class="required form-label">Masa Berlaku Passport</label>
-                            <input type="text" class="form-control date" placeholder="Masukkan Masa Berlaku Passport"/>
+                            <input type="text" class="form-control date" name="passport_expiry_date" value="{{ $passport_expiry_date }}" placeholder="Masukkan Masa Berlaku Passport"/>
                         </div>
                     </div>
 
@@ -313,7 +319,7 @@
                         </div>
                         <div class="col-8">
                             <div class="text-right">
-                                <button class="btn btn-success btn-save">
+                                <button class="btn btn-success btn-save" data-id="{{ $id }}">
                                     Simpan
                                 </button>
                             </div>
