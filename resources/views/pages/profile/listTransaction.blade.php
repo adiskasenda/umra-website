@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container-fluid py-5 mb-8">
+<div class="container-fluid py-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 mb-8">
                 @include('pages.profile.partials.sidebar', [
                     'step' => 3
                 ])
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 mb-8">
                 <div class="font-normal-700 fs-20">Riwayat Transaksi</div>
                 @if ( count($order_customers) > 0 )
                     @foreach ($order_customers as $order_customer)
@@ -21,14 +21,15 @@
                                     </div>
                                     <div class="col-8">
                                         <div class="font-normal-400 fs-12">{{ Helpers::viewFlagUmroh($order_customer['package_product']['flag_umroh']) }}</div>
-                                        <div class="font-normal-700 fs-18">{{ $order_customer['package_product']['name'] }}</div>
-                                        <div class="row">
+                                        <div class="font-normal-700 fs-18" style="font-weight: bold;">{{ $order_customer['package_product']['name'] }}</div>
+                                        
+                                        <div class="row mt-3">
                                             <div class="col-1">
                                                 <img src="{{ asset('assets-web/img/icon/calendar-umroh.png') }}" alt="{{ asset('assets-web/img/icon/calendar-umroh.png') }}">
                                             </div>
                                             <div class="col-4" style="padding-left: 1px">
                                                 <div class="font-normal-400 fs-12 mt-2">
-                                                    Keberangkatan {{ date('Y-m-d', strtotime($order_customer['package_product']['date_start'])) }} 
+                                                    Keberangkatan {{ date('d M Y', strtotime($order_customer['package_product']['date_start'])) }} 
                                                 </div>
                                             </div>
                                             <div class="col-3">
@@ -48,10 +49,10 @@
                                     </div>
                                     <div class="col-3 mt-5">
                                         <div class="font-normall-500 fs-12 text-right">
-                                            <span class="badge badge-warning" style="border-radius: 10px"></span>
+                                            <span class="me-2">{{ Helpers::typePayment($order_customer['order_customer']['type_payment']) }}</span> {!! Helpers::checkStatusPayment($order_customer['order_customer']['status_order']) !!}
                                         </div>
                                         <div class="font-normall-700 fs-16 text-right text-green mt-2">
-                                            
+                                            Rp. {{ number_format($order_customer['order_customer']['price_total']) }}
                                         </div>
                                     </div>
                                 </div>
@@ -64,12 +65,12 @@
                                             Calon 1 Jamaah
                                         </div>
                                     </div>
-                                    <div class="col-8">
+                                    <!-- <div class="col-8">
                                         <div class="font-normal-500 fs-12 text-right">
                                             <i class="fa-solid fa-circle-info me-2" style="color: #B3261E"></i>
                                             Tenggat pelunasan maksimal <span class="text-red"></span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </a>

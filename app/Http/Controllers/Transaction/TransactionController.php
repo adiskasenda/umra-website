@@ -40,8 +40,13 @@ class TransactionController extends Controller
             return abort(404);
         }
 
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
         return view('pages.transaction.jamaah', [
             'package_product' => $package_product['data'],
+            'configuration' => $configuration['data'],
         ]);
     }
 
@@ -87,8 +92,23 @@ class TransactionController extends Controller
         ]);
     }
 
-    public function storeCheckout()
+    public function payment()
     {
+        return view('pages.transaction.payment');
+    }
+
+    public function storeCheckout($id, Request $request)
+    {
+        if ( !empty(Session::get('user')) ) {
+            $this->header['ax-request-by'] = Session::get('user')['email'];
+            $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        } else {
+            $this->header['ax-request-by'] = '';
+        }
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
+        $package_product = json_decode($response->getBody(), true);
+
         $body = [
             "id_customer" => "681",
             "uuid_packet" => "fec2779d-6ce0-11ed-9b9f-525400b9f32b",
@@ -135,9 +155,14 @@ class TransactionController extends Controller
 
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/'.$id);
         $order = json_decode($response->getBody(), true);
+
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/META');
+        $configuration = json_decode($response->getBody(), true);
         
         return view('pages.transaction.detailTrasaction',[
-            'order' => $order['data']
+            'order' => $order['data'],
+            'configuration' => $configuration['data']
         ]);
     }
 }

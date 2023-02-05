@@ -27,10 +27,10 @@
 
                     <!--begin::Alert-->
                     <div class="notice rounded border-success border mb-5 mt-5 p-6">
-                        <div class="row" style="font-weight: bold;">
-                            <div class="col-md-10 col-9 fs-6 text-gray-700"> Paket ini memiliki penawaran dapat dibayar cicil 2x dengan DP minimal Rp. {{ number_format($package_product['price']) }}/orang </div>
+                        <div class="row" style="font-weight: bold;"> 
+                            <div class="col-md-10 col-9 fs-6 text-gray-700"> Paket ini memiliki penawaran dapat dibayar cicil 2x dengan DP minimal Rp. {{ number_format($configuration[2]['value_configuration']) }}/orang </div>
                             <div class="col-md-2 col-3">
-                                <img src="{{ asset('assets-web/img/icon/cicilan2x.png') }}" alt="{{ asset('assets-web/img/icon/cicilan2x.png') }}"> 
+                                <img src="{{ $configuration[3]['value_configuration'] }}" alt="{{ $configuration[3]['value_configuration'] }}"> 
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         </span>
                         <div class="d-flex flex-stack flex-grow-1">
                             <div class="fw-semibold">
-                                <div class="fs-6 text-gray-700"> Maksimum pembelian per pesanan <strong>Rp. 120.000.000</strong> </div>
+                                <div class="fs-6 text-gray-700"> Maksimum pembelian per pesanan <strong>Rp. {{ number_format($configuration[1]['value_configuration']) }}</strong> </div>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,11 @@
                     </div>
                     <hr>
                     <div class="text-right">
-                        <button class="btn">Batal</button>
+                        <a href="{{ url('/package', $package_product['id_packet']) }}">
+                            <button class="btn text-green">
+                                <i class="fa-solid fa-chevron-left me-2"></i> Kembali
+                            </button>
+                        </a>
                         <button class="btn btn-success" id="btn-next" disabled>
                             Lanjutkan <i class="fa-solid fa-chevron-right mx-2"></i>
                         </button>
@@ -136,10 +140,13 @@
             $('#total_people').html(total_people);
             const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad)
             $('#total_price').html(formatRupiah( total_price ));
+            const down_payment = total_people * "{{ $configuration[2]['value_configuration'] }}";
+            $('#down_payment').html(formatRupiah( down_payment ))
 
-            // Button Total People 
             if ( total_people > 0 ) {
                 $('#btn-next').removeAttr("disabled");
+            } else {
+                $('#btn-next').attr('disabled','disabled');
             }
         }
 
@@ -195,6 +202,7 @@
             const count_people_quad = $('.count-people-quad').val();
 
             const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
+            
             if ( total_people > 0 ) {
                 window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
                 return false;

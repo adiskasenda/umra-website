@@ -11,27 +11,29 @@
                     <div class="font-normal-700 fs-20">
                         Kata Sandi
                     </div>
-                    <div class="row">
+                    <div class="row mt-8">
                         <div class="col-md-8">
-                            <form class="form w-100" method="POST" action="{{ url('/login-email') }}">
+                            @include('layouts.partials.message')
+                            <form class="form w-100" method="POST" action="{{ url('/profile/update-password') }}">
+                                @method('patch')
                                 @csrf
-                                <div class="fv-row mb-8 mt-8">
+                                <!-- <div class="fv-row mb-8 mt-8">
                                     <input type="password" placeholder="Kata Sandi Sekarang" name="password_now" class="form-control bg-transparent" required/>
-                                </div>
+                                </div> -->
                                 <div class="fv-row mb-8">
                                     <input type="password" placeholder="Kata Sandi Baru" name="password_new" class="form-control bg-transparent" required/>
                                 </div>
                                 <div class="fv-row mb-8">
                                     <input type="password" placeholder="Ulangi Kata Sandi Baru" name="password_confirm" class="form-control bg-transparent" required/>
                                 </div>
-                                <div class="row mt-5">
-                                    <div class="col-6 mt-2">
+                                <div class="row mt-5 justify-content-end">
+                                    <!-- <div class="col-6 mt-2">
                                         <a href="#" class="link-primary" id="reset-password" style="color: var(--green) !important;" data-bs-toggle="modal" data-bs-target="#modal-reset-password">
                                             Lupa Kata Sandi ?
                                         </a>
-                                    </div>
+                                    </div> -->
                                     <div class="col-6 text-right">
-                                        <button type="button" class="btn btn-success" id="btn-ganti-password">
+                                        <button type="submit" class="btn btn-success" id="btn-ganti-password">
                                             Ganti Kata Sandi
                                         </button>
                                     </div>
@@ -43,7 +45,7 @@
             </div>
             
             <!-- modal send email reset password -->
-            <div class="modal fade" tabindex="-1" id="modal-reset-password">
+            <!-- <div class="modal fade" tabindex="-1" id="modal-reset-password">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-body text-center" style="padding:40px;" id="email-reset-failed">
@@ -79,14 +81,14 @@
                             <button type="button" class="btn mt-10 btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="width:150px;">OK</button>
                         </div>
                         <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-load">
-                            @include('layouts.partials.loadingResponse')
+                            
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- modal ganti password -->
-            <div class="modal fade" tabindex="-1" id="modal-ganti-password">
+            <!-- <div class="modal fade" tabindex="-1" id="modal-ganti-password">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-body text-center" style="padding:40px;" id="email-reset-failed">
@@ -98,13 +100,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 @endsection
 
 @push('page_js')
-    <script>
+    <!-- <script>
         $('#reset-password').click(function () {
             resetMessage();
         });
@@ -193,6 +195,6 @@
             $('#email-reset-success').css("display", "block");
             $('#user-not-found').css("display", "none");
         }
-    </script>
+    </script> -->
 @endpush
 

@@ -141,6 +141,7 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/jamaah/{id}', [ TransactionController::class, 'jamaah' ]);
         Route::get('/biodata/{id}', [ TransactionController::class, 'biodata' ]);
         Route::get('/checkout/{id}', [ TransactionController::class, 'checkout' ]);
+        Route::get('/payment/{id}', [ TransactionController::class, 'payment' ]);
         Route::post('/checkout/{id}', [ TransactionController::class, 'storeCheckout' ]);
        
         // Detail Trasaction
@@ -157,15 +158,19 @@ Route::group([ 'middleware' =>'token'], function(){
             Route::post('/update-email', [ ProfileController::class, 'updateEmail' ]);
             Route::post('/update-phone', [ ProfileController::class, 'updatePhone' ]);
         Route::get('/password', [ ProfileController::class, 'profilePassword' ]);
-        Route::patch('/update-password', [ ProfileController::class, 'updatePassword' ]);
+            Route::patch('/update-password', [ ProfileController::class, 'updatePassword' ]);
+        
         Route::get('/pin', [ ProfileController::class, 'profilePIN' ]);
-        Route::patch('/update-pin', [ ProfileController::class, 'updatePIN' ]);
-        Route::patch('/new-pin', [ ProfileController::class, 'newPin' ]);
+            // New PIN
+            Route::patch('/new-pin', [ ProfileController::class, 'newPin' ]);
+            // Update PIN
+            Route::post('/send-email-pin', [ ProfileController::class, 'sendEmailPIN' ]);
+            Route::post('/validate-otp-pin', [ ProfileController::class, 'validateOTPEmailPIN' ]);
+            Route::patch('/update-pin', [ ProfileController::class, 'updatePIN' ]);
 
         // Activity
         Route::get('/list-transaction', [ ProfileTransactionController::class, 'listTransaction' ]);
         Route::get('/activity', [ ProfileActivityController::class, 'activity' ]);
-
     });
 
 });

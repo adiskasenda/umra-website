@@ -60,52 +60,30 @@
                                                     </div>
 
                                                     <div class="mt-5 font-normal-400 fs-14">
+                                                        Tanggal Lahir
+                                                    </div>
+                                                    <div class="mt-1 font-normal-700 fs-16">
+                                                        {{ date('d M Y', strtotime($jamaah['birth_date'])) }}
+                                                    </div>
+
+                                                    <div class="mt-5 font-normal-400 fs-14">
                                                         Jenis Kelamin
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
                                                         @if ( $jamaah['gender'] == 1 )
-                                                            Laki-laki <span><i class="fa-solid fa-mars" style="color: black"></i></span>
+                                                            Laki-laki <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>
                                                         @else
-                                                            Perempuan <span><i class="fa-solid fa-venus" style="color: black"></i></span>
+                                                            Perempuan <span><i class="fa-solid fa-venus me-2" style="color: black"></i></span>
                                                         @endif
-                                                    </div>
-
-                                                    <div class="mt-5 font-normal-400 fs-14">
-                                                        Tempat, Tanggal Lahir
-                                                    </div>
-                                                    <div class="mt-1 font-normal-700 fs-16">
-                                                        Kab. Jepara, {{ date('d M Y',strtotime($jamaah['birth_date'])) }}
-                                                    </div>
-
-                                                    <div class="mt-5 font-normal-400 fs-14">
-                                                        Nama Ayah Kandung
-                                                    </div>
-                                                    <div class="mt-1 font-normal-700 fs-16">
-                                                        Sumaryono
-                                                    </div>
-
-                                                    <div class="mt-5 font-normal-400 fs-14">
-                                                        Alamat Domisili
-                                                    </div>
-                                                    <div class="mt-1 font-normal-700 fs-16">
-                                                        {{ $jamaah['address'] }}
-                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mt-2 font-normal-400 fs-14">
                                                         Nomor Telepon
-                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
+                                                        <!-- <i class="fa-solid fa-copy" style="color: var(--green)"></i> -->
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
                                                         {{ $jamaah['phone_number'] }}
-                                                    </div>
-
-                                                    <div class="mt-5 font-normal-400 fs-14">
-                                                        Umur
-                                                    </div>
-                                                    <div class="mt-1 font-normal-700 fs-16">
-                                                        48 Tahun 6 Bulan
                                                     </div>
 
                                                     <div class="mt-5 font-normal-400 fs-14">
@@ -113,46 +91,46 @@
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
                                                         {{ $jamaah['ktp_number'] }}
-                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
+                                                        <!-- <i class="fa-solid fa-copy" style="color: var(--green)"></i> -->
                                                     </div>
-
                                                     <div class="mt-5 font-normal-400 fs-14">
-                                                        Foto KTP
+                                                        Alamat
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
-                                                        <img style="max-width:100%;" class="image-default" src="{{ $jamaah['ktp_url'] }}"  alt="{{ $jamaah['ktp_url'] }}">
+                                                        {{ $jamaah['address'] }}
+                                                        <!-- <i class="fa-solid fa-copy" style="color: var(--green)"></i> -->
                                                     </div>
                                                 </div>
                                             </div>
                                             <hr>
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 text-center">
                                                     <div class="mt-2 font-normal-400 fs-14">
                                                         Nomor Passport
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
                                                         {{ $jamaah['passport_number'] }}
-                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
+                                                        <!-- <i class="fa-solid fa-copy" style="color: var(--green)"></i> -->
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 text-center">
                                                     <div class="mt-2 font-normal-400 fs-14">
                                                         Tanggal Kadaluarsa
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
-                                                        {{ date('d M Y',strtotime($jamaah['passport_expiry_date']))  }}
+                                                        {{ date('d M Y', strtotime($jamaah['passport_expiry_date'])) }}
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 text-center">
                                                     <div class="mt-2 font-normal-400 fs-14">
                                                         Vaksinasi Terakhir
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
-                                                        Booster 2
+                                                        {{ Helpers::viewVaksinasi($jamaah['vaccine_status']) }}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="mt-5 font-normal-400 fs-14">
                                                         Foto Passport
@@ -169,7 +147,7 @@
                                                         <img src="{{ asset('assets-web/img/image/ktp.jpg') }}" style="max-width:100%;" alt="">
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
