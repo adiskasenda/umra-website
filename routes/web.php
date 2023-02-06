@@ -166,7 +166,6 @@ Route::group([ 'middleware' =>'token'], function(){
             // Update PIN
             Route::post('/send-email-pin', [ ProfileController::class, 'sendEmailPIN' ]);
             Route::post('/validate-otp-pin', [ ProfileController::class, 'validateOTPEmailPIN' ]);
-            Route::patch('/update-pin', [ ProfileController::class, 'updatePIN' ]);
 
         // Activity
         Route::get('/list-transaction', [ ProfileTransactionController::class, 'listTransaction' ]);

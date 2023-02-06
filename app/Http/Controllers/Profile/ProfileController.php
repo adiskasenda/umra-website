@@ -225,23 +225,5 @@ class ProfileController extends Controller
             'data' => $customer['data']
         ]);
     }
-
-    public function updatePIN(Request $request)
-    {
-        $body = [
-            "pin_new" => $request->pin_new,
-            "pin_confirm" => $request->pin_confirm
-        ];
-        $this->header['ax-request-by'] = Session::get('user')['email'];
-        $this->header['Authorization'] = 'Bearer '.Session::get('token');
-
-        $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/change_pin/'.Session::get('user')['user_id'], $body);
-        $customer = json_decode($response->getBody(), true);
-
-        return redirect()->back()
-                        ->withSuccess('Data Password Customer Berhasil Di Update');
-    }
-
-
 }
 
