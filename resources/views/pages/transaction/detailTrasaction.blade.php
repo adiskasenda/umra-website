@@ -230,7 +230,7 @@
                                 </div>
 
                                 <!-- Note Payment -->
-                                <!-- @if ( $order['alert_pesanan_batal_otomatis'] )
+                                @if ( $order['alert_pesanan_batal_otomatis'] )
                                     <div class="card card-bordered mt-5" style="background-color: #F8FCFC">
                                         <div class="card-body p-5 pt-2 pb-2">
                                             <div class="font-normal-500 fs-14">
@@ -238,7 +238,7 @@
                                                 Pesanan Batal Otomatis
                                             </div>
                                             <div class="font-normal-400 fs-12">
-                                                Pesanan akan dibatalkana secara otomatis jika anda belum menyelesaikan <strong>pembayaran pertama</strong> pada <strong style="text-decoration: underline;">Senin 20 Desember 2022 18:30</strong>
+                                                {{ str_replace("%DATE%",  date('d M Y H:i', strtotime(array_pop($order['order_payment'])['expired_date'])), $configurationPayment[0]['value_configuration']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -247,10 +247,10 @@
                                         <div class="card-body p-5 pt-2 pb-2">
                                             <div class="font-normal-500 fs-14">
                                                 <i class="fa-solid fa-circle-info me-2" style="color: #B3261E"></i>
-                                                Pesanan Batal Otomatis
+                                                Tenggat waktu pelunasan
                                             </div>
                                             <div class="font-normal-400 fs-12">
-                                                Pesanan akan dibatalkana secara otomatis jika anda belum menyelesaikan <strong>pembayaran pertama</strong> pada <strong style="text-decoration: underline;">Senin 20 Desember 2022 18:30</strong>
+                                                {{ $configurationPayment[1]['value_configuration'] }}
                                             </div>
                                         </div>
                                     </div>
@@ -259,15 +259,14 @@
                                         <div class="card-body p-5 pt-2 pb-2">
                                             <div class="font-normal-500 fs-14">
                                                 <i class="fa-solid fa-circle-info me-2" style="color: #B3261E"></i>
-                                                Pesanan Batal Otomatis
+                                                Lunas
                                             </div>
                                             <div class="font-normal-400 fs-12">
-                                                Pesanan akan dibatalkana secara otomatis jika anda belum menyelesaikan <strong>pembayaran pertama</strong> pada <strong style="text-decoration: underline;">Senin 20 Desember 2022 18:30</strong>
+                                                {{ $configurationPayment[2]['value_configuration'] }}
                                             </div>
                                         </div>
                                     </div>
-                                @endif -->
-
+                                @endif
                             </div>
                         </div>
 

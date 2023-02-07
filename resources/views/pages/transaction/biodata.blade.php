@@ -146,7 +146,6 @@
 
 @push('page_js')
     <script>
-        console.log('date');
         $(".date").flatpickr({
             dateFormat: "d-m-Y",
         });
@@ -155,7 +154,7 @@
     <!-- Check Cart Start -->
     <script>
         function checkChart() {
-            if ( localStorage.getItem("cartId") !== "{{ $package_product['uuid_packet'] }}" ) {
+            if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" || localStorage.getItem("step") < 2 ) {
                 window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
                 return false;
             }
@@ -237,8 +236,9 @@
             const total_people_register = parseInt(count_people_register_doble) + parseInt(count_people_register_triple) + parseInt(count_people_register_quad);
 
             if ( total_people > 0 && total_people == total_people_register ) {
-                    window.location.href = "{{ url('/transaction/checkout', $package_product['id_packet']) }}";
-                    return false;
+                localStorage.setItem("step", "3");
+                window.location.href = "{{ url('/transaction/checkout', $package_product['id_packet']) }}";
+                return false;
             } else {
                 return false;
             }

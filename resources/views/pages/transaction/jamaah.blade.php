@@ -12,7 +12,7 @@
                         'step' => 1,
                         'id_package' => $package_product['id_packet'],
                         'name_package' => $package_product['name'],
-                        'flag_umroh' =>  Helpers::viewFlagUmroh($package_product['flag_umroh']),
+                        'flag_umroh' => Helpers::viewFlagUmroh($package_product['flag_umroh']),
                         'quota' => $package_product['quota']
                     ])
                 </div>
@@ -129,8 +129,9 @@
     <!-- Check Cart Start -->
     <script>
         function checkChart() {
-            if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'] }}" ) {
-                localStorage.setItem("cartId", "{{ $package_product['uuid_packet'] }}");
+            if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
+                localStorage.setItem("step", "1");
+                localStorage.setItem("cartId", "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}");
                 localStorage.setItem("cartData", '[[{ "doble" : 0, "jamaah" : [] }, { "triple" : 0, "jamaah" : [] }, { "quad" : 0, "jamaah" : [] } ]]');   
             }
         }
@@ -192,6 +193,7 @@
 
             cardData[0][0]['doble'] = count_people_doble;
             cardData[0][1]['triple'] = count_people_triple;
+            cardData[0][2]['quad'] = count_people_quad;
             
             localStorage.setItem("cartData", JSON.stringify(cardData));
         }
@@ -208,12 +210,10 @@
     <!-- Count Price People Start -->
     <script>
         $('.count-people-doble').change(function() {
-            console.log(2);
             count_people();
             total();
         })
         $('.count-people-triple').change(function() {
-            console.log(2);
             count_people();
             total();
         })
@@ -236,6 +236,7 @@
             const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
             
             if ( total_people > 0 ) {
+                localStorage.setItem("step", "2");
                 window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
                 return false;
             } else {

@@ -30,6 +30,7 @@
                                         </a>
                                     </div>
                                 </div>
+                                @foreach(  )
                                 <div class="row mx-2 my-5">
                                     <div class="col-2">
                                         <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
@@ -44,20 +45,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="row mx-2 my-5">
-                                    <div class="col-2">
-                                        <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="font-normal-600 fs-14">Bank Syariah Indonesia (BSI)</div>
-                                    </div>
-                                    <div class="col-1 mt-1">
-                                        <div class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="radio" value="" name="choice" id="flexRadioDefault"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
+
                                 <div class="mb-10">
                                     <label for="exampleFormControlInput1" class="form-label">Nominal Pembayaran</label>
                                     <input type="text" class="form-control" placeholder="Nominal pembayaran"/>
@@ -177,46 +165,66 @@
 
 @push('page_js')
 
-<!-- Check PIN -->
-<script>
-    var elements = document.getElementsByTagName('row');
-        for (var i = 0; i < elements.length; i++) {
-
-        (elements)[i].addEventListener("click", function() {
-            const rb = this.querySelector('input[name="choice"]');
-            rb.checked = true;
-
-            let selectedValue = rb.value;
-            alert(selectedValue);
-        });
-    }
-
-    new PincodeInput('.pincode-input-container', {
-        count: 6,
-        onInput: (value) => {
-            console.log(value.length)
-            if ( value.length >= 6 ) {
-                $.ajax({
-                    url: "{{ url('/login-phone/validate-otp') }}",
-                    type: 'POST',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        'otp' : value
-                    },
-                    dataType: "JSON",
-                    success: function(data) {
-                        if ( data.status == '1' ) {
-                            // return window.location.href = "{{ url('/') }}"
-                            $("#modalGantiPassword").modal('show');
-                        } else {
-                            // border-color: red;
-                            return false;
-                        }
-                    }
-                })
-            }
+    <!-- Check Cart Start -->
+    <script>
+        function checkChart() {
+            
         }
-    })
-</script>
+    </script>
+
+    <script>
+        function total() {
+        
+        }
+    </script>
+    <!-- Document Ready Start -->
+    <script>
+        checkChart();
+        total();
+    </script>
+    <!-- Document Ready End -->
+
+    
+    <!-- Check PIN -->
+    <script>
+        var elements = document.getElementsByTagName('row');
+            for (var i = 0; i < elements.length; i++) {
+
+            (elements)[i].addEventListener("click", function() {
+                const rb = this.querySelector('input[name="choice"]');
+                rb.checked = true;
+
+                let selectedValue = rb.value;
+                alert(selectedValue);
+            });
+        }
+
+        new PincodeInput('.pincode-input-container', {
+            count: 6,
+            onInput: (value) => {
+                console.log(value.length)
+                if ( value.length >= 6 ) {
+                    $.ajax({
+                        url: "{{ url('/login-phone/validate-otp') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            'otp' : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == '1' ) {
+                                // return window.location.href = "{{ url('/') }}"
+                                $("#modalGantiPassword").modal('show');
+                            } else {
+                                // border-color: red;
+                                return false;
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    </script>
 
 @endpush

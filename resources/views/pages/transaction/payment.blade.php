@@ -12,16 +12,15 @@
                     <i class="fa-solid fa-arrow-left me-2"></i> Pilih Metode Pembayaran
                 </a>
                 <div class="font-normal-400 fs-14 mt-3" style="margin-left: 19px;">Pilih metode pembayaran yang tersedia</div>
-
                 <div class="row">
                     <div class="col-6">
-                        {{-- begin:Metode Pembayaran --}}
+
                         <div class="card card-bordered mt-5">
                             <div class="card-body p-5">
                                 <div class="font-normal-700 fs-16">
                                     Metode Pembayaran
                                 </div>
-                                <a href="{{ url('/transaction/payment-option/1') }}" class="row mx-2 my-5">
+                                <a href="{{ url('/transaction/payment-option', $package_product['id_packet']) }}" class="row mx-2 my-5">
                                     <div class="col-7">
                                         <div class="font-normal-600 fs-14 text-dark">Virtual Account (VA)</div>
                                     </div>
@@ -52,9 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- end:Metode Pembayaran --}}
 
-                        {{-- begin:Metode Pembayaran Cross Border --}}
                         <div class="card card-bordered mt-5">
                             <div class="card-body p-5">
                                 <div class="font-normal-700 fs-16">
@@ -91,18 +88,19 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- end:Metode Pembayaran Cross Border --}}
+
                     </div>
+
                     <div class="col-6">
                         <div class="card card-bordered mt-5">
                             <div class="card-body p-5">
                                 <div class="row">
                                     <div class="col-2">
-                                        <img src="{{ asset('assets-web/img/icon/time-umroh.png') }}" alt="">
+                                        <img width="100%" src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}">
                                     </div>
                                     <div class="col-6">
-                                        <div class="font-normal-400 fs-12">Umroh Reguler</div>
-                                        <div class="font-normal-700 fs-16">Umroh Hemat Bonus Tour Thoif</div>
+                                        <div class="font-normal-400 fs-12">{{ Helpers::viewFlagUmroh($package_product['flag_umroh']) }}</div>
+                                        <div class="font-normal-700 fs-16">{{ $package_product['name'] }}</div>
                                         <div class="">
                                             <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
                                             3 Calon Jamaah
@@ -130,7 +128,9 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <hr class="my-5">
+
                         <div class="card card-bordered mt-5">
                             <div class="card-body p-5">
                                 <div class="row">
@@ -156,5 +156,22 @@
 @endsection
 
 @push('page_js')
+    <!-- Check Cart Start -->
+    <script>
+        function checkChart() {
+            
+        }
+    </script>
 
+    <script>
+        function total() {
+        
+        }
+    </script>
+    <!-- Document Ready Start -->
+    <script>
+        checkChart();
+        total();
+    </script>
+    <!-- Document Ready End -->
 @endpush
