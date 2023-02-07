@@ -30,6 +30,7 @@ use App\Http\Controllers\{
     Profile\ProfileController,
     Profile\ProfileTransactionController,
     Profile\ProfileActivityController,
+    PIN\PINController,
 };
 
 /*
@@ -142,6 +143,7 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/biodata/{id}', [ TransactionController::class, 'biodata' ]);
         Route::get('/checkout/{id}', [ TransactionController::class, 'checkout' ]);
         Route::get('/payment/{id}', [ TransactionController::class, 'payment' ]);
+        Route::get('/payment-option/{id}', [ TransactionController::class, 'paymentOption' ]);
         Route::post('/checkout/{id}', [ TransactionController::class, 'storeCheckout' ]);
        
         // Detail Trasaction
@@ -166,15 +168,16 @@ Route::group([ 'middleware' =>'token'], function(){
             // Update PIN
             Route::post('/send-email-pin', [ ProfileController::class, 'sendEmailPIN' ]);
             Route::post('/validate-otp-pin', [ ProfileController::class, 'validateOTPEmailPIN' ]);
-            Route::patch('/update-pin', [ ProfileController::class, 'updatePIN' ]);
 
         // Activity
         Route::get('/list-transaction', [ ProfileTransactionController::class, 'listTransaction' ]);
         Route::get('/activity', [ ProfileActivityController::class, 'activity' ]);
     });
 
-});
+    Route::group([ 'prefix' =>'/validate-otp' ], function() {
+        Route::post('/', [ PINController::class, 'validateOtp']);
+        Route::post('/send-email', [ PINController::class, 'sendEmail']);
+        Route::post('/email', [ PINController::class, 'validateOtpEmail']);
+    });
 
-// Route::get('testing', function() {
-//     return view('pages.testing');
-// });
+});

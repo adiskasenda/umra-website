@@ -31,119 +31,6 @@
 </div>
 
 @push('page_js')
-
-    <!-- Action Form -->
-    <script>
-        $('#form-room-{{ $type_room }}').on('click', '.remove_form_jamaah', function(e) {
-            e.preventDefault();
-            const cardData = JSON.parse(localStorage.getItem("cartData"));
-            const room = '{{ $type_room }}';
-            const id = $(this).data('id');
-
-            if ( room == 'doble' ) {
-                const jamaah = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id !== id);
-                cardData[0][0]['doble'] = parseInt(cardData[0][0]['doble']) - 1
-                cardData[0][0]['jamaah'] = jamaah;
-            } else if ( room == 'triple' ) {
-                const jamaah = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id !== id);
-                cardData[0][1]['triple'] = parseInt(cardData[0][1]['triple']) - 1
-                cardData[0][1]['jamaah'] = jamaah;
-            } else {
-                const jamaah = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id !== id);
-                cardData[0][2]['quad'] = parseInt(cardData[0][2]['quad']) - 1
-                cardData[0][2]['jamaah'] = jamaah;
-            }
-
-            // Remove Item
-            $(this).parent().parent().parent().parent().parent().parent().remove()
-            localStorage.setItem("cartData", JSON.stringify(cardData));
-            totalJamaah();
-        });
-    </script>
-
-    <script>
-        $('#form-room-{{ $type_room }}').on('click', '.btn-save', function(e) {
-            e.preventDefault();
-            var cardData = JSON.parse(localStorage.getItem("cartData"));
-            let data = {};
-            Object.assign(data, { id: $(this).data('id') });
-            let formSubmit = $(this).parent().parent().parent().parent().serializeArray();
-            $.each(formSubmit, function() {
-                if (data[this.name]) {
-                    if (!data[this.name].push) {
-                        data[this.name] = [data[this.name]];
-                    }
-                    data[this.name].push(this.value || '');
-                } else {
-                    data[this.name] = this.value || '';
-                }
-            });
-
-            const room = '{{ $type_room }}';
-            if ( room == 'doble' ) {
-                const jamaah = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id !== data.id);
-                cardData[0][0]['jamaah'] = jamaah;
-                cardData[0][0]['jamaah'].push(data);
-            } else if ( room == 'triple' ) {
-                const jamaah = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id !== data.id);
-                cardData[0][1]['jamaah'] = jamaah;
-                cardData[0][1]['jamaah'].push(data);
-                
-            } else {
-                const jamaah = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id !== data.id);
-                cardData[0][2]['jamaah'] = jamaah;
-                cardData[0][2]['jamaah'].push(data);
-            }
-
-            $(this).parent().parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.detailJamaah',[
-                'id' => '`+ data.id +`',
-                'first_name' => '`+ data.first_name +`',
-                'last_name' => '`+ data.last_name +`',
-                'birth_date' => '`+ data.birth_date +`',
-                'gender' => '`+ data.gender +`',
-                'address' => '`+ data.address +`',
-                'phone_number' => '`+ data.phone_number +`',
-                'ktp_number' => '`+ data.ktp_number +`',
-                'passport_number' => '`+ data.passport_number +`',
-                'passport_expiry_date' => '`+ data.passport_expiry_date +`',
-                'vaccine_status' => '`+ data.vaccine_status +`',
-                'room' => '`+ room +`',
-            ])`);
-
-            localStorage.setItem("cartData", JSON.stringify(cardData));
-        });
-
-        $('#form-room-{{ $type_room }}').on('click', '.btn-edit', function(e) {
-            var cardData = JSON.parse(localStorage.getItem("cartData"));
-            const room = "{{ $type_room }}";
-            const id = $(this).data('id');
-            let data;
-
-            if ( room == 'doble' ) {
-                data = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id == id);
-            } else if ( room == 'triple' ) {
-                data = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id == id);
-            } else {
-                data = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id == id);
-            }
-
-            $(this).parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.formJamaah',[
-                'id' => '`+ id +`',
-                'first_name' => '`+ data[0].first_name +`',
-                'last_name' => '`+ data[0].last_name +`',
-                'birth_date' => '`+ data[0].birth_date +`',
-                'gender' => '`+ data[0].gender +`',
-                'address' => '`+ data[0].address +`',
-                'phone_number' => '`+ data[0].phone_number +`',
-                'ktp_number' => '`+ data[0].ktp_number +`',
-                'passport_number' => '`+ data[0].passport_number +`',
-                'passport_expiry_date' => '`+ data[0].passport_expiry_date +`',
-                'vaccine_status' => '`+ data[0].vaccine_status +`',
-                'room' => '`+ room +`'
-            ])`);
-        });
-    </script>
-
     <script>
         function addCountJamaah(room, addCount) {
             const cardData = JSON.parse(localStorage.getItem("cartData"));
@@ -188,19 +75,36 @@
         }
 
         function detailJamaah(data, room) {
-            console.log(data);
+            const gender = data.gender == '1' ? 'Laki Laki <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>' : 'Perempuan <span><i class="fa-solid fa-venus me-2" style="color: black"></i></span>';
+            let vaccine_status;
+            switch(data.vaccine_status) {
+                case '0':
+                    vaccine_status = 'Belum Vaksin'
+                    break;
+                case '1':
+                    vaccine_status = 'Dosis Pertama'
+                    break;
+                case '2':
+                    vaccine_status = 'Dosis Kedua'
+                    break;
+                case '3':
+                    vaccine_status = 'Booster'
+                    break;
+                default:
+                    vaccine_status = 'Booster Kedua'
+            }
             $('#form-room-'+room).append(`@include('pages.transaction.partials.detailJamaah',[
                 'id' => '`+ data.id +`',
                 'first_name' => '`+ data.first_name +`',
                 'last_name' => '`+ data.last_name +`',
                 'birth_date' => '`+ data.birth_date +`',
-                'gender' => '`+ data.gender +`',
+                'gender' => '`+ gender +`',
                 'address' => '`+ data.address +`',
                 'phone_number' => '`+ data.phone_number +`',
                 'ktp_number' => '`+ data.ktp_number +`',
                 'passport_number' => '`+ data.passport_number +`',
                 'passport_expiry_date' => '`+ data.passport_expiry_date +`',
-                'vaccine_status' => '`+ data.vaccine_status +`',
+                'vaccine_status' => '`+ vaccine_status +`',
                 'room' => '`+ room +`',
             ])`);
 
@@ -230,43 +134,184 @@
                 return cardData[0][2]['jamaah'];
             }
         }
-
-        function totalJamaah() {
-            const cardData = JSON.parse(localStorage.getItem("cartData"));
-            $('#total_jamaah').html( parseInt(cardData[0][0]['doble']) + parseInt(cardData[0][1]['triple']) + parseInt(cardData[0][2]['quad']) );
-        }
     </script>
 
-    <script>
-        count = checkCountRoom("{{ $type_room }}");
-        jamaah = checkJamaahRoom("{{ $type_room }}");
-
-        // View Count Room
-        $('.count-people-{{ $type_room }}').html(count);
-
-        if ( count > 0 ) {
-            // Detail Jamaah Register
-            jamaah.map(data => {
-                detailJamaah(data, "{{ $type_room }}")
-            })
-
-            // Add Form Register
-            for ( var i = jamaah.length; i < count; i++ ) {
-                addFormJamaah(uuid(), "{{ $type_room }}");
-            }
-        } else {
-            $('#form-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
-        }
-
-        totalJamaah();
-    </script>
-
+    <!-- Action Form Start -->
     <script>
         $('#btn-add-jamaah-{{ $type_room }}').click(function () {
             addCountJamaah("{{ $type_room }}", 1);
             const count = checkCountRoom("{{ $type_room }}");
             $('.count-people-{{ $type_room }}').html(count);
-            totalJamaah();
+            total();
         });
     </script>
+    <script>
+        $('#form-room-{{ $type_room }}').on('click', '.remove_form_jamaah', function(e) {
+            e.preventDefault();
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+            const room = '{{ $type_room }}';
+            const id = $(this).data('id');
+
+            if ( room == 'doble' ) {
+                const jamaah = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id !== id);
+                cardData[0][0]['doble'] = parseInt(cardData[0][0]['doble']) - 1
+                cardData[0][0]['jamaah'] = jamaah;
+
+                if ( cardData[0][0]['doble'] == 0 ) {
+                    $('#form-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
+                }
+            } else if ( room == 'triple' ) {
+                const jamaah = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id !== id);
+                cardData[0][1]['triple'] = parseInt(cardData[0][1]['triple']) - 1
+                cardData[0][1]['jamaah'] = jamaah;
+
+                if ( cardData[0][1]['triple'] == 0 ) {
+                    $('#form-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
+                }
+            } else {
+                const jamaah = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id !== id);
+                cardData[0][2]['quad'] = parseInt(cardData[0][2]['quad']) - 1
+                cardData[0][2]['jamaah'] = jamaah;
+
+                if ( cardData[0][2]['quad'] == 0 ) {
+                    $('#form-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
+                }
+            }
+
+            // Remove Item
+            $(this).parent().parent().parent().parent().parent().parent().remove()
+            localStorage.setItem("cartData", JSON.stringify(cardData));
+            total();
+        });
+
+        $('#form-room-{{ $type_room }}').on('click', '.btn-save', function(e) {
+            e.preventDefault();
+            var cardData = JSON.parse(localStorage.getItem("cartData"));
+            let data = {};
+            Object.assign(data, { id: $(this).data('id') });
+            let formSubmit = $(this).parent().parent().parent().parent().serializeArray();
+            $.each(formSubmit, function() {
+                if (data[this.name]) {
+                    if (!data[this.name].push) {
+                        data[this.name] = [data[this.name]];
+                    }
+                    data[this.name].push(this.value || '');
+                } else {
+                    data[this.name] = this.value || '';
+                }
+            });
+
+            const room = '{{ $type_room }}';
+            if ( room == 'doble' ) {
+                const jamaah = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id !== data.id);
+                cardData[0][0]['jamaah'] = jamaah;
+                cardData[0][0]['jamaah'].push(data);
+            } else if ( room == 'triple' ) {
+                const jamaah = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id !== data.id);
+                cardData[0][1]['jamaah'] = jamaah;
+                cardData[0][1]['jamaah'].push(data);
+                
+            } else {
+                const jamaah = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id !== data.id);
+                cardData[0][2]['jamaah'] = jamaah;
+                cardData[0][2]['jamaah'].push(data);
+            }
+
+            const gender = data.gender == '1' ? 'Laki Laki <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>' : 'Perempuan <span><i class="fa-solid fa-venus me-2" style="color: black"></i></span>';
+            let vaccine_status;
+            switch(data.vaccine_status) {
+                case '0':
+                    vaccine_status = 'Belum Vaksin'
+                    break;
+                case '1':
+                    vaccine_status = 'Dosis Pertama'
+                    break;
+                case '2':
+                    vaccine_status = 'Dosis Kedua'
+                    break;
+                case '3':
+                    vaccine_status = 'Booster'
+                    break;
+                default:
+                    vaccine_status = 'Booster Kedua'
+            }
+            $(this).parent().parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.detailJamaah',[
+                'id' => '`+ data.id +`',
+                'first_name' => '`+ data.first_name +`',
+                'last_name' => '`+ data.last_name +`',
+                'birth_date' => '`+ data.birth_date +`',
+                'gender' => '`+ gender +`',
+                'address' => '`+ data.address +`',
+                'phone_number' => '`+ data.phone_number +`',
+                'ktp_number' => '`+ data.ktp_number +`',
+                'passport_number' => '`+ data.passport_number +`',
+                'passport_expiry_date' => '`+ data.passport_expiry_date +`',
+                'vaccine_status' => '`+ vaccine_status +`',
+                'room' => '`+ room +`',
+            ])`);
+
+            localStorage.setItem("cartData", JSON.stringify(cardData));
+            total();
+        });
+
+        $('#form-room-{{ $type_room }}').on('click', '.btn-edit', function(e) {
+            var cardData = JSON.parse(localStorage.getItem("cartData"));
+            const room = "{{ $type_room }}";
+            const id = $(this).data('id');
+            let data;
+
+            if ( room == 'doble' ) {
+                data = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id == id);
+            } else if ( room == 'triple' ) {
+                data = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id == id);
+            } else {
+                data = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id == id);
+            }
+
+            $(this).parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.formJamaah',[
+                'id' => '`+ id +`',
+                'first_name' => '`+ data[0].first_name +`',
+                'last_name' => '`+ data[0].last_name +`',
+                'birth_date' => '`+ data[0].birth_date +`',
+                'gender' => '`+ data[0].gender +`',
+                'address' => '`+ data[0].address +`',
+                'phone_number' => '`+ data[0].phone_number +`',
+                'ktp_number' => '`+ data[0].ktp_number +`',
+                'passport_number' => '`+ data[0].passport_number +`',
+                'passport_expiry_date' => '`+ data[0].passport_expiry_date +`',
+                'vaccine_status' => '`+ data[0].vaccine_status +`',
+                'room' => '`+ room +`'
+            ])`);
+
+            total();
+        });
+    </script>
+    <!-- Action Form End -->
+
+    <!-- Document Ready Start -->
+    <script>
+        $(document).ready(function() {
+            count = checkCountRoom("{{ $type_room }}");
+            jamaah = checkJamaahRoom("{{ $type_room }}");
+
+            // View Count Room
+            $('.count-people-{{ $type_room }}').html(count);
+
+            if ( count > 0 ) {
+                // Detail Jamaah Register
+                jamaah.map(data => {
+                    detailJamaah(data, "{{ $type_room }}")
+                })
+
+                // Add Form Register
+                for ( var i = jamaah.length; i < count; i++ ) {
+                    addFormJamaah(uuid(), "{{ $type_room }}");
+                }
+            } else {
+                $('#form-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
+            }
+        });
+    </script>
+    <!-- Document Ready End -->
+
 @endpush

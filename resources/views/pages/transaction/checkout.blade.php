@@ -130,7 +130,7 @@
                                         <input class="form-check-input mt-7" type="radio" value="DOWNPAYMENT" name="gender" id="DOWNPAYMENT">
                                     </div>
                                     <div class="col-11">
-                                        <div class="font-normal-600 fs-14">Cicilan hingga 2x</div>
+                                        <div class="font-normal-600 fs-14">Cicilan hingga 2x <span class="badge badge-success px-5 mx-3" style="border-radius: 10px">Cukup bayar Rp. {{ number_format($configuration[2]['value_configuration']) }} / orang</span></div>
                                         <div class="font-normal-400 fs-14">Cukup bayar uang muka untuk bisa booking tiket perjalanan anda</div>
                                     </div>
                                 </div>
@@ -164,8 +164,14 @@
                 </div>
                 <hr>
                 <div class="text-right">
-                    <button class="btn text-green"><i class="fa-solid fa-chevron-left me-2"></i>Kembali</button>
-                    <button class="btn btn-success" id="btn-next">Pilih Metode Pembayaran <i class="fa-solid fa-chevron-right"></i></button>
+                    <a href="{{ url('/transaction/biodata', $package_product['id_packet']) }}">
+                        <button class="btn text-green">
+                            <i class="fa-solid fa-chevron-left me-2"></i> Kembali
+                        </button>
+                    </a>
+                    <button class="btn btn-success" id="btn-next" disabled>
+                        Pilih Metode Pembayaran <i class="fa-solid fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -174,33 +180,96 @@
 @endsection
 
 @push('page_js')
+
+    <!-- Check Cart Start -->
     <script>
-        function total_price(){
+        function checkChart() {
+            if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
+                window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
+                return false;
+            }
+            if ( localStorage.getItem("step") < 3 ) {
+                window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
+                return false;
+            }
+        }
+    </script>
+
+    <script>
+        function total() {
             const cardData = JSON.parse(localStorage.getItem("cartData"));
-            
+
+            // Count Jmaaah
             const count_people_doble = cardData[0][0]['doble'];
             const count_people_triple = cardData[0][1]['triple'];
             const count_people_quad = cardData[0][2]['quad'];
 
-            // total people
-            $('#total_people').html(parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad));
+            // Count register
+            const count_people_register_doble = cardData[0][0]['jamaah'].length;
+            const count_people_register_triple = cardData[0][1]['jamaah'].length;
+            const count_people_register_quad = cardData[0][2]['jamaah'].length;
 
             // Count Price
             const count_price_doble = parseInt(count_people_doble) * "{{$package_product['price_double']}}";
             const count_price_triple = parseInt(count_people_triple) * "{{$package_product['price_triple']}}";
             const count_price_quad = parseInt(count_people_quad) * "{{$package_product['price_quad']}}";
 
-            // total Price
-            $('#total_price').html(formatRupiah(parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad)));
+            const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
+            $('#total_people').html(total_people);
+            const total_people_register = parseInt(count_people_register_doble) + parseInt(count_people_register_triple) + parseInt(count_people_register_quad);
+            const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
+            $('#total_price').html(formatRupiah(total_price))
+
+            // Validation
+            if ( total_people > 0 && total_people == total_people_register ) {
+                $('#btn-next').removeAttr("disabled");
+            } else {
+                $('#btn-next').attr('disabled','disabled');
+            }
         }
-
-        total_price();
     </script>
+    <!-- Check Cart End -->
 
-    <!-- Link Button -->
+    <!-- Document Ready Start -->
     <script>
-        
+        $(document).ready(function() {
+            checkChart();
+            total();
+        });
+    </script>
+    <!-- Document Ready End -->
 
+    <!-- Link Button Start -->
+    <script>
+        $('#btn-next').click(function() {
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+
+            // Count Jmaaah
+            const count_people_doble = cardData[0][0]['doble'];
+            const count_people_triple = cardData[0][1]['triple'];
+            const count_people_quad = cardData[0][2]['quad'];
+
+            const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
+
+            // Count Jamaah Register
+            const count_people_register_doble = cardData[0][0]['jamaah'].length;
+            const count_people_register_triple = cardData[0][1]['jamaah'].length;
+            const count_people_register_quad = cardData[0][2]['jamaah'].length;
+
+            const total_people_register = parseInt(count_people_register_doble) + parseInt(count_people_register_triple) + parseInt(count_people_register_quad);
+
+            if ( total_people > 0 && total_people == total_people_register ) {
+                localStorage.setItem("step", "4");
+                window.location.href = "{{ url('/transaction/payment', $package_product['id_packet']) }}";
+                return false;
+            } else {
+                return false;
+            }
+        });
+    </script>
+    <!-- Link Button End -->
+
+    <script>
         // $('#btn-next').click(function() {
         //     const cardData = JSON.parse(localStorage.getItem("cartData"));
             

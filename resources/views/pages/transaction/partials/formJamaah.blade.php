@@ -70,7 +70,7 @@
                         <!-- Nomor KTP Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_ktp" class="required form-label">Nomor KTP</label>
-                            <input type="text" class="form-control" name="ktp_number" value="{{ $ktp_number }}" placeholder="Masukkan nomor KTP"/>
+                            <input type="number" class="form-control" name="ktp_number" value="{{ $ktp_number }}" placeholder="Masukkan nomor KTP"/>
                         </div>
 
                     </div>
@@ -129,8 +129,8 @@
                                 <!--begin::Col-->
                                 <div class="col-4 mt-3">
                                     <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="1" name="vaccine_status" id="vaccine_status" checked/>
-                                        <label class="form-check-label" for="vaccine_status">
+                                        <input class="form-check-input" type="radio" value="0" name="vaccine_status" id="belum_vaksin" checked/>
+                                        <label class="form-check-label" for="belum_vaksin">
                                             Belum Vaksin
                                         </label>
                                     </div>
@@ -139,8 +139,8 @@
                                 <!--begin::Col-->
                                 <div class="col-4 mt-3">
                                     <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="0"  name="vaccine_status" id="perempuan"/>
-                                        <span class="form-check-label"  for="perempuan">
+                                        <input class="form-check-input" type="radio" value="1"  name="vaccine_status" id="dosis_pertama"/>
+                                        <span class="form-check-label"  for="dosis_pertama">
                                             Dosis Pertama
                                         </span>
                                     </label>
@@ -149,8 +149,8 @@
                                 <!--begin::Col-->
                                 <div class="col-4 mt-3">
                                     <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="0"  name="vaccine_status" id="perempuan"/>
-                                        <span class="form-check-label"  for="perempuan">
+                                        <input class="form-check-input" type="radio" value="2"  name="vaccine_status" id="dosis_kedua"/>
+                                        <span class="form-check-label"  for="dosis_kedua">
                                             Dosis Kedua
                                         </span>
                                     </label>
@@ -159,8 +159,8 @@
                                 <!--begin::Col-->
                                 <div class="col-4 mt-3">
                                     <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="0"  name="vaccine_status" id="perempuan"/>
-                                        <span class="form-check-label"  for="perempuan">
+                                        <input class="form-check-input" type="radio" value="3"  name="vaccine_status" id="booster"/>
+                                        <span class="form-check-label"  for="booster">
                                             Booster
                                         </span>
                                     </label>
@@ -169,8 +169,8 @@
                                 <!--begin::Col-->
                                 <div class="col-4 mt-3">
                                     <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="0"  name="vaccine_status" id="perempuan"/>
-                                        <span class="form-check-label"  for="perempuan">
+                                        <input class="form-check-input" type="radio" value="4"  name="vaccine_status" id="booster_kedua"/>
+                                        <span class="form-check-label"  for="booster_kedua">
                                             Booster Kedua
                                         </span>
                                     </label>
@@ -184,7 +184,7 @@
                         <!-- Nomor Telepon Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_telp" class="required form-label">Nomor Telepon</label>
-                            <input type="text" class="form-control" name="phone_number" value="{{ $phone_number }}" placeholder="Masukkan nomor telepon"/>
+                            <input type="number" class="form-control" name="phone_number" value="{{ $phone_number }}" placeholder="Masukkan nomor telepon"/>
                         </div>
                     </div>
 
@@ -194,7 +194,7 @@
                         <!-- Nomor Passport Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_telp" class="required form-label">Nomor Passport</label>
-                            <input type="text" class="form-control" name="passport_number" value="{{ $passport_number }}" placeholder="Masukkan Nomor Passport"/>
+                            <input type="number" class="form-control" name="passport_number" value="{{ $passport_number }}" placeholder="Masukkan Nomor Passport"/>
                         </div>
 
                         <!-- Nomor Passport Field -->
@@ -222,91 +222,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="row">
-                        <div class="col-6">
-                            <div class="mb-2">
-                                <label for="nama" class="required form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control" placeholder="Masukkan nama sesuai KTP"/>
-                            </div>
-                            <div class="mb-2">
-                                <label for="tempat_lahir" class="required form-label">Tempat Lahir</label>
-                                <input type="text" class="form-control" placeholder="Masukkan tempat lahir"/>
-                            </div>
-                            <div class="mb-2">
-                                <label for="tanggal_lahir" class="required form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control" placeholder="Masukkan tanggal lahir"/>
-                            </div>
-                            <div class="mb-2">
-                                <label for="no_telp" class="required form-label">Nomor Telepon</label>
-                                <input type="text" class="form-control" placeholder="Masukkan nomor telepon"/>
-                            </div>
-                            <div class="mb-2">
-                                <label for="no_passport" class="required form-label">Nomor Passport</label>
-                                <input type="text" class="form-control" placeholder="Masukkan nomor passport"/>
-                            </div>
-                            <div class="mb-2">
-                                <label for="kadaluarsa_passport" class="required form-label">Tanggal Kadaluarsa Passport</label>
-                                <input type="date" class="form-control" placeholder="Masukkan tanggal kadaluarsa passport"/>
-                            </div>
-                            <div class="card card-bordered mt-3 mb-2" style="background-color: #EFF5FF">
-                                <div class="card-body p-5">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="font-normal-500 fs-16">
-                                                <i class="fa-solid fa-circle-info" style="color: #327DFA"></i> Syarat Passport
-                                            </div>
-                                            <div class="font-normal-400 fs-14">
-                                                Masa berlaku passport harus tersisa <strong>minimal 7 bulan</strong> dari hari keberangkatan sesuai peraturan perjalanan yang telah ditetapkan negara.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="row mb-2">
-                                <label for="jenis_kelamin" class="required form-label">Jenis Kelamin</label>
-                                <div class="row">
-
-                                <div class="col-4">
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="1" name="gender" id="laki-laki" checked/>
-                                        <label class="form-check-label" for="laki-laki">
-                                            Laki Laki
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-4">
-                                    <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="0"  name="gender" id="perempuan"/>
-                                        <span class="form-check-label"  for="perempuan">
-                                            Perempuan
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="mb-2">
-                                <label for="no_ktp" class="required form-label">Nomor KTP</label>
-                                <input type="text" class="form-control" placeholder="Masukkan nomor KTP"/>
-                            </div>
-                            <div class="mb-2">
-                                <label for="ayah_kandung" class="required form-label">Nama Ayah Kandung</label>
-                                <input type="text" class="form-control" placeholder="Masukkan nama ayah kandung"/>
-                            </div>
-                            <div class="mb-2">
-                                <label for="vaksinasi" class="required form-label">Vaksinasi Terakhir</label>
-                                <select class="form-select" data-control="select2" data-placeholder="Select an option">
-                                    <option></option>
-                                    <option value="Vaksin 1">Vaksin 1</option>
-                                    <option value="Vaksin 2">Vaksin 2</option>
-                                    <option value="Vaksin 3">Vaksin 3</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div> -->
                     
                     <hr>
                     <!-- Action Form Jamaah -->

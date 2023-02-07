@@ -27,15 +27,13 @@ class TransactionController extends Controller
 
     public function jamaah($id)
     {
-        if ( !empty(Session::get('user')) ) {
-            $this->header['ax-request-by'] = Session::get('user')['email'];
-            $this->header['Authorization'] = 'Bearer '.Session::get('token');
-        } else {
-            $this->header['ax-request-by'] = '';
-        }
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
+        // Package Product
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
+
         if ( empty($package_product['data']) ) {
             return abort(404);
         }
@@ -52,13 +50,10 @@ class TransactionController extends Controller
 
     public function biodata($id)
     {
-        if ( !empty(Session::get('user')) ) {
-            $this->header['ax-request-by'] = Session::get('user')['email'];
-            $this->header['Authorization'] = 'Bearer '.Session::get('token');
-        } else {
-            $this->header['ax-request-by'] = '';
-        }
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
+        // Package Product
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
         
@@ -66,20 +61,22 @@ class TransactionController extends Controller
             return abort(404);
         }
 
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
         return view('pages.transaction.biodata', [
             'package_product' => $package_product['data'],
+            'configuration' => $configuration['data'],
         ]);
     }
 
     public function checkout($id)
     {
-        if ( !empty(Session::get('user')) ) {
-            $this->header['ax-request-by'] = Session::get('user')['email'];
-            $this->header['Authorization'] = 'Bearer '.Session::get('token');
-        } else {
-            $this->header['ax-request-by'] = '';
-        }
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
+        // Package Product
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
         
@@ -87,32 +84,80 @@ class TransactionController extends Controller
             return abort(404);
         }
 
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
         return view('pages.transaction.checkout', [
             'package_product' => $package_product['data'],
+            'configuration' => $configuration['data'],
         ]);
     }
 
-    public function payment()
+    public function payment($id)
     {
-        return view('pages.transaction.payment');
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        // Package Product
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
+        $package_product = json_decode($response->getBody(), true);
+        
+        if ( empty($package_product['data']) ) {
+            return abort(404);
+        }
+
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
+        return view('pages.transaction.payment', [
+            'package_product' => $package_product['data'],
+            'configuration' => $configuration['data'],
+        ]);
+    }
+
+    public function paymentOption($id)
+    {
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        // Package Product
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
+        $package_product = json_decode($response->getBody(), true);
+        
+        if ( empty($package_product['data']) ) {
+            return abort(404);
+        }
+
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
+        // Payment Method
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/payment_method/active');
+        $payment_method = json_decode($response->getBody(), true);
+
+        return view('pages.transaction.paymentOption', [
+            'package_product' => $package_product['data'],
+            'configuration' => $configuration['data'],
+            'payment_method' => $payment_method
+        ]);
     }
 
     public function storeCheckout($id, Request $request)
     {
-        if ( !empty(Session::get('user')) ) {
-            $this->header['ax-request-by'] = Session::get('user')['email'];
-            $this->header['Authorization'] = 'Bearer '.Session::get('token');
-        } else {
-            $this->header['ax-request-by'] = '';
-        }
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
 
+        // Create Order
         $body = [
-            "id_customer" => "681",
+            "id_customer" => Session::get('user')['user_id'],
             "uuid_packet" => "fec2779d-6ce0-11ed-9b9f-525400b9f32b",
-            "phone_number" => "62811831891",
+            "phone_number" => Session::get('user')['phone'],
             "person_double" => "1",
             "person_triple" => "0",
             "person_quad" => "0",
@@ -140,11 +185,29 @@ class TransactionController extends Controller
             ]
         ];
 
-        return 'checkout';
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer', $body);
+        $order = json_decode($response->getBody(), true);
+
+        // Create Payment
+        $bodyPayment = [
+            "order_code" => "PKG2022122000002",
+            "type_payment" => "REPAYMENT",
+            "payment_method" => 5
+        ];
+ 
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/repayment', $bodyPayment);
+        $payment_method = json_decode($response->getBody(), true);
+
+        return response()->json([
+            'sukses' => 'ok'
+        ]);
     }
 
     public function paymentSuccess()
     {
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
         return view('pages.transaction.paymentSuccess');
     }
 
@@ -159,10 +222,15 @@ class TransactionController extends Controller
         // configuration
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/META');
         $configuration = json_decode($response->getBody(), true);
+
+        // configurationPayment
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PAYMENT');
+        $configurationPayment = json_decode($response->getBody(), true);
         
         return view('pages.transaction.detailTrasaction',[
             'order' => $order['data'],
-            'configuration' => $configuration['data']
+            'configuration' => $configuration['data'],
+            'configurationPayment' => $configurationPayment['data']
         ]);
     }
 }

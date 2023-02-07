@@ -24,24 +24,8 @@
         <div id="kt_accordion_{{ $type_room }}" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1" data-bs-parent="#kt_accordion_1_header_1">
             <div class="accordion-body" style="background-color: #F8FCFC">
                 <div id="detail-room-{{ $type_room }}"></div>
-                {{-- @include('pages.transaction.partials.cardDetailJamaahCheckout', [
-                    "first_name" => "Hanif",
-                    "last_name" => "Al Baaits",
-                    "birth_date" => "1996-06-06",
-                    "gender" => 1,
-                    "address" => "Bekasi",
-                    "phone_number" => "62811831891",
-                    "ktp_number" => "123",
-                    "ktp_url" => "",
-                    "passport_number" => "",
-                    "passport_expiry_date" => "2023-01-01",
-                    "passport_url" => "",
-                    "nationality" => "",
-                    "vaccine_status" => 0,
-                    "vaccine_url" => ""
-                    "room" => $type_room,
-                ]) --}}
-
+                {{-- @include('pages.transaction.partials.cardDetailJamaahCheckout') --}}
+                {{-- @include('pages.transaction.partials.NotFoundJamaah') --}}
             </div>
         </div>
     </div>
@@ -73,6 +57,18 @@
             }
         }
 
+        function checkJamaahRoom(room) {
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+
+            if ( room == 'doble' ) {
+                return cardData[0][0]['jamaah'];
+            } else if ( room == 'triple' ) {
+                return cardData[0][1]['jamaah'];
+            } else {
+                return cardData[0][2]['jamaah'];
+            }
+        }
+
         function detailJamaah(data, room) {
             $('#detail-room-'+room).append(`@include('pages.transaction.partials.cardDetailJamaahCheckout',[
                 'id' => '`+ data.id +`',
@@ -91,40 +87,26 @@
 
             return ;
         }
-
-        function checkJamaahRoom(room) {
-            const cardData = JSON.parse(localStorage.getItem("cartData"));
-
-            if ( room == 'doble' ) {
-                return cardData[0][0]['jamaah'];
-            } else if ( room == 'triple' ) {
-                return cardData[0][1]['jamaah'];
-            } else {
-                return cardData[0][2]['jamaah'];
-            }
-        }
-        
-        var count = checkCountRoom("{{ $type_room }}");
-        var price = checkTotalPriceRoom("{{ $type_room }}");
-        var jamaah = checkJamaahRoom("{{ $type_room }}");
-
-        if ( count > 0 ) {
+    </script>
+    <script>
+        $(document).ready(function() {
+            var count = checkCountRoom("{{ $type_room }}");
+            var price = checkTotalPriceRoom("{{ $type_room }}");
+            var jamaah = checkJamaahRoom("{{ $type_room }}");
 
             // View Detail Jamaah Room
-            jamaah.map(data => {
-                detailJamaah(data, "{{ $type_room }}")
-            })
+            if ( count > 0 ) {
+                jamaah.map(data => {
+                    detailJamaah(data, "{{ $type_room }}")
+                })
 
-        } else {
-            $('#detail-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
-        }
+            } else {
+                $('#detail-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
+            }
 
-        // View Count Room
-        $('.count-people-{{ $type_room }}').html(count);
-
-        // view Total Price Room
-        $('.total-price-{{ $type_room }}').html(formatRupiah(price));
-
-
+            // View Count & Price Room
+            $('.count-people-{{ $type_room }}').html(count);
+            $('.total-price-{{ $type_room }}').html(formatRupiah(price));
+        });
     </script>
 @endpush
