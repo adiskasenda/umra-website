@@ -36,6 +36,7 @@ class TransactionController extends Controller
 
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
+
         if ( empty($package_product['data']) ) {
             return abort(404);
         }
@@ -66,8 +67,13 @@ class TransactionController extends Controller
             return abort(404);
         }
 
+        // configuration
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PURCHASE_PACKET');
+        $configuration = json_decode($response->getBody(), true);
+
         return view('pages.transaction.biodata', [
             'package_product' => $package_product['data'],
+            'configuration' => $configuration['data'],
         ]);
     }
 

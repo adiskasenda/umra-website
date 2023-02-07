@@ -125,8 +125,26 @@
 @endsection
 
 @push('page_js')
+
+    <!-- Check Cart Start -->
     <script>
-        function total_price(count_people_doble, count_people_triple, count_people_quad) {
+        function checkChart() {
+            if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'] }}" ) {
+                localStorage.setItem("cartId", "{{ $package_product['uuid_packet'] }}");
+                localStorage.setItem("cartData", '[[{ "doble" : 0, "jamaah" : [] }, { "triple" : 0, "jamaah" : [] }, { "quad" : 0, "jamaah" : [] } ]]');   
+            }
+        }
+    </script>
+
+    <script>
+        function total() {
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+
+            // Count Jmaaah
+            const count_people_doble = cardData[0][0]['doble'];
+            const count_people_triple = cardData[0][1]['triple'];
+            const count_people_quad = cardData[0][2]['quad'];
+
             // Count Price
             const count_price_doble = parseInt(count_people_doble) * "{{$package_product['price_double']}}";
             $('#count-price-doble').html(formatRupiah( count_price_doble ));
@@ -138,10 +156,25 @@
             // Count Total Price
             const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
             $('#total_people').html(total_people);
-            const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad)
+            const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
             $('#total_price').html(formatRupiah( total_price ));
             const down_payment = total_people * "{{ $configuration[2]['value_configuration'] }}";
-            $('#down_payment').html(formatRupiah( down_payment ))
+            $('#down_payment').html(formatRupiah( down_payment ));
+
+            // Update Value Form
+            $('.count-people-doble').val(count_people_doble);
+            $('.count-people-triple').val(count_people_triple);
+            $('.count-people-quad').val(count_people_quad);
+
+            // Validation
+            const maxPriceBuyPackage = "{{ $configuration[1]['value_configuration'] }}";
+            const maxPeopleBuyPackage = "{{ $configuration[0]['value_configuration'] }}";
+
+            if ( total_price >= maxPriceBuyPackage || total_people >= maxPeopleBuyPackage ) {
+                $('button[data-kt-dialer-control="increase"]').attr('disabled','disabled');
+            } else {
+                $('button[data-kt-dialer-control="increase"]').removeAttr("disabled");
+            }
 
             if ( total_people > 0 ) {
                 $('#btn-next').removeAttr("disabled");
@@ -151,50 +184,49 @@
         }
 
         function count_people() {
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+
             const count_people_doble = $('.count-people-doble').val();
             const count_people_triple = $('.count-people-triple').val();
             const count_people_quad = $('.count-people-quad').val();
 
-            total_price(count_people_doble, count_people_triple, count_people_quad);
-            localStorage.setItem("cartData", '[[{ "doble" : '+count_people_doble+', "jamaah" : [] }, { "triple" : '+count_people_triple+', "jamaah" : [] }, { "quad" : '+count_people_quad+', "jamaah" : [] } ]]');
+            cardData[0][0]['doble'] = count_people_doble;
+            cardData[0][1]['triple'] = count_people_triple;
+            
+            localStorage.setItem("cartData", JSON.stringify(cardData));
         }
     </script>
+    <!-- Check Cart End -->
 
-    <!-- Check Cart -->
-    <script type="text/javascript" nonce>
-        if ( localStorage.getItem("cartId") == "{{ $package_product['uuid_packet'] }}" ) {
-            const cardData = JSON.parse(localStorage.getItem("cartData"));
-
-            // Count room
-            const count_people_doble = cardData[0][0]['doble'];
-            $('.count-people-doble').val(count_people_doble);
-            const count_people_triple = cardData[0][1]['triple'];
-            $('.count-people-triple').val(count_people_triple);
-            const count_people_quad = cardData[0][2]['quad']
-            $('.count-people-quad').val(count_people_quad);
-
-            total_price(count_people_doble, count_people_triple, count_people_quad);
-
-        } else {
-            localStorage.setItem("cartId", "{{ $package_product['uuid_packet'] }}");
-            localStorage.setItem("cartData", '[[{ "doble" : 0, "jamaah" : [] }, { "triple" : 0, "jamaah" : [] }, { "quad" : 0, "jamaah" : [] } ]]');
-        }
+    <!-- Document Ready Start -->
+    <script>
+        checkChart();
+        total();
     </script>
+    <!-- Document Ready End -->
 
-    <!-- Count Price People -->
-    <script type="text/javascript" nonce>
+    <!-- Count Price People Start -->
+    <script>
         $('.count-people-doble').change(function() {
+            console.log(2);
             count_people();
+            total();
         })
         $('.count-people-triple').change(function() {
+            console.log(2);
             count_people();
+            total();
         })
         $('.count-people-quad').change(function() {
+            console.log(2);
             count_people();
+            total();
         })
     </script>
+    <!-- Count Price People End -->
 
-    <!-- Link Button -->
+
+    <!-- Link Button Start -->
     <script>
         $('#btn-next').click(function() {
             const count_people_doble = $('.count-people-doble').val();
@@ -211,5 +243,6 @@
             }
         });
     </script>
+    <!-- Link Button End -->
 @endpush
 

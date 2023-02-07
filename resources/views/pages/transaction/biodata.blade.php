@@ -52,7 +52,7 @@
                                 <div class="col-6 text-right">
                                     <div class="font-normal-600 fs-16">
                                         <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
-                                        <span id="total_jamaah">0</span> Orang
+                                        <span id="total_people">0</span> Orang
                                     </div>
                                 </div>
                             </div>
@@ -103,16 +103,15 @@
     </div>
 
     <!-- Modal Add Telephone -->
-    <div class="modal fade" tabindex="-1" id="modal-tambah-telepon">
+    <!-- <div class="modal fade" tabindex="-1" id="modal-tambah-telepon">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">Tambahkan Nomor Telepon</h3>
-                    <!--begin::Close-->
+
                     <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                         <span class="svg-icon svg-icon-1">X</span>
                     </div>
-                    <!--end::Close-->
                 </div>
                 <div class="modal-body">
                     <div class="row mb-5">
@@ -142,56 +141,108 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection
 
 @push('page_js')
-
     <script>
+        console.log('date');
         $(".date").flatpickr({
             dateFormat: "d-m-Y",
         });
     </script>
 
-    <!-- check Chart -->
+    <!-- Check Cart Start -->
     <script>
-        var cardData = JSON.parse(localStorage.getItem("cartData"));
-
-        // Count Room
-        const count_people_doble = cardData[0][0]['doble'];
-        $('.count-people-doble').html(count_people_doble);
-        const count_people_triple = cardData[0][1]['triple'];
-        $('.count-people-triple').html(count_people_triple);
-        const count_people_quad = cardData[0][2]['quad']
-        $('.count-people-quad').html(count_people_quad);
-
-        // Check Status Register
-        const count_jamaah_double = cardData[0][0]['jamaah'].length;
-        const count_jamaah_triple = cardData[0][1]['jamaah'].length;
-        const count_jamaah_quad = cardData[0][2]['jamaah'].length;
-
-        if ( 
-            count_people_doble == count_jamaah_double &&  
-            count_people_triple == count_jamaah_triple &&  
-            count_people_quad == count_jamaah_quad
-        ) {
-            $('#btn-next').removeAttr("disabled");
-        }
-
-        function count_people () {
-
-        }
-
-        function next_jamaah () {
-
+        function checkChart() {
+            if ( localStorage.getItem("cartId") !== "{{ $package_product['uuid_packet'] }}" ) {
+                window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
+                return false;
+            }
         }
     </script>
-
-    <!-- Link Button -->
     <script>
-        $('#btn-next').click(function() {
-            window.location.href = "{{ url('/transaction/checkout', $package_product['id_packet']) }}";
-            return false;
+        function total() {
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+
+            // Count Jmaaah
+            const count_people_doble = cardData[0][0]['doble'];
+            const count_people_triple = cardData[0][1]['triple'];
+            const count_people_quad = cardData[0][2]['quad'];
+
+            // Count register
+            const count_people_register_doble = cardData[0][0]['jamaah'].length;
+            const count_people_register_triple = cardData[0][1]['jamaah'].length;
+            const count_people_register_quad = cardData[0][2]['jamaah'].length;
+
+            // Count Price
+            const count_price_doble = parseInt(count_people_doble) * "{{$package_product['price_double']}}";
+            const count_price_triple = parseInt(count_people_triple) * "{{$package_product['price_triple']}}";
+            const count_price_quad = parseInt(count_people_quad) * "{{$package_product['price_quad']}}";
+
+            const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
+            $('#total_people').html(total_people);
+            const total_people_register = parseInt(count_people_register_doble) + parseInt(count_people_register_triple) + parseInt(count_people_register_quad);
+            const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
+            
+            // Validation
+            const maxPriceBuyPackage = "{{ $configuration[1]['value_configuration'] }}";
+            const maxPeopleBuyPackage = "{{ $configuration[0]['value_configuration'] }}";
+
+            if ( total_price >= maxPriceBuyPackage || total_people >= maxPeopleBuyPackage ) {
+                $('#btn-add-jamaah-doble').attr('disabled','disabled');
+                $('#btn-add-jamaah-triple').attr('disabled','disabled');
+                $('#btn-add-jamaah-quad').attr('disabled','disabled');
+            } else {
+                $('#btn-add-jamaah-doble').removeAttr("disabled");
+                $('#btn-add-jamaah-triple').removeAttr("disabled");
+                $('#btn-add-jamaah-quad').removeAttr("disabled");
+            }
+            
+            if ( total_people > 0 && total_people == total_people_register ) {
+                $('#btn-next').removeAttr("disabled");
+            } else {
+                $('#btn-next').attr('disabled','disabled');
+            }
+        }
+    </script>
+    <!-- Check Cart End -->
+
+    <!-- Document Ready Start -->
+    <script>
+        $(document).ready(function() {
+            checkChart();
+            total();
         });
     </script>
+    <!-- Document Ready End -->
+
+    <!-- Link Button Start -->
+    <script>
+        $('#btn-next').click(function() {
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+
+            // Count Jmaaah
+            const count_people_doble = cardData[0][0]['doble'];
+            const count_people_triple = cardData[0][1]['triple'];
+            const count_people_quad = cardData[0][2]['quad'];
+
+            const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
+
+            // Count Jamaah Register
+            const count_people_register_doble = cardData[0][0]['jamaah'].length;
+            const count_people_register_triple = cardData[0][1]['jamaah'].length;
+            const count_people_register_quad = cardData[0][2]['jamaah'].length;
+
+            const total_people_register = parseInt(count_people_register_doble) + parseInt(count_people_register_triple) + parseInt(count_people_register_quad);
+
+            if ( total_people > 0 && total_people == total_people_register ) {
+                    window.location.href = "{{ url('/transaction/checkout', $package_product['id_packet']) }}";
+                    return false;
+            } else {
+                return false;
+            }
+        });
+    </script>
+    <!-- Link Button End -->
 @endpush
