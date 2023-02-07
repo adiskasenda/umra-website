@@ -112,7 +112,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-2 mt-2">
-                                                        <a href="" class="font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-email">Ubah</a>
+                                                        <button type="button" class="btn font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-email">Ubah</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,7 +132,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-2 mt-2">
-                                                        <a href="" class="font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-telepon">Ubah</a>
+                                                        <button type="button" class="btn font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-telepon">Ubah</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -161,22 +161,20 @@
     <div class="modal fade" tabindex="-1" id="modal-ubah-email">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
-                <div class="modal-body text-center" style="padding:40px;" id="input-pin">
-
+                <!-- Modal PIN Email -->
+                <div class="modal-body text-center" style="padding:40px;" id="email-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
-
                     <div class="mb-5">
-                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Masukkan PIN</div>
-                        <div class="pincode-input-container"></div>
-                        <div class="mt-5 text-weight-400 fs-16">Lupa PIN anda?</div>
-                        <a href="" class="font-normal-500 fs-12 text-green" id="gunakan-sandi">Gunakan Kata Sandi</a>
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan Pin</div>
                     </div>
-                    <div class="d-grid">
-                        <button type="button" id="btn-pin-lanjutkan" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-input-email">
-                            <span class="indicator-label">Lanjutkan</span>
+                    <div class="fv-row mb-8">
+                        <div class="pincode-input-email"></div>
+                    </div>
+                    @if( !empty(Session::get('user')['email']) )
+                        <button class="btn text-weight-400 fs-16" id="forgot-pin">
+                            Lupa PIN ?
                         </button>
-                    </div>
+                    @endif
                 </div>
 
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="input-password">
@@ -223,9 +221,6 @@
                     <button type="button" class="btn mt-10 btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="width:150px;">OK</button>
                 </div>
 
-                <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-load">
-                    @include('layouts.partials.loadingResponse')
-                </div>
             </div>
         </div>
     </div>
@@ -234,26 +229,23 @@
     <div class="modal fade" tabindex="-1" id="modal-ubah-telepon">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
-                <div class="modal-body text-center" style="padding:40px;" id="input-telepon">
-
+                <!-- Modal PIN Phone -->
+                <div class="modal-body text-center" style="padding:40px;" id="phone-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
-
                     <div class="mb-5">
-                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Nomor Telepon Anda</div>
-                        <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan nomor telepon anda terhubung dengan WhatsApp untuk menerima kode OTP dari kami</div>
-                        <div class="fv-row mb-8">
-                            <input type="text" placeholder="Masukkan nomor telepon whatsapp anda" name="telepon" class="form-control bg-transparent" required/>
-                        </div>
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan Pin</div>
                     </div>
-                    <div class="d-grid">
-                        <button type="button" id="btn-kirim-telepon" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-input-email">
-                            <span class="indicator-label">Kirim</span>
+                    <div class="fv-row mb-8">
+                        <div class="pincode-input-phone"></div>
+                    </div>
+                    @if( !empty(Session::get('user')['email']) )
+                        <button class="btn text-weight-400 fs-16" id="forgot-pin">
+                            Lupa PIN ?
                         </button>
-                    </div>
+                    @endif
                 </div>
 
-                <div class="modal-body text-center" style="padding:40px;" id="input-pin">
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="input-pin">
 
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
 
@@ -266,7 +258,6 @@
                     </div>
                 </div>
 
-
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="email-terkirim">
                     <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
                     <div>
@@ -276,9 +267,6 @@
                     <button type="button" class="btn mt-10 btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="width:150px;">OK</button>
                 </div>
 
-                <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-load">
-                    @include('layouts.partials.loadingResponse')
-                </div>
             </div>
         </div>
     </div>
@@ -299,15 +287,14 @@
         }
     </script>
     
-    <!-- Check PIN -->
+    <!-- Check PIN Email -->
     <script>
-        new PincodeInput('.pincode-input-container', {
+        new PincodeInput('.pincode-input-email', {
             count: 6,
             onInput: (value) => {
-                console.log(value.length)
                 if ( value.length >= 6 ) {
                     $.ajax({
-                        url: "{{ url('/login-phone/validate-otp') }}",
+                        url: "{{ url('/validateOtp') }}",
                         type: 'POST',
                         data: {
                             "_token": "{{ csrf_token() }}",
@@ -316,10 +303,38 @@
                         dataType: "JSON",
                         success: function(data) {
                             if ( data.status == '1' ) {
-                                // return window.location.href = "{{ url('/') }}"
-                                $("#modalGantiPassword").modal('show');
+                                return false;
                             } else {
-                                // border-color: red;
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
+                                return false;
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+
+    <!-- Check PIN Phone -->
+    <script>
+        new PincodeInput('.pincode-input-phone', {
+            count: 6,
+            onInput: (value) => {
+                if ( value.length >= 6 ) {
+                    $.ajax({
+                        url: "{{ url('/validateOtp') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            'otp' : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == '1' ) {
+                                console.log()
+                                return false;
+                            } else {
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
                                 return false;
                             }
                         }
