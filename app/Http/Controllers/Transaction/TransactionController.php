@@ -103,6 +103,11 @@ class TransactionController extends Controller
         return view('pages.transaction.payment');
     }
 
+    public function paymentOption()
+    {
+        return view('pages.transaction.paymentOption');
+    }
+
     public function storeCheckout($id, Request $request)
     {
         if ( !empty(Session::get('user')) ) {

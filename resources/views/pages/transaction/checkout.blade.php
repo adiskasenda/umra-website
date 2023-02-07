@@ -255,7 +255,7 @@
             const total_people_register = parseInt(count_people_register_doble) + parseInt(count_people_register_triple) + parseInt(count_people_register_quad);
 
             if ( total_people > 0 && total_people == total_people_register ) {
-                window.location.href = "{{ url('/transaction/checkout', $package_product['id_packet']) }}";
+                window.location.href = "{{ url('/transaction/payment', $package_product['id_packet']) }}";
                 return false;
             } else {
                 return false;

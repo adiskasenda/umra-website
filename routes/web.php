@@ -30,6 +30,7 @@ use App\Http\Controllers\{
     Profile\ProfileController,
     Profile\ProfileTransactionController,
     Profile\ProfileActivityController,
+    PIN\PINController,
 };
 
 /*
@@ -142,6 +143,7 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/biodata/{id}', [ TransactionController::class, 'biodata' ]);
         Route::get('/checkout/{id}', [ TransactionController::class, 'checkout' ]);
         Route::get('/payment/{id}', [ TransactionController::class, 'payment' ]);
+        Route::get('/payment-option/{id}', [ TransactionController::class, 'paymentOption' ]);
         Route::post('/checkout/{id}', [ TransactionController::class, 'storeCheckout' ]);
        
         // Detail Trasaction
@@ -172,6 +174,7 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/activity', [ ProfileActivityController::class, 'activity' ]);
     });
 
+    Route::post('/validate-otp', [ PINController::class, 'validateOtp']);
 });
 
 // Route::get('testing', function() {

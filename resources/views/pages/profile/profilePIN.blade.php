@@ -12,7 +12,7 @@
                         Atur Pin
                     </div>
                     <div class="row mt-5">
-                        {{-- @if ( empty($user['pin_number']) ) --}}
+                        @if ( empty($user['pin_number']) )
                             <div class="col-md-6">
                                 <a href="#" class="card card-bordered" id="buat-pin" data-bs-toggle="modal" data-bs-target="#modal-buat-pin">
                                     <div class="card-body text-dark">
@@ -23,7 +23,7 @@
                                     </div>
                                 </a>
                             </div>
-                        {{-- @elseif ( !empty($user['pin_number']) && !empty($user['email']) ) --}}
+                        @elseif ( !empty($user['pin_number']) && !empty($user['email']) )
                             <div class="col-md-6">
                                 <a href="#" class="card card-bordered" id="lupa-pin" data-bs-toggle="modal" data-bs-target="#modal-lupa-pin">
                                     <div class="card-body text-dark">
@@ -34,7 +34,7 @@
                                     </div>
                                 </a>
                             </div>
-                        {{--  @endif --}}
+                         @endif
                     </div>
                 </div>
             </div>
@@ -93,9 +93,20 @@
     <div class="modal fade" tabindex="-1" id="modal-lupa-pin">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+                <!-- Modal Input PIN -->
+                <div class="modal-body text-center" style="padding:40px;" id="pin-modal">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+                    <div class="mb-5">
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan Pin</div>
+                    </div>
+                    <div class="fv-row mb-8">
+                        <div class="pincode-input-pin"></div>
+                    </div>
+
+                </div>
 
                 <!-- Modal Form Input -->
-                <div class="modal-body text-center" style="padding:40px;" id="reset-pin-modal">
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="reset-pin-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
                     
                     <form action="#" id="form-reset-pin">
@@ -198,28 +209,65 @@
 
     <!-- Update PIN -->
     <script>
+        function inputPIN() {
+            $('#pin-modal').css("display", "block");
+            $('#reset-pin-modal').css("display", "none");
+            $('#success-reset-pin').css("display", "none");
+            $('#error-reset-pin').css("display", "none");
+            $('input').val('');
+        }
         function inputResetPIN() {
+            $('#pin-modal').css("display", "none");
             $('#reset-pin-modal').css("display", "block");
             $('#success-reset-pin').css("display", "none");
             $('#error-reset-pin').css("display", "none");
             $('input').val('');
         }
         function successResetPIN() {
+            $('#pin-modal').css("display", "none");
             $('#reset-pin-modal').css("display", "none");
             $('#success-reset-pin').css("display", "block");
             $('#error-reset-pin').css("display", "none");
         }
         function errorResetPIN() {
+            $('#pin-modal').css("display", "none");
             $('#reset-pin-modal').css("display", "block");
             $('#success-reset-pin').css("display", "none");
             $('#error-reset-pin').css("display", "block");
         }
 
         $('#lupa-pin').click(function(){
-            inputResetPIN();
+            inputPIN();
         });
+
+        new PincodeInput('.pincode-input-pin', {
+            count: 6,
+            onInput: (value) => {
+                console.log(value.length)
+                if ( value.length >= 6 ) {
+                    $.ajax({
+                        url: "{{ url('/validate-otp') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            'pin' : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == '1' ) {
+                                inputResetPIN();
+                                return false;
+                            } else {
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
+                                return false;
+                            }
+                        }
+                    })
+                }
+            }
+        })
+
         $('#btn-reset-pin').click(function(){
-            console.log('new pin');
             var formInput = {};
             var a = $('#form-reset-pin').serializeArray();
             $.each(a, function() {
