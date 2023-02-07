@@ -103,6 +103,46 @@
                         <div class="pincode-input-pin"></div>
                     </div>
 
+                    @if( !empty($user['email']) )
+                        <button class="btn text-weight-400 fs-16" id="forgot-pin">
+                            Lupa PIN ?
+                        </button>
+                    @endif
+                </div>
+
+                <!-- Modal send EMAIl -->
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="send-email-modal">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+
+                    <div id="error-send-email">
+                        <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
+                            <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
+                            <div class="d-flex flex-column">
+                                <span id="message-error-send-email"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fv-row mb-5 mt-8">
+                        <input type="email" placeholder="Masukan Email" name="email" class="form-control bg-transparent"/>
+                    </div>
+                    <div class="d-grid">
+                        <button type="button" id="btn-send-email" class="btn btn-success">
+                            <span class="indicator-label">Lanjutkan</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal otp Email -->
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="otp-email-modal">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+
+                    <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Verifikasi Email OTP Anda</div>
+                    <div class="mt-5 text-weight-400 fs-16">Kami Telah Mengirimkan OTP ke email Anda. Jangan Berikan kode verifikasi ke siapa pun</div>
+
+                    <div class="fv-row mb-5 mt-8">
+                        <div class="pincode-input-otp-email"></div>
+                    </div>
                 </div>
 
                 <!-- Modal Form Input -->
@@ -210,30 +250,66 @@
     <!-- Update PIN -->
     <script>
         function inputPIN() {
+            $('#otp-email-modal').css("display", "none");
             $('#pin-modal').css("display", "block");
             $('#reset-pin-modal').css("display", "none");
             $('#success-reset-pin').css("display", "none");
             $('#error-reset-pin').css("display", "none");
+            $('#send-email-modal').css("display", "none");
             $('input').val('');
         }
+        function forgotPIN() {
+            $('#otp-email-modal').css("display", "none");
+            $('#error-send-email').css("display", "none");
+            $('#send-email-modal').css("display", "block");
+            $('#pin-modal').css("display", "none");
+            $('#reset-pin-modal').css("display", "none");
+            $('#success-reset-pin').css("display", "none");
+            $('input').val('');
+        }
+        function errorForgotPIN() {
+            $('#otp-email-modal').css("display", "none");
+            $('#error-send-email').css("display", "block");
+            $('#send-email-modal').css("display", "block");
+            $('#pin-modal').css("display", "none");
+            $('#reset-pin-modal').css("display", "none");
+            $('#success-reset-pin').css("display", "none");
+            $('input').val('');
+        }
+        function inputOTPEmail() {
+            $('#otp-email-modal').css("display", "block");
+            $('#send-email-modal').css("display", "none");
+            $('#pin-modal').css("display", "none");
+            $('#reset-pin-modal').css("display", "none");
+            $('#success-reset-pin').css("display", "none");
+        }
+        
         function inputResetPIN() {
+            $('#otp-email-modal').css("display", "none");
             $('#pin-modal').css("display", "none");
             $('#reset-pin-modal').css("display", "block");
             $('#success-reset-pin').css("display", "none");
             $('#error-reset-pin').css("display", "none");
+            $('#send-email-modal').css("display", "none");
             $('input').val('');
         }
         function successResetPIN() {
+            $('#otp-email-modal').css("display", "none");
             $('#pin-modal').css("display", "none");
             $('#reset-pin-modal').css("display", "none");
             $('#success-reset-pin').css("display", "block");
             $('#error-reset-pin').css("display", "none");
+            $('#send-email-modal').css("display", "none");
+            $('input').val('');
         }
         function errorResetPIN() {
+            $('#otp-email-modal').css("display", "none");
             $('#pin-modal').css("display", "none");
             $('#reset-pin-modal').css("display", "block");
             $('#success-reset-pin').css("display", "none");
             $('#error-reset-pin').css("display", "block");
+            $('#send-email-modal').css("display", "none");
+            $('input').val('');
         }
 
         $('#lupa-pin').click(function(){
@@ -243,7 +319,6 @@
         new PincodeInput('.pincode-input-pin', {
             count: 6,
             onInput: (value) => {
-                console.log(value.length)
                 if ( value.length >= 6 ) {
                     $.ajax({
                         url: "{{ url('/validate-otp') }}",
@@ -266,6 +341,60 @@
                 }
             }
         })
+
+        new PincodeInput('.pincode-input-otp-email', {
+            count: 6,
+            onInput: (value) => {
+                if ( value.length >= 6 ) {
+                    const email = $('input[name="email"]').val();
+                    $.ajax({
+                        url: "{{ url('/validate-otp/email') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "email": email,
+                            'otp' : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == '1' ) {
+                                inputResetPIN();
+                                return false;
+                            } else {
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
+                                return false;
+                            }
+                        }
+                    })
+                }
+            }
+        })
+        
+        $('#forgot-pin').click(function(){
+            forgotPIN();
+        });
+
+        $('#btn-send-email').click(function(){
+            const email = $('input[name="email"]').val();
+            $.ajax({
+                url: "{{ url('/validate-otp/send-email') }}",
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'email' : email
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if ( data.status == '1' ) {
+                        inputOTPEmail();
+                        return false;
+                    } else {
+                        errorForgotPIN();
+                        $('#message-error-send-email').html(data.message)
+                    }
+                }
+            })
+        });
 
         $('#btn-reset-pin').click(function(){
             var formInput = {};

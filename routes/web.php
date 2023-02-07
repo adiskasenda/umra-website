@@ -174,9 +174,10 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/activity', [ ProfileActivityController::class, 'activity' ]);
     });
 
-    Route::post('/validate-otp', [ PINController::class, 'validateOtp']);
-});
+    Route::group([ 'prefix' =>'/validate-otp' ], function() {
+        Route::post('/', [ PINController::class, 'validateOtp']);
+        Route::post('/send-email', [ PINController::class, 'sendEmail']);
+        Route::post('/email', [ PINController::class, 'validateOtpEmail']);
+    });
 
-// Route::get('testing', function() {
-//     return view('pages.testing');
-// });
+});
