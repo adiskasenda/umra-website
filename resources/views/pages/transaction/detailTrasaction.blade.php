@@ -238,7 +238,7 @@
                                                 Pesanan Batal Otomatis
                                             </div>
                                             <div class="font-normal-400 fs-12">
-                                                {{ str_replace("%DATE%",  date('d M Y H:i', strtotime(array_pop($order['order_payment'])['expired_date'])), $configurationPayment[0]['value_configuration']) }}
+                                                {{ str_replace("%DATE%",  date('d M Y H:i', strtotime(last($order['order_payment'])['expired_date'])), $configurationPayment[0]['value_configuration']) }}
                                             </div>
                                         </div>
                                     </div>

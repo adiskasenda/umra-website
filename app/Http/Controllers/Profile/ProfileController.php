@@ -95,20 +95,19 @@ class ProfileController extends Controller
         $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/change_email/'.Session::get('user')['user_id'], $body);
         $customer = json_decode($response->getBody(), true);
 
-        if ( $customer['status'] == '2' ) {
-            return redirect()->back()
-                            ->withInput($request->input())
-                            ->with('error', $customer['message']);
+        if ( $customer['status'] == '1' ) {
+            $user = Session::get('user');
+            $user['email'] = $email;
+            Session::put([
+                'user' => $user
+            ]);
         }
 
-        $user = Session::get('user');
-        $user['email'] = $email;
-        Session::put([
-            'user' => $user
+        return response()->json([
+            'status' => $customer['status'],
+            'message' => $customer['message'],
+            'data' => $customer['data']
         ]);
-
-        return redirect()->back()
-                    ->withSuccess('Data Email Berhasil Di Update, Silahkan Check Pesan Di Email Lama Anda untuk Verifikasi Email Baru');
     }
 
     public function updatePhone(Request $request)
@@ -122,20 +121,19 @@ class ProfileController extends Controller
         $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/change_phone/'.Session::get('user')['user_id'], $body);
         $customer = json_decode($response->getBody(), true);
 
-        if ( $customer['status'] == '2' ) {
-            return redirect()->back()
-                            ->withInput($request->input())
-                            ->with('error', $customer['message']);
+        if ( $customer['status'] == '1' ) {
+            $user = Session::get('user');
+            $user['phone'] = $phone;
+            Session::put([
+                'user' => $user
+            ]);
         }
 
-        $user = Session::get('user');
-        $user['phone'] = $phone;
-        Session::put([
-            'user' => $user
+        return response()->json([
+            'status' => $customer['status'],
+            'message' => $customer['message'],
+            'data' => $customer['data']
         ]);
-
-        return redirect()->back()
-                    ->withSuccess('Data Nomer Phone Berhasil Di Update');
     }
 
     public function profilePassword()
