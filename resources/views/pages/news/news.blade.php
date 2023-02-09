@@ -81,4 +81,23 @@
         </div>
     </div>
 
+    <ul class="pagination" id="pagination1"></ul>
+
 @endsection
+
+@push('page_js')
+    <script type="text/javascript">
+        $.jqPaginator('#pagination1', {
+            totalPages: 10,
+            visiblePages: 5,
+            currentPage: 2,
+            onPageChange: function (num, type) {
+                $('#p1').text(type + '：' + num);
+            }
+        });
+        function link(url) {
+            console.log(url);
+            return false;
+        }
+    </script>
+@endpush
