@@ -90,13 +90,10 @@
         $.jqPaginator('#pagination1', {
             totalPages: 10,
             visiblePages: 5,
-            currentPage: 2,
-            onPageChange: function (num, type) {
-                $('#p1').text(type + '：' + num);
-            }
+            currentPage: 1
         });
         function link(url) {
-            console.log(url);
+            window.location.href = "{{ url('/news') }}";
             return false;
         }
     </script>
