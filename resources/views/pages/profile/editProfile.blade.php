@@ -214,52 +214,8 @@
                 <!-- Modal Success Update Email -->
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="success-update-email">
                     <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
-                    <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Pin berhasil diubah</div>
+                    <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Email berhasil diubah</div>
                 </div>
-
-                <!-- <div class="modal-body text-center" style="padding:40px; display:none;" id="input-password">
-
-                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
-
-                    <div class="mb-5">
-                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Masukkan Kata Sandi Anda</div>
-                        <div class="fv-row mb-8">
-                            <input type="password" placeholder="Masukkan password anda" name="password" class="form-control bg-transparent" required/>
-                        </div>
-                    </div>
-                    <div class="d-grid">
-                        <button type="button" id="btn-password-lanjutkan" class="btn btn-success">
-                            <span class="indicator-label">Lanjutkan</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="modal-body text-center" style="padding:40px; display:none;" id="input-email">
-
-                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
-
-                    <div class="mb-5">
-                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Email Anda</div>
-                        <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan email anda aktif untuk menerima tautan dari kami.</div>
-                        <div class="fv-row mb-8">
-                            <input type="email" placeholder="Masukkan email anda" name="email" class="form-control bg-transparent" required/>
-                        </div>
-                    </div>
-                    <div class="d-grid">
-                        <button type="button" id="btn-kirim-email" class="btn btn-success">
-                            <span class="indicator-label">Kirim</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="modal-body text-center" style="padding:40px; display:none;" id="email-terkirim">
-                    <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
-                    <div>
-                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Email berhasil terkirim!</div>
-                        <div class="mt-5 text-weight-400 fs-16">Kami telah mengirimkan tautan ke email <strong id="recipient-email">Anantasyaaluia@gmail.com</strong>, klik tautan tersebut untuk melanjutkan mengubah kata sandi</div>
-                    </div>
-                    <button type="button" class="btn mt-10 btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="width:150px;">OK</button>
-                </div> -->
 
             </div>
         </div>
@@ -319,30 +275,8 @@
                 <!-- Modal Success Update Phone -->
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="success-update-phone">
                     <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
-                    <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Pin berhasil diubah</div>
+                    <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Nomer Telephone berhasil diubah</div>
                 </div>
-
-                <!-- <div class="modal-body text-center" style="padding:40px; display:none;" id="input-pin">
-
-                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
-
-                    <div class="mb-5">
-                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Verifikasi Nomor Telepon Anda</div>
-                        <div class="text-weight-400 fs-16 mt-5 mb-5">Kami telah mengirimkan kode OTP ke nomor WhatsApp <strong>34242111</strong>, Jangan berikan kode verifikasi ke siapa pun.</div>
-                        <div class="pincode-input-container"></div>
-                        <div class="text-weight-400 fs-16 mt-5 mb-5">Kirim ulang kode verifikasi baru (00:30)</div>
-                        <div class="text-weight-400 fs-16 mt-5 mb-5">Bukan Nomor Anda? Ubah</div>
-                    </div>
-                </div>
-
-                <div class="modal-body text-center" style="padding:40px; display:none;" id="email-terkirim">
-                    <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
-                    <div>
-                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Email berhasil terkirim!</div>
-                        <div class="mt-5 text-weight-400 fs-16">Kami telah mengirimkan tautan ke email <strong id="recipient-email">Anantasyaaluia@gmail.com</strong>, klik tautan tersebut untuk melanjutkan mengubah kata sandi</div>
-                    </div>
-                    <button type="button" class="btn mt-10 btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="width:150px;">OK</button>
-                </div> -->
 
             </div>
         </div>
@@ -369,29 +303,32 @@
         function inputPINEmail() {
             $('#email-modal').css("display", "block");
             $('#email-input-modal').css("display", "none");
-            $('#success-update-email').css("display", "none");
             $('#error-update-email').css("display", "none");
+            $('#success-update-email').css("display", "none");
             $('input[name="email"]').val('');
             $('.pincode-input').val('');
         }
         function formUpdateEmail() {
             $('#email-modal').css("display", "none");
             $('#email-input-modal').css("display", "block");
-            $('#success-update-email').css("display", "none");
             $('#error-update-email').css("display", "none");
+            $('#success-update-email').css("display", "none");
             $('input[name="email"]').val('');
         }
         function errorFormUpdateEmail() {
             $('#email-modal').css("display", "none");
             $('#email-input-modal').css("display", "block");
-            $('#success-update-email').css("display", "block");
-            $('#error-update-email').css("display", "none");
+            $('#error-update-email').css("display", "block");
+            $('#success-update-email').css("display", "none");
+        }
+        function otpEmail() {
+            // masukan Otp untuk Email
         }
         function successFormUpdateEmail() {
             $('#email-modal').css("display", "none");
             $('#email-input-modal').css("display", "none");
-            $('#success-update-email').css("display", "none");
-            $('#error-update-email').css("display", "block");
+            $('#error-update-email').css("display", "none");
+            $('#success-update-email').css("display", "block");
         }
 
         function isValidEmailAddress(emailAddress) {
@@ -444,7 +381,7 @@
                     if ( data.status == '1' ) {
                         successFormUpdateEmail();
                     } else {
-                        errorFormUpdateEmail()
+                        errorFormUpdateEmail();
                         $('#message-error-update-email').html(data.message);
                     }
                 }
@@ -474,6 +411,9 @@
             $('#phone-input-modal').css("display", "block");
             $('#error-update-phone').css("display", "block");
             $('#success-update-phone').css("display", "none");
+        }
+        function otpPhone() {
+            // masukan Otp untuk Phone Number
         }
         function successFormUpdatePhone() {
             $('#phone-modal').css("display", "none");
@@ -524,7 +464,7 @@
                 dataType: "JSON",
                 success: function(data) {
                     if ( data.status == '1' ) {
-                        successFormUpdatePhone() 
+                        successFormUpdatePhone()
                     } else {
                         errorFormUpdatePhone()
                         $('#message-error-update-phone').html(data.message)
