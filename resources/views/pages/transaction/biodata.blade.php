@@ -169,6 +169,11 @@
             const count_people_triple = cardData[0][1]['triple'];
             const count_people_quad = cardData[0][2]['quad'];
 
+            // View Count Room
+            $('.count-people-doble').html(count_people_doble);
+            $('.count-people-triple').html(count_people_triple);
+            $('.count-people-quad').html(count_people_quad);
+
             // Count register
             const count_people_register_doble = cardData[0][0]['jamaah'].length;
             const count_people_register_triple = cardData[0][1]['jamaah'].length;

@@ -28,7 +28,7 @@
                                     <div class="symbol symbol-circle me-5">
 
                                         <div class="image-input image-input-circle" data-kt-image-input="true" style="background-image: url('{{ Helpers::avatarDefault() }}')">
-                                            <div class="image-input-wrapper w-125px h-125px img-avatar" style="background-image: url('{{ $user['url_photo'] }}')"></div>
+                                            <div class="image-input-wrapper w-80px h-80px img-avatar" style="background-image: url('{{ empty($user['url_photo']) ? Helpers::avatarDefault() : $user['url_photo'] }}')"></div>
 
                                             <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
                                                 data-kt-image-input-action="change"
@@ -102,17 +102,19 @@
                                         <div class="card card-bordered" style="background-color: #F8FCFC">
                                             <div class="card-body p-5">
                                                 <div class="row">
-                                                    <div class="col-10">
+                                                    <div class="col-9">
                                                         <div class="font-normal-400 fs-12">
-                                                            {{ $user['email'] }}
+                                                            {{ !empty($user['email']) ? $user['email'] : 'Belum Ada Email' }}
                                                         </div>
-                                                        <div class="font-normal-400 fs-12 mt-2">
-                                                            <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
-                                                            Sudah diverifikasi
-                                                        </div>
+                                                        @if( !empty($user['email']) )
+                                                            <div class="font-normal-400 fs-12 mt-2">
+                                                                <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
+                                                                Sudah diverifikasi
+                                                            </div>
+                                                        @endif
                                                     </div>
-                                                    <div class="col-2 mt-2">
-                                                        <button type="button" class="btn font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-email">Ubah</button>
+                                                    <div class="col-3 mt-2">
+                                                        <button type="button" id="update-email" class="btn font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-email">{{ !empty($user['email']) ? 'Ubah' : 'Tambahkan' }}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,17 +124,19 @@
                                         <div class="card card-bordered" style="background-color: #F8FCFC">
                                             <div class="card-body p-5 font-normal-600 fs-14">
                                                 <div class="row">
-                                                    <div class="col-10">
+                                                    <div class="col-9">
                                                         <div class="font-normal-400 fs-12">
-                                                            {{ $user['phone'] }}
+                                                            {{ !empty($user['phone']) ? $user['phone'] : 'Belum Ada Nomer Telphone' }}
                                                         </div>
-                                                        <div class="font-normal-400 fs-12 mt-2">
-                                                            <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
-                                                            Sudah diverifikasi
-                                                        </div>
+                                                        @if( !empty($user['phone']) )
+                                                            <div class="font-normal-400 fs-12 mt-2">
+                                                                <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
+                                                                Sudah diverifikasi
+                                                            </div>
+                                                        @endif
                                                     </div>
-                                                    <div class="col-2 mt-2">
-                                                        <button type="button" class="btn font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-telepon">Ubah</button>
+                                                    <div class="col-3 mt-2 text-center">
+                                                        <button type="button" id="update-phone" class="btn font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-telepon">{{ !empty($user['phone']) ? 'Ubah' : 'Tambahkan' }}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -161,6 +165,7 @@
     <div class="modal fade" tabindex="-1" id="modal-ubah-email">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+
                 <!-- Modal PIN Email -->
                 <div class="modal-body text-center" style="padding:40px;" id="email-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
@@ -171,13 +176,48 @@
                         <div class="pincode-input-email"></div>
                     </div>
                     @if( !empty(Session::get('user')['email']) )
-                        <button class="btn text-weight-400 fs-16" id="forgot-pin">
-                            Lupa PIN ?
-                        </button>
+                        <a href="{{ url('/profile/pin') }}">
+                            <button class="btn text-weight-400 fs-16">
+                                Lupa PIN ?
+                            </button>
+                        </a>
                     @endif
                 </div>
 
-                <div class="modal-body text-center" style="padding:40px; display:none;" id="input-password">
+                <!-- Modal update Email -->
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="email-input-modal">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+                    <div class="mb-5">
+                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Email Anda</div>
+                        <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan email anda aktif untuk menerima tautan dari kami.</div>
+                        
+                        <div id="error-update-email">
+                            <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
+                                <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
+                                <div class="d-flex flex-column">
+                                    <span id="message-error-update-email"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fv-row mb-8">
+                            <input type="email" placeholder="Masukkan email anda" name="email" class="form-control bg-transparent" required/>
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="button" id="btn-update-email" class="btn btn-success">
+                            <span class="indicator-label">Kirim</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Success Update Email -->
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="success-update-email">
+                    <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
+                    <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Pin berhasil diubah</div>
+                </div>
+
+                <!-- <div class="modal-body text-center" style="padding:40px; display:none;" id="input-password">
 
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
 
@@ -219,7 +259,7 @@
                         <div class="mt-5 text-weight-400 fs-16">Kami telah mengirimkan tautan ke email <strong id="recipient-email">Anantasyaaluia@gmail.com</strong>, klik tautan tersebut untuk melanjutkan mengubah kata sandi</div>
                     </div>
                     <button type="button" class="btn mt-10 btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="width:150px;">OK</button>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -229,6 +269,7 @@
     <div class="modal fade" tabindex="-1" id="modal-ubah-telepon">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+
                 <!-- Modal PIN Phone -->
                 <div class="modal-body text-center" style="padding:40px;" id="phone-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
@@ -239,13 +280,49 @@
                         <div class="pincode-input-phone"></div>
                     </div>
                     @if( !empty(Session::get('user')['email']) )
-                        <button class="btn text-weight-400 fs-16" id="forgot-pin">
-                            Lupa PIN ?
-                        </button>
+                        <a href="{{ url('/profile/pin') }}">
+                            <button class="btn text-weight-400 fs-16">
+                                Lupa PIN ?
+                            </button>
+                        </a>
                     @endif
                 </div>
 
-                <div class="modal-body text-center" style="padding:40px; display:none;" id="input-pin">
+                <!-- Modal update Phone -->
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="phone-input-modal">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+                    <div class="mb-5">
+                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Email Anda</div>
+                        <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan email anda aktif untuk menerima tautan dari kami.</div>
+                        
+                        <div id="error-update-phone">
+                            <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
+                                <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
+                                <div class="d-flex flex-column">
+                                    <span id="message-error-update-phone"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fv-row mb-8">
+                            <input type="number" placeholder="Masukkan Nomer Telephon anda" name="phone" class="form-control bg-transparent" required/>
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="button" id="btn-update-phone" class="btn btn-success">
+                            <span class="indicator-label">Kirim</span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Modal Success Update Phone -->
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="success-update-phone">
+                    <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
+                    <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Pin berhasil diubah</div>
+                </div>
+
+                <!-- <div class="modal-body text-center" style="padding:40px; display:none;" id="input-pin">
 
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
 
@@ -265,7 +342,7 @@
                         <div class="mt-5 text-weight-400 fs-16">Kami telah mengirimkan tautan ke email <strong id="recipient-email">Anantasyaaluia@gmail.com</strong>, klik tautan tersebut untuk melanjutkan mengubah kata sandi</div>
                     </div>
                     <button type="button" class="btn mt-10 btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="width:150px;">OK</button>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -283,146 +360,177 @@
         if ( "{{ old('gender') }}" ) {
             $(`input[name=gender][value="{{ old('gender') }}"]`).prop('checked',true);
         } else {
-            $(`input[name=gender][value={{ $user['gender'] }}]`).prop('checked',true);
+            $(`input[name=gender][value="{{ $user['gender'] }}"]`).prop('checked',true);
         }
     </script>
     
-    <!-- Check PIN Email -->
+    <!-- Check PIN Email Start -->
     <script>
-        new PincodeInput('.pincode-input-email', {
-            count: 6,
-            onInput: (value) => {
-                if ( value.length >= 6 ) {
-                    $.ajax({
-                        url: "{{ url('/validateOtp') }}",
-                        type: 'POST',
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                            'otp' : value
-                        },
-                        dataType: "JSON",
-                        success: function(data) {
-                            if ( data.status == '1' ) {
-                                return false;
-                            } else {
-                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
-                                return false;
-                            }
-                        }
-                    })
-                }
-            }
-        })
-    </script>
+        function inputPINEmail() {
+            $('#email-modal').css("display", "block");
+            $('#email-input-modal').css("display", "none");
+            $('#success-update-email').css("display", "none");
+            $('#error-update-email').css("display", "none");
+            $('input[name="email"]').val('');
+            $('.pincode-input').val('');
+        }
+        function formUpdateEmail() {
+            $('#email-modal').css("display", "none");
+            $('#email-input-modal').css("display", "block");
+            $('#success-update-email').css("display", "none");
+            $('#error-update-email').css("display", "none");
+            $('input[name="email"]').val('');
+        }
+        function errorFormUpdateEmail() {
+            $('#email-modal').css("display", "none");
+            $('#email-input-modal').css("display", "block");
+            $('#success-update-email').css("display", "block");
+            $('#error-update-email').css("display", "none");
+        }
+        function successFormUpdateEmail() {
+            $('#email-modal').css("display", "none");
+            $('#email-input-modal').css("display", "none");
+            $('#success-update-email').css("display", "none");
+            $('#error-update-email').css("display", "block");
+        }
 
-    <!-- Check PIN Phone -->
-    <script>
-        new PincodeInput('.pincode-input-phone', {
-            count: 6,
-            onInput: (value) => {
-                if ( value.length >= 6 ) {
-                    $.ajax({
-                        url: "{{ url('/validateOtp') }}",
-                        type: 'POST',
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                            'otp' : value
-                        },
-                        dataType: "JSON",
-                        success: function(data) {
-                            if ( data.status == '1' ) {
-                                console.log()
-                                return false;
-                            } else {
-                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
-                                return false;
-                            }
-                        }
-                    })
-                }
-            }
-        })
-    </script>
-
-    <!-- btn Edit Email  -->
-    <script>
         function isValidEmailAddress(emailAddress) {
             var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
             return pattern.test(emailAddress);
         }
 
-        // input password
-        function inputPassword() {
-            $('#input-pin').css("display", "none");
-            $('#input-password').css("display", "block");
-            $('#input-email').css("display", "none");
-            $('#email-terkirim').css("display", "none");
-        }
-
-        // input email
-        function inputEmail() {
-            $('#input-pin').css("display", "none");
-            $('#input-password').css("display", "none");
-            $('#input-email').css("display", "block");
-            $('#email-terkirim').css("display", "none");
-        }
-
-        // success Message
-        function responseFailed() {
-            $('#email-reset-failed').css("display", "block");
-            $('#email-reset-load').css("display", "none");
-            $('#email-reset-success').css("display", "none");
-            $('#user-not-found').css("display", "block");
-        }
-
-        // failed Message
-        function responseSuccess() {
-            $('#input-pin').css("display", "none");
-            $('#input-password').css("display", "none");
-            $('#input-email').css("display", "none");
-            $('#email-terkirim').css("display", "block");
-        }
-        
-        $('#gunakan-sandi').click(function () {
-            inputPassword();
-        });
-
-        $('#btn-pin-lanjutkan').click(function () {
-            inputEmail();
-        });
-
-        $('#btn-password-lanjutkan').click(function () {
-            inputEmail();
-        });
-
-        $('#btn-kirim-email').click(function () {
-            const email = $('input[name="email"]').val();
-
-            if ( isValidEmailAddress(email) ) {
-                load();
-
-                $.ajax({
-                    url: "{{ url('/reset-password/send-email') }}",
-                    type: 'POST',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        'email' : email
-                    },
-                    dataType: "JSON",
-                    success: function(data) {
-                        if ( data.status == '1' ) {
-                            return responseSuccess();
-                        } else {
-                            return responseFailed();
+        new PincodeInput('.pincode-input-email', {
+            count: 6,
+            onInput: (value) => {
+                console.log('input pin email');
+                if ( value.length >= 6 ) {
+                    $.ajax({
+                        url: "{{ url('/validate-otp') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            'pin' : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == '1' ) {
+                                formUpdateEmail();
+                                return false;
+                            } else {
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
+                                return false;
+                            }
                         }
-                    }
-                })
+                    })
+                }
             }
+        })
+    </script>
+    <script>
+        $('#update-email').click(function(){
+            inputPINEmail();
+        });
+        $('#btn-update-email').click(function () {
+            const email = $('input[name="email"]').val();
+            $.ajax({
+                url: "{{ url('/profile/update-email') }}",
+                type: 'PATCH',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "email" : email
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if ( data.status == '1' ) {
+                        successFormUpdateEmail();
+                    } else {
+                        errorFormUpdateEmail()
+                        $('#message-error-update-email').html(data.message);
+                    }
+                }
+            });
         });
     </script>
+    <!-- Check PIN Email End -->
 
-    <!-- btn Edit Phone -->
+    <!-- Check PIN Phone Start -->
     <script>
-
+        function inputPINPhone() {
+            $('#phone-modal').css("display", "block");
+            $('#phone-input-modal').css("display", "none");
+            $('#error-update-phone').css("display", "none");
+            $('#success-update-phone').css("display", "none");
+            $('input[name="phone"]').val('');
+            $('.pincode-input').val('');
+        }
+        function formUpdatePhone() {
+            $('#phone-modal').css("display", "none");
+            $('#phone-input-modal').css("display", "block");
+            $('#error-update-phone').css("display", "none");
+            $('#success-update-phone').css("display", "none");
+        }
+        function errorFormUpdatePhone() {
+            $('#phone-modal').css("display", "none");
+            $('#phone-input-modal').css("display", "block");
+            $('#error-update-phone').css("display", "block");
+            $('#success-update-phone').css("display", "none");
+        }
+        function successFormUpdatePhone() {
+            $('#phone-modal').css("display", "none");
+            $('#phone-input-modal').css("display", "none");
+            $('#error-update-phone').css("display", "none");
+            $('#success-update-phone').css("display", "block");
+        }
+        new PincodeInput('.pincode-input-phone', {
+            count: 6,
+            onInput: (value) => {
+                if ( value.length >= 6 ) {
+                    $.ajax({
+                        url: "{{ url('/validate-otp') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            'pin' : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == '1' ) {
+                                formUpdatePhone();
+                                return false;
+                            } else {
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
+                                return false;
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+    <script>
+        $('#update-phone').click(function(){
+            inputPINPhone();
+        });
+        $('#btn-update-phone').click(function () {
+            console.log('btn-update');
+            const phone = $('input[name="phone"]').val();
+            $.ajax({
+                url: "{{ url('/profile/update-phone') }}",
+                type: 'PATCH',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "phone" : phone
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if ( data.status == '1' ) {
+                        successFormUpdatePhone() 
+                    } else {
+                        errorFormUpdatePhone()
+                        $('#message-error-update-phone').html(data.message)
+                    }
+                }
+            });
+        });
     </script>
 @endpush

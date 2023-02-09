@@ -75,6 +75,11 @@
         </div>
     </div>                            
     
+    <div class="text-gray-500 text-center fw-semibold fs-6 mt-5 mb-5">
+        Dengan masuk. Anda Menyetujui 
+        <a href="#" target="_blank" class="text-green url-term-and-condition">Syarat & Ketentuan</a> dan 
+        <a href="#" target="_blank" class="text-green url-privacy-policy">Kebijakan Privasi</a> UMRA ID. 
+    </div>
     <div class="text-gray-500 text-center fw-semibold fs-6">Belum punya Akun? <a href="{{ url('/register') }}">Daftar</a></div>
               
     

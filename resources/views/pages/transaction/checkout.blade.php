@@ -111,7 +111,7 @@
                             <div class="card-body p-5">
                                 <div class="row">
                                     <div class="col-1">
-                                        <input class="form-check-input mt-7" type="radio" value="CASH" name="gender" id="CASH" checked>
+                                        <input class="form-check-input mt-7" type="radio" value="CASH" name="payment_method" id="CASH">
                                     </div>
                                     <div class="col-11">
                                         <div class="font-normal-600 fs-14">Cash</div>
@@ -127,7 +127,7 @@
                             <div class="card-body p-5">
                                 <div class="row">
                                     <div class="col-1">
-                                        <input class="form-check-input mt-7" type="radio" value="DOWNPAYMENT" name="gender" id="DOWNPAYMENT">
+                                        <input class="form-check-input mt-7" type="radio" value="DOWNPAYMENT" name="payment_method" id="DOWNPAYMENT">
                                     </div>
                                     <div class="col-11">
                                         <div class="font-normal-600 fs-14">Cicilan hingga 2x <span class="badge badge-success px-5 mx-3" style="border-radius: 10px">Cukup bayar Rp. {{ number_format($configuration[2]['value_configuration']) }} / orang</span></div>
@@ -160,6 +160,7 @@
                                 Rp. <span id="total_price">0</span>
                             </div>
                         </div>
+                        <div id="down_payment"></div>
                     </div>
                 </div>
                 <hr>
@@ -219,9 +220,33 @@
             const total_people_register = parseInt(count_people_register_doble) + parseInt(count_people_register_triple) + parseInt(count_people_register_quad);
             const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
             $('#total_price').html(formatRupiah(total_price))
+            const down_payment = total_people * "{{ $configuration[2]['value_configuration'] }}";
+
+            // Set Payment Method
+            if ( localStorage.getItem("typePayment") ) {
+                if ( localStorage.getItem("typePayment") == 'CASH' ) {
+                    $(`input[name=payment_method][value="CASH"]`).prop('checked',true);
+                    $('#down_payment').html(``);
+                } else {
+                    $(`input[name=payment_method][value="DOWNPAYMENT"]`).prop('checked',true);
+                    $('#down_payment').html(`
+                        <div class="row">
+                            <div class="col-6 font-normal-400 fs-18">
+                                Uang Muka
+                                <i class="fa-solid fa-circle-info mx-2"></i>
+                            </div>
+                            <div class="col-6 text-right font-normal-700 fs-18 text-green">
+                                Rp. `+ formatRupiah(down_payment) +`
+                            </div>
+                        </div>
+                    `);
+                }
+            } else {
+                $('#down_payment').html(``);
+            }
 
             // Validation
-            if ( total_people > 0 && total_people == total_people_register ) {
+            if ( total_people > 0 && total_people == total_people_register && typeof localStorage.getItem("typePayment") !== 'undefined' ) {
                 $('#btn-next').removeAttr("disabled");
             } else {
                 $('#btn-next').attr('disabled','disabled');
@@ -241,6 +266,12 @@
 
     <!-- Link Button Start -->
     <script>
+        $("input[name='payment_method']").click(function() {
+            const payment_method = $("input[name='payment_method']:checked").val();
+            localStorage.setItem("typePayment", payment_method);
+            total();
+        });
+        
         $('#btn-next').click(function() {
             const cardData = JSON.parse(localStorage.getItem("cartData"));
 
@@ -258,7 +289,7 @@
 
             const total_people_register = parseInt(count_people_register_doble) + parseInt(count_people_register_triple) + parseInt(count_people_register_quad);
 
-            if ( total_people > 0 && total_people == total_people_register ) {
+            if ( total_people > 0 && total_people == total_people_register && typeof localStorage.getItem("typePayment") !== 'undefined' ) {
                 localStorage.setItem("step", "4");
                 window.location.href = "{{ url('/transaction/payment', $package_product['id_packet']) }}";
                 return false;
@@ -268,23 +299,4 @@
         });
     </script>
     <!-- Link Button End -->
-
-    <script>
-        // $('#btn-next').click(function() {
-        //     const cardData = JSON.parse(localStorage.getItem("cartData"));
-            
-        //     $.ajax({
-        //         url: "{{ url('/transaction/checkout', $package_product['id_packet']) }}",
-        //         type: 'POST',
-        //         data: {
-        //             "_token": "{{ csrf_token() }}",
-        //             'data' : cardData
-        //         },
-        //         dataType: "JSON",
-        //         success: function(data) {
-        //             console.log(data);
-        //         }
-        //     })
-        // });
-    </script>
 @endpush

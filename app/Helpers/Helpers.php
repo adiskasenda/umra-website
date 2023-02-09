@@ -1,5 +1,6 @@
 <?php
 namespace App\Helpers;
+use Session;
 
 class Helpers
 {
@@ -159,6 +160,11 @@ class Helpers
                 ]
             ],
         ];
+
+        if( empty(Session::get('user')['email']) ) {
+            // remove reset password
+            unset($sidebar[0]['menu_collaps'][1]);
+        }
 
         return $sidebar;
     }

@@ -144,8 +144,8 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/checkout/{id}', [ TransactionController::class, 'checkout' ]);
         Route::get('/payment/{id}', [ TransactionController::class, 'payment' ]);
         Route::get('/payment-option/{id}', [ TransactionController::class, 'paymentOption' ]);
-        Route::post('/checkout/{id}', [ TransactionController::class, 'storeCheckout' ]);
-       
+        Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
+        Route::get('/payment-status/{id}', [ TransactionController::class, 'paymentStatus' ]);
         // Detail Trasaction
         Route::get('/{id}/detail', [ TransactionController::class, 'show' ]);
     });
@@ -157,8 +157,8 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/edit', [ ProfileController::class, 'editProfile' ]);
         Route::patch('/', [ ProfileController::class, 'updateProfile' ]);
             // Update & Verification
-            Route::post('/update-email', [ ProfileController::class, 'updateEmail' ]);
-            Route::post('/update-phone', [ ProfileController::class, 'updatePhone' ]);
+            Route::patch('/update-email', [ ProfileController::class, 'updateEmail' ]);
+            Route::patch('/update-phone', [ ProfileController::class, 'updatePhone' ]);
         Route::get('/password', [ ProfileController::class, 'profilePassword' ]);
             Route::patch('/update-password', [ ProfileController::class, 'updatePassword' ]);
         

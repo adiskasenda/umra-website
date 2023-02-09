@@ -214,7 +214,6 @@
             inputNewPIN();
         });
         $('#btn-buat-pin').click(function(){
-            console.log('new pin');
             var formInput = {};
             var a = $('#form-new-pin').serializeArray();
             $.each(a, function() {

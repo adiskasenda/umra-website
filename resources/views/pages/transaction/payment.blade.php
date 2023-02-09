@@ -8,7 +8,7 @@
         ])
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ url('/transaction/checkout', $package_product['id_packet']) }}" class="font-normal-700 fs-24 text-dark mt-3">
+                <a href="" class="font-normal-700 fs-24 text-dark mt-3">
                     <i class="fa-solid fa-arrow-left me-2"></i> Pilih Metode Pembayaran
                 </a>
                 <div class="font-normal-400 fs-14 mt-3" style="margin-left: 19px;">Pilih metode pembayaran yang tersedia</div>
@@ -21,38 +21,26 @@
                                     Metode Pembayaran
                                 </div>
                                 <a href="{{ url('/transaction/payment-option', $package_product['id_packet']) }}" class="row mx-2 my-5">
-                                    <div class="col-7">
+                                    <div class="col-11">
                                         <div class="font-normal-600 fs-14 text-dark">Virtual Account (VA)</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
                                     </div>
                                     <div class="col-1 mt-1">
                                         <i class="fa-solid fa-chevron-right"></i>
                                     </div>
                                 </a>
                                 <hr>
-                                <div class="row mx-2 my-5">
+                                <!-- <div class="row mx-2 my-5">
                                     <div class="col-7">
                                         <div class="font-normal-600 fs-14">QRIS</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
                                     </div>
                                     <div class="col-1 mt-1">
                                         <i class="fa-solid fa-chevron-right"></i>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
-                        <div class="card card-bordered mt-5">
+                        <!-- <div class="card card-bordered mt-5">
                             <div class="card-body p-5">
                                 <div class="font-normal-700 fs-16">
                                     Metode Pembayaran Cross Border
@@ -60,12 +48,6 @@
                                 <div class="row mx-2 my-5">
                                     <div class="col-7">
                                         <div class="font-normal-600 fs-14">Kartu Kredit</div>
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
                                     </div>
                                     <div class="col-1 mt-1">
                                         <i class="fa-solid fa-chevron-right"></i>
@@ -76,18 +58,12 @@
                                     <div class="col-7">
                                         <div class="font-normal-600 fs-14">e-wallet & Bank-transfer ASIA</div>
                                     </div>
-                                    <div class="col-2">
-                                        <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="https://api-uploads.umra.id/support/5a80b690-2cbb-41c4-bcba-47d8e94d940b.png" width="40px" alt="">
-                                    </div>
                                     <div class="col-1 mt-1">
                                         <i class="fa-solid fa-chevron-right"></i>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
 
@@ -103,16 +79,12 @@
                                         <div class="font-normal-700 fs-16">{{ $package_product['name'] }}</div>
                                         <div class="">
                                             <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
-                                            3 Calon Jamaah
-                                            <span style="margin-left:5px;">
-                                                <i class="fa-solid fa-wallet me-2" style="color: var(--green)"></i>
-                                                Cicilan
-                                            </span>
+                                            <span class="total_people">0</span> Calon Jamaah
+                                            <span class="icon-cicilan"></span>
                                         </div>
                                     </div>
                                     <div class="col-4 text-right">
-                                        <div class="font-normal-500 fs-12 text-green">Cicilan (DP)</div>
-                                        <div class="font-normal-700 fs-16">Rp. 15.000.000</div>
+                                        <div id="down_payment"></div>
                                     </div>
                                 </div>
                             </div>
@@ -120,15 +92,15 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
-                                        3 Calon  Jamaah
+                                        <span class="total_people">0</span> Calon  Jamaah
                                     </div>
                                     <div class="col-6 text-right">
-                                        Total Harga <strong>Rp. 40.000.000</strong>
+                                        Total Harga Rp. <span id="total_price">0</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <hr class="my-5">
 
                         <div class="card card-bordered mt-5">
@@ -141,7 +113,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="font-700 fs-24 text-green text-right">
-                                            Rp. 15.000.000
+                                            Rp. <span id="total_bill">0</span>
                                         </div>
                                     </div>
                                 </div>
@@ -159,15 +131,51 @@
     <!-- Check Cart Start -->
     <script>
         function checkChart() {
-            
+            if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
+                window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
+                return false;
+            }
+            if ( localStorage.getItem("step") < 4 ) {
+                window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
+                return false;
+            }
         }
     </script>
 
     <script>
         function total() {
-        
+            const cardData = JSON.parse(localStorage.getItem("cartData"));
+            
+            // Count Jmaaah
+            const count_people_doble = cardData[0][0]['doble'];
+            const count_people_triple = cardData[0][1]['triple'];
+            const count_people_quad = cardData[0][2]['quad'];
+
+            // Count Price
+            const count_price_doble = parseInt(count_people_doble) * "{{$package_product['price_double']}}";
+            const count_price_triple = parseInt(count_people_triple) * "{{$package_product['price_triple']}}";
+            const count_price_quad = parseInt(count_people_quad) * "{{$package_product['price_quad']}}";
+
+            const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
+            $('.total_people').html( total_people );
+            const down_payment = total_people * "{{ $configuration[2]['value_configuration'] }}";
+            $('#total_bill').html(formatRupiah( down_payment ));
+            const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
+            $('#total_price').html(formatRupiah( total_price ));
+
+            $('.icon-cicilan').html(`
+                <i class="fa-solid fa-wallet me-2" style="color: var(--green)"></i>
+                Cicilan
+            `);
+
+            $('#down_payment').html(`
+                <div class="font-normal-500 fs-12 text-green">Cicilan (DP)</div>
+                <div class="font-normal-700 fs-16">Rp. 0</div>
+            `);
         }
     </script>
+    <!-- Check Cart End -->
+
     <!-- Document Ready Start -->
     <script>
         checkChart();

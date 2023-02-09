@@ -141,74 +141,85 @@ class TransactionController extends Controller
         return view('pages.transaction.paymentOption', [
             'package_product' => $package_product['data'],
             'configuration' => $configuration['data'],
-            'payment_method' => $payment_method
+            'payment_method' => $payment_method['data'],
         ]);
     }
 
-    public function storeCheckout($id, Request $request)
+    public function storeCheckout(Request $request)
     {
-        $this->header['ax-request-by'] = Session::get('user')['email'];
-        $this->header['Authorization'] = 'Bearer '.Session::get('token');
-
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
-        $package_product = json_decode($response->getBody(), true);
-
+        $order_guest = [
+            [
+                "type_bed" => 2,
+                "title" => "Mr",
+                "first_name" => "Hanif",
+                "last_name" => "Al Baaits",
+                "birth_date" => "1996-06-06",
+                "gender" => 1,
+                "address" => "Bekasi",
+                "phone_number" => "62811831891",
+                "ktp_number" => "",
+                "ktp_url" => "",
+                "passport_number" => "",
+                "passport_expiry_date" => "",
+                "passport_url" => "",
+                "nationality" => "",
+                "vaccine_status" => 0,
+                "vaccine_url" => ""
+            ]
+        ];
+        
         // Create Order
         $body = [
             "id_customer" => Session::get('user')['user_id'],
-            "uuid_packet" => "fec2779d-6ce0-11ed-9b9f-525400b9f32b",
+            "uuid_packet" => $reuqest->uuid_packet,
             "phone_number" => Session::get('user')['phone'],
             "person_double" => "1",
             "person_triple" => "0",
             "person_quad" => "0",
             "affliator_code" => "",
-            "type_payment" => "DOWNPAYMENT",
-            "order_guest" => [
-                [
-                    "type_bed" => 2,
-                    "title" => "Mr",
-                    "first_name" => "Hanif",
-                    "last_name" => "Al Baaits",
-                    "birth_date" => "1996-06-06",
-                    "gender" => 1,
-                    "address" => "Bekasi",
-                    "phone_number" => "62811831891",
-                    "ktp_number" => "",
-                    "ktp_url" => "",
-                    "passport_number" => "",
-                    "passport_expiry_date" => "",
-                    "passport_url" => "",
-                    "nationality" => "",
-                    "vaccine_status" => 0,
-                    "vaccine_url" => ""
-                ]
-            ]
+            "type_payment" => $request->type_payment,
+            "id_payment_method" => $request->payment_method,
+            "order_guest" => $order_guest
         ];
+
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer', $body);
         $order = json_decode($response->getBody(), true);
 
         // Create Payment
         $bodyPayment = [
-            "order_code" => "PKG2022122000002",
+            "order_code" => $order['order_code'],
             "type_payment" => "REPAYMENT",
-            "payment_method" => 5
+            "payment_method" => $request->payment_method
         ];
  
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/repayment', $bodyPayment);
         $payment_method = json_decode($response->getBody(), true);
 
         return response()->json([
-            'sukses' => 'ok'
+            'status' => $payment_method['status'],
+            'message' => $payment_method['message'],
+            'data' => $payment_method['data']
         ]);
     }
 
-    public function paymentSuccess()
+    public function paymentStatus($id)
     {
         $this->header['ax-request-by'] = Session::get('user')['email'];
         $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
-        return view('pages.transaction.paymentSuccess');
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/'.$id);
+        $order = json_decode($response->getBody(), true);
+
+        if ( empty($order['data']) ) {
+            return abort(404);
+        }
+
+        return view('pages.transaction.paymentStatus', [
+            'order' => $order['data']
+        ]);
     }
 
     public function show($id)
@@ -218,6 +229,10 @@ class TransactionController extends Controller
 
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/'.$id);
         $order = json_decode($response->getBody(), true);
+
+        if ( empty($order['data']) ) {
+            return abort(404);
+        }
 
         // configuration
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/META');
