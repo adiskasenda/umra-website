@@ -63,6 +63,14 @@
     color: var(--secondary);
 }
 
+.text-green-light {
+    color: #20A95A;
+}
+
+.text-red-error {
+    color: #B3261E;
+}
+
 .text-opacity {
     opacity: 0.7;
 }
@@ -102,6 +110,18 @@
 
 .bg-yellow-green {
     background-color: #F2F8ED;
+}
+
+.bg-red-canceled {
+    background-color: #F8F8F8;
+}
+
+.bg-payment-deadline {
+    background-color: #F8FCFC;
+}
+
+.bg-green-paid {
+    background-color: #F6FFF4;
 }
 
 .bg-picture {
@@ -271,6 +291,10 @@
 /* Badge Custom */
 .badge-green-light {
     background-color: #20A95A;
+}
+
+.badge-red-light {
+    background-color: #FEEEED;
 }
 
 .lable-danger {

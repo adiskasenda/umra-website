@@ -147,35 +147,39 @@ class TransactionController extends Controller
 
     public function storeCheckout(Request $request)
     {
-        $order_guest = [
-            [
-                "type_bed" => 2,
-                "title" => "Mr",
-                "first_name" => "Hanif",
-                "last_name" => "Al Baaits",
-                "birth_date" => "1996-06-06",
-                "gender" => 1,
-                "address" => "Bekasi",
-                "phone_number" => "62811831891",
-                "ktp_number" => "",
-                "ktp_url" => "",
-                "passport_number" => "",
-                "passport_expiry_date" => "",
-                "passport_url" => "",
-                "nationality" => "",
-                "vaccine_status" => 0,
-                "vaccine_url" => ""
-            ]
-        ];
+        foreach( $request->card_data[0] as $key_jamaah => $jamaah ) {
+            foreach( $jamaah['jamaah'] as $guest ) {
+                $order_guest[] = [
+                    [
+                        "type_bed" => $key_jamaah + 1,
+                        "title" => "",
+                        "first_name" => $guest['first_name'],
+                        "last_name" => $guest['last_name'],
+                        "birth_date" => $guest['birth_date'],
+                        "gender" => $guest['gender'],
+                        "address" => $guest['address'],
+                        "phone_number" => $guest['phone_number'],
+                        "ktp_number" => $guest['ktp_number'],
+                        "ktp_url" => "",
+                        "passport_number" => $guest['passport_number'],
+                        "passport_expiry_date" => $guest['passport_expiry_date'],
+                        "passport_url" => "",
+                        "nationality" => "",
+                        "vaccine_status" => $guest['vaccine_status'],
+                        "vaccine_url" => ""
+                    ]
+                ];
+            }
+        }
         
         // Create Order
         $body = [
             "id_customer" => Session::get('user')['user_id'],
             "uuid_packet" => $reuqest->uuid_packet,
             "phone_number" => Session::get('user')['phone'],
-            "person_double" => "1",
-            "person_triple" => "0",
-            "person_quad" => "0",
+            "person_double" => $request->card_data[0][0]['doble'],
+            "person_triple" => $request->card_data[0][1]['triple'],
+            "person_quad" => $request->card_data[0][2]['quad'],
             "affliator_code" => "",
             "type_payment" => $request->type_payment,
             "id_payment_method" => $request->payment_method,
@@ -185,13 +189,14 @@ class TransactionController extends Controller
         $this->header['ax-request-by'] = Session::get('user')['email'];
         $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
+        // Create Order
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer', $body);
         $order = json_decode($response->getBody(), true);
 
         // Create Payment
         $bodyPayment = [
             "order_code" => $order['order_code'],
-            "type_payment" => "REPAYMENT",
+            "type_payment" => $request->type_payment,
             "payment_method" => $request->payment_method
         ];
  
