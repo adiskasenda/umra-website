@@ -80,7 +80,8 @@
                                         <div class="">
                                             <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
                                             <span class="total_people">0</span> Calon Jamaah
-                                            <span class="icon-cicilan"></span>
+                                            <i class="fa-solid fa-wallet me-2" style="color: var(--green)"></i>
+                                            Cicilan
                                         </div>
                                     </div>
                                     <div class="col-4 text-right">
@@ -159,19 +160,19 @@
             const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
             $('.total_people').html( total_people );
             const down_payment = total_people * "{{ $configuration[2]['value_configuration'] }}";
-            $('#total_bill').html(formatRupiah( down_payment ));
             const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
             $('#total_price').html(formatRupiah( total_price ));
 
-            $('.icon-cicilan').html(`
-                <i class="fa-solid fa-wallet me-2" style="color: var(--green)"></i>
-                Cicilan
-            `);
-
-            $('#down_payment').html(`
-                <div class="font-normal-500 fs-12 text-green">Cicilan (DP)</div>
-                <div class="font-normal-700 fs-16">Rp. 0</div>
-            `);
+            if ( localStorage.getItem("typePayment") == 'CASH' ) {
+                $('#total_bill').html(formatRupiah( down_payment ));
+                
+                $('#down_payment').html(`
+                    <div class="font-normal-500 fs-12 text-green">Cicilan (DP)</div>
+                    <div class="font-normal-700 fs-16">Rp. `+ formatRupiah(down_payment) +`</div>
+                `);
+            } else {
+                $('#total_bill').html(formatRupiah( total_price ));
+            }
         }
     </script>
     <!-- Check Cart End -->
