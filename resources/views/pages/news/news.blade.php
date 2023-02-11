@@ -45,7 +45,7 @@
                                     <label for="specificSizeInputGroupUsername" class="fs-16" style="font-weight: bold;">Cari Berita Terkini mengenai perjalanan ibadah umroh Anda</label>
                                 </div>
                                 <div class="col-sm-4 mt-3 mb-3 justify-content-md-center">
-                                    <input type="text" id="search" placeholder="Pencarian" name="search" value="{{ $search }}" class="form-control" required/>
+                                    <input type="text" id="search" placeholder="Pencarian" name="search" value="{{ $search }}" class="form-control"/>
                                 </div>
                             </div>
                         </div>
@@ -81,19 +81,21 @@
         </div>
     </div>
 
-    <ul class="pagination" id="pagination1"></ul>
+    @if ( $search == null )
+        <ul class="pagination" id="pagination1"></ul>
+    @endif
 
 @endsection
 
 @push('page_js')
     <script type="text/javascript">
         $.jqPaginator('#pagination1', {
-            totalPages: 10,
+            totalPages: parseInt("{{ $total }}"),
             visiblePages: 5,
-            currentPage: 1
+            currentPage: parseInt("{{ empty($page) ? $page+1 : $page+1 }}")
         });
         function link(url) {
-            window.location.href = "{{ url('/news') }}";
+            window.location.href = "{{ url('/news') }}" + '?page=' + url;
             return false;
         }
     </script>
