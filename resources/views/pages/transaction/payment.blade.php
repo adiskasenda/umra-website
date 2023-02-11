@@ -8,7 +8,7 @@
         ])
         <div class="row">
             <div class="col-md-12">
-                <a href="" class="font-normal-700 fs-24 text-dark mt-3">
+                <a href="{{ url('/transaction/checkout', $package_product['id_packet']) }}" class="font-normal-700 fs-24 text-dark mt-3">
                     <i class="fa-solid fa-arrow-left me-2"></i> Pilih Metode Pembayaran
                 </a>
                 <div class="font-normal-400 fs-14 mt-3" style="margin-left: 19px;">Pilih metode pembayaran yang tersedia</div>

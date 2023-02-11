@@ -226,6 +226,20 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                        
+                                        @if( $order['need_pay'] )
+                                            <div class="row mt-5">
+                                                <div class="col-6">
+                                                    <div class="row font-normal-400 fs-14">
+                                                        {{ $order['need_pay']['name'] }}
+                                                    </div>
+                                                    <div class="row font-normal-700 fs-16 text-green-light">Rp. {{ number_format($order['need_pay']['value']) }}</div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <a href="{{ url('/transaction/payment-need-pay', $order['id_order']) }}" class="btn btn-success">Bayar Sekarang</a>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -254,7 +268,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                @else
+                                @elseif ( $order['alert_lunas'] )
                                     <div class="card card-bordered mt-5 bg-green-paid">
                                         <div class="card-body p-5 pt-2 pb-2">
                                             <div class="font-normal-500 fs-14">
