@@ -69,14 +69,14 @@
                         <div class="carousel-inner">
                             @foreach( $banners2 as $key => $banner2 )
                                 <div @if( $key == 0) class="carousel-item active mb-8"  @else class="carousel-item mb-8" @endif>
-                                    <img class="d-block w-100 img-banner" src="{{ $banner2['url_banner_web'] }}" alt="{{ $banner2['url_banner_web'] }}" width="100%">
+                                    <img class="d-block w-100 img-banner lozad" src="{{ $banner2['url_banner_web'] }}" alt="{{ $banner2['url_banner_web'] }}" width="100%">
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <img class="img-banner" src="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" alt="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" width="100%">
+                    <img class="img-banner lozad" src="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" alt="{{ asset('assets-web/img/banner/banner-download-umra.png') }}" width="100%">
                 </div>
             </div>
         </div>
