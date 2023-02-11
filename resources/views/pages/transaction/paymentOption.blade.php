@@ -236,27 +236,27 @@
                             if ( data.status == '1' ) {
                                 const typePayment = localStorage.getItem("typePayment")
                                 const cardData = JSON.parse(localStorage.getItem("cartData"));
-                                const uuidPacket = "";
-                                const paymentMethod = "";
+                                const uuidPacket = "{{ $package_product['uuid_packet'] }}";
+                                const paymentMethod = "1";
 
-                                // $.ajax({
-                                //     url: "{{ url('/transaction/checkout') }}",
-                                //     type: 'POST',
-                                //     data: {
-                                //         "_token": "{{ csrf_token() }}",
-                                //         "uuid_packet" : uuidPacket,
-                                //         "type_payment" : typePayment,
-                                //         "card_data" : cardData,
-                                //         "payment_method" : paymentMethod,
-                                //     },
-                                //     dataType: "JSON",
-                                //     success: function(data) {
-                                            window.location.href = "{{ url('/transaction/payment-status/1') }}";
-                                            return false;
-                                //     }
-                                // });
+                                $.ajax({
+                                    url: "{{ url('/transaction/checkout') }}",
+                                    type: 'POST',
+                                    data: {
+                                        "_token": "{{ csrf_token() }}",
+                                        "uuid_packet" : uuidPacket,
+                                        "type_payment" : typePayment,
+                                        "card_data" : cardData,
+                                        "payment_method" : paymentMethod,
+                                    },
+                                    dataType: "JSON",
+                                    success: function(data) {
+                                        window.location.href = "{{ url('/transaction/payment-status/1') }}";
+                                        return false;
+                                    }
+                                });
 
-                                // return false;
+                                return ;
                             } else {
                                 $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
                                 return false;

@@ -231,7 +231,7 @@
 
                                 <!-- Note Payment -->
                                 @if ( $order['alert_pesanan_batal_otomatis'] )
-                                    <div class="card card-bordered mt-5" style="background-color: #F8FCFC">
+                                    <div class="card card-bordered mt-5 bg-red-canceled">
                                         <div class="card-body p-5 pt-2 pb-2">
                                             <div class="font-normal-500 fs-14">
                                                 <i class="fa-solid fa-circle-info me-2" style="color: #B3261E"></i>
@@ -243,10 +243,10 @@
                                         </div>
                                     </div>
                                 @elseif ( $order['alert_tenggat_waktu_pelunasan'] )
-                                    <div class="card card-bordered mt-5" style="background-color: #F8FCFC">
+                                    <div class="card card-bordered mt-5 bg-payment-deadline">
                                         <div class="card-body p-5 pt-2 pb-2">
                                             <div class="font-normal-500 fs-14">
-                                                <i class="fa-solid fa-circle-info me-2" style="color: #B3261E"></i>
+                                                <i class="fa-solid fa-circle-info me-2" style="var(--primary)"></i>
                                                 Tenggat waktu pelunasan
                                             </div>
                                             <div class="font-normal-400 fs-12">
@@ -255,10 +255,10 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="card card-bordered mt-5" style="background-color: #F8FCFC">
+                                    <div class="card card-bordered mt-5 bg-green-paid">
                                         <div class="card-body p-5 pt-2 pb-2">
                                             <div class="font-normal-500 fs-14">
-                                                <i class="fa-solid fa-circle-info me-2" style="color: #B3261E"></i>
+                                                <i class="fa-solid fa-circle-check me-2" style="color: green"></i>
                                                 Lunas
                                             </div>
                                             <div class="font-normal-400 fs-12">
