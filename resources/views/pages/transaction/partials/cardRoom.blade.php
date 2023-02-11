@@ -204,6 +204,14 @@
                 }
             });
 
+            const message = validationFrom(data);
+
+            if ( message.length > 0 ) {
+                console.log('ini message validation active');
+                return false;
+            }
+            console.log('data sukses');
+
             const room = '{{ $type_room }}';
             if ( room == 'doble' ) {
                 const jamaah = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id !== data.id);
