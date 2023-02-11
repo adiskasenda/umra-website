@@ -55,6 +55,14 @@
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
         );
     }
+
+    function copy_clipboard(id) {
+        var temp = $("<input>");
+        $("body").append(temp);
+        temp.val($('#'+id+'').text()).select();
+        document.execCommand("copy");
+        temp.remove();
+    }
     
     $.ajax({
         url: "{{ url('/api/configuration/META') }}",

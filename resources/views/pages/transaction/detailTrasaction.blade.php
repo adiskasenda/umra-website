@@ -197,8 +197,8 @@
                                                         Nomor Virtual Account
                                                     </div>
                                                     <div class="font-normal-700 fs-14">
-                                                        {{ $order_payment['payment_code'] }}
-                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
+                                                        <span id="copy-text-va">{{ $order_payment['payment_code'] }}</span>
+                                                        <i class="fa-solid fa-copy mx-2" style="color: var(--green);cursor: pointer;" onclick="copy_clipboard('copy-text-va')"></i>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -446,4 +446,3 @@
     </div>
 </div>
 @endsection
-
