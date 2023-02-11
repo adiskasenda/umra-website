@@ -183,7 +183,7 @@
                         dataType: "JSON",
                         success: function(data) {
                             if ( data.status == '1' ) {
-                                const uuidPacket = "{{ $order['package_product']['uuid_packet'] }}";
+                                const orderCode = "{{ $order['order_code'] }}";
                                 const paymentMethod = "1";
 
                                 $.ajax({
@@ -191,9 +191,7 @@
                                     type: 'POST',
                                     data: {
                                         "_token": "{{ csrf_token() }}",
-                                        "uuid_packet" : uuidPacket,
-                                        "type_payment" : typePayment,
-                                        "card_data" : cardData,
+                                        "order_code" : orderCode,
                                         "payment_method" : paymentMethod,
                                     },
                                     dataType: "JSON",

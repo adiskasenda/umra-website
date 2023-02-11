@@ -71,7 +71,7 @@ class TransactionPaymentController extends Controller
     public function needPay(Request $request)
     {
         $body = [
-            "order_code" => $order['order_code'],
+            "order_code" => $request->order_code,
             "type_payment" => 'REPAYMENT',
             "payment_method" => $request->payment_method
         ];
