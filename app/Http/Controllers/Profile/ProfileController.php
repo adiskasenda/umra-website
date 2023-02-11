@@ -51,7 +51,7 @@ class ProfileController extends Controller
             "firstname" => $request->firstname,
             "lastname" => $request->lastname,
             "address" => $request->address,
-            "birthday" => $request->birthday,
+            "birthday" => date('Y-m-d', strtotime($request->birthday)),
             "gender" => $request->gender,
             "url_photo" => $url_avatar,
         ];
@@ -75,7 +75,6 @@ class ProfileController extends Controller
         $user['birthday'] = $request->birthday;
         $user['gender'] = $request->gender;
         $user['address'] = $request->address;
-
         Session::put([
             'user' => $user
         ]);

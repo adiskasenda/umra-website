@@ -70,6 +70,9 @@
                 'vaccine_status' => '',
                 'room' => '`+ room +`'
             ])`);
+            $(".date").flatpickr({
+                dateFormat: "d-m-Y",
+            });
 
             return ;
         }
@@ -153,31 +156,25 @@
             const id = $(this).data('id');
 
             if ( room == 'doble' ) {
-                console.log(cardData, 'doble');
                 const jamaah = cardData[0][0]['jamaah'].filter(jamaah => jamaah.id !== id);
                 cardData[0][0]['doble'] = parseInt(cardData[0][0]['doble']) - 1
                 cardData[0][0]['jamaah'] = jamaah;
-                console.log(cardData, 'doble');
 
                 if ( cardData[0][0]['doble'] == 0 ) {
                     $('#form-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
                 }
             } else if ( room == 'triple' ) {
-                console.log(cardData, 'triple');
                 const jamaah = cardData[0][1]['jamaah'].filter(jamaah => jamaah.id !== id);
                 cardData[0][1]['triple'] = parseInt(cardData[0][1]['triple']) - 1
                 cardData[0][1]['jamaah'] = jamaah;
-                console.log(cardData, 'triple');
 
                 if ( cardData[0][1]['triple'] == 0 ) {
                     $('#form-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
                 }
             } else {
-                console.log(cardData, 'quad');
                 const jamaah = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id !== id);
                 cardData[0][2]['quad'] = parseInt(cardData[0][2]['quad']) - 1
                 cardData[0][2]['jamaah'] = jamaah;
-                console.log(cardData, 'quad');
 
                 if ( cardData[0][2]['quad'] == 0 ) {
                     $('#form-room-{{ $type_room }}').append(`@include('pages.transaction.partials.NotFoundJamaah')`);
@@ -288,6 +285,10 @@
                 'vaccine_status' => '`+ data[0].vaccine_status +`',
                 'room' => '`+ room +`'
             ])`);
+            
+            $(".date").flatpickr({
+                dateFormat: "d-m-Y",
+            });
 
             total();
         });

@@ -145,12 +145,6 @@
 @endsection
 
 @push('page_js')
-    <script>
-        $(".date").flatpickr({
-            dateFormat: "d-m-Y",
-        });
-    </script>
-
     <!-- Check Cart Start -->
     <script>
         function checkChart() {
