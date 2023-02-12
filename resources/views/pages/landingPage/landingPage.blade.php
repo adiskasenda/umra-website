@@ -12,7 +12,7 @@
                 <div class="carousel-inner">
                     @foreach( $banners as $key => $banner )
                         <div @if( $key == 0) class="carousel-item active"  @else class="carousel-item" @endif>
-                            <img class="d-block w-100 img-banner" src="{{ $banner['url'] }}" alt="First slide">
+                            <img class="d-block w-100 img-banner lozad" src="{{ $banner['url'] }}" alt="First slide">
                         </div>
                     @endforeach
                 </div>
@@ -208,7 +208,7 @@
     <div class="container-fluid bg-green-light py-5">
         <div class="container mt-20 mb-20">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <img class="img-banner" src="{{ $banner3 }}" alt="{{ $banner3 }}" width="100%" height="100%">
+                <img class="img-banner lozad" src="{{ $banner3 }}" alt="{{ $banner3 }}" width="100%" height="100%">
             </div>
         </div>
     </div>
@@ -352,15 +352,15 @@
                             <div class="text-weight-400 fs-16">Manfaat sebagai menjadi agen penjualan dan pelayanan umroh kami :</div>
                             <div class="mt-2 mb-2">
                                 <div class="text-weight-400 fs-16">
-                                    <i class="fa-solid fa-circle-check" style="color: green"></i>  
+                                    <i class="fa-solid fa-circle-check" style="color: green"></i>
                                     Eksklusif melayani wilayah tertentu (kota / kabupaten)
                                 </div>
                                 <div class="text-weight-400 fs-16">
-                                    <i class="fa-solid fa-circle-check" style="color: green"></i>  
+                                    <i class="fa-solid fa-circle-check" style="color: green"></i>
                                     Keuntungan ganda dari komisi dan harga jual
                                 </div>
                                 <div class="text-weight-400 fs-16">
-                                    <i class="fa-solid fa-circle-check" style="color: green"></i>  
+                                    <i class="fa-solid fa-circle-check" style="color: green"></i>
                                     Dukungan, branding dan konsultansi penjualan
                                 </div>
                             </div>
@@ -379,7 +379,7 @@
                             <hr class="mt-10">
                             <div class="mt-5">
                                 <a href="https://zeals.asia/" target="_blank" class="btn mb-3" style="color:#7CB041; background-color:white; width: 100%; border-color:white;">Daftar Affiliate</a>
-                                
+
                                 <!-- <div class="text-center mx-auto">
                                     <a href="#" class="text-white">Syarat & Ketentuan</a>
                                 </div> -->
@@ -413,7 +413,7 @@
         </div>
     </div>
     <!-- Mitra End -->
-    
+
     <!-- Partner Start -->
     <div class="container-fluid py-5">
         <div class="container mt-20 mb-20">
@@ -425,7 +425,7 @@
             <div class="row justify-content-md-center mt-10">
                 @foreach($partners as $partner)
                     <div class="col-lg-3 col-md-4 col-12 mt-10 mb-10" style="display: flex;">
-                        <img class="img-card image-center" style="width:50%;margin:auto;" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
+                        <img class="img-card image-center lozad" style="width:50%;margin:auto;" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
                     </div>
                 @endforeach
             </div>
@@ -449,7 +449,7 @@
                     <a href="{{ url('/news', $new['id_blog'] ) }}">
                         <div class="card card-bordered" style="width: 100%; height: 100%;">
                             <div class="card-body p-5">
-                                <img class="img-card" src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
+                                <img class="img-card lozad" src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
                                 <div class="text-dark text-weight-600 fs-20" style="font-weight: bold;">{{ $new['subject'] }}</div>
                                 <div  class="text-tertiary text-weight-600 fs-16">{{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
                             </div>
@@ -476,7 +476,7 @@
                     Lihat Semua <i class="fas fa-chevron-right"></i>
                 </a>
             </div>
-            
+
         </div>
     </div>
     <!-- Artikel End -->

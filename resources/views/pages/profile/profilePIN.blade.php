@@ -49,12 +49,12 @@
                 <!-- Modal Form Input -->
                 <div class="modal-body text-center" style="padding:40px;" id="buat-pin-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
-                    
+
                     <form action="#" id="form-new-pin">
                         <div class="mb-5">
                             <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Buat Pin</div>
                             <div class="mt-5 text-weight-400 fs-16">Buatlah PIN baru yang menurut Anda mudah untuk diingat dan sulit untuk ditebak</div>
-                            
+
                             <div id="error-new-pin">
                                 <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
                                     <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
@@ -97,7 +97,7 @@
                 <div class="modal-body text-center" style="padding:40px;" id="pin-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
                     <div class="mb-5">
-                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan Pin</div>
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan Pin Sekarang</div>
                     </div>
                     <div class="fv-row mb-8">
                         <div class="pincode-input-pin"></div>
@@ -148,12 +148,12 @@
                 <!-- Modal Form Input -->
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="reset-pin-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
-                    
+
                     <form action="#" id="form-reset-pin">
                         <div class="mb-5">
                             <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Buat Pin</div>
                             <div class="mt-5 text-weight-400 fs-16">Buatlah PIN baru yang menurut Anda mudah untuk diingat dan sulit untuk ditebak</div>
-                            
+
                             <div id="error-reset-pin">
                                 <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
                                     <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
@@ -237,9 +237,11 @@
                 success: function(data) {
                     if ( data.status == '1' ) {
                         successNewPIN();
+                        window.location = "{{ url('/profile/pin') }}";
                     } else {
                         errorNewPIN();
                         $('#message-error-new-pin').html(data.message)
+                        return false
                     }
                 }
             });
@@ -282,7 +284,7 @@
             $('#reset-pin-modal').css("display", "none");
             $('#success-reset-pin').css("display", "none");
         }
-        
+
         function inputResetPIN() {
             $('#otp-email-modal').css("display", "none");
             $('#pin-modal').css("display", "none");
@@ -368,7 +370,7 @@
                 }
             }
         })
-        
+
         $('#forgot-pin').click(function(){
             forgotPIN();
         });
@@ -419,9 +421,11 @@
                 success: function(data) {
                     if ( data.status == '1' ) {
                         successResetPIN();
+                        window.location = "{{ url('/profile/pin') }}"
                     } else {
                         errorResetPIN();
                         $('#message-error-reset-pin').html(data.message)
+                        return false
                     }
                 }
             });

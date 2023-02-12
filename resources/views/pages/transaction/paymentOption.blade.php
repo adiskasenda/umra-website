@@ -27,17 +27,23 @@
                                 </div>
                                 @foreach( $payment_method as $payment_method )
                                     <div class="row mx-2 my-5">
-                                        <div class="col-2">
-                                            <img src="{{ $payment_method['url_logo'] }}" width="40px" alt="{{ $payment_method['url_logo'] }}">
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="font-normal-600 fs-14">{{ $payment_method['name_bank'] }}</div>
-                                        </div>
-                                        <div class="col-1 mt-1">
+                                        <label class="form-check-label" for="{{ $payment_method['id_payment_method'] }}">
                                             <div class="form-check form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="radio" value="{{ $payment_method['id_payment_method'] }}" name="payment_method" id="{{ $payment_method['id_payment_method'] }}"/>
+                                                <div class="col-11">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img src="{{ $payment_method['url_logo'] }}" width="40px" alt="{{ $payment_method['url_logo'] }}">
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <div class="font-normal-600 fs-14">{{ $payment_method['name_bank'] }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 mt-1">
+                                                    <input class="form-check-input" type="radio" value="{{ $payment_method['id_payment_method'] }}" name="payment_method" id="{{ $payment_method['id_payment_method'] }}"/>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </label>
                                     </div>
                                     <hr>
                                 @endforeach
@@ -100,7 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <hr class="my-5">
 
                         <div class="card card-bordered mt-5">
@@ -134,7 +140,7 @@
 <div class="modal fade" tabindex="-1" id="modal-masukkan-pin">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            
+
             <!-- Modal Input PIN -->
             <div class="modal-body text-center" style="padding:40px;" id="pin-modal">
                 <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
@@ -174,7 +180,7 @@
     <script>
         function total() {
             const cardData = JSON.parse(localStorage.getItem("cartData"));
-            
+
             // Count Jmaaah
             const count_people_doble = cardData[0][0]['doble'];
             const count_people_triple = cardData[0][1]['triple'];
@@ -193,7 +199,7 @@
 
             if ( localStorage.getItem("typePayment") == 'CASH' ) {
                 $('#total_bill').html(formatRupiah( down_payment ));
-                
+
                 $('#down_payment').html(`
                     <div class="font-normal-500 fs-12 text-green">Cicilan (DP)</div>
                     <div class="font-normal-700 fs-16">Rp. `+ formatRupiah(down_payment) +`</div>

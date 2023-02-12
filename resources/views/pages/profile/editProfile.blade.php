@@ -11,7 +11,7 @@
                     <a href="{{ url('/profile') }}" class="font-normal-700 fs-16 text-dark">
                         <i class="fa fa-arrow-left" style="color: black" aria-hidden="true"></i> Edit Profil
                     </a>
-                    
+
                     <div class="mt-5">
                         @include('layouts.partials.message')
                     </div>
@@ -69,7 +69,7 @@
                                                 <input type="text" id="birthday" class="form-control" placeholder="Tanggal Lahir" name="birthday" value="{{ date('d-m-Y',strtotime($user['birthday'])) }}"/>
                                                 <label for="floatingInputValue">Tanggal Lahir</label>
                                             </div>
-                                            
+
                                             <label for="jenis_kelamin" class="mt-3">Jenis Kelamin</label>
                                             <div class="row">
                                                 <div class="col-4">
@@ -102,8 +102,8 @@
                                         <div class="card card-bordered" style="background-color: #F8FCFC">
                                             <div class="card-body p-5">
                                                 <div class="row">
-                                                    <div class="col-9">
-                                                        <div class="font-normal-400 fs-12">
+                                                    <div class="col-lg-8 col-md-6 col-12">
+                                                        <div class="font-normal-400 fs-12 {{ $user['email'] ? '' : 'mt-3' }}">
                                                             {{ !empty($user['email']) ? $user['email'] : 'Belum Ada Email' }}
                                                         </div>
                                                         @if( !empty($user['email']) )
@@ -113,7 +113,7 @@
                                                             </div>
                                                         @endif
                                                     </div>
-                                                    <div class="col-3 mt-2">
+                                                    <div class="col-lg-4 col-md-6 col-12 text-center" style="margin: auto;">
                                                         <button type="button" id="update-email" class="btn font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-email">{{ !empty($user['email']) ? 'Ubah' : 'Tambahkan' }}</button>
                                                     </div>
                                                 </div>
@@ -124,9 +124,9 @@
                                         <div class="card card-bordered" style="background-color: #F8FCFC">
                                             <div class="card-body p-5 font-normal-600 fs-14">
                                                 <div class="row">
-                                                    <div class="col-9">
-                                                        <div class="font-normal-400 fs-12">
-                                                            {{ !empty($user['phone']) ? $user['phone'] : 'Belum Ada Nomer Telphone' }}
+                                                    <div class="col-lg-8 col-md-6 col-12">
+                                                        <div class="font-normal-400 fs-12 {{ $user['phone'] ? '' : 'mt-3' }}">
+                                                            {{ !empty($user['phone']) ? $user['phone'] : 'Belum Ada Nomer Telepon' }}
                                                         </div>
                                                         @if( !empty($user['phone']) )
                                                             <div class="font-normal-400 fs-12 mt-2">
@@ -135,7 +135,7 @@
                                                             </div>
                                                         @endif
                                                     </div>
-                                                    <div class="col-3 mt-2 text-center">
+                                                    <div class="col-lg-4 col-md-6 col-12 text-center" style="margin: auto;">
                                                         <button type="button" id="update-phone" class="btn font-normal-500 fs-12 text-green" data-bs-toggle="modal" data-bs-target="#modal-ubah-telepon">{{ !empty($user['phone']) ? 'Ubah' : 'Tambahkan' }}</button>
                                                     </div>
                                                 </div>
@@ -160,7 +160,7 @@
         </div>
     </div>
 
-    
+
     <!-- modal Ubah Email -->
     <div class="modal fade" tabindex="-1" id="modal-ubah-email">
         <div class="modal-dialog modal-dialog-centered">
@@ -190,7 +190,7 @@
                     <div class="mb-5">
                         <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Email Anda</div>
                         <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan email anda aktif untuk menerima tautan dari kami.</div>
-                        
+
                         <div id="error-update-email">
                             <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
                                 <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
@@ -250,7 +250,7 @@
                     <div class="mb-5">
                         <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Email Anda</div>
                         <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan email anda aktif untuk menerima tautan dari kami.</div>
-                        
+
                         <div id="error-update-phone">
                             <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
                                 <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
@@ -297,7 +297,7 @@
             $(`input[name=gender][value="{{ $user['gender'] }}"]`).prop('checked',true);
         }
     </script>
-    
+
     <!-- Check PIN Email Start -->
     <script>
         function inputPINEmail() {

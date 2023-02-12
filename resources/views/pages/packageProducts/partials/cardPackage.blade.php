@@ -5,22 +5,22 @@
             <div class="text-dark text-weight-600 fs-20 mt-4 mb-4" style="font-weight: bold;">{{ $name }}</div>
 
             @if ( $status == 4 )
-                <div class="text-danger text-weight-400 lable-danger fs-16"> 
-                    <img class="icon-package" src="{{ asset('assets-web/img/icon/calendar-danger.png') }}" alt="{{ asset('assets-web/img/icon/calendar-danger.png') }}">  
+                <div class="text-danger text-weight-400 lable-danger fs-16">
+                    <img class="icon-package" src="{{ asset('assets-web/img/icon/calendar-danger.png') }}" alt="{{ asset('assets-web/img/icon/calendar-danger.png') }}">
                     Paket sudah berakhir
                 </div>
             @elseif ( $quota == 0 )
-                <div class="text-danger text-weight-400 lable-danger fs-16"> 
-                    <img class="icon-package" src="{{ asset('assets-web/img/icon/package-danger.png') }}" alt="{{ asset('assets-web/img/icon/package-danger.png') }}">  
+                <div class="text-danger text-weight-400 lable-danger fs-16">
+                    <img class="icon-package" src="{{ asset('assets-web/img/icon/package-danger.png') }}" alt="{{ asset('assets-web/img/icon/package-danger.png') }}">
                     Seat Penuh
                 </div>
             @else
-                <div class="text-tertiary text-weight-400 fs-16"> 
-                    <img class="icon-package" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}">  
+                <div class="text-tertiary text-weight-400 fs-16">
+                    <img class="icon-package" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}">
                     Tersisa  {{ $quota }} Pax
                 </div>
-                <div class="mb-3 mt-3 text-tertiary text-weight-400 fs-16"> 
-                    <img class="icon-package" src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}">  
+                <div class="mb-3 mt-3 text-tertiary text-weight-400 fs-16">
+                    <img class="icon-package" src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}">
                     Tersedia 3 Pilihan Kamar
                 </div>
             @endif
@@ -33,13 +33,13 @@
                     </div>
                 @endif
                 <div class="col-6" style="margin:auto;">
-                    <img class="icon-cicilan" src="{{ $image_configuration }}" alt="{{ $image_configuration }}"/>
+                    <img class="icon-cicilan lozad" src="{{ $image_configuration }}" alt="{{ $image_configuration }}"/>
                 </div>
             </div>
 
             <div class="text-green">
                 <span class="text-weight-600 fs-20">Rp. {{ number_format($price) }}</span>
-                <span class="text-tertiary">/ PAX</span> 
+                <span class="text-tertiary">/ PAX</span>
             </div>
         </div>
     </div>

@@ -9,10 +9,10 @@
                             Calon jamaah
                         </div>
                         <div class="font-normal-700 fs-16 mt-5">
-                            @if( empty($first_name) || empty($last_name) ) 
-                                Belum ada nama jamaah 
-                            @else 
-                                {{ $first_name.' '.$last_name }} 
+                            @if( empty($first_name) || empty($last_name) )
+                                Belum ada nama jamaah
+                            @else
+                                {{ $first_name.' '.$last_name }}
                             @endif</div>
                     </div>
                 </div>
@@ -24,11 +24,13 @@
 
                     <!-- Form Jamaah -->
                     <div class="row">
-                        
+
                         <!-- Nama Depan Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="first_name" class="required form-label">Nama Depan</label>
                             <input type="text" class="form-control" name="first_name" value="{{ $first_name }}" placeholder="Masukkan Nama Depan"/>
+                            <!-- <input type="text" class="form-control is-invalid" name="first_name" value="{{ $first_name }}" placeholder="Masukkan Nama Depan"/> -->
+                            {{-- @include('pages.transaction.partials.messageValidation') == }}
                         </div>
 
                         <!-- Nama Belakang Field -->
@@ -66,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Nomor KTP Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_ktp" class="required form-label">Nomor KTP</label>
@@ -76,7 +78,7 @@
                     </div>
 
                     <div class="row">
-                        
+
                         <!-- Tanggal Lahir & Alamat Field -->
                         <div class="col-sm-6 mb-5">
                             <div class="form-group mb-5">
@@ -88,7 +90,7 @@
                                 <textarea class="form-control" placeholder="Masukan Alamat" name="address" data-kt-autosize="true">{{ $address }}</textarea>
                             </div>
                         </div>
-                        
+
 
                         <!-- Foto KTP Field -->
                         <div class="form-group col-sm-6 mb-5">
@@ -189,7 +191,7 @@
                     </div>
 
                     <hr>
-                    
+
                     <div class="row">
                         <!-- Nomor Passport Field -->
                         <div class="form-group col-sm-6 mb-5">
@@ -222,7 +224,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <hr>
                     <!-- Action Form Jamaah -->
                     <div class="row">
