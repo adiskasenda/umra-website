@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="card card-bordered mt-5" style="width: 100%;">
-                        <form class="form" method="POST" action="{{ url('/profile') }}">
+                        <form class="form" method="POST" action="{{ url('/profile') }}" enctype="multipart/form-data">
                             @method('patch')
                             @csrf
                             <div class="card-body">

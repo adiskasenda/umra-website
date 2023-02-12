@@ -25,6 +25,7 @@ use App\Http\Controllers\{
 
     NewsPage\NewsController,
     Transaction\TransactionController,
+    Transaction\TransactionPaymentController,
 
     PackageProduct\PackageProductController,
     Profile\ProfileController,
@@ -146,6 +147,11 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/payment-option/{id}', [ TransactionController::class, 'paymentOption' ]);
         Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
         Route::get('/payment-status/{id}', [ TransactionController::class, 'paymentStatus' ]);
+        
+        Route::get('/payment-need-pay/{id}', [ TransactionPaymentController::class, 'paymentNeedPay' ]);
+        Route::get('/payment-option-need-pay/{id}', [ TransactionPaymentController::class, 'paymentOptionNeedPay' ]);
+        Route::post('/payment-need-pay', [ TransactionPaymentController::class, 'needPay' ]);
+
         // Detail Trasaction
         Route::get('/{id}/detail', [ TransactionController::class, 'show' ]);
     });

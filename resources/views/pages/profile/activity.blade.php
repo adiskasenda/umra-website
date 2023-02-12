@@ -12,7 +12,7 @@
                         <div class="col-6">
                             <div class="font-normal-700 fs-20 text-left mt-3"> Aktivitas Anda</div>
                         </div>
-                        <div class="col-6 text-right">
+                        <!-- <div class="col-6 text-right">
                             <div class="row">
                                 <div class="col-8"></div>
                                 <div class="col-4">
@@ -22,7 +22,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="table-responsive mt-5">
                         <table class="table table-rounded table-flush">

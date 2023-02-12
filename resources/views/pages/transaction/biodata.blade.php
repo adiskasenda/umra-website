@@ -145,13 +145,42 @@
 @endsection
 
 @push('page_js')
-    <script>
-        $(".date").flatpickr({
-            dateFormat: "d-m-Y",
-        });
-    </script>
-
     <!-- Check Cart Start -->
+    <script>
+        function validationFrom(data) {
+            let message = [];
+
+            if ( data.first_name.length == 0 ) {
+                message.push('Nama Depan Tidak Boleh Kosong');
+            }
+
+            if ( data.last_name.length == 0 ) {
+                message.push('Nama Belakang Tidak Boleh Kosong');
+            }
+
+            if ( data.birth_date.length == 0 ) {
+                message.push('Tanggal Lahir Tidak Boleh Kosong');
+            }
+
+            if ( data.phone_number.length == 0 ) {
+                message.push('No Telepon Tidak Boleh Kosong');
+            }
+
+            if ( data.ktp_number.length == 0 ) {
+                message.push('Nomer Ktp Tidak Boleh Kosong');
+            }
+
+            if ( data.passport_number.length == 0 ) {
+                message.push('Nomer Passport Tidak Boleh Kosong');
+            }
+
+            if ( data.passport_expiry_date.length == 0 ) {
+                message.push('Tanggal Expaired Passport Tidak Boleh Kosong');
+            }
+            
+            return message;
+        }
+    </script>
     <script>
         function checkChart() {
             if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" || localStorage.getItem("step") < 2 ) {

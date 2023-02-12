@@ -4,11 +4,11 @@
 <div class="container-fluid py-5 mb-8">
     <div class="container">
         @include('pages.transaction.partials.breadcrumb',[
-            // 'name_package' => $package_product['name'],
+            // 'name_package' => $order['package_product']['name'],
         ])
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ url('/transaction/payment', $package_product['id_packet']) }}" class="font-normal-700 fs-24 text-dark mt-3">
+                <a href="{{ url('/transaction/payment-need-pay',  $order['id_order']) }}" class="font-normal-700 fs-24 text-dark mt-3">
                     <i class="fa-solid fa-arrow-left me-2"></i> Pilih Metode Pembayaran
                 </a>
                 <div class="font-normal-400 fs-14 mt-3" style="margin-left: 19px;">Pilih metode pembayaran yang tersedia</div>
@@ -71,20 +71,19 @@
                             <div class="card-body p-5">
                                 <div class="row">
                                     <div class="col-2">
-                                        <img width="100%" src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}">
+                                        <img width="100%" src="{{ $order['package_product']['url_banner'] }}" alt="{{ $order['package_product']['url_banner'] }}">
                                     </div>
                                     <div class="col-6">
-                                        <div class="font-normal-400 fs-12">{{ Helpers::viewFlagUmroh($package_product['flag_umroh']) }}</div>
-                                        <div class="font-normal-700 fs-16">{{ $package_product['name'] }}</div>
+                                        <div class="font-normal-400 fs-12">{{ Helpers::viewFlagUmroh($order['package_product']['flag_umroh']) }}</div>
+                                        <div class="font-normal-700 fs-16">{{ $order['package_product']['name'] }}</div>
                                         <div class="">
                                             <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
-                                            <span class="total_people">0</span> Calon Jamaah
-                                            <i class="fa-solid fa-wallet me-2" style="color: var(--green)"></i>
-                                            Cicilan
+                                            Calon Jamaah
+                                            <span class="icon-cicilan">
+                                                <i class="fa-solid fa-wallet me-2" style="color: var(--green)"></i>
+                                                Cicilan
+                                            </span>
                                         </div>
-                                    </div>
-                                    <div class="col-4 text-right">
-                                        <div id="down_payment"></div>
                                     </div>
                                 </div>
                             </div>
@@ -92,10 +91,10 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
-                                        <span class="total_people">0</span> Calon  Jamaah
+                                        <span class="total_people">{{ count($order['order_guest_double']) + count($order['order_guest_triple']) + count($order['order_guest_quad']) }}</span> Calon Jamaah
                                     </div>
                                     <div class="col-6 text-right">
-                                        Total Harga Rp. <span id="total_price">0</span>
+                                        {{ $order['ringkasan_pesanan'][0]['name'] }} Rp. <span id="total_price">{{ number_format($order['ringkasan_pesanan'][0]['value']) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -108,10 +107,10 @@
                                 <div class="row">
                                     <div class="col-10">
                                         <div class="font-normal-400 fs-16">
-                                            Total Tagihan
+                                            {{ $order['need_pay']['name'] }}
                                         </div>
                                         <div class="font-700 fs-24 text-green">
-                                            Rp. <span id="total_bill">0</span>
+                                            Rp. {{ number_format($order['need_pay']['value']) }}
                                         </div>
                                     </div>
                                     <div class="col-2">
@@ -130,7 +129,7 @@
     </div>
 </div>
 
-<!-- modal PIN -->
+<!-- Modal PIN -->
 <div class="modal fade" tabindex="-1" id="modal-masukkan-pin">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -158,61 +157,6 @@
 @endsection
 
 @push('page_js')
-    <!-- Check Cart Start -->
-    <script>
-        function checkChart() {
-            if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
-                window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
-                return false;
-            }
-            if ( localStorage.getItem("step") < 4 ) {
-                window.location.href = "{{ url('/transaction/checkout', $package_product['id_packet']) }}";
-                return false;
-            }
-        }
-    </script>
-    <script>
-        function total() {
-            const cardData = JSON.parse(localStorage.getItem("cartData"));
-            
-            // Count Jmaaah
-            const count_people_doble = cardData[0][0]['doble'];
-            const count_people_triple = cardData[0][1]['triple'];
-            const count_people_quad = cardData[0][2]['quad'];
-
-            // Count Price
-            const count_price_doble = parseInt(count_people_doble) * "{{$package_product['price_double']}}";
-            const count_price_triple = parseInt(count_people_triple) * "{{$package_product['price_triple']}}";
-            const count_price_quad = parseInt(count_people_quad) * "{{$package_product['price_quad']}}";
-
-            const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
-            $('.total_people').html( total_people );
-            const down_payment = total_people * "{{ $configuration[2]['value_configuration'] }}";
-            const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
-            $('#total_price').html(formatRupiah( total_price ));
-
-            if ( localStorage.getItem("typePayment") == 'CASH' ) {
-                $('#total_bill').html(formatRupiah( down_payment ));
-                
-                $('#down_payment').html(`
-                    <div class="font-normal-500 fs-12 text-green">Cicilan (DP)</div>
-                    <div class="font-normal-700 fs-16">Rp. `+ formatRupiah(down_payment) +`</div>
-                `);
-            } else {
-                $('#total_bill').html(formatRupiah( total_price ));
-            }
-
-        }
-    </script>
-    <!-- Check Cart End -->
-
-    <!-- Document Ready Start -->
-    <script>
-        checkChart();
-        total();
-    </script>
-    <!-- Document Ready End -->
-
     <!-- Check PIN Start -->
     <script>
         var elements = document.getElementsByTagName('row');
@@ -239,19 +183,15 @@
                         dataType: "JSON",
                         success: function(data) {
                             if ( data.status == '1' ) {
-                                const typePayment = localStorage.getItem("typePayment")
-                                const cardData = JSON.parse(localStorage.getItem("cartData"));
-                                const uuidPacket = "{{ $package_product['uuid_packet'] }}";
+                                const orderCode = "{{ $order['order_code'] }}";
                                 const paymentMethod = "1";
 
                                 $.ajax({
-                                    url: "{{ url('/transaction/checkout') }}",
+                                    url: "{{ url('/transaction/need-pay') }}",
                                     type: 'POST',
                                     data: {
                                         "_token": "{{ csrf_token() }}",
-                                        "uuid_packet" : uuidPacket,
-                                        "type_payment" : typePayment,
-                                        "card_data" : cardData,
+                                        "order_code" : orderCode,
                                         "payment_method" : paymentMethod,
                                     },
                                     dataType: "JSON",

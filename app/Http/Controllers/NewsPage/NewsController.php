@@ -27,6 +27,8 @@ class NewsController extends Controller
 
     public function index(Request $request)
     {
+        $pages = empty($request->page) ? 0 : ($request->page - 1);
+
         if ( !empty(Session::get('user')) ) {
             $this->header['ax-request-by'] = Session::get('user')['email'];
             $this->header['Authorization'] = 'Bearer '.Session::get('token');
@@ -42,16 +44,20 @@ class NewsController extends Controller
             $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/searching?name='.$request->search);
             $news = json_decode($response->getBody(), true);
             $news = $news['data'];
+            $total = 0;
         } else {
             $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/8/id_blog/desc');
             $news = json_decode($response->getBody(), true);
             $news = $news['data']['content'];
+            $total = $news['data']['totalPages'];
         }
 
         return view('pages.news.news', [
             'news_banners' => $news_banners['data']['content'],
             'news' => $news,
-            'search' => $request->search
+            'search' => $request->search,
+            'page' => $pages,
+            'total' => $total,
         ]);
     }
 
