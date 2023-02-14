@@ -87,9 +87,8 @@
     <div class="modal fade" tabindex="-1" id="modal-reset-password">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-body text-center" style="padding:40px;" id="email-reset-failed">
-                    
 
+                <div class="modal-body text-center" style="padding:40px;" id="email-reset-failed">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
                     
                     <div class="mb-5">
@@ -108,22 +107,40 @@
                         <input class="mt-5 form-control bg-transparent" type="email" placeholder="Masukan Email" name="email-reset-password"/>
                     </div>
                     <div class="d-grid">
-                        <button type="button" id="btn-reset-password" class="btn btn-success">
+                        <button type="button" id="btn-send-email-password" class="btn btn-success">
                             <span class="indicator-label">Kirim</span>
                         </button>
                     </div>
                 </div>
+
+                <div class="modal-body text-center" style="padding:40px;" id="email-reset-pin">
+                    <div class="mb-5">
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Lupa kata sandi?</div>
+                        <div class="mt-5 text-weight-400 fs-16">Jangan khawatir. Tuliskan email Anda untuk membuat kata sandi baru.</div>
+                        
+                        <div class="pincode-input-otp-email"></div>
+                    </div>
+                </div>
+
+                <div class="modal-body text-center" style="padding:40px;" id="email-reset-pin">
+                    
+                    <div class="fv-row mb-8">
+                        <input type="password" placeholder="Password" name="password" class="form-control bg-transparent" required/>
+                    </div>
+                    <div class="fv-row mb-8">
+                        <input type="password" placeholder="Password" name="password" class="form-control bg-transparent" required/>
+                    </div>
+                </div>
+
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-success">
                     <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
                     <div>
-                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Email berhasil terkirim!</div>
-                        <div class="mt-5 text-weight-400 fs-16">Kami telah mengirimkan tautan ke email <strong id="recipient-email">Anantasyaaluia@gmail.com</strong>, klik tautan tersebut untuk melanjutkan mengubah kata sandi</div>
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Password berhasil Diubah!</div>
+                        <div class="mt-5 text-weight-400 fs-16">Anda sekarang dapat login menggunakan password yang baru</div>
                     </div>
                     <button type="button" class="btn mt-10 btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="width:150px;">OK</button>
                 </div>
-                <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-load">
-                    @include('layouts.partials.loadingResponse')
-                <div>
+
             </div>
         </div>
     </div>
@@ -144,19 +161,64 @@
             $('a[href="#kt_tab_login_with_phone"]').addClass('active');
             $('#kt_tab_login_with_phone').addClass('show active');
         }
+    </script>
 
+    <!-- Reset Password Start -->
+
+        <!-- Script Function Reset Password Start -->
+        <script>
+            function isValidEmailAddress(emailAddress) {
+                var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+                return pattern.test(emailAddress);
+            }
+
+            // reset message
+            function resetPassword() {
+                $('#email-reset-failed').css("display", "block");
+                $('#email-reset-success').css("display", "none");
+                $('#user-not-found').css("display", "none");
+                $('input[name="email-reset-password"]').val();
+            }
+
+            // failed Message
+            function SendEmailFailed() {
+                $('#email-reset-failed').css("display", "block");
+                $('#user-not-found').css("display", "block");
+                $('#email-reset-success').css("display", "none");
+            }
+
+            // form input Otp Email
+            function inputOTPEmail() {
+
+            }
+
+            // form input New password
+            function inputPassword() {
+
+            }
+
+            // form input New password
+            function inputPasswordFailed() {
+
+            }
+
+            // Success Message
+            function responseSuccess() {
+                $('#email-reset-failed').css("display", "none");
+                $('#email-reset-success').css("display", "block");
+                $('#user-not-found').css("display", "none");
+            }
+        </script>
+        <!-- Script Function Reset Password End -->
+    
+    <script>
         $('#reset-password').click(function () {
-            resetMessage();
+            resetPassword();
         });
 
-        $('#btn-reset-password').click(function () {
+        $('#btn-send-email-password').click(function () {
             const email = $('input[name="email-reset-password"]').val();
-            console.log('ajax load',  email);
-            console.log(isValidEmailAddress(email));
-
             if ( isValidEmailAddress(email) ) {
-                load();
-
                 $.ajax({
                     url: "{{ url('/reset-password/send-email') }}",
                     type: 'POST',
@@ -167,50 +229,66 @@
                     dataType: "JSON",
                     success: function(data) {
                         if ( data.status == '1' ) {
-                            return responseSuccess();
+                            return inputOTPEmail();
                         } else {
-                            return responseFailed();
+                            return SendEmailFailed();
                         }
                     }
                 })
             }
         });
 
-        function isValidEmailAddress(emailAddress) {
-            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-            return pattern.test(emailAddress);
-        }
+        new PincodeInput('.pincode-input-otp-email', {
+            count: 6,
+            onInput: (value) => {
+                if ( value.length >= 6 ) {
+                    const email = $('input[name="email-reset-password"]').val();
+                    $.ajax({
+                        url: "{{ url('/reset-password/validate-otp') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "email" : email,
+                            "otp" : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == 1 ) {
+                                inputPasswordFailed()
+                            } else {
 
-        // reset message
-        function resetMessage() {
-            $('#email-reset-failed').css("display", "block");
-            $('#email-reset-load').css("display", "none");
-            $('#email-reset-success').css("display", "none");
-            $('#user-not-found').css("display", "none");
-        }
+                            }
+                            return false;
+                        }
+                    });
+                }
+            }
+        });
 
-        // load
-        function load() {
-            $('#email-reset-failed').css("display", "none");
-            $('#email-reset-load').css("display", "none");
-            $('#email-reset-success').css("display", "none");
-            $('#user-not-found').css("display", "block");
-        }
+        $('#btn-reset-password').click(function () {
+            const password_new = '121212';
+            const password_confirm = '121212';
+            const user_id = '121212';
 
-        // success Message
-        function responseFailed() {
-            $('#email-reset-failed').css("display", "block");
-            $('#email-reset-load').css("display", "none");
-            $('#email-reset-success').css("display", "none");
-            $('#user-not-found').css("display", "block");
-        }
-
-        // failed Message
-        function responseSuccess() {
-            $('#email-reset-failed').css("display", "none");
-            $('#email-reset-load').css("display", "none");
-            $('#email-reset-success').css("display", "block");
-            $('#user-not-found').css("display", "none");
-        }
+            $.ajax({
+                url: "{{ url('/reset-password/update-password') }}",
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "password_new" : password_new,
+                    "password_confirm" : password_confirm,
+                    "user_id" : user_id
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    if ( data.status == '1' ) {
+                        return responseSuccess();
+                    } else {
+                        return inputPasswordFailed();
+                    }
+                }
+            })
+        });
     </script>
+    <!-- Reset Password End -->
 @endpush
