@@ -36,18 +36,14 @@
                                     Tanggal Lahir
                                 </div>
                                 <div class="mt-1 font-normal-700 fs-16">
-                                    {{ date('d M Y', strtotime($birth_date)) }}
+                                    {{ $birth_date }}
                                 </div>
 
                                 <div class="mt-5 font-normal-400 fs-14">
                                     Jenis Kelamin
                                 </div>
                                 <div class="mt-1 font-normal-700 fs-16">
-                                    @if ( $gender == 1 )
-                                        Laki-laki <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>
-                                    @else
-                                        Perempuan <span><i class="fa-solid fa-venus me-2" style="color: black"></i></span>
-                                    @endif
+                                    {{ $gender }}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -93,7 +89,7 @@
                                     Tanggal Kadaluarsa
                                 </div>
                                 <div class="mt-1 font-normal-700 fs-16">
-                                    {{ date('d M Y', strtotime($passport_expiry_date)) }}
+                                    {{ $passport_expiry_date }}
                                 </div>
                             </div>
                             <div class="col-md-4 text-center">
@@ -101,7 +97,7 @@
                                     Vaksinasi Terakhir
                                 </div>
                                 <div class="mt-1 font-normal-700 fs-16">
-                                    {{ Helpers::viewVaksinasi($vaccine_status) }}
+                                    {{ $vaccine_status }}
                                 </div>
                             </div>
                         </div>

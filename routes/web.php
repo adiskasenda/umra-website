@@ -146,7 +146,7 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/payment/{id}', [ TransactionController::class, 'payment' ]);
         Route::get('/payment-option/{id}', [ TransactionController::class, 'paymentOption' ]);
         Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
-        Route::get('/payment-status/{id}', [ TransactionController::class, 'paymentStatus' ]);
+        Route::get('/payment-status/{order_code}', [ TransactionController::class, 'paymentStatus' ]);
         
         Route::get('/payment-need-pay/{id}', [ TransactionPaymentController::class, 'paymentNeedPay' ]);
         Route::get('/payment-option-need-pay/{id}', [ TransactionPaymentController::class, 'paymentOptionNeedPay' ]);

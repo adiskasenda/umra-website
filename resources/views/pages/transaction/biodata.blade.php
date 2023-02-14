@@ -151,11 +151,17 @@
             let message = [];
 
             if ( data.first_name.length == 0 ) {
-                message.push('Nama Depan Tidak Boleh Kosong');
+                message.push({
+                    name : 'first_name',
+                    message : [ 'Nama Depan Tidak Boleh Kosong' ]
+                });
             }
 
             if ( data.last_name.length == 0 ) {
-                message.push('Nama Belakang Tidak Boleh Kosong');
+                message.push({
+                    name : 'last_name',
+                    message : ['Nama Belakang Tidak Boleh Kosong']
+                });
             }
 
             if ( data.birth_date.length == 0 ) {

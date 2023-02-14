@@ -156,15 +156,16 @@ class TransactionController extends Controller
                         "title" => "",
                         "first_name" => $guest['first_name'],
                         "last_name" => $guest['last_name'],
-                        "birth_date" => $guest['birth_date'],
+                        "birth_date" => date('Y-m-d', strtotime($guest['birth_date'])),
                         "gender" => $guest['gender'],
                         "address" => $guest['address'],
                         "phone_number" => $guest['phone_number'],
+                        "phone_number" => 6282134060591,
                         "ktp_number" => $guest['ktp_number'],
                         "ktp_url" => "",
                         "passport_number" => $guest['passport_number'],
-                        "passport_expiry_date" => $guest['passport_expiry_date'],
-                        "passport_url" => "",
+                        "passport_expiry_date" => date('Y-m-d', strtotime($guest['passport_expiry_date'])),
+                        "passport_url" => "https://www.google.com/",
                         "nationality" => "",
                         "vaccine_status" => $guest['vaccine_status'],
                         "vaccine_url" => ""
@@ -183,7 +184,6 @@ class TransactionController extends Controller
             "person_quad" => $request->card_data[0][2]['quad'],
             "affliator_code" => "",
             "type_payment" => $request->type_payment,
-            "id_payment_method" => $request->payment_method,
             "order_guest" => $order_guest
         ];
 
@@ -191,32 +191,32 @@ class TransactionController extends Controller
         $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
         // Create Order
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer', $body);
+        $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/order_customer', $body);
         $order = json_decode($response->getBody(), true);
 
         // Create Payment
         $bodyPayment = [
-            "order_code" => $order['data'][0]['code'],
+            "order_code" => $order['data']['order_code'],
             "type_payment" => $request->type_payment,
             "payment_method" => $request->payment_method
         ];
 
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/repayment', $bodyPayment);
+        $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/order_customer/repayment', $bodyPayment);
         $payment_method = json_decode($response->getBody(), true);
         
         return response()->json([
-            'status' => $payment_method['status'],
-            'message' => $payment_method['message'],
-            'data' => $payment_method['data']
+            'status' => $order['status'],
+            'message' => $order['message'],
+            'data' => $order['data']
         ]);
     }
 
-    public function paymentStatus($id)
+    public function paymentStatus($order_code)
     {
         $this->header['ax-request-by'] = Session::get('user')['email'];
         $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/'.$id);
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/code/'.$order_code);
         $order = json_decode($response->getBody(), true);
 
         if ( empty($order['data']) ) {
