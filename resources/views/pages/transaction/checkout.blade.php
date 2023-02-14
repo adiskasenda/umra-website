@@ -78,7 +78,7 @@
                 <div class="card card-bordered mt-5" style="background-color: #F8FCFC">
                     <div class="card-body p-5">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="font-normal-400 fs-14">
                                     <i class="fa-solid fa-phone me-2"></i>
                                     Kontak Pemesan
@@ -111,8 +111,8 @@
                             <div class="card-body p-5 my-3">
                                 <div class="row">
                                     <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="cash" name="metode_bayar" id="cash" checked/>
-                                        <label class="form-check-label" for="cash">
+                                        <input class="form-check-input" type="radio" value="CASH" name="payment_method" id="CASH" checked/>
+                                        <label class="form-check-label" for="CASH">
                                             <div class="font-normal-600 fs-14">Cash</div>
                                             <div class="font-normal-400 fs-14">Bayar lunas di depan agar perjalanan ibadah anda lebih tenang</div>
                                         </label>
@@ -127,8 +127,8 @@
                             <div class="card-body p-5">
                                 <div class="row">
                                     <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="cicil" name="metode_bayar" id="cicil"/>
-                                        <label class="form-check-label" for="cicil">
+                                        <input class="form-check-input" type="radio" value="DOWNPAYMENT" name="payment_method" id="DOWNPAYMENT"/>
+                                        <label class="form-check-label" for="DOWNPAYMENT">
                                             <div class="font-normal-600 fs-14">Cicilan hingga 2x <span class="badge badge-success px-5 mx-3" style="border-radius: 10px">Cukup bayar Rp. {{ number_format($configuration[2]['value_configuration']) }} / orang</span></div>
                                             <div class="font-normal-400 fs-14">Cukup bayar uang muka untuk bisa booking tiket perjalanan anda</div>
                                         </label>

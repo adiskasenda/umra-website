@@ -29,14 +29,15 @@
                         <div class="form-group col-sm-6 mb-5">
                             <label for="first_name" class="required form-label">Nama Depan</label>
                             <input type="text" class="form-control" name="first_name" value="{{ $first_name }}" placeholder="Masukkan Nama Depan"/>
-                            <!-- <input type="text" class="form-control is-invalid" name="first_name" value="{{ $first_name }}" placeholder="Masukkan Nama Depan"/> -->
-                            {{-- @include('pages.transaction.partials.messageValidation') == }}
+                            <div class="message-validation first_name"></div>
+                            {{-- @include('pages.transaction.partials.messageValidation') --}}
                         </div>
 
                         <!-- Nama Belakang Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="last_name" class="form-label">Nama Belakang</label>
                             <input type="text" class="form-control" name="last_name" value="{{ $last_name }}" placeholder="Masukkan Nama Belakang"/>
+                            <div class="message-validation last_name"></div>
                         </div>
 
                     </div>

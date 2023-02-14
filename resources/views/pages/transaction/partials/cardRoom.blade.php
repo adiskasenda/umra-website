@@ -207,10 +207,18 @@
             const message = validationFrom(data);
 
             if ( message.length > 0 ) {
-                console.log('ini message validation active');
+                $(this).parent().parent().parent().parent().parent().parent().find('input').removeClass('is-invalid');
+                $(this).parent().parent().parent().parent().parent().parent().find('.message-validation').html(``);
+
+                message.map( res => {
+                    $(this).parent().parent().parent().parent().parent().parent().find('input[name="'+res.name+'"]').addClass('is-invalid')
+                    $(this).parent().parent().parent().parent().parent().parent().find('.message-validation.'+res.name).html(`@include('pages.transaction.partials.messageValidation',[
+                        'message' => '`+ res.message[0] +`'
+                    ])`);
+                })
+                
                 return false;
             }
-            console.log('data sukses');
 
             const room = '{{ $type_room }}';
             if ( room == 'doble' ) {

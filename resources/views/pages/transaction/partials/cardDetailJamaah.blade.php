@@ -70,11 +70,7 @@
                                                         Jenis Kelamin
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
-                                                        @if ( $jamaah['gender'] == 1 )
-                                                            Laki-laki <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>
-                                                        @else
-                                                            Perempuan <span><i class="fa-solid fa-venus me-2" style="color: black"></i></span>
-                                                        @endif
+                                                        {{ $gender }}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -126,7 +122,7 @@
                                                         Vaksinasi Terakhir
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
-                                                        {{ Helpers::viewVaksinasi($jamaah['vaccine_status']) }}
+                                                        {{ $jamaah['vaccine_status'] }}
                                                     </div>
                                                 </div>
                                             </div>

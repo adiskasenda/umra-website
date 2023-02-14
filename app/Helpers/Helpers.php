@@ -223,6 +223,11 @@ class Helpers
         return $category;
     }
 
+    // you can use this function with Helpers::convertViewDate
+    public static function convertViewDate($date) {
+        return date('d M Y',strtotime($date));
+    }
+
     // you can use this function with Helpers::checkProfile
     public static function checkProfile($user) {
         if ( $user ) {

@@ -25,7 +25,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @foreach( $payment_method as $payment_method )
+                                @foreach( $payment_method as $key => $payment_method )
                                     <div class="row mx-2 my-5">
                                         <label class="form-check-label" for="{{ $payment_method['id_payment_method'] }}">
                                             <div class="form-check form-check-custom form-check-solid">
@@ -40,7 +40,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-1 mt-1">
-                                                    <input class="form-check-input" type="radio" value="{{ $payment_method['id_payment_method'] }}" name="payment_method" id="{{ $payment_method['id_payment_method'] }}"/>
+                                                    <input class="form-check-input" type="radio" value="{{ $payment_method['id_payment_method'] }}" name="id_payment_method" id="{{ $payment_method['id_payment_method'] }}"/>
                                                 </div>
                                             </div>
                                         </label>
@@ -121,7 +121,7 @@
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-masukkan-pin">
+                                        <button id="btn-buy" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-masukkan-pin" disabled>
                                             Bayar
                                         </button>
                                     </div>
@@ -207,7 +207,10 @@
             } else {
                 $('#total_bill').html(formatRupiah( total_price ));
             }
+        }
 
+        function messagePayment(message) {
+            console.log('err payment');
         }
     </script>
     <!-- Check Cart End -->
@@ -219,8 +222,22 @@
     </script>
     <!-- Document Ready End -->
 
+    <!-- Btn Buy Start -->
+    <script>
+        $("input[name='id_payment_method']").click(function() {
+            $('#btn-buy').removeAttr("disabled");
+        });
+        
+    </script>
+    <!-- Btn Buy End -->
+
     <!-- Check PIN Start -->
     <script>
+        $('#btn-buy').click(function() {
+            $('input').val('');
+            $('.pincode-input.pincode-input--filled').css('border', '1px solid black');
+        });
+
         var elements = document.getElementsByTagName('row');
             for (var i = 0; i < elements.length; i++) {
             (elements)[i].addEventListener("click", function() {
@@ -248,7 +265,7 @@
                                 const typePayment = localStorage.getItem("typePayment")
                                 const cardData = JSON.parse(localStorage.getItem("cartData"));
                                 const uuidPacket = "{{ $package_product['uuid_packet'] }}";
-                                const paymentMethod = "1";
+                                const paymentMethod = $("input[name='id_payment_method']").val();
 
                                 $.ajax({
                                     url: "{{ url('/transaction/checkout') }}",
@@ -262,7 +279,16 @@
                                     },
                                     dataType: "JSON",
                                     success: function(data) {
-                                        window.location.href = "{{ url('/transaction/payment-status').'/' }}" + data.id_order;
+                                        if ( data.status == 1 ) {
+                                            localStorage.removeItem("cartId");
+                                            localStorage.removeItem("step");
+                                            localStorage.removeItem("typePayment");
+                                            localStorage.removeItem("cartData");
+                                            window.location.href = "{{ url('/transaction/payment-status').'/' }}" + data.data.order_code;
+                                        } else {
+                                            messagePayment(data.message);
+                                        }
+                                        
                                         return false;
                                     }
                                 });

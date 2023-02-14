@@ -70,18 +70,36 @@
         }
 
         function detailJamaah(data, room) {
+            const gender = data.gender == '1' ? 'Laki Laki <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>' : 'Perempuan <span><i class="fa-solid fa-venus me-2" style="color: black"></i></span>';
+            let vaccine_status;
+            switch(data.vaccine_status) {
+                case '0':
+                    vaccine_status = 'Belum Vaksin'
+                    break;
+                case '1':
+                    vaccine_status = 'Dosis Pertama'
+                    break;
+                case '2':
+                    vaccine_status = 'Dosis Kedua'
+                    break;
+                case '3':
+                    vaccine_status = 'Booster'
+                    break;
+                default:
+                    vaccine_status = 'Booster Kedua'
+            }
             $('#detail-room-'+room).append(`@include('pages.transaction.partials.cardDetailJamaahCheckout',[
                 'id' => '`+ data.id +`',
                 'first_name' => '`+ data.first_name +`',
                 'last_name' => '`+ data.last_name +`',
                 'birth_date' => '`+ data.birth_date +`',
-                'gender' => '`+ data.gender +`',
+                'gender' => '`+ gender +`',
                 'address' => '`+ data.address +`',
                 'phone_number' => '`+ data.phone_number +`',
                 'ktp_number' => '`+ data.ktp_number +`',
                 'passport_number' => '`+ data.passport_number +`',
                 'passport_expiry_date' => '`+ data.passport_expiry_date +`',
-                'vaccine_status' => '`+ data.vaccine_status +`',
+                'vaccine_status' => '`+ vaccine_status +`',
                 'room' => '`+ room +`',
             ])`);
 
