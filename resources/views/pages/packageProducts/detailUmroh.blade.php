@@ -12,24 +12,24 @@
             <div class="row">
                 <div class="col-md-4 mt-5">
                     <div style="position: -webkit-sticky;position: sticky;top: 120px;">
-                        <img class="img-card" src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
+                        <img class="img-card lozad" src="{{ $package_product['url_banner'] }}" alt="{{ $package_product['url_banner'] }}" width="100%">
                         <div class="row mb-3 mt-5">
                             <div class="col-6">
                                 @if ( $package_product['quota'] == 0 )
-                                    <div class="text-tertiary"> 
-                                        <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package-danger.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                    <div class="text-tertiary">
+                                        <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package-danger.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">
                                         <span class="font-normal-400 fs-16">Seat Penuh</span>
                                     </div>
                                 @else
-                                    <div class="text-tertiary"> 
-                                        <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">  
+                                    <div class="text-tertiary">
+                                        <img class="icon-package" style="margin-right:5px;" src="{{ asset('assets-web/img/icon/package.png') }}" alt="{{ asset('assets-web/img/icon/package.png') }}" height="36px">
                                         <span class="font-normal-400 fs-16">Tersisa {{ $package_product['quota'] }} Pax</span>
                                     </div>
                                 @endif
                             </div>
 
                             <div class="col-6" style="margin:auto;">
-                                <img class="icon-cicilan" src="{{ $configuration['data'][3]['value_configuration'] }}" alt="{{ $configuration['data'][3]['value_configuration'] }}" height="36px"/>
+                                <img class="icon-cicilan lozad" src="{{ $configuration['data'][3]['value_configuration'] }}" alt="{{ $configuration['data'][3]['value_configuration'] }}" height="36px"/>
                             </div>
                         </div>
 
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-md-8 mt-5">
                     @if ( $package_product['flag_umroh'] == 0 )
-                        <a href="{{ url('/package/umroh') }}" class="text-tertiary fs-16"> 
+                        <a href="{{ url('/package/umroh') }}" class="text-tertiary fs-16">
                             <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Umroh
                         </a>
                     @elseif ( $package_product['flag_umroh'] == 1 )
@@ -79,7 +79,7 @@
                             <div class="card card-bordered" style="width: 100$;">
                                 <div class="card-body" style="padding: 1rem !important;">
                                     <div class="text-dark font-normal-600 fs-16">Jadwal Keberangkatan</div>
-                                    
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="row mt-5">
@@ -162,7 +162,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="text-dark font-normal-700 fs-20 mt-5">Pilihan Kamar Hotel</div>
                     <div class="row">
                         <div class="col-md-4 mt-5">

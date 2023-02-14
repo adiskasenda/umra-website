@@ -14,7 +14,7 @@
 
             <h2 class="font-normal-700 fs-32 mt-2">{{ $new['subject'] }}</h2>
             <div class="mt-5 mb-3">Dipublikasikan pada {{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
-            <img class="img-banner" src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
+            <img class="img-banner lozad" src="{{ $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
             <div class="mt-5 fs-16">{!! $new['content'] !!}</div>
         </div>
     </div>

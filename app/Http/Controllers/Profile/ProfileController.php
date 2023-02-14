@@ -26,7 +26,7 @@ class ProfileController extends Controller
     }
 
     public function profile()
-    {   
+    {
         return view('pages.profile.profile', [
             'user' => Session::get('user')
         ]);
@@ -46,7 +46,7 @@ class ProfileController extends Controller
         } else {
             $url_avatar = $request->avatar_old;
         }
-       
+
         $body = [
             "firstname" => $request->firstname,
             "lastname" => $request->lastname,
@@ -179,7 +179,13 @@ class ProfileController extends Controller
         $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
         $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/change_pin/'.Session::get('user')['user_id'], $body);
+        $updatePin = json_decode($response->getBody(), true);
+
+        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/customer/'.Session::get('user')['user_id']);
         $customer = json_decode($response->getBody(), true);
+        Session::put([
+            'user' => $customer['data']
+        ]);
 
         return response()->json([
             'status' => $customer['status'],

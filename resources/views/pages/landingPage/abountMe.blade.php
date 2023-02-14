@@ -58,7 +58,7 @@
             <div class="owl-carousel event-carousel" data-wow-delay="0.3s">
                 @foreach($activity_me as $activity)
                     <div>
-                        <img class="img-card" src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
+                        <img class="img-card lozad" src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
                         <div class="text-dark text-weight-400 fs-20 bg-white p-5" >{{ strlen($activity['title']) > 80 ? substr_replace($activity['title'], '...', 80) : $activity['title'] }}</div>
                     </div>
                 @endforeach
@@ -79,7 +79,7 @@
             <div class="row justify-content-md-center mt-10">
                 @foreach($partners as $partner)
                     <div class="col-lg-3 col-md-4 col-12 mt-10 mb-10" style="display: flex;">
-                        <img class="img-card image-center" style="width:50%;margin:auto;" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
+                        <img class="img-card image-center lozad" style="width:50%;margin:auto;" src="{{ $partner['url_logo'] }}" alt="{{ $partner['url_logo'] }}">
                     </div>
                 @endforeach
             </div>

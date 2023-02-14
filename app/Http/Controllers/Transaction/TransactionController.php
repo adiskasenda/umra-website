@@ -56,7 +56,7 @@ class TransactionController extends Controller
         // Package Product
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
-        
+
         if ( empty($package_product['data']) ) {
             return abort(404);
         }
@@ -79,7 +79,7 @@ class TransactionController extends Controller
         // Package Product
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
-        
+
         if ( empty($package_product['data']) ) {
             return abort(404);
         }
@@ -102,7 +102,7 @@ class TransactionController extends Controller
         // Package Product
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
-        
+
         if ( empty($package_product['data']) ) {
             return abort(404);
         }
@@ -125,7 +125,7 @@ class TransactionController extends Controller
         // Package Product
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/package_product/'.$id);
         $package_product = json_decode($response->getBody(), true);
-        
+
         if ( empty($package_product['data']) ) {
             return abort(404);
         }
@@ -147,10 +147,11 @@ class TransactionController extends Controller
 
     public function storeCheckout(Request $request)
     {
+        // dd($request->card_data[0]);
         foreach( $request->card_data[0] as $key_jamaah => $jamaah ) {
-            foreach( $jamaah['jamaah'] as $guest ) {
-                $order_guest[] = [
-                    [
+            if ( !empty($jamaah['jamaah'])) {
+                foreach( $jamaah['jamaah'] as $guest ) {
+                    $order_guest[] = [
                         "type_bed" => $key_jamaah + 1,
                         "title" => "",
                         "first_name" => $guest['first_name'],
@@ -167,15 +168,15 @@ class TransactionController extends Controller
                         "nationality" => "",
                         "vaccine_status" => $guest['vaccine_status'],
                         "vaccine_url" => ""
-                    ]
-                ];
+                    ];
+                }
             }
         }
-        
+
         // Create Order
         $body = [
             "id_customer" => Session::get('user')['user_id'],
-            "uuid_packet" => $reuqest->uuid_packet,
+            "uuid_packet" => $request->uuid_packet,
             "phone_number" => Session::get('user')['phone'],
             "person_double" => $request->card_data[0][0]['doble'],
             "person_triple" => $request->card_data[0][1]['triple'],
@@ -195,14 +196,14 @@ class TransactionController extends Controller
 
         // Create Payment
         $bodyPayment = [
-            "order_code" => $order['order_code'],
+            "order_code" => $order['data'][0]['code'],
             "type_payment" => $request->type_payment,
             "payment_method" => $request->payment_method
         ];
- 
+
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/repayment', $bodyPayment);
         $payment_method = json_decode($response->getBody(), true);
-
+        
         return response()->json([
             'status' => $payment_method['status'],
             'message' => $payment_method['message'],
@@ -246,7 +247,7 @@ class TransactionController extends Controller
         // configurationPayment
         $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/configuration_system/grup/PAYMENT');
         $configurationPayment = json_decode($response->getBody(), true);
-        
+
         return view('pages.transaction.detailTrasaction',[
             'order' => $order['data'],
             'configuration' => $configuration['data'],

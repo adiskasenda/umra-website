@@ -49,12 +49,12 @@
                                     <div class="font-normal-700 fs-16 mt-1">{{ $user['email'] }}</div>
                                 </div>
                                 <div class="col-4">
-                                    @if( $user['verificate_email'] == 1)
+                                    @if( $user['verificate_email'] == 1 && $user['email'] != null )
                                         <div class="font-normal-400 fs-14 mt-11">
                                             <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
                                             Sudah diverifikasi
                                         </div>
-                                    @else
+                                    @elseif ( $user['verificate_email'] == 1 && $user['email'] != null )
                                         <span class="badge badge-red-light text-red-error px-5 py-2" style="border-radius: 10px;">
                                             <i class="fa-solid fa-triangle-exclamation me-2" style="color: #B3261E"></i>
                                             Belum diverifikasi
@@ -72,13 +72,13 @@
                                     <div class="font-normal-700 fs-16 mt-1">{{ $user['phone'] }}</div>
                                 </div>
                                 <div class="col-4">
-                                    @if( $user['verificate_phone'] == 1)
+                                    @if( $user['verificate_phone'] == 1 && $user['phone'] != null )
                                         <div class="font-normal-400 fs-14 mt-11">
                                             <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
                                             Sudah diverifikasi
                                         </div>
-                                    @else
-                                        <span class="badge badge-red-light text-red-error px-5 py-2" style="border-radius: 10px;">
+                                    @elseif ($user['verificate_phone'] == 0 && $user['phone'] != null )
+                                        <span class="badge badge-red-light text-red-error px-5 py-2 mt-10" style="border-radius: 10px;">
                                             <i class="fa-solid fa-triangle-exclamation me-2" style="color: #B3261E"></i>
                                             Belum diverifikasi
                                         </span>
