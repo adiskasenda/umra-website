@@ -149,18 +149,19 @@
     <script>
         function validationFrom(data) {
             let message = [];
+            let messageValidasi;
 
             if ( data.first_name.length == 0 ) {
                 message.push({
                     name : 'first_name',
-                    message : [ 'Nama Depan Tidak Boleh Kosong' ]
+                    message : 'Nama Depan Tidak Boleh Kosong'
                 });
             }
 
             if ( data.last_name.length == 0 ) {
                 message.push({
                     name : 'last_name',
-                    message : ['Nama Belakang Tidak Boleh Kosong']
+                    message : 'Nama Belakang Tidak Boleh Kosong'
                 });
             }
 
@@ -168,8 +169,17 @@
                 message.push('Tanggal Lahir Tidak Boleh Kosong');
             }
 
-            if ( data.phone_number.length == 0 ) {
-                message.push('No Telepon Tidak Boleh Kosong');
+            if ( data.phone_number.length == 0 || data.phone_number.length > 9 ) {
+                if ( data.phone_number.length == 0 ) {
+                    messageValidasi = 'No Telepon Tidak Boleh Kosong'
+                }else if( data.phone_number.length  > 9 ) {
+                    messageValidasi = 'No Telepon Tidak Boleh Lebih dari 9 Angka'
+                }
+
+                message.push({
+                    name : 'last_name',
+                    message : messageValidasi
+                });
             }
 
             if ( data.ktp_number.length == 0 ) {

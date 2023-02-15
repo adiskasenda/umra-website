@@ -82,6 +82,8 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
     // Reset Password Email
     Route::group([ 'prefix' =>'/reset-password' ], function() {
         Route::post('/send-email', [ ForgotPasswordController::class, 'sendEmailResetPassword']);
+        Route::post('/validate-otp', [ ForgotPasswordController::class, 'validateOtp']);
+        Route::post('/update-password', [ ForgotPasswordController::class, 'updatePassword']);
     });
 
     // Route::group([ 'prefix' => '/reset-pin' ], function() {
