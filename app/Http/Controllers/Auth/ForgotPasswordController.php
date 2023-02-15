@@ -46,11 +46,7 @@ class ForgotPasswordController extends Controller
             "otp" => $request->otp
         ];
 
-        $this->header['ax-request-by'] = Session::get('user')['email'];
-        // $this->header['Authorization'] = 'Bearer '.Session::get('token');
-        
         $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/customer/validate_otp_email', $body);
-        
         $customer = json_decode($response->getBody(), true);
 
         return response()->json([
@@ -66,9 +62,9 @@ class ForgotPasswordController extends Controller
             "password_new" => $request->password_new,
             "password_confirm" => $request->password_confirm
         ];
-        dd($body);
-        $this->header['ax-request-by'] = Session::get('user')['email'];
-        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        
+        $this->header['ax-request-by'] = $request->email;
+        $this->header['Authorization'] = 'Bearer '.$request->token;
 
         $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/change_password/'.$request->user_id, $body);
         $customer = json_decode($response->getBody(), true);

@@ -138,6 +138,12 @@
                     <div class="fv-row mb-8">
                         <input type="password" placeholder="Ulangi Kata Sandi Baru" name="password_confirm" class="form-control bg-transparent" required/>
                     </div>
+
+                    <div class="d-grid">
+                        <button type="button" id="btn-reset-password" class="btn btn-success">
+                            <span class="indicator-label">Ubah</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="email-reset-success">
@@ -250,7 +256,7 @@
         <!-- Script Function Reset Password End -->
     
     <script>
-        let user_id;
+        let user_id, token;
         $('#reset-password').click(function () {
             resetPassword();
         });
@@ -293,8 +299,9 @@
                         dataType: "JSON",
                         success: function(data) {
                             if ( data.status == 1 ) {
-                                inputPassword()
-                                console.log(data, 'ini data user');
+                                inputPassword();
+                                user_id = data.data.user.user_id;
+                                token = data.data.token;
                             } else {
                                 $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
                             }
@@ -306,6 +313,7 @@
         });
 
         $('#btn-reset-password').click(function () {
+            const email = $('input[name="email-reset-password"]').val();
             const password_new = $('input[name="password_new"]').val();
             const password_confirm = $('input[name="password_confirm"]').val();
 
@@ -314,6 +322,8 @@
                 type: 'POST',
                 data: {
                     "_token": "{{ csrf_token() }}",
+                    "email" : email,
+                    "token" : token,
                     "password_new" : password_new,
                     "password_confirm" : password_confirm,
                     "user_id" : user_id
