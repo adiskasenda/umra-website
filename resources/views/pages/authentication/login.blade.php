@@ -114,6 +114,8 @@
                 </div>
 
                 <div class="modal-body text-center" style="padding:40px;" id="email-reset-otp">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+
                     <div class="mb-5">
                         <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan OTP</div>
                         <div class="mt-5 text-weight-400 fs-16">Masukan OTP yang anda terima di email anda.</div>
@@ -123,11 +125,13 @@
                 </div>
 
                 <div class="modal-body text-center" style="padding:40px;" id="email-reset-password">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+
                     <div id="email-reset-password-failed" style="display:none;">
                         <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
                             <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
                             <div class="d-flex flex-column">
-                                <span>Email Tidak ditemukan, Silahkan Daftar Terlebih dahulu</span>
+                                <span id="message-email-reset-password-failed"></span>
                             </div>
                         </div>
                     </div>
@@ -331,10 +335,12 @@
                 dataType: "JSON",
                 success: function(data) {
                     if ( data.status == '1' ) {
-                        return responseSuccess();
+                        responseSuccess();
                     } else {
-                        return inputPasswordFailed();
+                         inputPasswordFailed();
+                        $('#message-email-reset-password-failed').html(data.message)
                     }
+                    return false;
                 }
             })
         });
