@@ -88,14 +88,14 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
-                <div class="modal-body text-center" style="padding:40px;" id="email-reset-failed">
+                <div class="modal-body text-center" style="padding:40px;" id="email-reset-send-email">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
                     
                     <div class="mb-5">
                         <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Lupa kata sandi?</div>
                         <div class="mt-5 text-weight-400 fs-16">Jangan khawatir. Tuliskan email Anda untuk membuat kata sandi baru.</div>
                         
-                        <div id="user-not-found" style="display:none;">
+                        <div id="email-reset-send-email-failed" style="display:none;">
                             <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
                                 <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
                                 <div class="d-flex flex-column">
@@ -113,22 +113,30 @@
                     </div>
                 </div>
 
-                <div class="modal-body text-center" style="padding:40px;" id="email-reset-pin">
+                <div class="modal-body text-center" style="padding:40px;" id="email-reset-otp">
                     <div class="mb-5">
-                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Lupa kata sandi?</div>
-                        <div class="mt-5 text-weight-400 fs-16">Jangan khawatir. Tuliskan email Anda untuk membuat kata sandi baru.</div>
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan OTP</div>
+                        <div class="mt-5 text-weight-400 fs-16">Masukan OTP yang anda terima di email anda.</div>
                         
                         <div class="pincode-input-otp-email"></div>
                     </div>
                 </div>
 
-                <div class="modal-body text-center" style="padding:40px;" id="email-reset-pin">
-                    
+                <div class="modal-body text-center" style="padding:40px;" id="email-reset-password">
+                    <div id="email-reset-password-failed" style="display:none;">
+                        <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
+                            <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
+                            <div class="d-flex flex-column">
+                                <span>Email Tidak ditemukan, Silahkan Daftar Terlebih dahulu</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="fv-row mb-8">
-                        <input type="password" placeholder="Password" name="password" class="form-control bg-transparent" required/>
+                        <input type="password" placeholder="Kata Sandi Baru" name="password_new" class="form-control bg-transparent" required/>
                     </div>
                     <div class="fv-row mb-8">
-                        <input type="password" placeholder="Password" name="password" class="form-control bg-transparent" required/>
+                        <input type="password" placeholder="Ulangi Kata Sandi Baru" name="password_confirm" class="form-control bg-transparent" required/>
                     </div>
                 </div>
 
@@ -174,44 +182,75 @@
 
             // reset message
             function resetPassword() {
-                $('#email-reset-failed').css("display", "block");
+                $('#email-reset-send-email').css("display", "block");
+                $('#email-reset-send-email-failed').css("display", "none");
+                $('#email-reset-otp').css("display", "none");
+                $('#email-reset-password').css("display", "none");
+                $('#email-reset-password-failed').css("display", "none");
                 $('#email-reset-success').css("display", "none");
-                $('#user-not-found').css("display", "none");
-                $('input[name="email-reset-password"]').val();
+                $('input[name="email-reset-password"]').val('');
             }
 
             // failed Message
             function SendEmailFailed() {
-                $('#email-reset-failed').css("display", "block");
-                $('#user-not-found').css("display", "block");
+                $('#email-reset-send-email').css("display", "block");
+                $('#email-reset-send-email-failed').css("display", "block");
+                $('#email-reset-otp').css("display", "none");
+                $('#email-reset-password').css("display", "none");
+                $('#email-reset-password-failed').css("display", "none");
                 $('#email-reset-success').css("display", "none");
             }
 
             // form input Otp Email
             function inputOTPEmail() {
-
+                $('#email-reset-send-email').css("display", "none");
+                $('#email-reset-send-email-failed').css("display", "none");
+                $('#email-reset-otp').css("display", "block");
+                $('#email-reset-password').css("display", "none");
+                $('#email-reset-password-failed').css("display", "none");
+                $('#email-reset-success').css("display", "none");
             }
 
             // form input New password
             function inputPassword() {
-
+                $('#email-reset-send-email').css("display", "none");
+                $('#email-reset-send-email-failed').css("display", "none");
+                $('#email-reset-otp').css("display", "none");
+                $('#email-reset-password').css("display", "block");
+                $('#email-reset-password-failed').css("display", "none");
+                $('#email-reset-success').css("display", "none");
+                $('input[name="password_new"]').val('');
+                $('input[name="password_confirm"]').val('');
             }
 
             // form input New password
             function inputPasswordFailed() {
-
+                $('#email-reset-send-email').css("display", "none");
+                $('#email-reset-send-email-failed').css("display", "none");
+                $('#email-reset-otp').css("display", "none");
+                $('#email-reset-password').css("display", "block");
+                $('#email-reset-password-failed').css("display", "block");
+                $('#email-reset-success').css("display", "none");
+                $('input[name="password_new"]').val('');
+                $('input[name="password_confirm"]').val('');
             }
 
             // Success Message
             function responseSuccess() {
-                $('#email-reset-failed').css("display", "none");
+                $('#email-reset-send-email').css("display", "none");
+                $('#email-reset-send-email-failed').css("display", "none");
+                $('#email-reset-otp').css("display", "none");
+                $('#email-reset-password').css("display", "none");
+                $('#email-reset-password-failed').css("display", "none");
                 $('#email-reset-success').css("display", "block");
-                $('#user-not-found').css("display", "none");
+                $('input[name="password_new"]').val('');
+                $('input[name="password_confirm"]').val('');
             }
         </script>
         <!-- Script Function Reset Password End -->
     
     <script>
+        let user_id;
         $('#reset-password').click(function () {
             resetPassword();
         });
@@ -254,9 +293,10 @@
                         dataType: "JSON",
                         success: function(data) {
                             if ( data.status == 1 ) {
-                                inputPasswordFailed()
+                                inputPassword()
+                                console.log(data, 'ini data user');
                             } else {
-
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
                             }
                             return false;
                         }
@@ -266,9 +306,8 @@
         });
 
         $('#btn-reset-password').click(function () {
-            const password_new = '121212';
-            const password_confirm = '121212';
-            const user_id = '121212';
+            const password_new = $('input[name="password_new"]').val();
+            const password_confirm = $('input[name="password_confirm"]').val();
 
             $.ajax({
                 url: "{{ url('/reset-password/update-password') }}",

@@ -39,7 +39,7 @@ class ForgotPasswordController extends Controller
         ]);
     }
 
-    public function validateOtp(Requestv $request)
+    public function validateOtp(Request $request)
     {
         $body = [
             "email" => $request->email,
@@ -47,9 +47,10 @@ class ForgotPasswordController extends Controller
         ];
 
         $this->header['ax-request-by'] = Session::get('user')['email'];
-        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+        // $this->header['Authorization'] = 'Bearer '.Session::get('token');
         
         $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/customer/validate_otp_email', $body);
+        
         $customer = json_decode($response->getBody(), true);
 
         return response()->json([
@@ -65,7 +66,7 @@ class ForgotPasswordController extends Controller
             "password_new" => $request->password_new,
             "password_confirm" => $request->password_confirm
         ];
-
+        dd($body);
         $this->header['ax-request-by'] = Session::get('user')['email'];
         $this->header['Authorization'] = 'Bearer '.Session::get('token');
 

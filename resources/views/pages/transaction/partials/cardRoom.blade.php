@@ -213,7 +213,7 @@
                 message.map( res => {
                     $(this).parent().parent().parent().parent().parent().parent().find('input[name="'+res.name+'"]').addClass('is-invalid')
                     $(this).parent().parent().parent().parent().parent().parent().find('.message-validation.'+res.name).html(`@include('pages.transaction.partials.messageValidation',[
-                        'message' => '`+ res.message[0] +`'
+                        'message' => '`+ res.message +`'
                     ])`);
                 })
                 

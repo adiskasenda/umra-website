@@ -70,7 +70,7 @@
                                                         Jenis Kelamin
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
-                                                        {{ $gender }}
+                                                        {{ $jamaah['gender'] }}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
