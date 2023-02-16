@@ -107,10 +107,17 @@
                                                             {{ !empty($user['email']) ? $user['email'] : 'Belum Ada Email' }}
                                                         </div>
                                                         @if( !empty($user['email']) )
-                                                            <div class="font-normal-400 fs-12 mt-2">
-                                                                <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
-                                                                Sudah diverifikasi
-                                                            </div>
+                                                            @if( $user['verificate_email'] == 1 )
+                                                                <div class="font-normal-400 fs-12 mt-2">
+                                                                    <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
+                                                                    Sudah diverifikasi
+                                                                </div>
+                                                            @else
+                                                                <span class="badge badge-red-light text-red-error px-5 py-2 mt-2" style="border-radius: 10px;">
+                                                                    <i class="fa-solid fa-triangle-exclamation me-2" style="color: #B3261E"></i>
+                                                                    Belum diverifikasi
+                                                                </span>
+                                                            @endif
                                                         @endif
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-12 text-center" style="margin: auto;">
@@ -129,10 +136,17 @@
                                                             {{ !empty($user['phone']) ? $user['phone'] : 'Belum Ada Nomer Telepon' }}
                                                         </div>
                                                         @if( !empty($user['phone']) )
-                                                            <div class="font-normal-400 fs-12 mt-2">
-                                                                <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
-                                                                Sudah diverifikasi
-                                                            </div>
+                                                            @if( $user['verificate_phone'] == 1 )
+                                                                <div class="font-normal-400 fs-12 mt-2">
+                                                                    <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
+                                                                    Sudah diverifikasi
+                                                                </div>
+                                                            @else 
+                                                                <span class="badge badge-red-light text-red-error px-5 py-2 mt-2" style="border-radius: 10px;">
+                                                                    <i class="fa-solid fa-triangle-exclamation me-2" style="color: #B3261E"></i>
+                                                                    Belum diverifikasi
+                                                                </span>
+                                                            @endif
                                                         @endif
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-12 text-center" style="margin: auto;">
@@ -230,7 +244,7 @@
                 <div class="modal-body text-center" style="padding:40px;" id="phone-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
                     <div class="mb-5">
-                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan Pin</div>
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan PIN</div>
                     </div>
                     <div class="fv-row mb-8">
                         <div class="pincode-input-phone"></div>
@@ -248,8 +262,8 @@
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="phone-input-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
                     <div class="mb-5">
-                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Email Anda</div>
-                        <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan email anda aktif untuk menerima tautan dari kami.</div>
+                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Nomor Telepon Anda</div>
+                        <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan nomor telepon Anda terhubungan dengan WhatsApp untuk menerima kode OTP dari kami.</div>
 
                         <div id="error-update-phone">
                             <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
@@ -261,7 +275,7 @@
                         </div>
 
                         <div class="fv-row mb-8">
-                            <input type="number" placeholder="Masukkan Nomer Telephon anda" name="phone" class="form-control bg-transparent" required/>
+                            <input type="number" placeholder="Masukkan Nomor Telepon (WhatsApp)" name="phone" class="form-control bg-transparent" required/>
                         </div>
                     </div>
                     <div class="d-grid">
@@ -322,7 +336,10 @@
             $('#success-update-email').css("display", "none");
         }
         function otpEmail() {
-            // masukan Otp untuk Email
+            $('#email-modal').css("display", "none");
+            $('#email-input-modal').css("display", "block");
+            $('#error-update-email').css("display", "block");
+            $('#success-update-email').css("display", "none");
         }
         function successFormUpdateEmail() {
             $('#email-modal').css("display", "none");
@@ -339,7 +356,6 @@
         new PincodeInput('.pincode-input-email', {
             count: 6,
             onInput: (value) => {
-                console.log('input pin email');
                 if ( value.length >= 6 ) {
                     $.ajax({
                         url: "{{ url('/validate-otp') }}",
@@ -352,6 +368,34 @@
                         success: function(data) {
                             if ( data.status == '1' ) {
                                 formUpdateEmail();
+                                return false;
+                            } else {
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
+                                return false;
+                            }
+                        }
+                    })
+                }
+            }
+        })
+
+        new PincodeInput('.pincode-input-otp-email', {
+            count: 6,
+            onInput: (value) => {
+                if ( value.length >= 6 ) {
+                    const phone = $('input[name="phone"]').val();
+                    $.ajax({
+                        url: "{{ url('/profile/validate-otp-email') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "email" : email,
+                            "otp" : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == '1' ) {
+                                successFormUpdateEmail();
                                 return false;
                             } else {
                                 $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
@@ -413,7 +457,10 @@
             $('#success-update-phone').css("display", "none");
         }
         function otpPhone() {
-            // masukan Otp untuk Phone Number
+            $('#phone-modal').css("display", "none");
+            $('#phone-input-modal').css("display", "none");
+            $('#error-update-phone').css("display", "none");
+            $('#success-update-phone').css("display", "block");
         }
         function successFormUpdatePhone() {
             $('#phone-modal').css("display", "none");
@@ -421,6 +468,7 @@
             $('#error-update-phone').css("display", "none");
             $('#success-update-phone').css("display", "block");
         }
+        
         new PincodeInput('.pincode-input-phone', {
             count: 6,
             onInput: (value) => {
@@ -446,13 +494,40 @@
                 }
             }
         })
+
+        new PincodeInput('.pincode-input-otp-phone', {
+            count: 6,
+            onInput: (value) => {
+                if ( value.length >= 6 ) {
+                    const phone = $('input[name="phone"]').val();
+                    $.ajax({
+                        url: "{{ url('/profile/validate-otp-phone') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "phone" : phone,
+                            "otp" : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == '1' ) {
+                                successFormUpdatePhone();
+                                return false;
+                            } else {
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
+                                return false;
+                            }
+                        }
+                    })
+                }
+            }
+        })
     </script>
     <script>
         $('#update-phone').click(function(){
             inputPINPhone();
         });
         $('#btn-update-phone').click(function () {
-            console.log('btn-update');
             const phone = $('input[name="phone"]').val();
             $.ajax({
                 url: "{{ url('/profile/update-phone') }}",

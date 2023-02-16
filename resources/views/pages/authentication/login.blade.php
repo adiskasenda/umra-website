@@ -114,20 +114,24 @@
                 </div>
 
                 <div class="modal-body text-center" style="padding:40px;" id="email-reset-otp">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
                     <div class="mb-5">
                         <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan OTP</div>
                         <div class="mt-5 text-weight-400 fs-16">Masukan OTP yang anda terima di email anda.</div>
-                        
+                    </div>
+                    <div class="fv-row mb-5 mt-8">
                         <div class="pincode-input-otp-email"></div>
                     </div>
                 </div>
 
                 <div class="modal-body text-center" style="padding:40px;" id="email-reset-password">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+
                     <div id="email-reset-password-failed" style="display:none;">
                         <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
                             <span class="svg-icon svg-icon-2hx svg-icon-danger me-3">--</span>
                             <div class="d-flex flex-column">
-                                <span>Email Tidak ditemukan, Silahkan Daftar Terlebih dahulu</span>
+                                <span id="message-email-reset-password-failed"></span>
                             </div>
                         </div>
                     </div>
@@ -137,6 +141,12 @@
                     </div>
                     <div class="fv-row mb-8">
                         <input type="password" placeholder="Ulangi Kata Sandi Baru" name="password_confirm" class="form-control bg-transparent" required/>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="button" id="btn-reset-password" class="btn btn-success">
+                            <span class="indicator-label">Ubah</span>
+                        </button>
                     </div>
                 </div>
 
@@ -250,7 +260,7 @@
         <!-- Script Function Reset Password End -->
     
     <script>
-        let user_id;
+        let user_id, token;
         $('#reset-password').click(function () {
             resetPassword();
         });
@@ -293,8 +303,9 @@
                         dataType: "JSON",
                         success: function(data) {
                             if ( data.status == 1 ) {
-                                inputPassword()
-                                console.log(data, 'ini data user');
+                                inputPassword();
+                                user_id = data.data.user.user_id;
+                                token = data.data.token;
                             } else {
                                 $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
                             }
@@ -306,6 +317,7 @@
         });
 
         $('#btn-reset-password').click(function () {
+            const email = $('input[name="email-reset-password"]').val();
             const password_new = $('input[name="password_new"]').val();
             const password_confirm = $('input[name="password_confirm"]').val();
 
@@ -314,6 +326,8 @@
                 type: 'POST',
                 data: {
                     "_token": "{{ csrf_token() }}",
+                    "email" : email,
+                    "token" : token,
                     "password_new" : password_new,
                     "password_confirm" : password_confirm,
                     "user_id" : user_id
@@ -321,10 +335,12 @@
                 dataType: "JSON",
                 success: function(data) {
                     if ( data.status == '1' ) {
-                        return responseSuccess();
+                        responseSuccess();
                     } else {
-                        return inputPasswordFailed();
+                         inputPasswordFailed();
+                        $('#message-email-reset-password-failed').html(data.message)
                     }
+                    return false;
                 }
             })
         });

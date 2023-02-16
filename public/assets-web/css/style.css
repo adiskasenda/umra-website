@@ -12,6 +12,12 @@
     --green-light: #E6F1F0;
 }
 
+.garis_vertikal{
+    border-left: 1px #C2C2C2 solid;
+    height: 40px;
+    width: 1px;
+}
+
 .p-tb-50 {
     padding-top: 50px;
     padding-bottom: 50px;

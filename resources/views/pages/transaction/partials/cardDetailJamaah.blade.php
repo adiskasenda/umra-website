@@ -3,7 +3,7 @@
         <h2 class="accordion-header" id="kt_accordion_1_header_1">
             <button class="accordion-button fs-4 fw-semibold" style="background-color: white;" aria-expanded="true"  type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-controls="kt_accordion_1_body_1">
                 <div class="row" style="width: 100%;">
-                    <div class="col-1 mt-1">
+                    <div class="col-lg-1 col-md-2 col-2 mt-1">
                         <img src="{{ $icon }}" alt="{{ $icon }}">
                     </div>
                     <div class="col-5">
@@ -70,7 +70,11 @@
                                                         Jenis Kelamin
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
-                                                        {{ $jamaah['gender'] }}
+                                                        @if ( $jamaah['gender'] == 1 )
+                                                            Laki-laki <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>
+                                                        @else
+                                                            Perempuan <span><i class="fa-solid fa-venus me-2" style="color: black"></i></span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -122,7 +126,7 @@
                                                         Vaksinasi Terakhir
                                                     </div>
                                                     <div class="mt-1 font-normal-700 fs-16">
-                                                        {{ $jamaah['vaccine_status'] }}
+                                                        {{ Helpers::viewVaksinasi($jamaah['vaccine_status']) }}
                                                     </div>
                                                 </div>
                                             </div>

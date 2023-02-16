@@ -109,11 +109,32 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function validateOtpEmail(Request $request)
+    {
+        $body = [
+            "email" => $request->email,
+            "otp" => $request->email,
+        ];
+        
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/validate_otp_email', $body);
+        $customer = json_decode($response->getBody(), true);
+        
+        return response()->json([
+            'status' => $customer['status'],
+            'message' => $customer['message'],
+            'data' => $customer['data']
+        ]);
+    }
+
     public function updatePhone(Request $request)
     {
         $body = [
             "phone" => $request->phone
         ];
+
         $this->header['ax-request-by'] = Session::get('user')['email'];
         $this->header['Authorization'] = 'Bearer '.Session::get('token');
 
@@ -128,6 +149,26 @@ class ProfileController extends Controller
             ]);
         }
 
+        return response()->json([
+            'status' => $customer['status'],
+            'message' => $customer['message'],
+            'data' => $customer['data']
+        ]);
+    }
+
+    public function validateOtpPhone(Request $request)
+    {
+        $body = [
+            "phone" => $request->phone,
+            "otp" => $request->otp,
+        ];
+
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/customer/validate_otp_phone', $body);
+        $customer = json_decode($response->getBody(), true);
+        
         return response()->json([
             'status' => $customer['status'],
             'message' => $customer['message'],

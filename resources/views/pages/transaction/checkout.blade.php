@@ -104,41 +104,48 @@
                 <hr>
 
                 <div class="font-normal-700 fs-20">Pilih Jenis Pembayaran</div>
+                
                 <div class="row">
-
                     <div class="col-6">
-                        <div class="card card-bordered mt-5" for="CASH">
-                            <div class="card-body p-5 my-3">
-                                <div class="row">
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="CASH" name="payment_method" id="CASH" checked/>
-                                        <label class="form-check-label" for="CASH">
-                                            <div class="font-normal-600 fs-14">Cash</div>
-                                            <div class="font-normal-400 fs-14">Bayar lunas di depan agar perjalanan ibadah anda lebih tenang</div>
-                                        </label>
+                        <div class="form-check form-check-custom form-check-solid">
+                            <label class="form-check-label" for="CASH">
+                                <div class="card card-bordered mt-5" for="CASH" style="cursor: pointer;">
+                                    <div class="card-body px-3 py-5 my-3">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <input class="form-check-input mt-5 text-right" type="radio" value="CASH" name="payment_method" id="CASH" checked/>
+                                            </div>
+                                            <div class="col-10 px-0">
+                                                <div class="font-normal-600 fs-14">Cash</div>
+                                                <div class="font-normal-400 fs-14">Bayar lunas di depan agar perjalanan ibadah anda lebih tenang</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </label>
                         </div>
                     </div>
-
                     <div class="col-6">
-                        <div class="card card-bordered mt-5" for="DOWNPAYMENT">
-                            <div class="card-body p-5">
-                                <div class="row">
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="DOWNPAYMENT" name="payment_method" id="DOWNPAYMENT"/>
-                                        <label class="form-check-label" for="DOWNPAYMENT">
-                                            <div class="font-normal-600 fs-14">Cicilan hingga 2x <span class="badge badge-success px-5 mx-3" style="border-radius: 10px">Cukup bayar Rp. {{ number_format($configuration[2]['value_configuration']) }} / orang</span></div>
-                                            <div class="font-normal-400 fs-14">Cukup bayar uang muka untuk bisa booking tiket perjalanan anda</div>
-                                        </label>
+                        <div class="form-check form-check-custom form-check-solid">
+                            <label class="form-check-label" for="DOWNPAYMENT">
+                                <div class="card card-bordered mt-5" for="DOWNPAYMENT" style="cursor: pointer;">
+                                    <div class="card-body px-3 py-5">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <input class="form-check-input mt-8" type="radio" value="DOWNPAYMENT" name="payment_method" id="DOWNPAYMENT"/>
+                                            </div>
+                                            <div class="col-10 px-0">
+                                                <div class="font-normal-600 fs-14">Cicilan hingga 2x <span class="badge badge-success px-5 mx-3" style="border-radius: 10px">Cukup bayar Rp. {{ number_format($configuration[2]['value_configuration']) }} / orang</span></div>
+                                                <div class="font-normal-400 fs-14">Cukup bayar uang muka untuk bisa booking tiket perjalanan anda</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </label>
                         </div>
                     </div>
-
                 </div>
+
                 <hr>
 
                 <div class="row">
@@ -185,6 +192,11 @@
     <!-- Check Cart Start -->
     <script>
         function checkChart() {
+            if ( "{{ Session::get('user')['phone'] }}".length <= 0 ) {
+                window.location.href = "{{ url('/package', $package_product['id_packet']).'?status=phone-failed' }}";
+                return false;
+            }
+            
             if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
                 window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
                 return false;

@@ -20,13 +20,13 @@
 
                     <!-- Nama Depan Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="first_name" class="required form-label">Nama Depan</label>
+                        <label for="first_name" class="form-label">Nama Depan</label>
                         <div class="font-normal-700 fs-16">{{ $first_name ? $first_name : '-' }}</div>
                     </div>
 
                     <!-- Nama Belakang Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="last_name" class="required form-label">Nama Depan</label>
+                        <label for="last_name" class="form-label">Nama Depan</label>
                         <div class="font-normal-700 fs-16">{{ $last_name ? $last_name : '-' }}</div>
                     </div>
 
@@ -43,7 +43,7 @@
 
                     <!-- Nomor KTP Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="no_ktp" class="required form-label">Nomor KTP</label>
+                        <label for="no_ktp" class="form-label">Nomor KTP</label>
                         <div class="font-normal-700 fs-16">{{ $ktp_number ? $ktp_number : '-' }}</div>
                     </div>
                     
@@ -53,18 +53,18 @@
                     <!-- Tanggal Lahir & Alamat Field -->
                     <div class="col-sm-6 mb-5">
                         <div class="form-group mb-5">
-                            <label for="birth_date" class="required form-label">Tanggal Lahir</label>
+                            <label for="birth_date" class="form-label">Tanggal Lahir</label>
                             <div class="font-normal-700 fs-16">{{ $birth_date ? $birth_date : '-' }}</div>
                         </div>
                         <div class="form-group">
-                            <label for="address" class="required form-label">Alamat</label>
+                            <label for="address" class="form-label">Alamat</label>
                             <div class="font-normal-700 fs-16">{{ $address ? $address : '-' }}</div>
                         </div>
                     </div>
 
                     <!-- Vaksinasi Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="no_ktp" class="required form-label">Vaksinasi</label>
+                        <label for="no_ktp" class="form-label">Vaksinasi</label>
                         <div class="font-normal-700 fs-16">{{ $vaccine_status ? $vaccine_status : '-' }}</div>
                     </div>
                     
@@ -72,7 +72,7 @@
                 <div class="row">
                     <!-- Nomor Telepon Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="no_telp" class="required form-label">Nomor Telepon</label>
+                        <label for="no_telp" class="form-label">Nomor Telepon</label>
                         <div class="font-normal-700 fs-16">{{ $phone_number ? $phone_number : '-' }}</div>
                     </div>
                 </div>
@@ -80,13 +80,13 @@
                 <div class="row">
                     <!-- Nomor Passport Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="no_telp" class="required form-label">Nomor Passport</label>
+                        <label for="no_telp" class="form-label">Nomor Passport</label>
                         <div class="font-normal-700 fs-16">{{ $passport_number ? $passport_number : '-' }}</div>
                     </div>
 
                     <!-- Nomor Passport Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="no_telp" class="required form-label">Masa Berlaku Passport</label>
+                        <label for="no_telp" class="form-label">Masa Berlaku Passport</label>
                         <div class="font-normal-700 fs-16">{{ $passport_expiry_date ? $passport_expiry_date : '-' }}</div>
                     </div>
                 </div>

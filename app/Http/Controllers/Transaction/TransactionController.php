@@ -184,6 +184,7 @@ class TransactionController extends Controller
             "person_quad" => $request->card_data[0][2]['quad'],
             "affliator_code" => "",
             "type_payment" => $request->type_payment,
+            "id_payment_method" => $request->payment_method,
             "order_guest" => $order_guest
         ];
 
@@ -195,38 +196,42 @@ class TransactionController extends Controller
         $order = json_decode($response->getBody(), true);
 
         // Create Payment
-        $bodyPayment = [
-            "order_code" => $order['data']['order_code'],
-            "type_payment" => $request->type_payment,
-            "payment_method" => $request->payment_method
-        ];
+        // $bodyPayment = [
+        //     "order_code" => $order['data']['order_code'],
+        //     "type_payment" => $request->type_payment,
+        //     "payment_method" => $request->payment_method
+        // ];
 
-        $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/order_customer/repayment', $bodyPayment);
-        $payment_method = json_decode($response->getBody(), true);
+        // $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/order_customer/repayment', $bodyPayment);
+        // $payment_method = json_decode($response->getBody(), true);
         
-        return response()->json([
-            'status' => $order['status'],
-            'message' => $order['message'],
-            'data' => $order['data']
-        ]);
-    }
-
-    public function paymentStatus($order_code)
-    {
-        $this->header['ax-request-by'] = Session::get('user')['email'];
-        $this->header['Authorization'] = 'Bearer '.Session::get('token');
-
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/code/'.$order_code);
-        $order = json_decode($response->getBody(), true);
-
-        if ( empty($order['data']) ) {
-            return abort(404);
-        }
-
         return view('pages.transaction.paymentStatus', [
             'order' => $order['data']
         ]);
+
+        // return response()->json([
+        //     'status' => $order['status'],
+        //     'message' => $order['message'],
+        //     'data' => $order['data']
+        // ]);
     }
+
+    // public function paymentStatus($order_code)
+    // {
+    //     $this->header['ax-request-by'] = Session::get('user')['email'];
+    //     $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+    //     $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/code/'.$order_code);
+    //     $order = json_decode($response->getBody(), true);
+
+    //     if ( empty($order['data']) ) {
+    //         return abort(404);
+    //     }
+
+    //     return view('pages.transaction.paymentStatus', [
+    //         'order' => $order['data']
+    //     ]);
+    // }
 
     public function show($id)
     {

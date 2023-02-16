@@ -388,11 +388,11 @@
                 success: function(data) {
                     if ( data.status == '1' ) {
                         inputOTPEmail();
-                        return false;
                     } else {
                         errorForgotPIN();
                         $('#message-error-send-email').html(data.message)
                     }
+                    return false;
                 }
             })
         });
