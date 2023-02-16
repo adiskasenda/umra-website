@@ -166,34 +166,71 @@
             }
 
             if ( data.birth_date.length == 0 ) {
-                message.push('Tanggal Lahir Tidak Boleh Kosong');
+                message.push({
+                    name : 'birth_date',
+                    message : 'Tanggal Lahir Tidak Boleh Kosong'
+                });
             }
 
-            if ( data.phone_number.length == 0 || data.phone_number.length > 9 ) {
+            if ( data.phone_number.length == 0 || data.phone_number.length < 11 || data.phone_number.length > 14 || data.phone_number[0] != 6 || data.phone_number[1] != 2 ) {
                 if ( data.phone_number.length == 0 ) {
-                    messageValidasi = 'No Telepon Tidak Boleh Kosong'
-                }else if( data.phone_number.length  > 9 ) {
-                    messageValidasi = 'No Telepon Tidak Boleh Lebih dari 9 Angka'
+                    messageValidasi = 'Nomor Telepon Tidak Boleh Kosong'
+                } else if( data.phone_number.length  < 11 ) {
+                    messageValidasi = 'Nomor Telepon Kurang Dari 11 Angka'
+                } else if( data.phone_number.length  > 14 ) {
+                    messageValidasi = 'Nomor Telepon Lebih Dari 14 Angka'
+                } else if ( data.phone_number[0] != 6 || data.phone_number[1] != 2 ) {
+                    messageValidasi = 'Nomor Telepon Harus Diawali Dengan 62'
                 }
 
                 message.push({
-                    name : 'last_name',
+                    name : 'phone_number',
                     message : messageValidasi
                 });
             }
 
-            if ( data.ktp_number.length == 0 ) {
-                message.push('Nomer Ktp Tidak Boleh Kosong');
+            if ( data.ktp_number.length == 0 || data.ktp_number.length < 16 || data.ktp_number.length > 16) {
+                if ( data.ktp_number.length == 0 ){
+                    messageValidasi = 'Nomor KTP Tidak Boleh Kosong'
+                } else if ( data.ktp_number.length < 16 ) {
+                    messageValidasi = 'Nomor KTP Kurang Dari 16 Digit'
+                } else if ( data.ktp_number.length > 16 ) {
+                    messageValidasi = 'Nomor KTP Lebih Dari 16 Digit'
+                }
+
+                message.push({
+                    name : 'ktp_number',
+                    message : messageValidasi
+                });
             }
 
-            if ( data.passport_number.length == 0 ) {
-                message.push('Nomer Passport Tidak Boleh Kosong');
+            if ( data.address.length == 0 ) {
+                message.push({
+                    name : 'address',
+                    message : 'Alamat Tidak Boleh Kosong'
+                });
+            }
+
+            if ( data.passport_number.length == 0 || data.passport_number.length < 5 ) {
+                if ( data.passport_number.length == 0 ) {
+                    messageValidasi = 'Nomor Passport Tidak Boleh Kosong'
+                } else if ( data.passport_number.length < 5 ) {
+                    messageValidasi = 'Nomor Passport Kurang Dari 5 Digit'
+                }
+
+                message.push({
+                    name : 'passport_number',
+                    message : messageValidasi
+                });
             }
 
             if ( data.passport_expiry_date.length == 0 ) {
-                message.push('Tanggal Expaired Passport Tidak Boleh Kosong');
+                message.push({
+                    name : 'passport_expiry_date',
+                    message : 'Tanggal Expaired Passport Tidak Boleh Kosong'
+                });
             }
-            
+
             return message;
         }
     </script>

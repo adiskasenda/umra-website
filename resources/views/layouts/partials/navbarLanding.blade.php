@@ -80,6 +80,11 @@
                         <a href="{{ url('/register') }}" class="btn btn-success my-2 my-sm-0" type="submit">Daftar</a>
                     @else
                         <div class="navbar-nav p-4 p-lg-0">
+                            <!-- <div class="symbol" style="margin:auto;">
+                                <i class="fa-solid fa-bucket" style="margin-right: 10px; color:#006B67; font-size:25px;"></i>
+                            </div>
+                            <div class="garis_vertikal mx-5" style="margin:auto;"></div> -->
+                            
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                                     <!-- <div class="symbol symbol-circle" style="margin:auto;">

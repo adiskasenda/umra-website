@@ -30,7 +30,6 @@
                             <label for="first_name" class="required form-label">Nama Depan</label>
                             <input type="text" class="form-control" name="first_name" value="{{ $first_name }}" placeholder="Masukkan Nama Depan"/>
                             <div class="message-validation first_name"></div>
-                            {{-- @include('pages.transaction.partials.messageValidation') --}}
                         </div>
 
                         <!-- Nama Belakang Field -->
@@ -74,6 +73,7 @@
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_ktp" class="required form-label">Nomor KTP</label>
                             <input type="number" class="form-control" name="ktp_number" value="{{ $ktp_number }}" placeholder="Masukkan nomor KTP"/>
+                            <div class="message-validation ktp_number"></div>
                         </div>
 
                     </div>
@@ -85,10 +85,12 @@
                             <div class="form-group mb-5">
                                 <label for="birth_date" class="required form-label">Tanggal Lahir</label>
                                 <input class="form-control date" name="birth_date" value="{{ $birth_date }}" placeholder="Masukan Tanggal Lahir"/>
+                                <div class="message-validation birth_date"></div>
                             </div>
                             <div class="form-group">
                                 <label for="address" class="required form-label">Alamat</label>
                                 <textarea class="form-control" placeholder="Masukan Alamat" name="address" data-kt-autosize="true">{{ $address }}</textarea>
+                                <div class="message-validation address"></div>
                             </div>
                         </div>
 
@@ -188,6 +190,7 @@
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_telp" class="required form-label">Nomor Telepon</label>
                             <input type="number" class="form-control" name="phone_number" value="{{ $phone_number }}" placeholder="Masukkan nomor telepon"/>
+                            <div class="message-validation phone_number"></div>
                         </div>
                     </div>
 
@@ -198,12 +201,14 @@
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_telp" class="required form-label">Nomor Passport</label>
                             <input type="number" class="form-control" name="passport_number" value="{{ $passport_number }}" placeholder="Masukkan Nomor Passport"/>
+                            <div class="message-validation passport_number"></div>
                         </div>
 
                         <!-- Nomor Passport Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_telp" class="required form-label">Masa Berlaku Passport</label>
                             <input type="text" class="form-control date" name="passport_expiry_date" value="{{ $passport_expiry_date }}" placeholder="Masukkan Masa Berlaku Passport"/>
+                            <div class="message-validation passport_expiry_date"></div>
                         </div>
                     </div>
 

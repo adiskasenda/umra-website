@@ -27,7 +27,7 @@
                                 </div>
                                 @foreach( $payment_method as $key => $payment_method )
                                     <div class="row mx-2 my-5">
-                                        <label class="form-check-label" for="{{ $payment_method['id_payment_method'] }}">
+                                        <label class="form-check-label" for="{{ $payment_method['id_payment_method'] }}" style="cursor:pointer;">
                                             <div class="form-check form-check-custom form-check-solid">
                                                 <div class="col-11">
                                                     <div class="row">

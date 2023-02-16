@@ -27,20 +27,27 @@
                                 </div>
                                 @foreach( $payment_method as $payment_method )
                                     <div class="row mx-2 my-5">
-                                        <div class="col-2">
-                                            <img src="{{ $payment_method['url_logo'] }}" width="40px" alt="{{ $payment_method['url_logo'] }}">
-                                        </div>
-                                        <div class="col-9">
-                                            <div class="font-normal-600 fs-14">{{ $payment_method['name_bank'] }}</div>
-                                        </div>
-                                        <div class="col-1 mt-1">
+                                        <label class="form-check-label" for="{{ $payment_method['id_payment_method'] }}">
                                             <div class="form-check form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="radio" value="{{ $payment_method['id_payment_method'] }}" name="payment_method" id="{{ $payment_method['id_payment_method'] }}"/>
+                                                <div class="col-11">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img src="{{ $payment_method['url_logo'] }}" width="40px" alt="{{ $payment_method['url_logo'] }}">
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <div class="font-normal-600 fs-14">{{ $payment_method['name_bank'] }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 mt-1">
+                                                    <input class="form-check-input" type="radio" value="{{ $payment_method['id_payment_method'] }}" name="id_payment_method" id="{{ $payment_method['id_payment_method'] }}"/>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </label>
                                     </div>
                                     <hr>
                                 @endforeach
+
                                 <!-- <div class="mb-10">
                                     <label for="exampleFormControlInput1" class="form-label">Nominal Pembayaran</label>
                                     <input type="text" class="form-control" placeholder="Nominal pembayaran"/>
@@ -183,9 +190,11 @@
                         dataType: "JSON",
                         success: function(data) {
                             if ( data.status == '1' ) {
-                                const orderCode = "{{ $order['order_code'] }}";
-                                const paymentMethod = "1";
-
+                                const typePayment = localStorage.getItem("typePayment")
+                                const cardData = JSON.parse(localStorage.getItem("cartData"));
+                                const uuidPacket = "{{ $package_product['uuid_packet'] }}";
+                                const paymentMethod = $("input[name='id_payment_method']").val();
+                                
                                 $.ajax({
                                     url: "{{ url('/transaction/need-pay') }}",
                                     type: 'POST',
