@@ -125,6 +125,7 @@
                                             Bayar
                                         </button>
                                     </div>
+                                    <div id="checkout"></div>
                                 </div>
                             </div>
                         </div>
@@ -167,10 +168,16 @@
     <!-- Check Cart Start -->
     <script>
         function checkChart() {
+            if ( "{{ Session::get('user')['phone'] }}".length <= 0 ) {
+                window.location.href = "{{ url('/package', $package_product['id_packet']).'?status=phone-failed' }}";
+                return false;
+            }
+
             if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
                 window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
                 return false;
             }
+            
             if ( localStorage.getItem("step") < 4 ) {
                 window.location.href = "{{ url('/transaction/checkout', $package_product['id_packet']) }}";
                 return false;
@@ -266,32 +273,47 @@
                                 const cardData = JSON.parse(localStorage.getItem("cartData"));
                                 const uuidPacket = "{{ $package_product['uuid_packet'] }}";
                                 const paymentMethod = $("input[name='id_payment_method']").val();
+                                $('#checkout').html(`
+                                    <form id="form-checkout" method="post" action="{{ url('/transaction/checkout') }}">
+                                        <input type="text" value="{{ csrf_token() }}" name="_token">
+                                        <input type="text" value="`+ uuidPacket +`" name="uuid_packet">
+                                        <input type="text" value="`+ typePayment +`" name="type_payment">
+                                        <input type="text" value="`+ cardData +`" name="card_data">
+                                        <input type="text" value="`+ paymentMethod +`" name="payment_method">
+                                    </form>
+                                `);
+                                // localStorage.removeItem("cartId");
+                                // localStorage.removeItem("step");
+                                // localStorage.removeItem("typePayment");
+                                // localStorage.removeItem("cartData");
+                                $( "#form-checkout" ).submit();
+                                
 
-                                $.ajax({
-                                    url: "{{ url('/transaction/checkout') }}",
-                                    type: 'POST',
-                                    data: {
-                                        "_token": "{{ csrf_token() }}",
-                                        "uuid_packet" : uuidPacket,
-                                        "type_payment" : typePayment,
-                                        "card_data" : cardData,
-                                        "payment_method" : paymentMethod,
-                                    },
-                                    dataType: "JSON",
-                                    success: function(data) {
-                                        if ( data.status == 1 ) {
-                                            localStorage.removeItem("cartId");
-                                            localStorage.removeItem("step");
-                                            localStorage.removeItem("typePayment");
-                                            localStorage.removeItem("cartData");
-                                            window.location.href = "{{ url('/transaction/payment-status').'/' }}" + data.data.order_code;
-                                        } else {
-                                            messagePayment(data.message);
-                                        }
+                                // $.ajax({
+                                //     url: "{{ url('/transaction/checkout') }}",
+                                //     type: 'POST',
+                                //     data: {
+                                //         "_token": "{{ csrf_token() }}",
+                                //         "uuid_packet" : uuidPacket,
+                                //         "type_payment" : typePayment,
+                                //         "card_data" : cardData,
+                                //         "payment_method" : paymentMethod,
+                                //     },
+                                //     dataType: "JSON",
+                                //     success: function(data) {
+                                //         if ( data.status == 1 ) {
+                                //             localStorage.removeItem("cartId");
+                                //             localStorage.removeItem("step");
+                                //             localStorage.removeItem("typePayment");
+                                //             localStorage.removeItem("cartData");
+                                //             window.location.href = "{{ url('/transaction/payment-status').'/' }}" + data.data.order_code;
+                                //         } else {
+                                //             messagePayment(data.message);
+                                //         }
                                         
-                                        return false;
-                                    }
-                                });
+                                //         return false;
+                                //     }
+                                // });
 
                                 return ;
                             } else {

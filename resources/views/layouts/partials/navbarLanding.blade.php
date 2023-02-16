@@ -81,7 +81,12 @@
                     @else
                         <div class="navbar-nav p-4 p-lg-0">
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ Session::get('user')['firstname'] }}</a>
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                    <!-- <div class="symbol symbol-circle" style="margin:auto;">
+                                        <img alt="Logo" class="img-avatar lozad" style="width: 40px; height:40px;" src="{{ Session::get('user')['url_photo'] }}">
+                                    </div> -->
+                                    <span class="ms-3">{{ Session::get('user')['firstname'] }}</span>
+                                </a>
                                 
                                 <div class="dropdown-menu border-light m-0" style="right:10px;">
                                     <div class="p-3">Assalamualaikum, {{ Session::get('user')['firstname'] }}</div>

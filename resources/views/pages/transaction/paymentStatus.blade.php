@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="mt-5" style="background-color: white; margin: auto; width: 640px; padding: 50px;">
-                    @if ( $order['alert_pesanan_batal_otomatis'] )
+                    {{-- <!--  @if ( $order['alert_pesanan_batal_otomatis'] ) --> --}}
                         <div class="card-body p-5" id="payment-process">
                             <div class="row">
                             <img class="image-center" style="width: 100px;" src="{{ asset('assets-web/img/icon/icon-failed.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
@@ -41,7 +41,7 @@
                             <div class="row mt-5">
                                 <div class="col-md-9">
                                     <div class="font-normal-700 fs-14">
-                                        {{ date('d M Y', strtotime( last($order['order_payment'])['expired_date'] )) }}
+                                        {{ date('d M Y', strtotime( $order['expired_date'] )) }}
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif ( $order['alert_tenggat_waktu_pelunasan'] )
+                    {{-- <!-- @elseif ( $order['alert_tenggat_waktu_pelunasan'] )
                         <div class="card-body p-5" id="payment-failed">
                             <div class="row">
                             <img style="width: 100px;" class="image-center" src="{{ asset('assets-web/img/icon/icon-failed.png') }}" alt="{{ asset('assets-web/img/icon/icon-failed.png') }}">
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    @endif --> --}}
                 </div>
             </div>
         </div>

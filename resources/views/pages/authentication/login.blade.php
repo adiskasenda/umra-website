@@ -115,11 +115,11 @@
 
                 <div class="modal-body text-center" style="padding:40px;" id="email-reset-otp">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
-
                     <div class="mb-5">
                         <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan OTP</div>
                         <div class="mt-5 text-weight-400 fs-16">Masukan OTP yang anda terima di email anda.</div>
-                        
+                    </div>
+                    <div class="fv-row mb-5 mt-8">
                         <div class="pincode-input-otp-email"></div>
                     </div>
                 </div>

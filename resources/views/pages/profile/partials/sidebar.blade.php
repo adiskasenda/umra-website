@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="menu-content d-flex align-items-center p-5">
             <div class="symbol symbol-circle me-5">
-                <img alt="Logo" class="img-avatar" src="{{ Session::get('user')['url_photo'] }}">
+                <img alt="Logo" class="img-avatar lozad" src="{{ Session::get('user')['url_photo'] }}">
             </div>
             <div class="d-flex flex-column">
                 <div class="fw-bold d-flex align-items-center fs-5">{{ Session::get('user')['firstname'] }}</div>

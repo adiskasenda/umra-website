@@ -129,6 +129,11 @@
     <!-- Check Cart Start -->
     <script>
         function checkChart() {
+            if ( "{{ Session::get('user')['phone'] }}".length <= 0 ) {
+                window.location.href = "{{ url('/package', $package_product['id_packet']).'?status=phone-failed' }}";
+                return false;
+            }
+
             if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
                 localStorage.setItem("step", "1");
                 localStorage.setItem("cartId", "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}");

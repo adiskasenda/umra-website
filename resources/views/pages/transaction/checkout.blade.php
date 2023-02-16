@@ -185,6 +185,11 @@
     <!-- Check Cart Start -->
     <script>
         function checkChart() {
+            if ( "{{ Session::get('user')['phone'] }}".length <= 0 ) {
+                window.location.href = "{{ url('/package', $package_product['id_packet']).'?status=phone-failed' }}";
+                return false;
+            }
+            
             if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
                 window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
                 return false;

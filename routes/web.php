@@ -148,7 +148,10 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/payment/{id}', [ TransactionController::class, 'payment' ]);
         Route::get('/payment-option/{id}', [ TransactionController::class, 'paymentOption' ]);
         Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
-        Route::get('/payment-status/{order_code}', [ TransactionController::class, 'paymentStatus' ]);
+        Route::get('/checkout', function() {
+            redirect(url('/profile/list-transaction'));
+        });
+        // Route::get('/payment-status/{order_code}', [ TransactionController::class, 'paymentStatus' ]);
         
         Route::get('/payment-need-pay/{id}', [ TransactionPaymentController::class, 'paymentNeedPay' ]);
         Route::get('/payment-option-need-pay/{id}', [ TransactionPaymentController::class, 'paymentOptionNeedPay' ]);
@@ -166,7 +169,10 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::patch('/', [ ProfileController::class, 'updateProfile' ]);
             // Update & Verification
             Route::patch('/update-email', [ ProfileController::class, 'updateEmail' ]);
+            Route::post('/validate-otp-email', [ ProfileController::class, 'validateOtpEmail' ]);
             Route::patch('/update-phone', [ ProfileController::class, 'updatePhone' ]);
+            Route::post('/validate-otp-phone', [ ProfileController::class, 'validateOtpPhone' ]);
+        
         Route::get('/password', [ ProfileController::class, 'profilePassword' ]);
             Route::patch('/update-password', [ ProfileController::class, 'updatePassword' ]);
         

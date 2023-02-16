@@ -230,7 +230,7 @@
                 <div class="modal-body text-center" style="padding:40px;" id="phone-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
                     <div class="mb-5">
-                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan Pin</div>
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan PIN</div>
                     </div>
                     <div class="fv-row mb-8">
                         <div class="pincode-input-phone"></div>
@@ -248,8 +248,8 @@
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="phone-input-modal">
                     <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
                     <div class="mb-5">
-                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Email Anda</div>
-                        <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan email anda aktif untuk menerima tautan dari kami.</div>
+                        <div class="text-weight-700 fs-20 mt-5 mb-5" style="font-weight: bold;">Tambahkan Nomor Telepon Anda</div>
+                        <div class="text-weight-400 fs-16 mt-5 mb-5">Pastikan nomor telepon Anda terhubungan dengan WhatsApp untuk menerima kode OTP dari kami.</div>
 
                         <div id="error-update-phone">
                             <div class="mt-5 alert alert-message alert-danger d-flex align-items-center">
@@ -261,7 +261,7 @@
                         </div>
 
                         <div class="fv-row mb-8">
-                            <input type="number" placeholder="Masukkan Nomer Telephon anda" name="phone" class="form-control bg-transparent" required/>
+                            <input type="number" placeholder="Masukkan Nomor Telepon (WhatsApp)" name="phone" class="form-control bg-transparent" required/>
                         </div>
                     </div>
                     <div class="d-grid">
@@ -421,7 +421,34 @@
             $('#error-update-phone').css("display", "none");
             $('#success-update-phone').css("display", "block");
         }
+        
         new PincodeInput('.pincode-input-phone', {
+            count: 6,
+            onInput: (value) => {
+                if ( value.length >= 6 ) {
+                    $.ajax({
+                        url: "{{ url('/validate-otp') }}",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            'pin' : value
+                        },
+                        dataType: "JSON",
+                        success: function(data) {
+                            if ( data.status == '1' ) {
+                                formUpdatePhone();
+                                return false;
+                            } else {
+                                $('.pincode-input.pincode-input--filled').css('border', '1px solid red');
+                                return false;
+                            }
+                        }
+                    })
+                }
+            }
+        })
+
+        new PincodeInput('.pincode-input-otp-phone', {
             count: 6,
             onInput: (value) => {
                 if ( value.length >= 6 ) {
