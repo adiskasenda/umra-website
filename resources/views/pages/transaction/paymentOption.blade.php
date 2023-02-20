@@ -40,7 +40,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-1 mt-1">
-                                                    <input class="form-check-input" type="radio" value="{{ $payment_method['id_payment_method'] }}" name="id_payment_method" id="{{ $payment_method['id_payment_method'] }}"/>
+                                                    <input class="form-check-input" style="cursor:pointer;" type="radio" value="{{ $payment_method['id_payment_method'] }}" name="id_payment_method" id="{{ $payment_method['id_payment_method'] }}"/>
                                                 </div>
                                             </div>
                                         </label>
@@ -204,7 +204,7 @@
             const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
             $('#total_price').html(formatRupiah( total_price ));
 
-            if ( localStorage.getItem("typePayment") == 'CASH' ) {
+            if ( localStorage.getItem("typePayment") == 'DOWNPAYMENT' ) {
                 $('#total_bill').html(formatRupiah( down_payment ));
 
                 $('#down_payment').html(`
@@ -269,7 +269,7 @@
                         dataType: "JSON",
                         success: function(data) {
                             if ( data.status == '1' ) {
-                                const typePayment = localStorage.getItem("typePayment")
+                                const typePayment = localStorage.getItem("typePayment");
                                 const cardData = localStorage.getItem("cartData");
                                 const uuidPacket = "{{ $package_product['uuid_packet'] }}";
                                 const paymentMethod = $("input[name='id_payment_method']").val();
@@ -282,12 +282,11 @@
                                         <input type="text" value='`+ paymentMethod +`' name="payment_method">
                                     </form>
                                 `);
-                                // localStorage.removeItem("cartId");
-                                // localStorage.removeItem("step");
-                                // localStorage.removeItem("typePayment");
-                                // localStorage.removeItem("cartData");
+                                localStorage.removeItem("cartId");
+                                localStorage.removeItem("step");
+                                localStorage.removeItem("typePayment");
+                                localStorage.removeItem("cartData");
                                 $( "#form-checkout" ).submit();
-
 
                                 // $.ajax({
                                 //     url: "{{ url('/transaction/checkout') }}",

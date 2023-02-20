@@ -167,8 +167,8 @@
             const down_payment = total_people * "{{ $configuration[2]['value_configuration'] }}";
             const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
             $('#total_price').html(formatRupiah( total_price ));
-
-            if ( localStorage.getItem("typePayment") == 'CASH' ) {
+            
+            if ( localStorage.getItem("typePayment") == 'DOWNPAYMENT' ) {
                 $('#total_bill').html(formatRupiah( down_payment ));
                 
                 $('#down_payment').html(`

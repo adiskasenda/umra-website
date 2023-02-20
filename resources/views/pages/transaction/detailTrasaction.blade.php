@@ -228,14 +228,14 @@
                                         @endforeach
                                         
                                         @if( $order['need_pay'] )
-                                            <div class="row mt-5">
+                                            <div class="row mt-8">
                                                 <div class="col-6">
-                                                    <div class="row font-normal-400 fs-14">
+                                                    <div class="font-normal-400 fs-14">
                                                         {{ $order['need_pay']['name'] }}
                                                     </div>
-                                                    <div class="row font-normal-700 fs-16 text-green-light">Rp. {{ number_format($order['need_pay']['value']) }}</div>
+                                                    <div class="font-normal-700 fs-16 text-green-light">Rp. {{ number_format($order['need_pay']['value']) }}</div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-6 font-normal-400 fs-14 text-right">
                                                     <a href="{{ url('/transaction/payment-need-pay', $order['id_order']) }}" class="btn btn-success">Bayar Sekarang</a>
                                                 </div>
                                             </div>

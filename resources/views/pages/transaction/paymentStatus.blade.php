@@ -41,19 +41,19 @@
                             <div class="row mt-5">
                                 <div class="col-md-9">
                                     <div class="font-normal-700 fs-14">
-                                        {{ empty($order) ? '-' : date('d M Y', strtotime( $order->expired_date )) }}
+                                        {{ empty($order) ? '-' : date('d M Y', strtotime( $order['expired_date'] )) }}
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="font-normal-700 fs-14 text-right" style="color: #FED32C">
-                                        {{ empty($order) ? '-' : date('H:i:s', strtotime( $order->expired_date )) }}
+                                        {{ empty($order) ? '-' : date('H:i:s', strtotime( $order['expired_date'] )) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="row mt-5">
                                 <div class="col-md-9">
                                     <div class="font-normal-600 fs-14">
-                                        {{ empty($order) ? '-' : $order->payment_method }}
+                                        {{ empty($order) ? '-' : $order['payment_method'] }}
                                     </div>
                                 </div>
                                 <!-- <div class="col-md-3 text-right">
@@ -70,12 +70,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="font-normal-700 fs-14" id="copy-text-va">
-                                            {{ empty($order) ? '-' : $order->payment_code }}
+                                            {{-- <!-- {{ empty($order) ? '-' : $order['payment_code'] }} --> --}}
+                                            {{ empty($order) ? '-' : $order['payment_manual']['umra_BANK_SETTLEMENT'] }}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 text-right mt-3" onclick="copy_clipboard('copy-text-va')">
-                                    <i class="fa-solid fa-copy mx-2" style="color: var(--green)"></i>
+                                <div class="col-md-3 text-right mt-3" onclick="copy_clipboard('copy-text-va')" style="cursor: pointer;">
+                                    <i class="fa-solid fa-copy mx-2" style="color: var(--green);"></i>
                                     Salin
                                 </div>
                             </div>
@@ -89,7 +90,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="font-normal-700 fs-16 text-right">
-                                                Rp. {{ empty($order) ? '-' : number_format($order->payment_price) }}
+                                                Rp. {{ empty($order) ? '-' : number_format($order['payment_price']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +101,7 @@
                                     <button class="btn btn-outline btn-outline-success text-green" style="width:100%; display:inline-block;" data-bs-toggle="modal" data-bs-target="#caraPembayaranModal">Lihat Cara Pembayaran</button>
                                 </div>
                                 <div class="row mt-5">
-                                    <a href="#" class="text-center text-green" style="width:100%; display:inline-block;">
+                                    <a href="{{ url('/transaction/checkout') }}" class="text-center text-green" style="width:100%; display:inline-block;">
                                         Lihat detail pesanan
                                     </a>
                                 </div>
