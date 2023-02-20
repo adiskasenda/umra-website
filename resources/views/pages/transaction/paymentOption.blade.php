@@ -177,7 +177,7 @@
                 window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
                 return false;
             }
-            
+
             if ( localStorage.getItem("step") < 4 ) {
                 window.location.href = "{{ url('/transaction/checkout', $package_product['id_packet']) }}";
                 return false;
@@ -234,7 +234,7 @@
         $("input[name='id_payment_method']").click(function() {
             $('#btn-buy').removeAttr("disabled");
         });
-        
+
     </script>
     <!-- Btn Buy End -->
 
@@ -270,16 +270,16 @@
                         success: function(data) {
                             if ( data.status == '1' ) {
                                 const typePayment = localStorage.getItem("typePayment")
-                                const cardData = JSON.parse(localStorage.getItem("cartData"));
+                                const cardData = localStorage.getItem("cartData");
                                 const uuidPacket = "{{ $package_product['uuid_packet'] }}";
                                 const paymentMethod = $("input[name='id_payment_method']").val();
                                 $('#checkout').html(`
                                     <form id="form-checkout" method="post" action="{{ url('/transaction/checkout') }}">
                                         <input type="text" value="{{ csrf_token() }}" name="_token">
-                                        <input type="text" value="`+ uuidPacket +`" name="uuid_packet">
-                                        <input type="text" value="`+ typePayment +`" name="type_payment">
-                                        <input type="text" value="`+ cardData +`" name="card_data">
-                                        <input type="text" value="`+ paymentMethod +`" name="payment_method">
+                                        <input type="text" value='`+ uuidPacket +`' name="uuid_packet">
+                                        <input type="text" value='`+ typePayment +`' name="type_payment">
+                                        <input type="text" value='`+ cardData +`' name="card_data">
+                                        <input type="text" value='`+ paymentMethod +`' name="payment_method">
                                     </form>
                                 `);
                                 // localStorage.removeItem("cartId");
@@ -287,7 +287,7 @@
                                 // localStorage.removeItem("typePayment");
                                 // localStorage.removeItem("cartData");
                                 $( "#form-checkout" ).submit();
-                                
+
 
                                 // $.ajax({
                                 //     url: "{{ url('/transaction/checkout') }}",
@@ -310,7 +310,7 @@
                                 //         } else {
                                 //             messagePayment(data.message);
                                 //         }
-                                        
+
                                 //         return false;
                                 //     }
                                 // });
@@ -328,3 +328,4 @@
     </script>
     <!-- Check PIN End -->
 @endpush
+

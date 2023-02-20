@@ -41,19 +41,19 @@
                             <div class="row mt-5">
                                 <div class="col-md-9">
                                     <div class="font-normal-700 fs-14">
-                                        {{ date('d M Y', strtotime( $order['expired_date'] )) }}
+                                        {{ empty($order) ? '-' : date('d M Y', strtotime( $order->expired_date )) }}
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="font-normal-700 fs-14 text-right" style="color: #FED32C">
-                                        {{ date('H:i:s', strtotime( last($order['order_payment'])['expired_date'] )) }}
+                                        {{ empty($order) ? '-' : date('H:i:s', strtotime( $order->expired_date )) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="row mt-5">
                                 <div class="col-md-9">
                                     <div class="font-normal-600 fs-14">
-                                        {{ last($order['order_payment'])['payment_method'] }}
+                                        {{ empty($order) ? '-' : $order->payment_method }}
                                     </div>
                                 </div>
                                 <!-- <div class="col-md-3 text-right">
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="font-normal-700 fs-14" id="copy-text-va">
-                                            {{ last($order['order_payment'])['payment_code'] }}
+                                            {{ empty($order) ? '-' : $order->payment_code }}
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="font-normal-700 fs-16 text-right">
-                                                Rp. {{ number_format(last($order['order_payment'])['payment_price']) }}
+                                                Rp. {{ empty($order) ? '-' : number_format($order->payment_price) }}
                                             </div>
                                         </div>
                                     </div>
@@ -224,3 +224,4 @@
 <!-- Modal Cara Bayar End -->
 
 @endsection
+
