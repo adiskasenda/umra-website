@@ -96,7 +96,8 @@ class ProfileController extends Controller
 
         if ( $customer['status'] == '1' ) {
             $user = Session::get('user');
-            $user['email'] = $email;
+            $user['email'] = $request->email;
+            $user['verificate_email'] = null;
             Session::put([
                 'user' => $user
             ]);
@@ -122,6 +123,14 @@ class ProfileController extends Controller
         $response = Http::withHeaders($this->header)->put($this->url.'/core-umra/customer/validate_otp_email', $body);
         $customer = json_decode($response->getBody(), true);
         
+        if ( $customer['status'] == '1' ) {
+            $user = Session::get('user');
+            $user['verificate_email'] = 1;
+            Session::put([
+                'user' => $user
+            ]);
+        }
+
         return response()->json([
             'status' => $customer['status'],
             'message' => $customer['message'],
@@ -143,7 +152,8 @@ class ProfileController extends Controller
 
         if ( $customer['status'] == '1' ) {
             $user = Session::get('user');
-            $user['phone'] = $phone;
+            $user['phone'] = $request->phone;
+            $user['verificate_phone'] = null;
             Session::put([
                 'user' => $user
             ]);
@@ -169,6 +179,14 @@ class ProfileController extends Controller
         $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/customer/validate_otp_phone', $body);
         $customer = json_decode($response->getBody(), true);
         
+        if ( $customer['status'] == '1' ) {
+            $user = Session::get('user');
+            $user['verificate_phone'] = 1;
+            Session::put([
+                'user' => $user
+            ]);
+        }
+
         return response()->json([
             'status' => $customer['status'],
             'message' => $customer['message'],

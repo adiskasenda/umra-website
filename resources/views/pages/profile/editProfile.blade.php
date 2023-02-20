@@ -225,6 +225,17 @@
                     </div>
                 </div>
 
+                <!-- Modal Input OTP Email -->
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="email-input-otp-modal">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+                    <div class="mb-5">
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan OTP</div>
+                    </div>
+                    <div class="fv-row mb-8">
+                        <div class="pincode-input-otp-email"></div>
+                    </div>
+                </div>
+
                 <!-- Modal Success Update Email -->
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="success-update-email">
                     <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
@@ -286,6 +297,17 @@
 
                 </div>
 
+                <!-- Modal Input OTP Phone -->
+                <div class="modal-body text-center" style="padding:40px; display:none;" id="phone-input-otp-modal">
+                    <img src="{{ asset('assets-web/img/icon/lupa-password.png') }}" alt="{{ asset('assets-web/img/icon/lupa-password.png') }}">
+                    <div class="mb-5">
+                        <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Masukan OTP</div>
+                    </div>
+                    <div class="fv-row mb-8">
+                        <div class="pincode-input-otp-phone"></div>
+                    </div>
+                </div>
+
                 <!-- Modal Success Update Phone -->
                 <div class="modal-body text-center" style="padding:40px; display:none;" id="success-update-phone">
                     <img src="{{ asset('assets-web/img/icon/icon-success.png') }}" alt="{{ asset('assets-web/img/icon/icon-success.png') }}">
@@ -326,6 +348,7 @@
             $('#email-modal').css("display", "none");
             $('#email-input-modal').css("display", "block");
             $('#error-update-email').css("display", "none");
+            $('#email-input-otp-modal').css("display", "none");
             $('#success-update-email').css("display", "none");
             $('input[name="email"]').val('');
         }
@@ -333,18 +356,21 @@
             $('#email-modal').css("display", "none");
             $('#email-input-modal').css("display", "block");
             $('#error-update-email').css("display", "block");
+            $('#email-input-otp-modal').css("display", "none");
             $('#success-update-email').css("display", "none");
         }
         function otpEmail() {
             $('#email-modal').css("display", "none");
             $('#email-input-modal').css("display", "block");
             $('#error-update-email').css("display", "block");
+            $('#email-input-otp-modal').css("display", "block");
             $('#success-update-email').css("display", "none");
         }
         function successFormUpdateEmail() {
             $('#email-modal').css("display", "none");
             $('#email-input-modal').css("display", "none");
             $('#error-update-email').css("display", "none");
+            $('#email-input-otp-modal').css("display", "none");
             $('#success-update-email').css("display", "block");
         }
 
@@ -423,7 +449,7 @@
                 dataType: "JSON",
                 success: function(data) {
                     if ( data.status == '1' ) {
-                        successFormUpdateEmail();
+                        otpEmail();
                     } else {
                         errorFormUpdateEmail();
                         $('#message-error-update-email').html(data.message);
@@ -440,6 +466,7 @@
             $('#phone-modal').css("display", "block");
             $('#phone-input-modal').css("display", "none");
             $('#error-update-phone').css("display", "none");
+            $('#phone-input-otp-modal').css("display", "none");
             $('#success-update-phone').css("display", "none");
             $('input[name="phone"]').val('');
             $('.pincode-input').val('');
@@ -448,24 +475,28 @@
             $('#phone-modal').css("display", "none");
             $('#phone-input-modal').css("display", "block");
             $('#error-update-phone').css("display", "none");
+            $('#phone-input-otp-modal').css("display", "none");
             $('#success-update-phone').css("display", "none");
         }
         function errorFormUpdatePhone() {
             $('#phone-modal').css("display", "none");
             $('#phone-input-modal').css("display", "block");
             $('#error-update-phone').css("display", "block");
+            $('#phone-input-otp-modal').css("display", "none");
             $('#success-update-phone').css("display", "none");
         }
         function otpPhone() {
             $('#phone-modal').css("display", "none");
             $('#phone-input-modal').css("display", "none");
             $('#error-update-phone').css("display", "none");
-            $('#success-update-phone').css("display", "block");
+            $('#phone-input-otp-modal').css("display", "block");
+            $('#success-update-phone').css("display", "none");
         }
         function successFormUpdatePhone() {
             $('#phone-modal').css("display", "none");
             $('#phone-input-modal').css("display", "none");
             $('#error-update-phone').css("display", "none");
+            $('#phone-input-otp-modal').css("display", "none");
             $('#success-update-phone').css("display", "block");
         }
         
@@ -539,7 +570,7 @@
                 dataType: "JSON",
                 success: function(data) {
                     if ( data.status == '1' ) {
-                        successFormUpdatePhone()
+                        otpPhone()
                     } else {
                         errorFormUpdatePhone()
                         $('#message-error-update-phone').html(data.message)
