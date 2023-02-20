@@ -97,7 +97,7 @@
 
                         <!-- Foto KTP Field -->
                         <div class="form-group col-sm-6 mb-5">
-                            <!-- <label for="no_ktp" class="required form-label">Foto KTP</label>
+                            <label for="no_ktp" class="required form-label">Foto KTP</label>
                             <div id="input-avatar" class="image-input image-input-empty form-control bg-picture" data-kt-image-input="true">
                                 <div class="image-input-wrapper" style="margin: auto;background-repeat: no-repeat;width: 50%;height: 269px;"></div>
 
@@ -126,7 +126,7 @@
                                     title="Remove Image">
                                     <i class="bi bi-x fs-2"></i>
                                 </span>
-                            </div> -->
+                            </div>
 
                             <!-- Vaccine Status Field -->
                             <label for="vaccine_status" class="required form-label">Vaksinasi</label>

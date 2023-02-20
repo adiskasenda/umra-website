@@ -70,10 +70,12 @@
                 'vaccine_status' => '',
                 'room' => '`+ room +`'
             ])`);
+            
             $(".date").flatpickr({
                 dateFormat: "d-m-Y",
             });
 
+            load_js();
             return ;
         }
 
@@ -203,6 +205,8 @@
                     data[this.name] = this.value || '';
                 }
             });
+
+            console.log(data, 'ini data');
 
             const message = validationFrom(data);
 
