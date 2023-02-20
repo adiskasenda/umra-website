@@ -125,6 +125,7 @@
                                             Bayar
                                         </button>
                                     </div>
+                                    <div id="checkout"></div>
                                 </div>
                             </div>
                         </div>
@@ -190,25 +191,32 @@
                         dataType: "JSON",
                         success: function(data) {
                             if ( data.status == '1' ) {
-                                const typePayment = localStorage.getItem("typePayment")
-                                const cardData = JSON.parse(localStorage.getItem("cartData"));
-                                const uuidPacket = "{{ $package_product['uuid_packet'] }}";
+                                const orderCode = "{{ $order['order_code'] }}";
                                 const paymentMethod = $("input[name='id_payment_method']").val();
                                 
-                                $.ajax({
-                                    url: "{{ url('/transaction/need-pay') }}",
-                                    type: 'POST',
-                                    data: {
-                                        "_token": "{{ csrf_token() }}",
-                                        "order_code" : orderCode,
-                                        "payment_method" : paymentMethod,
-                                    },
-                                    dataType: "JSON",
-                                    success: function(data) {
-                                        window.location.href = "{{ url('/transaction/payment-status').'/' }}" + data.id_order;
-                                        return false;
-                                    }
-                                });
+                                $('#checkout').html(`
+                                    <form id="form-checkout" method="post" action="{{ url('/transaction/payment-need-pay') }}">
+                                        <input type="text" value="{{ csrf_token() }}" name="_token">
+                                        <input type="text" value='`+ orderCode +`' name="order_code">
+                                        <input type="text" value='`+ paymentMethod +`' name="payment_method">
+                                    </form>
+                                `);
+
+                                $( "#form-checkout" ).submit();
+                                // $.ajax({
+                                //     url: "{{ url('/transaction/need-pay') }}",
+                                //     type: 'POST',
+                                //     data: {
+                                //         "_token": "{{ csrf_token() }}",
+                                //         "order_code" : orderCode,
+                                //         "payment_method" : paymentMethod,
+                                //     },
+                                //     dataType: "JSON",
+                                //     success: function(data) {
+                                //         window.location.href = "{{ url('/transaction/payment-status').'/' }}" + data.id_order;
+                                //         return false;
+                                //     }
+                                // });
 
                                 return ;
                             } else {

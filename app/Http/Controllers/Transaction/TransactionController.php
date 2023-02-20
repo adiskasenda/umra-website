@@ -166,7 +166,7 @@ class TransactionController extends Controller
                         "ktp_url" => "",
                         "passport_number" => $guest['passport_number'],
                         "passport_expiry_date" => date('Y-m-d', strtotime($guest['passport_expiry_date'])),
-                        "passport_url" => "https://www.google.com/",
+                        "passport_url" => "",
                         "nationality" => "",
                         "vaccine_status" => $guest['vaccine_status'],
                         "vaccine_url" => ""

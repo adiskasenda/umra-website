@@ -273,6 +273,7 @@
                                 const cardData = localStorage.getItem("cartData");
                                 const uuidPacket = "{{ $package_product['uuid_packet'] }}";
                                 const paymentMethod = $("input[name='id_payment_method']").val();
+                                
                                 $('#checkout').html(`
                                     <form id="form-checkout" method="post" action="{{ url('/transaction/checkout') }}">
                                         <input type="text" value="{{ csrf_token() }}" name="_token">
@@ -282,6 +283,7 @@
                                         <input type="text" value='`+ paymentMethod +`' name="payment_method">
                                     </form>
                                 `);
+
                                 localStorage.removeItem("cartId");
                                 localStorage.removeItem("step");
                                 localStorage.removeItem("typePayment");
