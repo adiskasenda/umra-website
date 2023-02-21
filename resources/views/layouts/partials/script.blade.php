@@ -56,6 +56,13 @@
         );
     }
 
+    function load_js() {
+        var head= document.getElementsByTagName('head')[0];
+        var script= document.createElement('script');
+        script.src= "{{ asset('assets-web/js/scripts.bundle.js') }}";
+        head.appendChild(script);
+    }
+
     function copy_clipboard(id) {
         var temp = $("<input>");
         $("body").append(temp);

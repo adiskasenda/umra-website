@@ -147,8 +147,9 @@ class TransactionController extends Controller
 
     public function storeCheckout(Request $request)
     {
-        // dd($request->card_data[0]);
-        foreach( $request->card_data[0] as $key_jamaah => $jamaah ) {
+        $card_data = json_decode($request->card_data, true)[0];
+
+        foreach( $card_data as $key_jamaah => $jamaah ) {
             if ( !empty($jamaah['jamaah'])) {
                 foreach( $jamaah['jamaah'] as $guest ) {
                     $order_guest[] = [
@@ -165,7 +166,7 @@ class TransactionController extends Controller
                         "ktp_url" => "",
                         "passport_number" => $guest['passport_number'],
                         "passport_expiry_date" => date('Y-m-d', strtotime($guest['passport_expiry_date'])),
-                        "passport_url" => "https://www.google.com/",
+                        "passport_url" => "",
                         "nationality" => "",
                         "vaccine_status" => $guest['vaccine_status'],
                         "vaccine_url" => ""
@@ -179,9 +180,9 @@ class TransactionController extends Controller
             "id_customer" => Session::get('user')['user_id'],
             "uuid_packet" => $request->uuid_packet,
             "phone_number" => Session::get('user')['phone'],
-            "person_double" => $request->card_data[0][0]['doble'],
-            "person_triple" => $request->card_data[0][1]['triple'],
-            "person_quad" => $request->card_data[0][2]['quad'],
+            "person_double" => $card_data[0]['doble'],
+            "person_triple" => $card_data[1]['triple'],
+            "person_quad" => $card_data[2]['quad'],
             "affliator_code" => "",
             "type_payment" => $request->type_payment,
             "id_payment_method" => $request->payment_method,
@@ -204,7 +205,7 @@ class TransactionController extends Controller
 
         // $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/order_customer/repayment', $bodyPayment);
         // $payment_method = json_decode($response->getBody(), true);
-        
+
         return view('pages.transaction.paymentStatus', [
             'order' => $order['data']
         ]);

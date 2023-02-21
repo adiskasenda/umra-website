@@ -149,7 +149,7 @@ Route::group([ 'middleware' =>'token'], function(){
         Route::get('/payment-option/{id}', [ TransactionController::class, 'paymentOption' ]);
         Route::post('/checkout', [ TransactionController::class, 'storeCheckout' ]);
         Route::get('/checkout', function() {
-            redirect(url('/profile/list-transaction'));
+            return redirect(url('/profile/list-transaction'));
         });
         // Route::get('/payment-status/{order_code}', [ TransactionController::class, 'paymentStatus' ]);
         

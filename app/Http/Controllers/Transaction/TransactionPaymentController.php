@@ -75,15 +75,16 @@ class TransactionPaymentController extends Controller
             "type_payment" => 'REPAYMENT',
             "payment_method" => $request->payment_method
         ];
- 
-        // Create Payment
-        $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/repayment', $body);
-        $payment_method = json_decode($response->getBody(), true);
 
-        return response()->json([
-            'status' => $payment_method['status'],
-            'message' => $payment_method['message'],
-            'data' => $payment_method['data']
+        $this->header['ax-request-by'] = Session::get('user')['email'];
+        $this->header['Authorization'] = 'Bearer '.Session::get('token');
+
+        // Create Payment
+        $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/order_customer/repayment', $body);
+        $payment_method = json_decode($response->getBody(), true);
+        
+        return view('pages.transaction.paymentStatus', [
+            'order' => $payment_method['data']
         ]);
     }
 }
