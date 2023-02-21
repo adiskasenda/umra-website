@@ -317,6 +317,19 @@
             </div>
         </div>
     </div>
+
+    <!-- modal Telepon Kosong -->
+    <div class="modal fade" tabindex="-1" id="modalTeleponKosong">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center" style="padding:40px;">
+                    <img src="{{ asset('assets-web/img/icon/bantuan.png') }}" alt="{{ asset('assets-web/img/icon/bantuan.png') }}">
+                    <div class="mt-5 text-weight-700 fs-20" style="font-weight: bold;">Nomer Telepon Kosong</div>
+                    <div class="text-weight-400 fs-16 mt-5 mb-5">Silakan Masukkan Nomor Telepon terlebih dahulu sebelum melakukan transaksi pembelian paket!</div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
@@ -324,6 +337,11 @@
     <script>
         $("#birthday").flatpickr({
             dateFormat: "d-m-Y",
+        });
+        $(document).ready(function() {
+            @if($status == "phone-failed")
+                $('#modalTeleponKosong').modal('show');
+            @endif
         });
 
         // Set Gender

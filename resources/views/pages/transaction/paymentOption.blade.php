@@ -169,7 +169,7 @@
     <script>
         function checkChart() {
             if ( "{{ Session::get('user')['phone'] }}".length <= 0 ) {
-                window.location.href = "{{ url('/package', $package_product['id_packet']).'?status=phone-failed' }}";
+                window.location.href = "{{ url('/profile/edit').'?status=phone-failed' }}";
                 return false;
             }
 
