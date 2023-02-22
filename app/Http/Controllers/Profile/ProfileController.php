@@ -32,10 +32,11 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function editProfile()
+    public function editProfile(Request $request)
     {
         return view('pages.profile.editProfile', [
-            'user' => Session::get('user')
+            'user' => Session::get('user'),
+            'status' => $request->status
         ]);
     }
 
