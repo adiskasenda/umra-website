@@ -26,6 +26,13 @@
         $( this ).attr( "src", "{{ Helpers::imageCardDefault() }}" );
     })
 
+    // Image Artikel Not Found
+    $( ".img-artiel[src='']" ).attr( "src", "{{ Helpers::imageArtikelDefault() }}" );
+    $( ".img-artiel" ).on("error", function() {
+        $( this ).attr( "src", "{{ Helpers::imageArtikelDefault() }}" );
+    })
+    
+
     // Image Avatar Not found
     $( ".img-avatar[src='']" ).attr( "src", "{{ Helpers::avatarDefault() }}" );
     $( ".img-avatar" ).on("error", function() {
