@@ -14,7 +14,7 @@
 
             <h2 class="font-normal-700 fs-32 mt-2">{{ $new['subject'] }}</h2>
             <div class="mt-5 mb-3">Dipublikasikan pada {{ date('d M Y H:i', strtotime($new['created_date'])) }}</div>
-            <img class="img-banner" src="{{ $new['url_banner'] == 'https://api-uploads.umra.id/banner/bbf39ed3-e959-470e-a256-d80295b146e0.jpeg' ? asset('/assets-web/img/artikle-default.jpg') : $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
+            <img class="img-artiel" src="{{ $new['url_banner'] == 'https://api-uploads.umra.id/banner/bbf39ed3-e959-470e-a256-d80295b146e0.jpeg' ? Helpers::imageArtikelDefault() : $new['url_banner'] }}" alt="{{ $new['url_banner'] }}" width="100%">
             <div class="mt-5 fs-16">{!! $new['content'] !!}</div>
         </div>
     </div>

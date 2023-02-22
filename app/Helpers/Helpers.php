@@ -44,7 +44,12 @@ class Helpers
 
     // you can use this function with Helpers::imageCardDefault()
     public static function imageCardDefault() {
-        return asset('assets-web/img/image/image-not-found.png');
+        return asset('assets-web/img/image/artikle-default.jpg');
+    }
+
+    // you can use this function with Helpers::imageArtikelDefault()
+    public static function imageArtikelDefault() {
+        return asset('assets-web/img/image/artikle-default.jpg');
     }
 
     // you can use this function with Helpers::avatarDefault()
