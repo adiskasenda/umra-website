@@ -43,18 +43,18 @@ class NewsController extends Controller
         if ( $request->search ) {
             $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/searching?name='.$request->search);
             $news = json_decode($response->getBody(), true);
-            $news = $news['data'];
+            $news_data = $news['data'];
             $total = 0;
         } else {
-            $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/0/8/id_blog/desc');
+            $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/news/pagination/'.$pages.'/8/id_blog/desc');
             $news = json_decode($response->getBody(), true);
-            $news = $news['data']['content'];
+            $news_data = $news['data']['content'];
             $total = $news['data']['totalPages'];
         }
 
         return view('pages.news.news', [
             'news_banners' => $news_banners['data']['content'],
-            'news' => $news,
+            'news' => $news_data,
             'search' => $request->search,
             'page' => $pages,
             'total' => $total,
