@@ -59,7 +59,7 @@
                                                         <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
                                                         Sudah diverifikasi
                                                     </div>
-                                                @elseif ( $user['verificate_email'] == 1 && $user['email'] != null )
+                                                @elseif ( $user['verificate_email'] == 0 && $user['email'] != null )
                                                     <span class="badge badge-red-light text-red-error px-5 py-2" style="border-radius: 10px;">
                                                         <i class="fa-solid fa-triangle-exclamation me-2" style="color: #B3261E"></i>
                                                         Belum diverifikasi
@@ -72,26 +72,33 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-6 col-12 my-5">
                                     <div class="font-normal-400 fs-14 mt-10">Tanggal Lahir</div>
                                     <div class="font-normal-700 fs-16 mt-1">{{ date('d M Y',strtotime($user['birthday'])) }}</div>
                                 </div>
-                                <div class="col-4">
+
+                                <div class="col-lg-6 col-md-6 col-12 my-5">
                                     <div class="font-normal-400 fs-14 mt-10">Nomor Telepon</div>
-                                    <div class="font-normal-700 fs-16 mt-1">{{ $user['phone'] }}</div>
-                                </div>
-                                <div class="col-4">
-                                    @if( $user['verificate_phone'] == 1 && $user['phone'] != null )
-                                        <div class="font-normal-400 fs-14 mt-11">
-                                            <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
-                                            Sudah diverifikasi
+                                    <div class="font-normal-700 fs-16 mt-1">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ $user['phone'] }}
+                                            </div>
+                                            <div class="col-md-6">
+                                                @if( $user['verificate_phone'] == 1 && $user['phone'] != null )
+                                                    <div class="font-normal-400 fs-14">
+                                                        <i class="fa-solid fa-circle-check" style="margin-right: 5px; color: green;"></i>
+                                                        Sudah diverifikasi
+                                                    </div>
+                                                @elseif ($user['verificate_phone'] == 0 && $user['phone'] != null )
+                                                    <span class="badge badge-red-light text-red-error px-5 py-2" style="border-radius: 10px;">
+                                                        <i class="fa-solid fa-triangle-exclamation me-2" style="color: #B3261E"></i>
+                                                        Belum diverifikasi
+                                                    </span>
+                                                @endif
+                                            </div>
                                         </div>
-                                    @elseif ($user['verificate_phone'] == 0 && $user['phone'] != null )
-                                        <span class="badge badge-red-light text-red-error px-5 py-2 mt-10" style="border-radius: 10px;">
-                                            <i class="fa-solid fa-triangle-exclamation me-2" style="color: #B3261E"></i>
-                                            Belum diverifikasi
-                                        </span>
-                                    @endif
+                                    </div>
                                 </div>
                             </div>
 
@@ -102,3 +109,4 @@
         </div>
     </div>
 @endsection
+
