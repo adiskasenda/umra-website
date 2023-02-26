@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container-fluid py-5 mb-8">
+    <div class="container-fluid py-5">
         <div class="container">
             @include('pages.transaction.partials.breadcrumb',[
                 'name_package' => $package_product['name'],
             ])
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 mb-8">
                     @include('pages.transaction.partials.sidebar', [
                         'step' => 2,
                         'id_package' => $package_product['id_packet'],
@@ -16,14 +16,14 @@
                         'quota' => $package_product['quota']
                     ])
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 mb-8">
                     <a href="{{ url('/transaction/jamaah', $package_product['id_packet']) }}" class="font-normal-400 fs-16 text-green mt-3">
                         <i class="fa-solid fa-arrow-left me-2"></i> Langkah 2 dari 3
                     </a>
 
                     <div class="mt-5 font-normal-700 fs-32">Biodata Calon Jamaah</div>
                     <div class="mt-5 mb-10 text-opacity font-normal-400 fs-16">Silakan lengkapi biodata calon jamaah sesuai data KTP & Passport masing-masing</div>
-                    
+
                     <!-- Card Room Jamaah -->
                     @include('pages.transaction.partials.cardRoom', [
                         'icon' => asset('assets-web/img/icon/double.png'),
@@ -63,7 +63,7 @@
                     <div class="card card-bordered mt-10" style="background-color: #F8FCFC">
                         <div class="card-body p-5">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-lg-6 col-md-6 col-8">
                                     <div class="font-normal-400 fs-14">
                                         <i class="fa-solid fa-phone me-sm-3"></i>
                                         Kontak Pemesan
@@ -240,7 +240,7 @@
                 window.location.href = "{{ url('/profile/edit').'?status=phone-failed' }}";
                 return false;
             }
-            
+
             if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" || localStorage.getItem("step") < 2 ) {
                 window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
                 return false;
@@ -275,7 +275,7 @@
             $('#total_people').html(total_people);
             const total_people_register = parseInt(count_people_register_doble) + parseInt(count_people_register_triple) + parseInt(count_people_register_quad);
             const total_price = parseInt(count_price_doble) + parseInt(count_price_triple) + parseInt(count_price_quad);
-            
+
             // Validation
             const maxPriceBuyPackage = "{{ $configuration[1]['value_configuration'] }}";
             const maxPeopleBuyPackage = "{{ $configuration[0]['value_configuration'] }}";
@@ -289,7 +289,7 @@
                 $('#btn-add-jamaah-triple').removeAttr("disabled");
                 $('#btn-add-jamaah-quad').removeAttr("disabled");
             }
-            
+
             if ( total_people > 0 && total_people == total_people_register ) {
                 $('#btn-next').removeAttr("disabled");
             } else {
@@ -338,3 +338,4 @@
     </script>
     <!-- Link Button End -->
 @endpush
+

@@ -51,14 +51,14 @@
     <div class="card-body" style="padding: 1rem !important;background: #F8FCFC;">
         <div class="font-normal-700 fs-16">{{ $name_package }}</div>
         <div class="row mt-3">
-            <div class="col-6">
+            <div class="col-lg-6 col-md-6 col-5">
                 <div style="border-radius: 15px; background-color: #006B67; color: white; border:none; padding:5px 10px; font-size: 13px; width:max-content;">
                     <div class="font-normal-400 fs-12">
                         {{ $flag_umroh }}
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-md-6 col-7">
                 <div class="text-tertiary">
                     <img class="icon-package" src="{{ asset('assets-web/img/icon/room.png') }}" alt="{{ asset('assets-web/img/icon/room.png') }}">
                     Tersisa {{ $quota }}

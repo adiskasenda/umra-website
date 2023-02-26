@@ -234,13 +234,13 @@
                     <hr>
                     <!-- Action Form Jamaah -->
                     <div class="row">
-                        <div class="col-4 mt-2">
+                        <div class="col-lg-4 col-md-5 col-6 mt-2">
                             <button class="btn font-normal-500 fs-16 text-red remove_form_jamaah" data-id="{{ $id }}" style="color: var(--secondary);">
                                 <i class="fa-solid fa-trash me-2" style="color: var(--secondary);"></i>
                                 Hapus Jamaah
                             </button>
                         </div>
-                        <div class="col-8">
+                        <div class="col-lg-8 col-md-7 col-6">
                             <div class="text-right">
                                 <button class="btn btn-success btn-save" data-id="{{ $id }}">
                                     Simpan

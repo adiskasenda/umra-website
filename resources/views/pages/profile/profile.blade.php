@@ -37,7 +37,7 @@
 
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-12 my-5">
-                                    <div class="font-normal-400 fs-14 mt-10">Jenis Kelamin</div>
+                                    <div class="font-normal-400 fs-14">Jenis Kelamin</div>
                                     <div class="font-normal-700 fs-16 mt-1">
                                         @if ( $user['gender'] == 1 )
                                             Laki-laki <span><i class="fa-solid fa-mars me-2" style="color: black"></i></span>
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12 my-5">
-                                    <div class="font-normal-400 fs-14 mt-10">Email</div>
+                                    <div class="font-normal-400 fs-14">Email</div>
                                     <div class="font-normal-700 fs-16 mt-1">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -73,12 +73,12 @@
 
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-12 my-5">
-                                    <div class="font-normal-400 fs-14 mt-10">Tanggal Lahir</div>
+                                    <div class="font-normal-400 fs-14">Tanggal Lahir</div>
                                     <div class="font-normal-700 fs-16 mt-1">{{ date('d M Y',strtotime($user['birthday'])) }}</div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-12 my-5">
-                                    <div class="font-normal-400 fs-14 mt-10">Nomor Telepon</div>
+                                    <div class="font-normal-400 fs-14">Nomor Telepon</div>
                                     <div class="font-normal-700 fs-16 mt-1">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -109,4 +109,5 @@
         </div>
     </div>
 @endsection
+
 

@@ -1,5 +1,5 @@
 <div class="row mb-5 mt-5">
-    <div class="col-10">
+    <div class="col-lg-10 col-md-10 col-9">
         <div class="font-normal-400 fs-12 text-green">
             <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
             Calon Jamaah
@@ -8,9 +8,9 @@
             {{ $first_name.' '.$last_name }}
         </div>
     </div>
-    <div class="col-2">
+    <div class="col-lg-2 col-md-2 col-3">
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-detail-jamaah-{{ $room }}-{{ $id }}">Detail</button>
-        
+
         <!-- modal detail jamaah -->
         <div class="modal fade" tabindex="-1" id="modal-detail-jamaah-{{ $room }}-{{ $id }}">
             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -136,3 +136,4 @@
         </div>
     </div>
 </div>
+

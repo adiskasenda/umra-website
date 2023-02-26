@@ -15,7 +15,7 @@
         </h2>
         <div id="kt_accordion_room_{{ $room }}_{{ $id }}" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1" data-bs-parent="#kt_accordion_1_header_1">
             <div class="accordion-body" style="background-color: #FAFAFA">
-                
+
                 <div class="row">
 
                     <!-- Nama Depan Field -->
@@ -46,7 +46,7 @@
                         <label for="no_ktp" class="form-label">Nomor KTP</label>
                         <div class="font-normal-700 fs-16">{{ $ktp_number ? $ktp_number : '-' }}</div>
                     </div>
-                    
+
                 </div>
                 <div class="row">
 
@@ -67,7 +67,7 @@
                         <label for="no_ktp" class="form-label">Vaksinasi</label>
                         <div class="font-normal-700 fs-16">{{ $vaccine_status ? $vaccine_status : '-' }}</div>
                     </div>
-                    
+
                 </div>
                 <div class="row">
                     <!-- Nomor Telepon Field -->
@@ -92,13 +92,13 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-4 mt-2">
+                    <div class="col-lg-4 col-md-5 col-6">
                         <button class="btn font-normal-500 fs-16 text-red remove_form_jamaah" data-id="{{ $id }}" style="color: var(--secondary);">
                             <i class="fa-solid fa-trash me-2" style="color: var(--secondary)"></i>
                             Hapus Jamaah
                         </button>
                     </div>
-                    <div class="col-8">
+                    <div class="col-lg-8 col-md-7 col-6">
                         <div class="text-right">
                             <button class="btn btn-outline btn-outline-success text-green btn-edit" data-id="{{ $id }}">
                                 <i class="fa-solid fa-pen-to-square me-2" style="color: var(--green)"></i>
@@ -111,4 +111,3 @@
         </div>
     </div>
 </div>
-

@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container-fluid py-5 mb-8">
+<div class="container-fluid py-5">
     <div class="container">
         @include('pages.transaction.partials.breadcrumb',[
             'name_package' => $package_product['name'],
         ])
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 mb-8">
                 @include('pages.transaction.partials.sidebar', [
                     'step' => 3,
                     'id_package' => $package_product['id_packet'],
@@ -16,7 +16,7 @@
                     'quota' => $package_product['quota']
                 ])
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 mb-8">
                 <a href="{{ url('/transaction/biodata', $package_product['id_packet']) }}" class="font-normal-400 fs-16 text-green mt-3">
                     <i class="fa-solid fa-arrow-left me-2"></i> Langkah 3 dari 3
                 </a>
@@ -28,10 +28,10 @@
                         <div class="card card-bordered mt-5">
                             <div class="card-body p-5">
                                 <div class="row">
-                                    <div class="col-2">
+                                    <div class="col-lg-2 col-md-2 col-4">
                                         <img src="{{ asset('assets-web/img/icon/calendar-umroh.png') }}" alt="">
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-lg-10 col-md-10 col-8">
                                         <div class="font-normal-400 fs-14">Tanggal Keberangkatan</div>
                                         <div class="font-normal-700 fs-18">{{ date('d M Y', strtotime($package_product['date_end'])) }}</div>
                                     </div>
@@ -43,10 +43,10 @@
                         <div class="card card-bordered mt-5">
                             <div class="card-body p-5">
                                 <div class="row">
-                                    <div class="col-2">
+                                    <div class="col-lg-2 col-md-2 col-4">
                                         <img src="{{ asset('assets-web/img/icon/time-umroh.png') }}" alt="">
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-lg-10 col-md-10 col-8">
                                         <div class="font-normal-400 fs-14">Durasi Perjalanan</div>
                                         <div class="font-normal-700 fs-18">{{ $package_product['day_duration'] }} Hari</div>
                                     </div>
@@ -78,7 +78,7 @@
                 <div class="card card-bordered mt-5" style="background-color: #F8FCFC">
                     <div class="card-body p-5">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-6 col-8">
                                 <div class="font-normal-400 fs-14">
                                     <i class="fa-solid fa-phone me-2"></i>
                                     Kontak Pemesan
@@ -104,9 +104,9 @@
                 <hr>
 
                 <div class="font-normal-700 fs-20">Pilih Jenis Pembayaran</div>
-                
+
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-5 col-12">
                         <div class="form-check form-check-custom form-check-solid">
                             <label class="form-check-label" for="CASH">
                                 <div class="card card-bordered mt-5" for="CASH" style="cursor: pointer;">
@@ -125,7 +125,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-7 col-12">
                         <div class="form-check form-check-custom form-check-solid">
                             <label class="form-check-label" for="DOWNPAYMENT">
                                 <div class="card card-bordered mt-5" for="DOWNPAYMENT" style="cursor: pointer;">
@@ -196,7 +196,7 @@
                 window.location.href = "{{ url('/profile/edit').'?status=phone-failed' }}";
                 return false;
             }
-            
+
             if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
                 window.location.href = "{{ url('/transaction/jamaah', $package_product['id_packet']) }}";
                 return false;
@@ -312,3 +312,4 @@
     </script>
     <!-- Link Button End -->
 @endpush
+

@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container-fluid py-5 mb-8">
+    <div class="container-fluid py-5">
         <div class="container">
             @include('pages.transaction.partials.breadcrumb',[
                 'name_package' => $package_product['name'],
             ])
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 mb-8">
                     @include('pages.transaction.partials.sidebar', [
                         'step' => 1,
                         'id_package' => $package_product['id_packet'],
@@ -16,21 +16,23 @@
                         'quota' => $package_product['quota']
                     ])
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 mb-8">
                     <a href="{{ url('/package', $package_product['id_packet']) }}" class="font-normal-400 fs-16 text-green mt-3">
                         <i class="fa-solid fa-arrow-left me-2"></i> Langkah 1 dari 3
                     </a>
-                    
+
                     <div class="mt-5 font-normal-700 fs-32">Jumlah Calon Jamaah</div>
                     <div class="mt-5 mb-10 text-opacity font-normal-400 fs-16">Silakan masukkan jumlah jamaah berdasarkan pilih kamar yang tersedia</div>
-                    
+
 
                     <!--begin::Alert-->
                     <div class="notice rounded border-success border mb-5 mt-5 p-6">
-                        <div class="row" style="font-weight: bold;"> 
-                            <div class="col-md-10 col-9 fs-6 text-gray-700"> Paket ini memiliki penawaran dapat dibayar cicil 2x dengan DP minimal Rp. {{ number_format($configuration[2]['value_configuration']) }}/orang </div>
-                            <div class="col-md-2 col-3">
-                                <img src="{{ $configuration[3]['value_configuration'] }}" alt="{{ $configuration[3]['value_configuration'] }}"> 
+                        <div class="row" style="font-weight: bold;">
+                            <div class="col-lg-10 col-md-9 col-8 fs-6 text-gray-700">
+                                Paket ini memiliki penawaran dapat dibayar cicil 2x dengan DP minimal Rp. {{ number_format($configuration[2]['value_configuration']) }}/orang
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-4">
+                                <img src="{{ $configuration[3]['value_configuration'] }}" alt="{{ $configuration[3]['value_configuration'] }}">
                             </div>
                         </div>
                     </div>
@@ -137,7 +139,7 @@
             if ( localStorage.getItem("cartId") != "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}" ) {
                 localStorage.setItem("step", "1");
                 localStorage.setItem("cartId", "{{ $package_product['uuid_packet'].'-'.Session::get('user')['uuid'] }}");
-                localStorage.setItem("cartData", '[[{ "doble" : 0, "jamaah" : [] }, { "triple" : 0, "jamaah" : [] }, { "quad" : 0, "jamaah" : [] } ]]');   
+                localStorage.setItem("cartData", '[[{ "doble" : 0, "jamaah" : [] }, { "triple" : 0, "jamaah" : [] }, { "quad" : 0, "jamaah" : [] } ]]');
             }
         }
     </script>
@@ -158,7 +160,7 @@
             $('#count-price-triple').html(formatRupiah( count_price_triple ));
             const count_price_quad = parseInt(count_people_quad) * "{{$package_product['price_quad']}}";
             $('#count-price-quad').html(formatRupiah( count_price_quad ));
-        
+
             // Count Total Price
             const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
             $('#total_people').html(total_people);
@@ -199,7 +201,7 @@
             cardData[0][0]['doble'] = count_people_doble;
             cardData[0][1]['triple'] = count_people_triple;
             cardData[0][2]['quad'] = count_people_quad;
-            
+
             localStorage.setItem("cartData", JSON.stringify(cardData));
         }
     </script>
@@ -239,7 +241,7 @@
             const count_people_quad = $('.count-people-quad').val();
 
             const total_people = parseInt(count_people_doble) + parseInt(count_people_triple) + parseInt(count_people_quad);
-            
+
             if ( total_people > 0 ) {
                 localStorage.setItem("step", "2");
                 window.location.href = "{{ url('/transaction/biodata', $package_product['id_packet']) }}";
@@ -251,4 +253,5 @@
     </script>
     <!-- Link Button End -->
 @endpush
+
 
