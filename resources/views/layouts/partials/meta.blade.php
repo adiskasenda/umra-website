@@ -6,11 +6,10 @@
 <meta name="description" content="UMRA.ID pilihan cerdas bagi ummat. Pergi umrah adalah keinginan setiap muslim. Namun penyedia perjalanan umrah tak sepenuhnya mengerti kebutuhan. Di UMRA.ID semuanya bisa menyesuaikan kebutuhan dan keinginan Anda.">
 <meta name="author" content="Umra.Id">
 <meta name="facebook-domain-verification" content="4ula6a8ylby6qzifywgivtsuxos0t5" />
-
 <meta name="facebook-domain-verification" content="4ula6a8ylby6qzifywgivtsuxos0t5" />
 
 <!-- Meta Pixel Code -->
-<script>
+<!-- <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -24,5 +23,5 @@ fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1234206340780810&ev=PageView&noscript=1"
-/></noscript>
+/></noscript> -->
 <!-- End Meta Pixel Code -->
