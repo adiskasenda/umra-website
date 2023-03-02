@@ -96,6 +96,7 @@
                 'gender' => '`+ gender +`',
                 'address' => '`+ data.address +`',
                 'phone_number' => '`+ data.phone_number +`',
+                'ktp_url' => '`+ data.ktp_url +`',
                 'ktp_number' => '`+ data.ktp_number +`',
                 'passport_number' => '`+ data.passport_number +`',
                 'passport_expiry_date' => '`+ data.passport_expiry_date +`',

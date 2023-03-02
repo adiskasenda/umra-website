@@ -36,13 +36,13 @@
             const cardData = JSON.parse(localStorage.getItem("cartData"));
 
             if ( room == 'doble' ) {
-                cardData[0][0]['doble'] = parseInt(cardData[0][0]['doble'] + addCount)
+                cardData[0][0]['doble'] = parseInt(cardData[0][0]['doble']) + parseInt(addCount)
                 addFormJamaah(uuid(), room);
             } else if ( room == 'triple' ) {
-                cardData[0][1]['triple'] = parseInt(cardData[0][1]['triple'] + addCount)
+                cardData[0][1]['triple'] = parseInt(cardData[0][1]['triple']) + parseInt(addCount)
                 addFormJamaah(uuid(), room);
             } else {
-                cardData[0][2]['quad'] = parseInt(cardData[0][2]['quad'] + addCount)
+                cardData[0][2]['quad'] = parseInt(cardData[0][2]['quad']) + parseInt(addCount)
                 addFormJamaah(uuid(), room);
             }
 
@@ -98,7 +98,7 @@
                 default:
                     vaccine_status = 'Booster Kedua'
             }
-            $('#form-room-'+room).append(`@include('pages.transaction.partials.detailJamaah',[
+            let html = $('#form-room-'+room).append(`@include('pages.transaction.partials.detailJamaah',[
                 'id' => '`+ data.id +`',
                 'first_name' => '`+ data.first_name +`',
                 'last_name' => '`+ data.last_name +`',
@@ -112,6 +112,8 @@
                 'vaccine_status' => '`+ vaccine_status +`',
                 'room' => '`+ room +`',
             ])`);
+
+            html.find('img[class="ktp_url"]').attr("src", data.ktp_url);
 
             return ;
         }
@@ -189,6 +191,15 @@
             total();
         });
 
+        $('#form-room-{{ $type_room }}').on('change', '.ktp_url_upload', function() {
+            const html_input_ktp = $(this).parent().find('input[name="ktp_url"]');
+            var reader = new FileReader();
+            reader.readAsDataURL($(this)[0].files[0]);
+            reader.onload = function (e) {
+                html_input_ktp.parent().find('input[name="ktp_url"]').val(e.target.result)
+            }
+        }); 
+
         $('#form-room-{{ $type_room }}').on('click', '.btn-save', function(e) {
             e.preventDefault();
             var cardData = JSON.parse(localStorage.getItem("cartData"));
@@ -204,12 +215,10 @@
                 } else {
                     data[this.name] = this.value || '';
                 }
+                
             });
 
-            console.log(data, 'ini data');
-
             const message = validationFrom(data);
-
             if ( message.length > 0 ) {
                 $(this).parent().parent().parent().parent().parent().parent().find('input').removeClass('is-invalid');
                 $(this).parent().parent().parent().parent().parent().parent().find('.message-validation').html(``);
@@ -258,7 +267,7 @@
                 default:
                     vaccine_status = 'Booster Kedua'
             }
-            $(this).parent().parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.detailJamaah',[
+            let html = $(this).parent().parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.detailJamaah',[
                 'id' => '`+ data.id +`',
                 'first_name' => '`+ data.first_name +`',
                 'last_name' => '`+ data.last_name +`',
@@ -272,6 +281,8 @@
                 'vaccine_status' => '`+ vaccine_status +`',
                 'room' => '`+ room +`',
             ])`);
+
+            html.find('img[class="ktp_url"]').attr("src", data.ktp_url);
 
             localStorage.setItem("cartData", JSON.stringify(cardData));
             total();
@@ -291,7 +302,7 @@
                 data = cardData[0][2]['jamaah'].filter(jamaah => jamaah.id == id);
             }
 
-            $(this).parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.formJamaah',[
+            let html = $(this).parent().parent().parent().parent().parent().parent().parent().html(`@include('pages.transaction.partials.formJamaah',[
                 'id' => '`+ id +`',
                 'first_name' => '`+ data[0].first_name +`',
                 'last_name' => '`+ data[0].last_name +`',
@@ -306,11 +317,21 @@
                 'room' => '`+ room +`'
             ])`);
 
+            // Set Url image KTP
+            if ( data[0].ktp_url.length != 0 ) {
+                html.find('input[name="ktp_url"]').val(data[0].ktp_url.length);
+
+                html.find(".input-ktp").removeClass('image-input-empty').addClass('image-input-changed');
+                html.find('.image-input-wrapper').css('background-image', `url(`+data[0].ktp_url+`)`);
+            }
+
             $(".date").flatpickr({
                 dateFormat: "d-m-Y",
             });
 
             total();
+
+            load_js();
         });
     </script>
     <!-- Action Form End -->

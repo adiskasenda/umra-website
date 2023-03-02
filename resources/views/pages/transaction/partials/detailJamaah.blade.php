@@ -50,43 +50,45 @@
                 </div>
                 <div class="row">
 
-                    <!-- Tanggal Lahir & Alamat Field -->
+                    <!-- Tanggal Lahir & Alamat Field & Nomor Telepon -->
                     <div class="col-sm-6 mb-5">
                         <div class="form-group mb-5">
                             <label for="birth_date" class="form-label">Tanggal Lahir</label>
                             <div class="font-normal-700 fs-16">{{ $birth_date ? $birth_date : '-' }}</div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-5">
                             <label for="address" class="form-label">Alamat</label>
                             <div class="font-normal-700 fs-16">{{ $address ? $address : '-' }}</div>
                         </div>
+                        <div class="form-group">
+                            <label for="no_telp" class="form-label">Nomor Telepon</label>
+                            <div class="font-normal-700 fs-16">{{ $phone_number ? $phone_number : '-' }}</div>
+                        </div>
                     </div>
 
-                    <!-- Vaksinasi Field -->
-                    <div class="form-group col-sm-6 mb-5">
-                        <label for="no_ktp" class="form-label">Vaksinasi</label>
-                        <div class="font-normal-700 fs-16">{{ $vaccine_status ? $vaccine_status : '-' }}</div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <!-- Nomor Telepon Field -->
-                    <div class="form-group col-sm-6 mb-5">
-                        <label for="no_telp" class="form-label">Nomor Telepon</label>
-                        <div class="font-normal-700 fs-16">{{ $phone_number ? $phone_number : '-' }}</div>
+                    <!-- Vaksinasi Field & Image KTP Field -->
+                    <div class="col-sm-6 mb-5">
+                        <div class="form-group mb-5">
+                            <label for="no_ktp" class="form-label">Status Vaksinasi</label>
+                            <div class="font-normal-700 fs-16">{{ $vaccine_status ? $vaccine_status : '-' }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_ktp" class="form-label">Image KTP</label>
+                            <div><img width="70%" class="ktp_url" src="#" alt="#"></div>
+                        </div>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <!-- Nomor Passport Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="no_telp" class="form-label">Nomor Passport</label>
+                        <label for="passport_number" class="form-label">Nomor Passport</label>
                         <div class="font-normal-700 fs-16">{{ $passport_number ? $passport_number : '-' }}</div>
                     </div>
 
-                    <!-- Nomor Passport Field -->
+                    <!-- Passport Expaired Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="no_telp" class="form-label">Masa Berlaku Passport</label>
+                        <label for="passport_expiry_date" class="form-label">Masa Berlaku Passport</label>
                         <div class="font-normal-700 fs-16">{{ $passport_expiry_date ? $passport_expiry_date : '-' }}</div>
                     </div>
                 </div>

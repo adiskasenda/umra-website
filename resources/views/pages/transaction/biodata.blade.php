@@ -211,6 +211,13 @@
                 });
             }
 
+            if ( data.ktp_url.length == 0 || data.ktp_url.length == 1 ) {
+                message.push({
+                    name : 'ktp_url',
+                    message : 'Image KTP Tidak Boleh Kosong'
+                });
+            }
+
             if ( data.passport_number.length == 0 || data.passport_number.length < 5 ) {
                 if ( data.passport_number.length == 0 ) {
                     messageValidasi = 'Nomor Passport Tidak Boleh Kosong'

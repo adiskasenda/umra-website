@@ -130,24 +130,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="mt-5 font-normal-400 fs-14">
-                                                        Foto Passport
-                                                    </div>
-                                                    <div class="mt-1 font-normal-700 fs-16">
-                                                        <img src="{{ asset('assets-web/img/image/ktp.jpg') }}" style="max-width:100%;" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="mt-5 font-normal-400 fs-14">
-                                                        Foto Surat Vaksin
-                                                    </div>
-                                                    <div class="mt-1 font-normal-700 fs-16">
-                                                        <img src="{{ asset('assets-web/img/image/ktp.jpg') }}" style="max-width:100%;" alt="">
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                         </div>
                                     </div>
                                 </div>

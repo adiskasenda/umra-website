@@ -1,42 +1,71 @@
 <?php
 namespace App\Helpers;
 use Session;
+use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\File\File;
 
 class Helpers
 {
 
-    // public static function  getUserIP() {
-    //     $ipaddress="";
-    //     if (isset($_SERVER['HTTP_CLIENT_IP']))
-    //         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    //     else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-    //         $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    //     else if(isset($_SERVER['HTTP_X_FORWARDED']))
-    //         $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    //     else if(isset($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']))
-    //         $ipaddress = $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
-    //     else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-    //         $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    //     else if(isset($_SERVER['HTTP_FORWARDED']))
-    //         $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    //     else if(isset($_SERVER['REMOTE_ADDR']))
-    //         $ipaddress = $_SERVER['REMOTE_ADDR'];
-    //     else
-    //         $ipaddress="UNKNOWN";
-    //     return $ipaddress;
-    // }
+    public static function  getUserIP() {
+        $ipaddress="";
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress="UNKNOWN";
+        return $ipaddress;
+    }
 
-    // public static function getIp() {
-    //     $ip = $_SERVER['REMOTE_ADDR'];
+    public static function getIp() {
+        $ip = $_SERVER['REMOTE_ADDR'];
 
-    //     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-    //         $ip = $_SERVER['HTTP_CLIENT_IP'];
-    //     } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    //         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    //     }
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
 
-    //     return $ip;
-    // }
+        return $ip;
+    }
+
+    // you can use this function with Helpers::fromBase64($base64File)
+    public static function fromBase64($base64File): UploadedFile
+    {
+        // decode the base64 file
+        $fileData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64File));
+
+        // save it to temporary dir first.
+        $tmpFilePath = sys_get_temp_dir() . '/' . Str::uuid()->toString();
+        file_put_contents($tmpFilePath, $fileData);
+
+        // this just to help us get file info.
+        $tmpFile = new File($tmpFilePath);
+
+        $file = new UploadedFile(
+            $tmpFile->getPathname(),
+            $tmpFile->getFilename(),
+            $tmpFile->getMimeType(),
+            0,
+            true // Mark it as test, since the file isn't from real HTTP POST.
+        );
+
+        // return UploadedFile object
+        return $file;
+    }
 
     // you can use this function with Helpers::convertPhone($nohp)
     public static function convertPhone($nohp) {

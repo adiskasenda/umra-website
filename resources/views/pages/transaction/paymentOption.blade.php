@@ -275,7 +275,7 @@
                                 const paymentMethod = $("input[name='id_payment_method']").val();
                                 
                                 $('#checkout').html(`
-                                    <form id="form-checkout" method="post" action="{{ url('/transaction/checkout') }}">
+                                    <form id="form-checkout" method="post" action="{{ url('/transaction/checkout') }}" enctype="multipart/form-data">
                                         <input type="text" value="{{ csrf_token() }}" name="_token">
                                         <input type="text" value='`+ uuidPacket +`' name="uuid_packet">
                                         <input type="text" value='`+ typePayment +`' name="type_payment">
@@ -284,10 +284,10 @@
                                     </form>
                                 `);
 
-                                localStorage.removeItem("cartId");
-                                localStorage.removeItem("step");
-                                localStorage.removeItem("typePayment");
-                                localStorage.removeItem("cartData");
+                                // localStorage.removeItem("cartId");
+                                // localStorage.removeItem("step");
+                                // localStorage.removeItem("typePayment");
+                                // localStorage.removeItem("cartData");
                                 $( "#form-checkout" ).submit();
 
                                 // $.ajax({
