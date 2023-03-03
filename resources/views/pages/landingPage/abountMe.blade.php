@@ -52,13 +52,13 @@
     <div class="container-fluid py-5 bg-image-6">
         <div class="container mt-20 mb-20">
             <div class="text-center mx-auto" style="max-width: 800px;margin-top:4%;margin-bottom:4%">
-                <div class="text-weight-700 fs-44 mb-5">Kegiatan Kami</div>
+                <div class="text-weight-700 fs-44 mb-5 text-green">Kegiatan Kami</div>
                 <div class="text-opacity text-weight-400 fs-20">Sejak dikembangkan mulai tahun 2017 kemudian diluncurkan pada 28 November 2019, kami terus melakukan perbaikan dan meningkatkan pelayanan.</div>
             </div>
             <div class="owl-carousel event-carousel" data-wow-delay="0.3s">
                 @foreach($activity_me as $activity)
-                    <div>
-                        <img class="img-card lozad" src="{{ $activity['image'] }}" style="height: 100%" alt="{{ $activity['image'] }}">
+                    <div style="border-radius: 8px;">
+                        <img class="img-card lozad" src="{{ $activity['image'] }}" style="height: 100%; border-top-left-radius: 8px; border-top-right-radius: 8px;" alt="{{ $activity['image'] }}">
                         <div class="text-dark text-weight-400 fs-20 bg-white p-5" >{{ strlen($activity['title']) > 80 ? substr_replace($activity['title'], '...', 80) : $activity['title'] }}</div>
                     </div>
                 @endforeach

@@ -40,10 +40,8 @@ class LoginEmailController extends Controller
         $login = json_decode($response->getBody(), true);
 
         if ( $login['status'] == '2' ) {
-            $input = $request->input();
-            $input['type'] = 'email';
+            $input['type'] = 'gmail';
             return redirect()->back()
-                            ->withInput($input)
                             ->with('error', $login['message']);
         }
 

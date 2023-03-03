@@ -10,6 +10,7 @@
     --green: #006B67;
     --green-secondary: #7CB041;
     --green-light: #E6F1F0;
+    --green-light-2: #CCE1E1;
 }
 
 .garis_vertikal{
@@ -363,7 +364,7 @@
 
 .nav-link-href:hover {
     padding: 25px 15px;
-    color: var(--primary);
+    color: var(--green);
     font-weight: 500;
     outline: none;
 }
@@ -395,7 +396,7 @@
 
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: var(--green);
 }
 
 @media (max-width: 991.98px) {
