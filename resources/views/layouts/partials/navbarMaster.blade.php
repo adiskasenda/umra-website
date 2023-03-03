@@ -82,11 +82,11 @@
                                     <!-- <div class="symbol symbol-circle" style="margin:auto;">
                                         <img alt="Logo" class="img-avatar lozad" style="width: 40px; height:40px;" src="{{ Session::get('user')['url_photo'] }}">
                                     </div> -->
-                                    <span class="ms-3">{{ Session::get('user')['firstname'] }}</span>
+                                    <span class="ms-3">{{ strlen(Session::get('user')['firstname']) > 15 ? substr_replace(Session::get('user')['firstname'], '...', 15) : Session::get('user')['firstname'] }}</span>
                                 </a>
 
-                                <div class="dropdown-menu border-light m-0" style="left: -100px !important;">
-                                    <div class="p-3">Assalamualaikum, {{ Session::get('user')['firstname'] }}</div>
+                                <div class="dropdown-menu border-light m-0" style="left: -50px !important;">
+                                    <div class="p-3">Assalamualaikum, {{ strlen(Session::get('user')['firstname']) > 8 ? substr_replace(Session::get('user')['firstname'], '...', 8) : Session::get('user')['firstname'] }}</div>
                                     <a href="{{ url('/profile') }}" style="width: 200px;" class="dropdown-item">
                                         <div class="row" style="width: 200px; margin: 8px 0;">
                                             <div class="col-2">

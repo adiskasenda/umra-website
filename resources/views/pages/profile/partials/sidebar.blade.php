@@ -1,5 +1,5 @@
 <div class="card card-bordered" style="width: 100%;">
-    <div class="card-header">
+    <div class="">
         <div class="menu-content d-flex align-items-center p-5">
             <div class="symbol symbol-circle me-5">
                 <img alt="Logo" class="img-avatar lozad" src="{{ Session::get('user')['url_photo'] }}">
