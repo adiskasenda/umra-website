@@ -112,7 +112,7 @@ class Helpers
 
     // you can use this function with Helpers::imageCardDefault()
     public static function imageCardDefault() {
-        return asset('assets-web/img/image/artikle-default.jpg');
+        return asset('assets-web/img/image/image-not-found.png');
     }
 
     // you can use this function with Helpers::imageArtikelDefault()

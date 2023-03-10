@@ -11,6 +11,9 @@
     --green-secondary: #7CB041;
     --green-light: #E6F1F0;
     --green-light-2: #CCE1E1;
+    --green-light-3: #20A95A;
+    --opacity-2: rgba(16, 16, 16, 0.7);
+    --white-opacity: rgba(255, 255, 255, 0.7);
 }
 
 .garis_vertikal{
@@ -50,7 +53,7 @@
 @media (max-width: 991.98px) {
     .content {
         margin-top: 59px;
-    }
+    } 
 }
 
 .text-right {
@@ -58,6 +61,14 @@
 }
 
 /*** Master Color Text ***/
+.text-white-opacity {
+    color: var(--white-opacity);
+}
+
+.text-opacity-2 {
+    color: var(--opacity-2);
+}
+
 .text-tertiary {
     color: var(--tertiary)
 }
@@ -97,12 +108,16 @@
 }
 
 .icon-cicilan {
-    width: 64px;
+    /* width: 64px; */
     height: 20.1px;
     float: right;
 }
 
 /*** Master Background ***/
+.bg-white {
+    background-color: var(--white);
+}
+
 .bg-green {
     background-color: var(--green);
 }
@@ -159,7 +174,8 @@
 .bg-image-4 {
     background-image: url("/assets-web/img/background/background-4.png");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: 100% auto;
+    background-position: center center;
 }
 
 .bg-image-5 {
@@ -219,6 +235,10 @@
     font-size: 32px;
 }
 
+.fs-25 {
+    font-size: 25px;
+}
+
 .fs-20 {
     font-size: 20px;
 }
@@ -244,6 +264,10 @@
         font-size: 30px;
     }
 
+    .fs-25 {
+        font-size: 22px;
+    }
+
     .fs-20 {
         font-size: 18px;
     }
@@ -260,6 +284,10 @@
 
     .fs-32 {
         font-size: 28px;
+    }
+
+    .fs-25 {
+        font-size: 18px;
     }
 
     .fs-20 {
@@ -524,4 +552,10 @@
 /*** Copyright ***/
 .copyright {
     color: var(--dark);
+}
+
+
+/*** Height Card Artikle ***/
+.h-artikle {
+    height: 140px;
 }
