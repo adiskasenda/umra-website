@@ -214,3 +214,23 @@
 .testimonial-carousel .owl-dot.active::after {
     background: var(--green);
 }
+
+
+/*** Height main Artikle ***/
+.h-main-artikle {
+    height: 422px;
+}
+    /*** Tab Version ***/
+    @media (max-width: 768px) and (min-width: 575.99px) {
+        .h-main-artikle {
+            height: 222px;
+        }
+    }
+
+    /*** Mobile version ***/
+    @media (max-width:575.98px) {
+        .h-main-artikle {
+            height: 142px;
+        }
+    }
+

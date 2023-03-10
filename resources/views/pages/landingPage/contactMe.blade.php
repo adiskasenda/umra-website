@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-6" style="margin:auto;">
                     <div class="mb-4 text-weight-700 fs-44" style="font-weight: bold;">Pusat Pengaduan <br/> Customer</div>
-                    <div class="mb-4 text-weight-400 fs-20">UMRA.ID berkomitmen untuk senantiasa memberikan pelayanan terbaik bagi seluruh jamaah & customer UMRA.ID. Apabila anda memiliki kritik & saran atas layanan kami, anda dapat menghubungi Customer Service kami.</div>
+                    <div class="text-opacity-2 mb-4 text-weight-400 fs-20">UMRA.ID berkomitmen untuk senantiasa memberikan pelayanan terbaik bagi seluruh jamaah & customer UMRA.ID. Apabila anda memiliki kritik & saran atas layanan kami, anda dapat menghubungi Customer Service kami.</div>
                 </div>
                 <div class="col-md-6">
                     <img class="image-center mt-10 mb-5" width="80%" src="{{ asset('assets-web/img/image/hubungi-kami.png')}}" alt="{{ asset('assets-web/img/image/hubungi-kami.png')}}">
