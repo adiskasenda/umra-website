@@ -87,10 +87,65 @@
                                 <input class="form-control date" name="birth_date" value="{{ $birth_date }}" placeholder="Masukan Tanggal Lahir"/>
                                 <div class="message-validation birth_date"></div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-5">
                                 <label for="address" class="required form-label">Alamat</label>
                                 <textarea class="form-control" placeholder="Masukan Alamat" name="address" data-kt-autosize="true">{{ $address }}</textarea>
                                 <div class="message-validation address"></div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Vaccine Status Field -->
+                                <label for="vaccine_status" class="required form-label">Vaksinasi</label>
+                                <div class="row">
+                                    <!--begin::Col-->
+                                    <div class="col-lg-4 col-md-4 col-6 mt-3">
+                                        <div class="form-check form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" value="0" name="vaccine_status" id="belum_vaksin" checked/>
+                                            <label class="form-check-label" for="belum_vaksin">
+                                                Belum Vaksin
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!--begin::Col-->
+                                    <div class="col-lg-4 col-md-4 col-6 mt-3">
+                                        <label class="form-check form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" value="1"  name="vaccine_status" id="dosis_pertama"/>
+                                            <span class="form-check-label"  for="dosis_pertama">
+                                                Dosis Pertama
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <!--begin::Col-->
+                                    <div class="col-lg-4 col-md-4 col-6 mt-3">
+                                        <label class="form-check form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" value="2"  name="vaccine_status" id="dosis_kedua"/>
+                                            <span class="form-check-label"  for="dosis_kedua">
+                                                Dosis Kedua
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <!--begin::Col-->
+                                    <div class="col-lg-4 col-md-4 col-6 mt-3">
+                                        <label class="form-check form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" value="3"  name="vaccine_status" id="booster"/>
+                                            <span class="form-check-label"  for="booster">
+                                                Booster
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <!--begin::Col-->
+                                    <div class="col-lg-4 col-md-4 col-6 mt-3">
+                                        <label class="form-check form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="radio" value="4"  name="vaccine_status" id="booster_kedua"/>
+                                            <span class="form-check-label"  for="booster_kedua">
+                                                Booster Kedua
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -98,8 +153,8 @@
                         <!-- Foto KTP Field -->
                         <div class="form-group col-sm-6 mb-5">
                             <label for="no_ktp" class="required form-label">Foto KTP</label>
-                            <div id="input-avatar" class="image-input image-input-empty form-control bg-picture" data-kt-image-input="true">
-                                <div class="image-input-wrapper" style="margin: auto;background-repeat: no-repeat;width: 50%;height: 269px;"></div>
+                            <div id="input-ktp" class="input-ktp image-input image-input-empty form-control bg-picture" data-kt-image-input="true">
+                                <div class="image-input-wrapper" style="margin: auto;background-repeat: no-repeat;width: 100%;height: 269px;"></div>
 
                                 <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
                                     data-kt-image-input-action="change"
@@ -107,8 +162,8 @@
                                     data-bs-dismiss="click"
                                     title="Change Image">
                                     <i class="bi bi-pencil-fill fs-7"></i>
-                                    <input type="file" name="file_url_avatar" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="file_url_avatar_old"/>
+                                    <input type="file" name="ktp_url_upload" class="ktp_url_upload" accept=".png, .jpg, .jpeg" />
+                                    <input type="hidden" name="ktp_url" accept=".png, .jpg, .jpeg" />
                                 </label>
 
                                 <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -127,60 +182,7 @@
                                     <i class="bi bi-x fs-2"></i>
                                 </span>
                             </div>
-
-                            <!-- Vaccine Status Field -->
-                            <label for="vaccine_status" class="required form-label">Vaksinasi</label>
-                            <div class="row">
-                                <!--begin::Col-->
-                                <div class="col-4 mt-3">
-                                    <div class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="0" name="vaccine_status" id="belum_vaksin" checked/>
-                                        <label class="form-check-label" for="belum_vaksin">
-                                            Belum Vaksin
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!--begin::Col-->
-                                <div class="col-4 mt-3">
-                                    <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="1"  name="vaccine_status" id="dosis_pertama"/>
-                                        <span class="form-check-label"  for="dosis_pertama">
-                                            Dosis Pertama
-                                        </span>
-                                    </label>
-                                </div>
-
-                                <!--begin::Col-->
-                                <div class="col-4 mt-3">
-                                    <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="2"  name="vaccine_status" id="dosis_kedua"/>
-                                        <span class="form-check-label"  for="dosis_kedua">
-                                            Dosis Kedua
-                                        </span>
-                                    </label>
-                                </div>
-
-                                <!--begin::Col-->
-                                <div class="col-4 mt-3">
-                                    <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="3"  name="vaccine_status" id="booster"/>
-                                        <span class="form-check-label"  for="booster">
-                                            Booster
-                                        </span>
-                                    </label>
-                                </div>
-
-                                <!--begin::Col-->
-                                <div class="col-4 mt-3">
-                                    <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="radio" value="4"  name="vaccine_status" id="booster_kedua"/>
-                                        <span class="form-check-label"  for="booster_kedua">
-                                            Booster Kedua
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
+                            <div class="message-validation ktp_url"></div>
                         </div>
 
                     </div>
@@ -234,13 +236,13 @@
                     <hr>
                     <!-- Action Form Jamaah -->
                     <div class="row">
-                        <div class="col-4 mt-2">
+                        <div class="col-lg-4 col-md-5 col-6 mt-2">
                             <button class="btn font-normal-500 fs-16 text-red remove_form_jamaah" data-id="{{ $id }}" style="color: var(--secondary);">
                                 <i class="fa-solid fa-trash me-2" style="color: var(--secondary);"></i>
                                 Hapus Jamaah
                             </button>
                         </div>
-                        <div class="col-8">
+                        <div class="col-lg-8 col-md-7 col-6">
                             <div class="text-right">
                                 <button class="btn btn-success btn-save" data-id="{{ $id }}">
                                     Simpan

@@ -12,7 +12,6 @@ use App\Http\Controllers\{
     Auth\RegisterController,
 
     Auth\ForgotPasswordController,
-    Auth\ForgotPINController,
 
     LandingPage\LandingPageController,
     LandingPage\AboutMeController,
@@ -64,12 +63,11 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
         });
         Route::post('/', [ LoginPhoneController::class, 'loginPhone' ]);
         // Route::get('/validate-otp', [ LoginPhoneController::class, 'viewOtp' ]);
-
         // Route::get('/check-otp', [ LoginPhoneController::class, 'checkOtp' ]);
         Route::post('/validate-otp', [ LoginPhoneController::class, 'loginOtp' ]);
     });
 
-    Route::group([ 'prefix' =>'/login-gmail' ], function() {
+    Route::group([ 'prefix' =>'/auth/google' ], function() {
         Route::get('/', [ LoginGoogleController::class, 'google']);
         Route::get('/callback', [ LoginGoogleController::class, 'googleCallback']);
     });
@@ -85,11 +83,6 @@ Route::group([ 'middleware' =>'tokenNotFound'], function(){
         Route::post('/validate-otp', [ ForgotPasswordController::class, 'validateOtp']);
         Route::post('/update-password', [ ForgotPasswordController::class, 'updatePassword']);
     });
-
-    // Route::group([ 'prefix' => '/reset-pin' ], function() {
-    //     Route::get('/', [ ForgotPINController::class, 'resetPIN']);
-    //     Route::post('/', [ ForgotPINController::class, 'updatePIN']);
-    // });
 
 });
 

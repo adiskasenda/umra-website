@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Http;
 use Ramsey\Uuid\Uuid;
+use Helpers;
 
 class TransactionController extends Controller
 {
@@ -152,6 +153,8 @@ class TransactionController extends Controller
         foreach( $card_data as $key_jamaah => $jamaah ) {
             if ( !empty($jamaah['jamaah'])) {
                 foreach( $jamaah['jamaah'] as $guest ) {
+                    $ktp_url = app('App\Http\Controllers\File\FileUploadController')->uploadFile( Helpers::fromBase64($guest['ktp_url']), 'profile' );
+                    
                     $order_guest[] = [
                         "type_bed" => $key_jamaah + 1,
                         "title" => "",
@@ -163,7 +166,7 @@ class TransactionController extends Controller
                         "phone_number" => $guest['phone_number'],
                         "phone_number" => 6282134060591,
                         "ktp_number" => $guest['ktp_number'],
-                        "ktp_url" => "",
+                        "ktp_url" => $ktp_url,
                         "passport_number" => $guest['passport_number'],
                         "passport_expiry_date" => date('Y-m-d', strtotime($guest['passport_expiry_date'])),
                         "passport_url" => "",
@@ -171,9 +174,12 @@ class TransactionController extends Controller
                         "vaccine_status" => $guest['vaccine_status'],
                         "vaccine_url" => ""
                     ];
+
                 }
             }
         }
+
+        
 
         // Create Order
         $body = [
@@ -195,44 +201,11 @@ class TransactionController extends Controller
         // Create Order
         $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/order_customer', $body);
         $order = json_decode($response->getBody(), true);
-
-        // Create Payment
-        // $bodyPayment = [
-        //     "order_code" => $order['data']['order_code'],
-        //     "type_payment" => $request->type_payment,
-        //     "payment_method" => $request->payment_method
-        // ];
-
-        // $response = Http::withHeaders($this->header)->post($this->url.'/core-umra/order_customer/repayment', $bodyPayment);
-        // $payment_method = json_decode($response->getBody(), true);
-
+        
         return view('pages.transaction.paymentStatus', [
             'order' => $order['data']
         ]);
-
-        // return response()->json([
-        //     'status' => $order['status'],
-        //     'message' => $order['message'],
-        //     'data' => $order['data']
-        // ]);
     }
-
-    // public function paymentStatus($order_code)
-    // {
-    //     $this->header['ax-request-by'] = Session::get('user')['email'];
-    //     $this->header['Authorization'] = 'Bearer '.Session::get('token');
-
-    //     $response = Http::withHeaders($this->header)->get($this->url.'/core-umra/order_customer/code/'.$order_code);
-    //     $order = json_decode($response->getBody(), true);
-
-    //     if ( empty($order['data']) ) {
-    //         return abort(404);
-    //     }
-
-    //     return view('pages.transaction.paymentStatus', [
-    //         'order' => $order['data']
-    //     ]);
-    // }
 
     public function show($id)
     {

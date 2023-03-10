@@ -15,7 +15,7 @@
         </h2>
         <div id="kt_accordion_room_{{ $room }}_{{ $id }}" class="accordion-collapse collapse show" aria-labelledby="kt_accordion_1" data-bs-parent="#kt_accordion_1_header_1">
             <div class="accordion-body" style="background-color: #FAFAFA">
-                
+
                 <div class="row">
 
                     <!-- Nama Depan Field -->
@@ -46,59 +46,61 @@
                         <label for="no_ktp" class="form-label">Nomor KTP</label>
                         <div class="font-normal-700 fs-16">{{ $ktp_number ? $ktp_number : '-' }}</div>
                     </div>
-                    
+
                 </div>
                 <div class="row">
 
-                    <!-- Tanggal Lahir & Alamat Field -->
+                    <!-- Tanggal Lahir & Alamat Field & Nomor Telepon -->
                     <div class="col-sm-6 mb-5">
                         <div class="form-group mb-5">
                             <label for="birth_date" class="form-label">Tanggal Lahir</label>
                             <div class="font-normal-700 fs-16">{{ $birth_date ? $birth_date : '-' }}</div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-5">
                             <label for="address" class="form-label">Alamat</label>
                             <div class="font-normal-700 fs-16">{{ $address ? $address : '-' }}</div>
                         </div>
+                        <div class="form-group">
+                            <label for="no_telp" class="form-label">Nomor Telepon</label>
+                            <div class="font-normal-700 fs-16">{{ $phone_number ? $phone_number : '-' }}</div>
+                        </div>
                     </div>
 
-                    <!-- Vaksinasi Field -->
-                    <div class="form-group col-sm-6 mb-5">
-                        <label for="no_ktp" class="form-label">Vaksinasi</label>
-                        <div class="font-normal-700 fs-16">{{ $vaccine_status ? $vaccine_status : '-' }}</div>
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <!-- Nomor Telepon Field -->
-                    <div class="form-group col-sm-6 mb-5">
-                        <label for="no_telp" class="form-label">Nomor Telepon</label>
-                        <div class="font-normal-700 fs-16">{{ $phone_number ? $phone_number : '-' }}</div>
+                    <!-- Vaksinasi Field & Image KTP Field -->
+                    <div class="col-sm-6 mb-5">
+                        <div class="form-group mb-5">
+                            <label for="no_ktp" class="form-label">Status Vaksinasi</label>
+                            <div class="font-normal-700 fs-16">{{ $vaccine_status ? $vaccine_status : '-' }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_ktp" class="form-label">Image KTP</label>
+                            <div><img width="70%" class="ktp_url" src="#" alt="#"></div>
+                        </div>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <!-- Nomor Passport Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="no_telp" class="form-label">Nomor Passport</label>
+                        <label for="passport_number" class="form-label">Nomor Passport</label>
                         <div class="font-normal-700 fs-16">{{ $passport_number ? $passport_number : '-' }}</div>
                     </div>
 
-                    <!-- Nomor Passport Field -->
+                    <!-- Passport Expaired Field -->
                     <div class="form-group col-sm-6 mb-5">
-                        <label for="no_telp" class="form-label">Masa Berlaku Passport</label>
+                        <label for="passport_expiry_date" class="form-label">Masa Berlaku Passport</label>
                         <div class="font-normal-700 fs-16">{{ $passport_expiry_date ? $passport_expiry_date : '-' }}</div>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-4 mt-2">
+                    <div class="col-lg-4 col-md-5 col-6">
                         <button class="btn font-normal-500 fs-16 text-red remove_form_jamaah" data-id="{{ $id }}" style="color: var(--secondary);">
                             <i class="fa-solid fa-trash me-2" style="color: var(--secondary)"></i>
                             Hapus Jamaah
                         </button>
                     </div>
-                    <div class="col-8">
+                    <div class="col-lg-8 col-md-7 col-6">
                         <div class="text-right">
                             <button class="btn btn-outline btn-outline-success text-green btn-edit" data-id="{{ $id }}">
                                 <i class="fa-solid fa-pen-to-square me-2" style="color: var(--green)"></i>
@@ -111,4 +113,3 @@
         </div>
     </div>
 </div>
-

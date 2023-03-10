@@ -4,7 +4,7 @@
             <img class="img-card lozad" src="{{ $url_banner }}" width="100%" alt="{{ $url_banner }}">
             <div class="text-dark text-weight-600 fs-20 mt-4 mb-4" style="font-weight: bold;">{{ $name }}</div>
 
-            @if ( $status == 4 )
+            @if ( $status == 3 || $status == 4 )
                 <div class="text-danger text-weight-400 lable-danger fs-16">
                     <img class="icon-package" src="{{ asset('assets-web/img/icon/calendar-danger.png') }}" alt="{{ asset('assets-web/img/icon/calendar-danger.png') }}">
                     Paket sudah berakhir

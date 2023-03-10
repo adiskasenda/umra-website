@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-
     <!-- Detail Paket -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -33,10 +32,10 @@
                             </div>
                         </div>
 
-                        @if( $package_product['quota'] == 0 )
-                            <button class="btn btn-success mt-3" style="width: 100%;" disabled>Pesan Sekarang</button>
-                        @else
+                        @if( $package_product['quota'] > 0 && $package_product['status'] == 1 )
                             <a href="{{ url('/transaction/jamaah', $package_product['id_packet']) }}" class="btn btn-success mt-3" style="width: 100%;">Pesan Sekarang</a>
+                        @else
+                            <button class="btn btn-success mt-3" style="width: 100%;" disabled>Pesan Sekarang</button>
                         @endif
                     </div>
                 </div>

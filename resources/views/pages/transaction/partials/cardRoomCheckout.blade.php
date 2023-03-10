@@ -3,17 +3,17 @@
         <h2 class="accordion-header" id="kt_accordion_1_header_1">
             <button class="accordion-button fs-4 fw-semibold" style="background-color: white" aria-expanded="true"  type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_{{ $type_room }}" aria-controls="kt_accordion_{{ $type_room }}">
                 <div class="row" style="width:100%;">
-                    <div class="col-1">
+                    <div class="col-lg-1 col-md-2 col-2">
                         <img src="{{ $icon }}" width="40px" height="40px" alt="{{ $icon }}">
                     </div>
-                    <div class="col-5">
+                    <div class="col-lg-5 col-md-5 col-5">
                         <div class="font-normal-700 fs-16">{{ $name }}</div>
                         <div class="font-normal-600 fs-14 text-green">
                             <i class="fa-solid fa-user-group me-2" style="color: var(--green)"></i>
                             <span class="count-people-{{ $type_room }}">0</span> Orang
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div class="col-lg-5 col-md-5 col-5">
                         <div class="font-normal-700 fs-18 text-green mt-3">
                             Rp. <span class="total-price-{{ $type_room }}">0</span>
                         </div>
@@ -44,7 +44,7 @@
                 return cardData[0][2]['quad'];
             }
         }
-        
+
         function checkTotalPriceRoom(room){
             const cardData = JSON.parse(localStorage.getItem("cartData"));
 
@@ -96,6 +96,7 @@
                 'gender' => '`+ gender +`',
                 'address' => '`+ data.address +`',
                 'phone_number' => '`+ data.phone_number +`',
+                'ktp_url' => '`+ data.ktp_url +`',
                 'ktp_number' => '`+ data.ktp_number +`',
                 'passport_number' => '`+ data.passport_number +`',
                 'passport_expiry_date' => '`+ data.passport_expiry_date +`',
@@ -128,3 +129,4 @@
         });
     </script>
 @endpush
+
